@@ -24,9 +24,9 @@ export const Hero = () => {
                 <Mail className="w-5 h-5 mr-2" />
                 Contact
               </a>
-              <a href="#portfolio" className="border-2 border-red-600 text-red-600 px-6 py-3 rounded-lg hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex items-center">
+              <a href="#Projets" className="border-2 border-red-600 text-red-600 px-6 py-3 rounded-lg hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex items-center">
                 <Scroll className="w-5 h-5 mr-2 animate-bounce" />
-                Portfolio
+                Projets
               </a>
               <button 
                 onClick={() => window.open('https://drive.google.com/uc?export=download&id=1R7w66xBzH_ewoGBWFmrk_bSPk39jj6Sw', '_blank')}
@@ -54,4 +54,4 @@ export const Hero = () => {
       </div>
     </div>
   );
-};
+};            {/* The location is displayed in a row */}
