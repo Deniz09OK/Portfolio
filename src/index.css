@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+/* Section transitions */
+.section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Card animations */
+.interest-card, .language-card {
+  opacity: 0;
+  animation: slideInRight 0.6s ease-out forwards;
+  background: linear-gradient(145deg, #ffffff 0%, #f3f4f6 100%);
+  transition: all 0.3s ease;
+}
+
+.interest-card:hover, .language-card:hover {
+  background: linear-gradient(145deg, #f3f4f6 0%, #ffffff 100%);
+}
+
+.interest-card:nth-child(odd), .language-card:nth-child(odd) {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Loading bar animation */
+@keyframes loading {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+.animate-loading-bar {
+  animation: loading 2s ease-in-out infinite;
+}
+
+/* Hero animations */
+.hero-title {
+  animation: slideDown 1s ease-out;
+}
+
+.hero-subtitle {
+  animation: slideUp 1s ease-out 0.3s backwards;
+}
+
+.hero-buttons {
+  animation: fadeIn 1s ease-out 0.6s backwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card hover effects */
+.skill-card, .project-card, .education-card, .experience-card, .interest-card, .language-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-card:hover, .project-card:hover, .education-card:hover, .experience-card:hover, .interest-card:hover, .language-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Icon spin animation */
+.icon-spin {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-spin:hover {
+  transform: rotate(360deg) scale(1.1);
+}
+
+/* Scroll to top button */
+.scroll-to-top {
+  transition: all 0.3s ease;
+}
