@@ -1,4 +1,4 @@
-import { Monitor, FileCode, Database, Network, Server, Wrench, Cpu, Library } from 'lucide-react';
+import { Monitor, FileCode, Database, Network, Server, Wrench, Cpu, Library, GitBranch, ClipboardList, Users, Brain, TestTube, MessageSquare } from 'lucide-react';
 
 export const skillsData = {
   'Systèmes d\'exploitation': {
@@ -59,6 +59,21 @@ export const skillsData = {
     skills: [
       { name: 'Configuration routeurs', wikiLink: 'https://fr.wikipedia.org/wiki/Routeur', icon: Server },
       { name: 'Configuration switches', wikiLink: 'https://fr.wikipedia.org/wiki/Commutateur_réseau', icon: Server }
+    ]
+  },
+  'Méthodologies & Gestion': {
+    icon: Brain,
+    skills: [
+      { name: 'Gestion de projet informatique', wikiLink: 'https://fr.wikipedia.org/wiki/Gestion_de_projet', icon: ClipboardList },
+      { name: 'Développement logiciel', wikiLink: 'https://fr.wikipedia.org/wiki/Développement_de_logiciel', icon: FileCode },
+      { name: 'Programmation orientée objet', wikiLink: 'https://fr.wikipedia.org/wiki/Programmation_orientée_objet', icon: FileCode },
+      { name: 'Git/GitHub', wikiLink: 'https://fr.wikipedia.org/wiki/Git', icon: GitBranch },
+      { name: 'Documentation technique', wikiLink: 'https://fr.wikipedia.org/wiki/Documentation_technique', icon: ClipboardList },
+      { name: 'Travail en équipe', wikiLink: 'https://fr.wikipedia.org/wiki/Travail_d%27équipe', icon: Users },
+      { name: 'Méthodologie Agile/Scrum', wikiLink: 'https://fr.wikipedia.org/wiki/Scrum_(développement)', icon: Brain },
+      { name: 'Analyse des besoins', wikiLink: 'https://fr.wikipedia.org/wiki/Analyse_des_besoins', icon: Brain },
+      { name: 'Tests et validation', wikiLink: 'https://fr.wikipedia.org/wiki/Test_de_logiciel', icon: TestTube },
+      { name: 'Communication technique', wikiLink: 'https://fr.wikipedia.org/wiki/Communication_technique', icon: MessageSquare }
     ]
   },
   'Dépannage': {
