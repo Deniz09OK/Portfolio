@@ -24,10 +24,6 @@ export const Hero = () => {
                 <Mail className="w-5 h-5 mr-2" />
                 Contact
               </a>
-              <a href="#Projets" className="border-2 border-red-600 text-red-600 px-6 py-3 rounded-lg hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex items-center">
-                <Scroll className="w-5 h-5 mr-2 animate-bounce" />
-                Projets
-              </a>
               <button 
                 onClick={() => window.open('https://drive.google.com/uc?export=download&id=1R7w66xBzH_ewoGBWFmrk_bSPk39jj6Sw', '_blank')}
                 className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 flex items-center shadow-md"
@@ -43,7 +39,7 @@ export const Hero = () => {
               À propos
             </h2>
             <p className="text-gray-700 leading-relaxed">
-              Étudiant à Epitech en alternance chez Qualitest en tant que Assistant informaticien Stack depuis février 2025. Passionné par les technologies, je développe mes compétences en développement logiciel, programmation et gestion de projets dans un environnement innovant et dynamique.
+              Étudiant à Epitech en alternance chez Qualitest en tant que Assistant informatique depuis février 2025. Passionné par les technologies, par la cybersecurité je développe mes compétences en développement logiciel, programmation et gestion de projets dans un environnement innovant et dynamique.
             </p>
             <div className="flex items-center text-gray-700">
               <MapPin className="w-5 h-5 mr-2 text-red-600" />
@@ -54,4 +50,4 @@ export const Hero = () => {
       </div>
     </div>
   );
-};            {/* The location is displayed in a row */}
+};      
