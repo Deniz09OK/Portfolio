@@ -68,7 +68,6 @@ export const skillsData = {
       { name: 'Développement logiciel', wikiLink: 'https://fr.wikipedia.org/wiki/Développement_de_logiciel', icon: FileCode },
       { name: 'Programmation orientée objet', wikiLink: 'https://fr.wikipedia.org/wiki/Programmation_orientée_objet', icon: FileCode },
       { name: 'Git/GitHub', wikiLink: 'https://fr.wikipedia.org/wiki/Git', icon: GitBranch },
-      { name: 'Documentation technique', wikiLink: 'https://fr.wikipedia.org/wiki/Documentation_technique', icon: ClipboardList },
       { name: 'Travail en équipe', wikiLink: 'https://fr.wikipedia.org/wiki/Travail_d%27équipe', icon: Users },
       { name: 'Méthodologie Agile/Scrum', wikiLink: 'https://fr.wikipedia.org/wiki/Scrum_(développement)', icon: Brain },
     ]
