@@ -41,7 +41,11 @@ export const Portfolio = () => {
                     <img 
                       src={project.media.src}
                       alt={project.media.alt}
-                      className={`w-full h-48 object-contain rounded-lg mb-4 border border-gray-200 ${
+                      className={`w-full h-48 rounded-lg mb-4 border border-gray-200 ${
+                        ['Popeye', 'Portfolio', 'CultureQuiz'].includes(project.name)
+                          ? 'object-cover'
+                          : 'object-contain'
+                      } ${
                         project.name.includes('NSA') ? 'cursor-zoom-in hover:opacity-90' : ''
                       }`}
                       onClick={() => {
