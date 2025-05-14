@@ -15,7 +15,6 @@ Ce projet met en avant mes compétences, mes projets et mon parcours de façon m
 - Présentation claire de mon parcours, compétences et projets.
 - Design moderne et responsive (adapté à tous les écrans).
 - Performances optimisées grâce à Vite, React et Tailwind CSS.
-- Thème clair/sombre.
 - Navigation fluide et expérience utilisateur agréable.
 
 ## 🛠️ Technologies utilisées
