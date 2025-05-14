@@ -71,9 +71,6 @@ export const skillsData = {
       { name: 'Documentation technique', wikiLink: 'https://fr.wikipedia.org/wiki/Documentation_technique', icon: ClipboardList },
       { name: 'Travail en équipe', wikiLink: 'https://fr.wikipedia.org/wiki/Travail_d%27équipe', icon: Users },
       { name: 'Méthodologie Agile/Scrum', wikiLink: 'https://fr.wikipedia.org/wiki/Scrum_(développement)', icon: Brain },
-      { name: 'Analyse des besoins', wikiLink: 'https://fr.wikipedia.org/wiki/Analyse_des_besoins', icon: Brain },
-      { name: 'Tests et validation', wikiLink: 'https://fr.wikipedia.org/wiki/Test_de_logiciel', icon: TestTube },
-      { name: 'Communication technique', wikiLink: 'https://fr.wikipedia.org/wiki/Communication_technique', icon: MessageSquare }
     ]
   },
   'Dépannage': {
