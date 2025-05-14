@@ -4,7 +4,6 @@
 ![React](https://img.shields.io/badge/React-18.3.1-61dafb?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.5.3-3178c6?logo=typescript)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4.1-38bdf8?logo=tailwindcss)
-![MIT License](https://img.shields.io/badge/License-MIT-green.svg)
 
 ## 🚀 Présentation
 
@@ -60,11 +59,6 @@ Ce projet met en avant mes compétences, mes projets et mon parcours de façon m
 - `src/hooks/` : Hooks personnalisés
 - `src/index.css` : Styles globaux (via Tailwind)
 - `public/` : Fichiers statiques
-
-## 📢 Licence
-
-Ce projet est sous licence MIT.  
-Vous êtes libre de l'utiliser, de le modifier et de le redistribuer sous les conditions de cette licence.
 
 ---
 
