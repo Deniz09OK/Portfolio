@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+import { translations } from '../../translations/translations';
 
 export const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { language } = useLanguage();
+  const t = translations[language];
 
   const toggleVisibility = () => {
     if (window.pageYOffset > 300) {
@@ -32,7 +36,7 @@ export const ScrollToTop = () => {
         <button
           onClick={scrollToTop}
           className="fixed bottom-8 right-8 z-50 p-3 bg-red-600 text-white rounded-full shadow-lg hover:bg-red-700 transition-all duration-300 transform hover:scale-110 animate-fade-in"
-          aria-label="Retour en haut"
+          aria-label={t.backToTop}
         >
           <ArrowUp className="w-6 h-6" />
         </button>

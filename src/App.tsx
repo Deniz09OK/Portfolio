@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar/Navbar';
 import { Hero } from './components/Hero/Hero';
 import { Education } from './components/Education/Education';
@@ -11,6 +11,7 @@ import { Footer } from './components/Footer/Footer';
 import { ScrollToTop } from './components/ScrollToTop/ScrollToTop';
 import { Loader } from './components/Loader/Loader';
 import { Section } from './components/Section';
+import { LanguageToggle } from './components/LanguageToggle';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,6 +31,7 @@ export default function App() {
       ) : (
         <div className="min-h-screen bg-gradient-to-b from-red-50 to-white">
           <Navbar />
+          <LanguageToggle />
           <Hero />
           <Section id="education">
             <Education />

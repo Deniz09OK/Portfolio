@@ -1,7 +1,7 @@
 import { Monitor, FileCode, Database, Network, Server, Wrench, Cpu, Library, GitBranch, ClipboardList, Users, Brain, TestTube, MessageSquare } from 'lucide-react';
 
 export const skillsData = {
-  'Systèmes d\'exploitation': {
+  'Operating Systems': {
     icon: Monitor,
     skills: [
       { name: 'Linux', wikiLink: 'https://fr.wikipedia.org/wiki/Linux', icon: Monitor },
@@ -12,7 +12,7 @@ export const skillsData = {
       { name: 'Debian', wikiLink: 'https://fr.wikipedia.org/wiki/Debian', icon: Monitor }
     ]
   },
-  'Langages de programmation': {
+  'Programming Languages': {
     icon: FileCode,
     skills: [
       { name: 'C/C++', wikiLink: 'https://fr.wikipedia.org/wiki/C%2B%2B', icon: FileCode },
@@ -26,7 +26,7 @@ export const skillsData = {
       { name: 'Groovy', wikiLink: 'https://fr.wikipedia.org/wiki/Groovy_(langage)', icon: FileCode }
     ]
   },
-  'Frameworks & Outils': {
+  'Frameworks & Tools': {
     icon: Library,
     skills: [
       { name: 'Node.js', wikiLink: 'https://fr.wikipedia.org/wiki/Node.js', icon: FileCode },
@@ -46,7 +46,7 @@ export const skillsData = {
       { name: 'IntelliJ IDEA', wikiLink: 'https://fr.wikipedia.org/wiki/IntelliJ_IDEA', icon: FileCode }
     ]
   },
-  'Bases de données': {
+  'Databases': {
     icon: Database,
     skills: [
       { name: 'MongoDB', wikiLink: 'https://fr.wikipedia.org/wiki/MongoDB', icon: Database },
@@ -54,28 +54,32 @@ export const skillsData = {
       { name: 'SQLite', wikiLink: 'https://fr.wikipedia.org/wiki/SQLite', icon: Database }
     ]
   },
-  'Réseaux': {
+  'Networks': {
     icon: Network,
     skills: [
       { name: 'Configuration routeurs', wikiLink: 'https://fr.wikipedia.org/wiki/Routeur', icon: Server },
       { name: 'Configuration switches', wikiLink: 'https://fr.wikipedia.org/wiki/Commutateur_réseau', icon: Server }
     ]
   },
-  'Méthodologies & Gestion': {
+  'Methodologies & Management': {
     icon: Brain,
     skills: [
-      { name: 'Gestion de projet informatique', wikiLink: 'https://fr.wikipedia.org/wiki/Gestion_de_projet', icon: ClipboardList },
-      { name: 'Développement logiciel', wikiLink: 'https://fr.wikipedia.org/wiki/Développement_de_logiciel', icon: FileCode },
-      { name: 'Programmation orientée objet', wikiLink: 'https://fr.wikipedia.org/wiki/Programmation_orientée_objet', icon: FileCode },
+      { name: 'IT Project Management', wikiLink: 'https://fr.wikipedia.org/wiki/Gestion_de_projet', icon: ClipboardList },
+      { name: 'Software Development', wikiLink: 'https://fr.wikipedia.org/wiki/Développement_de_logiciel', icon: FileCode },
+      { name: 'Object-Oriented Programming', wikiLink: 'https://fr.wikipedia.org/wiki/Programmation_orientée_objet', icon: FileCode },
       { name: 'Git/GitHub', wikiLink: 'https://fr.wikipedia.org/wiki/Git', icon: GitBranch },
-      { name: 'Travail en équipe', wikiLink: 'https://fr.wikipedia.org/wiki/Travail_d%27équipe', icon: Users },
-      { name: 'Méthodologie Agile/Scrum', wikiLink: 'https://fr.wikipedia.org/wiki/Scrum_(développement)', icon: Brain },
+      { name: 'Technical Documentation', wikiLink: 'https://fr.wikipedia.org/wiki/Documentation_technique', icon: ClipboardList },
+      { name: 'Teamwork', wikiLink: 'https://fr.wikipedia.org/wiki/Travail_d%27équipe', icon: Users },
+      { name: 'Agile/Scrum Methodology', wikiLink: 'https://fr.wikipedia.org/wiki/Scrum_(développement)', icon: Brain },
+      { name: 'Requirements Analysis', wikiLink: 'https://fr.wikipedia.org/wiki/Analyse_des_besoins', icon: Brain },
+      { name: 'Testing and Validation', wikiLink: 'https://fr.wikipedia.org/wiki/Test_de_logiciel', icon: TestTube },
+      { name: 'Technical Communication', wikiLink: 'https://fr.wikipedia.org/wiki/Communication_technique', icon: MessageSquare }
     ]
   },
-  'Dépannage': {
+  'Troubleshooting': {
     icon: Wrench,
     skills: [
-      { name: 'Assistance technique', wikiLink: 'https://fr.wikipedia.org/wiki/Support_technique', icon: Wrench }
+      { name: 'Technical Support', wikiLink: 'https://fr.wikipedia.org/wiki/Support_technique', icon: Wrench }
     ]
   }
 };

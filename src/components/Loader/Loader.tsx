@@ -1,4 +1,3 @@
-import React from 'react';
 import { Monitor } from 'lucide-react';
 
 export const Loader = () => {

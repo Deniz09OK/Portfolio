@@ -21,7 +21,7 @@ export const projectsData = [
   },
   {
     name: 'NSA (Network Security Administration)',
-    link: '#',
+    link: 'https://github.com/Deniz09OK/NSA',
     description: 'Infrastructure réseau sécurisée sous OpenBSD et FreeBSD. Configuration d\'une passerelle avec 3 réseaux privés (admin, serveur, employés), serveur web NGINX/PHP/MySQL, et politiques de sécurité strictes entre les LANs. Projet axé sur la sécurisation et la segmentation réseau.',
     media: {
       type: 'image',

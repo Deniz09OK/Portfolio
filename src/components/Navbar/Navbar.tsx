@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Menu, X, GraduationCap, Briefcase, Settings, Heart, Code2, Languages, ChevronRight, User } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+import { translations } from '../../translations/translations';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { language } = useLanguage();
+  const t = translations[language];
 
   const menuItems = [
-    { id: 'about', name: 'À propos', icon: User },
-    { id: 'education', name: 'Formation', icon: GraduationCap },
-    { id: 'experience', name: 'Expérience', icon: Briefcase },
-    { id: 'skills', name: 'Compétences', icon: Settings },
-    { id: 'interests', name: 'Centres d\'intérêt', icon: Heart },
-    { id: 'portfolio', name: 'Projets', icon: Code2 },
-    { id: 'languages', name: 'Langues', icon: Languages },
+    { id: 'about', name: t.about, icon: User },
+    { id: 'education', name: t.education, icon: GraduationCap },
+    { id: 'experience', name: t.experience, icon: Briefcase },
+    { id: 'skills', name: t.skills, icon: Settings },
+    { id: 'interests', name: t.interests, icon: Heart },
+    { id: 'portfolio', name: t.portfolio, icon: Code2 },
+    { id: 'languages', name: t.languages, icon: Languages },
   ];
 
   const scrollToSection = (id: string) => {
