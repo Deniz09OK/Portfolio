@@ -59,11 +59,11 @@ export const Portfolio = () => {
                       'Your browser does not support video playback.'}
                   </video>
                 ) : (
-                  <div className="relative">
+                  <div className="relative flex justify-center items-center">
                     <img 
                       src={project.media.src}
                       alt={project.media.alt}
-                      className={`w-full h-48 object-contain rounded-lg mb-4 border border-gray-200 ${
+                      className={`w-full h-48 object-cover rounded-lg mb-4 border border-gray-200 ${
                         project.name.includes('NSA') ? 'cursor-zoom-in hover:opacity-90' : ''
                       }`}
                       onClick={() => {

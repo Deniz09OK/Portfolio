@@ -5,7 +5,7 @@ export const projectsData = [
     description: 'Projet de conteneurisation avec Docker, mettant en place une application web complète avec une architecture microservices. Utilisation de Docker Compose pour orchestrer plusieurs conteneurs : un serveur web en Python Flask, une base de données Redis, et un worker pour le traitement asynchrone des tâches.',
     media: {
       type: 'image',
-      src: '/assets/popeye-docker.png',
+      src: 'src/assets/popeye-docker.png',
       alt: 'Popeye Docker Mascot'
     }
   },
@@ -25,7 +25,7 @@ export const projectsData = [
     description: 'Infrastructure réseau sécurisée sous OpenBSD et FreeBSD. Configuration d\'une passerelle avec 3 réseaux privés (admin, serveur, employés), serveur web NGINX/PHP/MySQL, et politiques de sécurité strictes entre les LANs. Projet axé sur la sécurisation et la segmentation réseau.',
     media: {
       type: 'image',
-      src: '/assets/Schéma projet nsa.png',
+      src: 'src/assets/Schéma projet nsa.png',
       alt: 'Schéma de l\'infrastructure réseau avec les différents LANs et leurs configurations'
     }
   },
