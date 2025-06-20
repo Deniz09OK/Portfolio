@@ -83,16 +83,11 @@ export const Portfolio = () => {
               <p className="text-gray-600">
                 {getProjectDescription(project.name)}
               </p>
-              {project.link !== '#' && (
-                <a 
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center mt-4 text-red-600 hover:text-red-700"
-                >
+              {project.name.includes('NSA') && (
+                <div className="inline-flex items-center mt-4 text-gray-400 cursor-not-allowed select-none">
                   <Github className="w-4 h-4 mr-2" />
                   {t.viewOnGithub}
-                </a>
+                </div>
               )}
             </div>
           ))}
