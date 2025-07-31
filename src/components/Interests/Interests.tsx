@@ -8,45 +8,123 @@ export const Interests = () => {
 
   const interests = [
     {
-      title: language === 'fr' ? 'Culture Japonaise' : 'Japanese Culture',
+      title:
+        language === 'fr'
+          ? 'Culture Japonaise'
+          : language === 'tr'
+          ? 'Japon Kültürü'
+          : 'Japanese Culture',
       icon: Book,
-      description: language === 'fr' ? 'Passionné d\'animes et de mangas.' : 'Passionate about anime and manga.',
+      description:
+        language === 'fr'
+          ? "Passionné d'animes et de mangas."
+          : language === 'tr'
+          ? 'Anime ve mangaya tutkun'
+          : 'Passionate about anime and manga.',
       top3: ['Naruto', 'Fullmetal Alchemist: Brotherhood', 'Death Note'],
       others: ['Dragon Ball Z', 'Les Chevaliers du Zodiaque', 'Yu-Gi-Oh!', 'Chainsaw Man', 'Jujutsu Kaisen']
     },
     {
-      title: language === 'fr' ? 'Musique' : 'Music',
+      title:
+        language === 'fr'
+          ? 'Musique'
+          : language === 'tr'
+          ? 'Müzik'
+          : 'Music',
       icon: Music,
-      description: language === 'fr' ? 'Éclectique dans mes goûts musicaux.' : 'Eclectic in musical tastes.',
+      description:
+        language === 'fr'
+          ? 'Éclectique dans mes goûts musicaux.'
+          : language === 'tr'
+          ? 'Müzik zevklerinde eklektik'
+          : 'Eclectic in musical tastes.',
       top3: ['Orelsan', 'Linkin Park', 'Flow'],
       others: [
-        language === 'fr' ? 'Rap : Future, Freeze Corleone, Kendrick Lamar' : 'Rap: Future, Freeze Corleone, Kendrick Lamar',
-        language === 'fr' ? 'Rock : Imagine Dragons' : 'Rock: Imagine Dragons',
-        language === 'fr' ? 'J-pop : Ado, Creepy Nuts, SiM, Survive Said The Prophet, MAN WITH A MISSION' : 'J-pop: Ado, Creepy Nuts, SiM, Survive Said The Prophet, MAN WITH A MISSION'
+        language === 'fr'
+          ? 'Rap : Future, Freeze Corleone, Kendrick Lamar'
+          : 'Rap: Future, Freeze Corleone, Kendrick Lamar',
+        language === 'fr'
+          ? 'Rock : Imagine Dragons'
+          : 'Rock: Imagine Dragons',
+        language === 'fr'
+          ? 'J-pop : Ado, Creepy Nuts, SiM, Survive Said The Prophet, MAN WITH A MISSION'
+          : 'J-pop: Ado, Creepy Nuts, SiM, Survive Said The Prophet, MAN WITH A MISSION'
       ]
     },
     {
-      title: language === 'fr' ? 'Jeux Vidéo' : 'Video Games',
+      title:
+        language === 'fr'
+          ? 'Jeux Vidéo'
+          : language === 'tr'
+          ? 'Video Oyunları'
+          : 'Video Games',
       icon: Gamepad2,
-      description: language === 'fr' ? 'Amateur de jeux de stratégie et FPS.' : 'Strategy and FPS games enthusiast.',
+      description:
+        language === 'fr'
+          ? 'Amateur de jeux de stratégie et FPS.'
+          : language === 'tr'
+          ? 'Strateji ve FPS oyunları meraklısı'
+          : 'Strategy and FPS games enthusiast.',
       top3: ['Civilization', 'Age of Empires', 'Football Manager'],
       others: ['Doom', 'League of Legends', 'Crusader Kings III', 'Mobile Legends']
     },
     {
-      title: language === 'fr' ? 'Mythologie' : 'Mythology',
+      title:
+        language === 'fr'
+          ? 'Mythologie'
+          : language === 'tr'
+          ? 'Mitoloji'
+          : 'Mythology',
       icon: Book,
-      description: language === 'fr' ? 'Passionné par les contes mythologiques.' : 'Passionate about mythological tales.',
+      description:
+        language === 'fr'
+          ? 'Passionné par les contes mythologiques.'
+          : language === 'tr'
+          ? 'Mitolojik masallara tutkun'
+          : 'Passionate about mythological tales.',
       top3: [
-        language === 'fr' ? 'Mythologie Grecque' : 'Greek Mythology',
-        language === 'fr' ? 'Mythologie Viking' : 'Viking Mythology',
-        language === 'fr' ? 'Mythologie Turque' : 'Turkish Mythology'
+        language === 'fr'
+          ? 'Mythologie Grecque'
+          : language === 'tr'
+          ? 'Yunan Mitolojisi'
+          : 'Greek Mythology',
+        language === 'fr'
+          ? 'Mythologie Viking'
+          : language === 'tr'
+          ? 'Viking Mitolojisi'
+          : 'Viking Mythology',
+        language === 'fr'
+          ? 'Mythologie Turque'
+          : language === 'tr'
+          ? 'Türk Mitolojisi'
+          : 'Turkish Mythology'
       ],
       others: [
-        language === 'fr' ? 'Mythologie Romaine' : 'Roman Mythology',
-        language === 'fr' ? 'Mythologie Aztèque' : 'Aztec Mythology',
-        language === 'fr' ? 'Mythologie Inca' : 'Inca Mythology',
-        language === 'fr' ? 'Mythologie Maya' : 'Maya Mythology',
-        language === 'fr' ? 'Mythologie Japonaise' : 'Japanese Mythology'
+        language === 'fr'
+          ? 'Mythologie Romaine'
+          : language === 'tr'
+          ? 'Roma Mitolojisi'
+          : 'Roman Mythology',
+        language === 'fr'
+          ? 'Mythologie Aztèque'
+          : language === 'tr'
+          ? 'Aztek Mitolojisi'
+          : 'Aztec Mythology',
+        language === 'fr'
+          ? 'Mythologie Inca'
+          : language === 'tr'
+          ? 'İnka Mitolojisi'
+          : 'Inca Mythology',
+        language === 'fr'
+          ? 'Mythologie Maya'
+          : language === 'tr'
+          ? 'Maya Mitolojisi'
+          : 'Maya Mythology',
+        language === 'fr'
+          ? 'Mythologie Japonaise'
+          : language === 'tr'
+          ? 'Japon Mitolojisi'
+          : 'Japanese Mythology'
       ]
     }
   ];

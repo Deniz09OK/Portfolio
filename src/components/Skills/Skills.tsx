@@ -5,7 +5,7 @@ import { translations } from '../../translations/translations';
 
 export const Skills = () => {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as keyof typeof translations];
 
   const getLocalizedSkillName = (name: string): string => {
     const translations: { [key: string]: { fr: string; en: string } } = {
@@ -70,7 +70,7 @@ export const Skills = () => {
       'Databases': 'Bases de données',
       'Networks': 'Réseaux',
       'Methodologies & Management': 'Méthodologies & Gestion',
-      'Troubleshooting': 'Dépannage'
+      'Troubleshooting': 'Dépannage',
     };
     return language === 'fr' ? categoryMap[category] || category : category;
   };
@@ -82,7 +82,7 @@ export const Skills = () => {
           <Settings className="w-8 h-8 mr-3 text-red-600 icon-spin" />
           {t.skills}
         </h2>
-        
+
         <div className="bg-white p-6 rounded-lg shadow-lg space-y-8">
           {Object.entries(skillsData).map(([category, { icon: Icon, skills }]) => (
             <div key={category}>

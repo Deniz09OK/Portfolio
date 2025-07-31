@@ -7,7 +7,7 @@ import { translations } from '../../translations/translations';
 export const Portfolio = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as keyof typeof translations];
 
   const getProjectDescription = (name: string) => {
     if (name === 'NSA (Network Security Administration)') {

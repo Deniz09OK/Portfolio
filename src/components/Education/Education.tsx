@@ -4,7 +4,7 @@ import { translations } from '../../translations/translations';
 
 export const Education = () => {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as keyof typeof translations];
 
   return (
     <section id="education" className="py-20 px-8 bg-gray-50">
