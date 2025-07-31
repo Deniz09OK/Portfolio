@@ -7,72 +7,118 @@ export const Skills = () => {
   const { language } = useLanguage();
   const t = translations[language as keyof typeof translations];
 
+  // Traduction des libellés de compétences. 
+  // Pour toute entrée absente de ce dictionnaire, le nom d’origine sera utilisé.
   const getLocalizedSkillName = (name: string): string => {
-    const translations: { [key: string]: { fr: string; en: string } } = {
+    const translationsMap: {
+      [key: string]: { fr: string; en: string; tr: string };
+    } = {
       'IT Project Management': {
         fr: 'Gestion de projet informatique',
-        en: 'IT Project Management'
+        en: 'IT Project Management',
+        tr: 'BT Proje Yönetimi'
       },
       'Software Development': {
         fr: 'Développement logiciel',
-        en: 'Software Development'
+        en: 'Software Development',
+        tr: 'Yazılım Geliştirme'
       },
       'Object-Oriented Programming': {
         fr: 'Programmation orientée objet',
-        en: 'Object-Oriented Programming'
+        en: 'Object-Oriented Programming',
+        tr: 'Nesne Yönelimli Programlama'
       },
       'Technical Documentation': {
         fr: 'Documentation technique',
-        en: 'Technical Documentation'
+        en: 'Technical Documentation',
+        tr: 'Teknik Dokümantasyon'
       },
       'Teamwork': {
-        fr: 'Travail d\'équipe',
-        en: 'Teamwork'
+        fr: 'Travail d’équipe',
+        en: 'Teamwork',
+        tr: 'Takım Çalışması'
       },
       'Agile/Scrum Methodology': {
         fr: 'Méthodologie Agile/Scrum',
-        en: 'Agile/Scrum Methodology'
+        en: 'Agile/Scrum Methodology',
+        tr: 'Çevik/Scrum Metodolojisi'
       },
       'Requirements Analysis': {
         fr: 'Analyse des besoins',
-        en: 'Requirements Analysis'
+        en: 'Requirements Analysis',
+        tr: 'Gereksinim Analizi'
       },
       'Testing and Validation': {
         fr: 'Tests et validation',
-        en: 'Testing and Validation'
+        en: 'Testing and Validation',
+        tr: 'Test ve Doğrulama'
       },
       'Technical Communication': {
         fr: 'Communication technique',
-        en: 'Technical Communication'
+        en: 'Technical Communication',
+        tr: 'Teknik İletişim'
       },
       'Technical Support': {
         fr: 'Support technique',
-        en: 'Technical Support'
+        en: 'Technical Support',
+        tr: 'Teknik Destek'
       },
       'Configuration routeurs': {
         fr: 'Configuration routeurs',
-        en: 'Router Configuration'
+        en: 'Router Configuration',
+        tr: 'Yönlendirici Konfigürasyonu'
       },
       'Configuration switches': {
         fr: 'Configuration switches',
-        en: 'Switch Configuration'
+        en: 'Switch Configuration',
+        tr: 'Anahtar Konfigürasyonu'
+      },
+      // exemples de traductions supplémentaires
+      'Git/GitHub': {
+        fr: 'Git/GitHub',
+        en: 'Git/GitHub',
+        tr: 'Git ve GitHub'
+      },
+      'Cisco Packet Tracer': {
+        fr: 'Cisco Packet Tracer',
+        en: 'Cisco Packet Tracer',
+        tr: 'Cisco Paket Tracer'
+      },
+      'VirtualBox': {
+        fr: 'VirtualBox',
+        en: 'VirtualBox',
+        tr: 'VirtualBox'
       }
     };
 
-    return translations[name] ? translations[name][language] : name;
+    const translation = translationsMap[name];
+    return translation ? translation[language as 'fr' | 'en' | 'tr'] || name : name;
   };
 
+  // Traductions des catégories. Ajout d’un dictionnaire pour le turc.
   const getLocalizedCategory = (category: string) => {
-    const categoryMap: { [key: string]: string } = {
-      'Operating Systems': 'Systèmes d\'exploitation',
+    const frMap: { [key: string]: string } = {
+      'Operating Systems': 'Systèmes d’exploitation',
       'Programming Languages': 'Langages de programmation',
       'Frameworks & Tools': 'Frameworks & Outils',
       'Databases': 'Bases de données',
       'Networks': 'Réseaux',
       'Methodologies & Management': 'Méthodologies & Gestion',
-      'Troubleshooting': 'Dépannage',
+      'Troubleshooting': 'Dépannage'
     };
-    return language === 'fr' ? categoryMap[category] || category : category;
+    const trMap: { [key: string]: string } = {
+      'Operating Systems': 'İşletim Sistemleri',
+      'Programming Languages': 'Programlama Dilleri',
+      'Frameworks & Tools': 'Çerçeveler ve Araçlar',
+      'Databases': 'Veritabanları',
+      'Networks': 'Ağlar',
+      'Methodologies & Management': 'Metodolojiler ve Yönetim',
+      'Troubleshooting': 'Sorun Giderme'
+    };
+
+    if (language === 'fr') return frMap[category] || category;
+    if (language === 'tr') return trMap[category] || category;
+    return category; // anglais par défaut
   };
 
   return (
@@ -82,7 +128,6 @@ export const Skills = () => {
           <Settings className="w-8 h-8 mr-3 text-red-600 icon-spin" />
           {t.skills}
         </h2>
-
         <div className="bg-white p-6 rounded-lg shadow-lg space-y-8">
           {Object.entries(skillsData).map(([category, { icon: Icon, skills }]) => (
             <div key={category}>
