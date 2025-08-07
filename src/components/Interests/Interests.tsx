@@ -161,16 +161,18 @@ export const Interests = () => {
                   </ol>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">{t.others} :</h4>
-                  <ul className="list-disc list-inside text-gray-700 dark:text-gray-200 space-y-1">
-                    {interest.others.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
+                  <h4 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                    {t.others} :
+                  </h4>
+                    <ul className="list-disc list-inside text-gray-700 dark:text-gray-200 space-y-1">
+                      {interest.others.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </section>
