@@ -9,6 +9,16 @@ html {
   scroll-behavior: smooth;
 }
 
+.dark .interest-card,
+.dark .language-card {
+  background: linear-gradient(145deg, #1f2937 0%, #374151 100%);
+}
+
+.dark .interest-card:hover,
+.dark .language-card:hover {
+  background: linear-gradient(145deg, #374151 0%, #1f2937 100%);
+}
+
 body {
   font-family: 'Noto Sans', sans-serif;
 }
