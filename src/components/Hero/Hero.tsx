@@ -38,7 +38,7 @@ export const Hero = () => {
                 <Mail className="w-5 h-5 mr-2" />
                 {t.contact}
               </a>
-              <a href="#portfolio" className="border-2 border-red-600 text-red-600 dark:text-red-400 px-6 py-3 rounded-lg hover:bg-red-50 dark:hover:bg-red-900 transition-all duration-300 transform hover:scale-105 flex items-center">
+              <a href="#portfolio" className="border-2 border-red-600 dark:border-red-400 text-red-600 dark:text-red-400 px-6 py-3 rounded-lg bg-transparent dark:bg-gray-800/60 hover:bg-red-50 dark:hover:bg-red-900 transition-all duration-300 transform hover:scale-105 flex items-center">
                 <Scroll className="w-5 h-5 mr-2 animate-bounce" />
                 {t.portfolio}
               </a>
