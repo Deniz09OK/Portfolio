@@ -16,7 +16,7 @@ export const Experience = () => {
         <div className="space-y-8">
           <div className="experience-card bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
             <h3 className="text-xl font-bold text-gray-800 mb-2">{t.itAssistant}</h3>
-            <p className="text-gray-600 mb-2">Qualitest, Nancy · {language === 'fr' ? t.apprenticeship : 'Apprenticeship'} | 02/2025-09/2027</p>
+            <p className="text-gray-600 mb-2">Qualitest, Nancy · {t.apprenticeship} | 02/2025-09/2027</p>
             <ul className="list-disc list-inside text-gray-700 space-y-2">
               <li>{t.questionnaireDev}</li>
               <li>{t.toolCreation}</li>

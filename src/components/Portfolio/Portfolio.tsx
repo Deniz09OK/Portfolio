@@ -13,7 +13,7 @@ export const Portfolio = () => {
     if (name === 'NSA (Network Security Administration)') {
       return language === 'fr' 
         ? projectsData.find(p => p.name === name)?.description 
-        : t.projectDescriptions.nsa;
+        : 'nsa' in t.projectDescriptions ? t.projectDescriptions.nsa : '';
     }
     const key = name.toLowerCase().replace(/[^a-z]/g, '');
     return language === 'fr' 

@@ -12,15 +12,16 @@ import { ScrollToTop } from './components/ScrollToTop/ScrollToTop';
 import { Loader } from './components/Loader/Loader';
 import { Section } from './components/Section';
 import { LanguageToggle } from './components/LanguageToggle';
+import { ThemeToggle } from './components/ThemeToggle';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
+  // Affiche le loader pendant 2 secondes au chargement initial
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -29,9 +30,12 @@ export default function App() {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="min-h-screen bg-gradient-to-b from-red-50 to-white">
-          <Navbar />
+        <div className="min-h-screen bg-gradient-to-b from-red-50 to-white dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-100">
+          {/* Bouton pour basculer entre thème clair et sombre */}
+          <ThemeToggle />
+          {/* Bouton pour changer de langue */}
           <LanguageToggle />
+          <Navbar />
           <Hero />
           <Section id="education">
             <Education />
