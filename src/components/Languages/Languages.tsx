@@ -16,40 +16,15 @@ export const Languages = () => {
         <div className="grid md:grid-cols-3 gap-6">
           {[
             {
-              name:
-                language === 'fr'
-                  ? 'Français'
-                  : language === 'en'
-                  ? 'French'
-                  : 'Fransızca',
-              level:
-                language === 'fr'
-                  ? 'Langue maternelle'
-                  : language === 'en'
-                  ? 'Native language'
-                  : 'Anadil'
+              name: language === 'fr' ? 'Français' : language === 'en' ? 'French' : 'Fransızca',
+              level: language === 'fr' ? 'Langue maternelle' : language === 'en' ? 'Native language' : 'Anadil'
             },
             {
-              name:
-                language === 'fr'
-                  ? 'Turc'
-                  : language === 'en'
-                  ? 'Turkish'
-                  : 'Türkçe',
-              level:
-                language === 'fr'
-                  ? 'Langue maternelle'
-                  : language === 'en'
-                  ? 'Native language'
-                  : 'Anadil'
+              name: language === 'fr' ? 'Turc' : language === 'en' ? 'Turkish' : 'Türkçe',
+              level: language === 'fr' ? 'Langue maternelle' : language === 'en' ? 'Native language' : 'Anadil'
             },
             {
-              name:
-                language === 'fr'
-                  ? 'Anglais'
-                  : language === 'en'
-                  ? 'English'
-                  : 'İngilizce',
+              name: language === 'fr' ? 'Anglais' : language === 'en' ? 'English' : 'İngilizce',
               level: 'TOEIC 790/990'
             }
           ].map((lang, index) => (
