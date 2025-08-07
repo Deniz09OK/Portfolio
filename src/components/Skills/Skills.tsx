@@ -122,16 +122,16 @@ export const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-20 px-8 bg-gray-50">
+    <section id="skills" className="py-20 px-8 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold mb-12 text-center text-gray-800 flex items-center justify-center">
+        <h2 className="text-3xl font-bold mb-12 text-center text-gray-800 dark:text-gray-100 flex items-center justify-center">
           <Settings className="w-8 h-8 mr-3 text-red-600 icon-spin" />
           {t.skills}
         </h2>
-        <div className="bg-white p-6 rounded-lg shadow-lg space-y-8">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg space-y-8">
           {Object.entries(skillsData).map(([category, { icon: Icon, skills }]) => (
             <div key={category}>
-              <h4 className="font-semibold mb-4 text-gray-700 flex items-center">
+              <h4 className="font-semibold mb-4 text-gray-700 dark:text-gray-200 flex items-center">
                 <Icon className="w-5 h-5 mr-2 text-red-600" />
                 {getLocalizedCategory(category)}
               </h4>
@@ -142,7 +142,7 @@ export const Skills = () => {
                     href={skill.wikiLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="skill-card bg-white px-4 py-3 rounded-lg text-sm text-gray-600 text-center shadow-sm hover:bg-red-50 hover:text-red-600 transition-all duration-300 flex flex-col items-center justify-center space-y-2"
+                    className="skill-card bg-white dark:bg-gray-800 px-4 py-3 rounded-lg text-sm text-gray-600 dark:text-gray-300 text-center shadow-sm hover:bg-red-50 dark:hover:bg-red-900 hover:text-red-600 dark:hover:text-red-400 transition-all duration-300 flex flex-col items-center justify-center space-y-2"
                   >
                     <skill.icon className="w-6 h-6 text-red-600" />
                     <span>{getLocalizedSkillName(skill.name)}</span>

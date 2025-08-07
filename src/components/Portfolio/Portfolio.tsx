@@ -13,7 +13,7 @@ export const Portfolio = () => {
     if (name === 'NSA (Network Security Administration)') {
       return language === 'fr' 
         ? projectsData.find(p => p.name === name)?.description 
-        : 'nsa' in t.projectDescriptions ? t.projectDescriptions.nsa : '';
+        : t.projectDescriptions.nsa;
     }
     const key = name.toLowerCase().replace(/[^a-z]/g, '');
     return language === 'fr' 
@@ -26,19 +26,19 @@ export const Portfolio = () => {
   };
 
   return (
-    <section id="portfolio" className="py-20 px-8 bg-white">
+    <section id="portfolio" className="py-20 px-8 bg-white dark:bg-gray-900">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold mb-12 text-center text-gray-800 flex items-center justify-center">
+        <h2 className="text-3xl font-bold mb-12 text-center text-gray-800 dark:text-gray-100 flex items-center justify-center">
           <Code2 className="w-8 h-8 mr-3 text-red-600 icon-spin" />
           {t.portfolio}
         </h2>
         <div className="grid md:grid-cols-2 gap-8">
           {projectsData.map((project) => (
-            <div 
+            <div
               key={project.name}
-              className="project-card bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              className="project-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              <h3 className="font-bold text-xl mb-4 flex items-center text-gray-800">
+              <h3 className="font-bold text-xl mb-4 flex items-center text-gray-800 dark:text-gray-100">
                 {project.link === '#' ? (
                   <Lock className="w-5 h-5 mr-2 text-red-600" />
                 ) : (
@@ -48,8 +48,8 @@ export const Portfolio = () => {
               </h3>
               <div className="mb-4">
                 {project.media.type === 'video' ? (
-                  <video 
-                    className="w-full h-48 object-cover rounded-lg mb-4 border border-gray-200"
+                  <video
+                    className="w-full h-48 object-cover rounded-lg mb-4 border border-gray-200 dark:border-gray-700"
                     controls
                     preload="metadata"
                   >
@@ -60,10 +60,10 @@ export const Portfolio = () => {
                   </video>
                 ) : (
                   <div className="relative flex justify-center items-center">
-                    <img 
+                    <img
                       src={project.media.src}
                       alt={project.media.alt}
-                      className={`w-full h-48 object-cover rounded-lg mb-4 border border-gray-200 ${
+                      className={`w-full h-48 object-cover rounded-lg mb-4 border border-gray-200 dark:border-gray-700 ${
                         project.name.includes('NSA') ? 'cursor-zoom-in hover:opacity-90' : ''
                       }`}
                       onClick={() => {
@@ -75,21 +75,21 @@ export const Portfolio = () => {
                   </div>
                 )}
                 {project.name.includes('NSA') && (
-                  <p className="text-sm text-gray-500 text-center italic">
+                  <p className="text-sm text-gray-500 dark:text-gray-400 text-center italic">
                     {getImageCaption()}
                   </p>
                 )}
               </div>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-300">
                 {getProjectDescription(project.name)}
               </p>
               {/* Affiche le lien GitHub pour tous les projets sauf NSA */}
               {'link' in project && project.link && !project.name.includes('NSA') && (
-                <a 
+                <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center mt-4 text-red-600 hover:text-red-700"
+                  className="inline-flex items-center mt-4 text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-500"
                 >
                   <Github className="w-4 h-4 mr-2" />
                   {t.viewOnGithub}
@@ -97,7 +97,7 @@ export const Portfolio = () => {
               )}
               {/* Affiche juste l'icône et le texte grisé pour NSA */}
               {project.name.includes('NSA') && (
-                <div className="inline-flex items-center mt-4 text-gray-400 cursor-not-allowed select-none">
+                <div className="inline-flex items-center mt-4 text-gray-400 dark:text-gray-500 cursor-not-allowed select-none">
                   <Github className="w-4 h-4 mr-2" />
                   {t.viewOnGithub}
                 </div>

@@ -7,9 +7,9 @@ export const Languages = () => {
   const t = translations[language as keyof typeof translations];
 
   return (
-    <section id="languages" className="py-20 px-8 bg-gray-50">
+    <section id="languages" className="py-20 px-8 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold mb-12 text-center text-gray-800 flex items-center justify-center">
+        <h2 className="text-3xl font-bold mb-12 text-center text-gray-800 dark:text-gray-100 flex items-center justify-center">
           <LanguagesIcon className="w-8 h-8 mr-3 text-red-600 icon-spin" />
           {t.languages}
         </h2>
@@ -55,14 +55,14 @@ export const Languages = () => {
           ].map((lang, index) => (
             <div
               key={lang.name}
-              className="language-card bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              className="language-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              <h3 className="text-xl font-bold text-gray-800 mb-2 flex items-center">
+              <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2 flex items-center">
                 <Globe className="w-5 h-5 mr-2 text-red-600" />
                 {lang.name}
               </h3>
-              <p className="text-gray-600">{lang.level}</p>
+              <p className="text-gray-600 dark:text-gray-300">{lang.level}</p>
             </div>
           ))}
         </div>

@@ -130,39 +130,39 @@ export const Interests = () => {
   ];
 
   return (
-    <section id="interests" className="py-20 px-8 bg-white">
+    <section id="interests" className="py-20 px-8 bg-white dark:bg-gray-900">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold mb-12 text-center text-gray-800 flex items-center justify-center">
+        <h2 className="text-3xl font-bold mb-12 text-center text-gray-800 dark:text-gray-100 flex items-center justify-center">
           <Heart className="w-8 h-8 mr-3 text-red-600 icon-spin" />
           {t.interests}
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
           {interests.map((interest, index) => (
-            <div 
+            <div
               key={interest.title}
-              className="interest-card bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              className="interest-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+              <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center">
                 <interest.icon className="w-5 h-5 mr-2 text-red-600" />
                 {interest.title}
               </h3>
-              <p className="text-gray-600 mb-4">{interest.description}</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">{interest.description}</p>
               <div className="space-y-4">
-                <div className="bg-red-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-red-600 flex items-center mb-2">
+                <div className="bg-red-50 dark:bg-red-900 p-4 rounded-lg">
+                  <h4 className="font-semibold text-red-600 dark:text-red-400 flex items-center mb-2">
                     <Trophy className="w-4 h-4 mr-2" />
                     {t.top3}
                   </h4>
-                  <ol className="list-decimal list-inside text-gray-700 space-y-1">
+                  <ol className="list-decimal list-inside text-gray-700 dark:text-gray-200 space-y-1">
                     {interest.top3.map((item, i) => (
                       <li key={i}>{item}</li>
                     ))}
                   </ol>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-700 mb-2">{t.others} :</h4>
-                  <ul className="list-disc list-inside text-gray-700 space-y-1">
+                  <h4 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">{t.others} :</h4>
+                  <ul className="list-disc list-inside text-gray-700 dark:text-gray-200 space-y-1">
                     {interest.others.map((item, i) => (
                       <li key={i}>{item}</li>
                     ))}

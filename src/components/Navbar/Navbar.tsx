@@ -37,7 +37,7 @@ export const Navbar = () => {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed left-4 top-4 z-50 bg-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+        className="fixed left-4 top-4 z-50 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg dark:shadow-md hover:shadow-xl transition-all duration-300 group"
         aria-label="Toggle menu"
       >
         {isOpen ? (
@@ -55,18 +55,18 @@ export const Navbar = () => {
       )}
 
       <nav
-        className={`fixed left-0 top-0 h-full w-64 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed left-0 top-0 h-full w-64 bg-white dark:bg-gray-800 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="p-6">
-          <div className="text-xl font-bold text-red-600 mb-8">Deniz OK</div>
+          <div className="text-xl font-bold text-red-600 dark:text-red-400 mb-8">Deniz OK</div>
           <div className="space-y-2">
             {menuItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="w-full flex items-center p-3 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors group"
+                className="w-full flex items-center p-3 text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900 rounded-lg transition-colors group"
               >
                 <item.icon className="w-5 h-5 mr-3" />
                 <span className="flex-1 text-left">{item.name}</span>

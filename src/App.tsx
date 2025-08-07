@@ -12,30 +12,37 @@ import { ScrollToTop } from './components/ScrollToTop/ScrollToTop';
 import { Loader } from './components/Loader/Loader';
 import { Section } from './components/Section';
 import { LanguageToggle } from './components/LanguageToggle';
-import { ThemeToggle } from './components/ThemeToggle';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Affiche le loader pendant 2 secondes au chargement initial
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
+// Theme toggling logic
+const toggleTheme = () => {
+  document.documentElement.classList.toggle('dark');
+};
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setIsLoading(false);
+  }, 2000);
+  return () => clearTimeout(timer);
+}, []);
 
   return (
     <>
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="min-h-screen bg-gradient-to-b from-red-50 to-white dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-100">
-          {/* Bouton pour basculer entre thème clair et sombre */}
-          <ThemeToggle />
-          {/* Bouton pour changer de langue */}
-          <LanguageToggle />
+        <div className="min-h-screen bg-gradient-to-b from-red-50 to-white">
+          <button
+            onClick={toggleTheme}
+            className="fixed top-32 right-4 z-50 p-3 rounded-full bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 transform hover:scale-110 shadow-lg flex items-center space-x-2"
+            aria-label="Toggle theme"
+          >
+            🌓
+          </button>
           <Navbar />
+          <LanguageToggle />
           <Hero />
           <Section id="education">
             <Education />
