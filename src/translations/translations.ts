@@ -141,10 +141,19 @@ export const translations = {
     viewOnGithub: 'View on GitHub',
     projectDescriptions: {
       popeye: 'Docker containerization project, implementing a complete web application with microservices architecture. Using Docker Compose to orchestrate multiple containers: a Python Flask web server, Redis database, and a worker for asynchronous task processing.',
-      /* autres descriptions de projets */
+       portfolio:
+        'Personal portfolio developed with React, Vite, and TypeScript. Modern and responsive interface, optimized for performance. Using reusable components and smooth animations for a pleasant user experience.',
+      nsa:
+        'Secure network infrastructure under OpenBSD and FreeBSD. Gateway configuration with 3 private networks (admin, server, employees), NGINX/PHP/MySQL web server, and strict security policies between LANs. Project focused on network security and segmentation.',
+      culturequiz:
+        'Interactive quiz application in Python with Tkinter interface. Offers three difficulty levels, varied and random questions, and a performance tracking system. A fun approach to testing general knowledge.',
+      aimorpion:
+        'Modern version of Tic‑Tac‑Toe with advanced AI using the Minimax algorithm and alpha‑beta pruning. Features multiple game modes (solo vs AI, local multiplayer) and difficulty levels. Intuitive Tkinter graphical interface and strategic gameplay.',
+      epiquest:
+        '2D adventure game developed with Java and LibGDX, featuring NeoMarvin, an Epitech correction robot. Using Tiled maps to create school‑inspired levels, with a dynamic camera and fluid controls. A project that combines pixel art and humor for a unique gaming experience.'
     }
   },
-  tr: {
+    tr: {
     about: 'Hakkında',
     education: 'Eğitim',
     experience: 'Deneyim',
