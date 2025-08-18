@@ -62,5 +62,5 @@ Ce projet met en avant mes compétences, mes projets et mon parcours de façon m
 ---
 
 Réalisé avec 💖 par Deniz OK.  
-[LinkedIn](https://www.linkedin.com/in/deniz-ok/) 
-[Portfolio](https://portfolio-ok.com/)
+- [LinkedIn](https://www.linkedin.com/in/deniz-ok/)                                                                                
+- [Portfolio](https://portfolio-ok.com/)
