@@ -1,0 +1,42 @@
+/* Optimisation des transitions de thème */
+
+/* Désactiver toutes les transitions pendant le changement de thème */
+.theme-transitioning,
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition: none !important;
+  animation-duration: 0s !important;
+}
+
+/* Transition rapide pour les éléments critiques seulement */
+html {
+  transition: background-color 0.2s ease-in-out;
+}
+
+body {
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+/* Optimisation GPU pour de meilleures performances */
+section,
+.timeline-item,
+.skill-card,
+.interest-card,
+.language-card {
+  will-change: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Réduire les animations pendant le scroll pour de meilleures performances */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
