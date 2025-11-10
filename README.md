@@ -140,10 +140,6 @@ npm run generate
 
 Les fichiers générés se trouvent dans le dossier `.output/public/` et peuvent être déployés sur n'importe quel hébergeur statique (Netlify, Vercel, GitHub Pages, etc.).
 
-## 📄 Licence
-
-Ce projet est sous licence MIT. Vous êtes libre de l'utiliser et de le modifier.
-
 ---
 
 **Réalisé avec 💙 par Deniz OK**

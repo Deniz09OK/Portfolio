@@ -110,7 +110,7 @@ const projects = [
   {
     name: 'Portfolio',
     link: 'https://github.com/Deniz09OK/Portfolio-deniz',
-    description: 'Portfolio personnel développé avec React, Vite et TypeScript. Interface moderne et responsive.',
+    description: 'Portfolio personnel développé avec Nuxt, Vite et JavaScript. Interface moderne et responsive.',
     media: {
       type: 'image',
       src: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',

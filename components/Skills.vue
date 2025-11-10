@@ -68,6 +68,8 @@ const skillsData = {
     { name: 'OpenBSD', wikiLink: 'https://fr.wikipedia.org/wiki/OpenBSD' },
     { name: 'FreeBSD', wikiLink: 'https://fr.wikipedia.org/wiki/FreeBSD' },
     { name: 'Mageia', wikiLink: 'https://fr.wikipedia.org/wiki/Mageia' },
+    { name: 'Ubuntu', wikiLink: 'https://fr.wikipedia.org/wiki/Ubuntu_(système_d%27exploitation)' },
+    { name: 'Kali Linux', wikiLink: 'https://fr.wikipedia.org/wiki/Kali_Linux' },
     { name: 'Debian', wikiLink: 'https://fr.wikipedia.org/wiki/Debian' }
   ],
   languages: [
@@ -85,13 +87,16 @@ const skillsData = {
     { name: 'Express.js', wikiLink: 'https://fr.wikipedia.org/wiki/Express.js' },
     { name: 'React.js', wikiLink: 'https://fr.wikipedia.org/wiki/React' },
     { name: 'Vue.js', wikiLink: 'https://fr.wikipedia.org/wiki/Vue.js' },
+    { name: 'Nuxt.js', wikiLink: 'https://fr.wikipedia.org/wiki/Nuxt.js' },
     { name: 'Bootstrap', wikiLink: 'https://fr.wikipedia.org/wiki/Bootstrap_(framework)' },
     { name: 'Tailwind CSS', wikiLink: 'https://fr.wikipedia.org/wiki/Tailwind_CSS' },
-    { name: 'Symfony', wikiLink: 'https://fr.wikipedia.org/wiki/Symfony' }
+    { name: 'Symfony', wikiLink: 'https://fr.wikipedia.org/wiki/Symfony' },
+    { name: 'Docker', wikiLink: 'https://fr.wikipedia.org/wiki/Docker' }
   ],
   databases: [
     { name: 'MongoDB', wikiLink: 'https://fr.wikipedia.org/wiki/MongoDB' },
     { name: 'MySQL', wikiLink: 'https://fr.wikipedia.org/wiki/MySQL' },
+    { name: 'PostgreSQL', wikiLink: 'https://fr.wikipedia.org/wiki/PostgreSQL' },
     { name: 'SQLite', wikiLink: 'https://fr.wikipedia.org/wiki/SQLite' }
   ],
   networks: [
