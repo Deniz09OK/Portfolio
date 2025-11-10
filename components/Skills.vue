@@ -32,7 +32,7 @@
               </svg>
             </div>
             <h4 class="font-semibold text-lg text-gray-800 dark:text-gray-200">
-              <span v-if="key === 'frameworks'">frameworks</span>
+              <span v-if="key === 'frameworks'">Frameworks</span>
               <span v-else-if="key === 'tools'">Outils</span>
               <span v-else-if="translations">{{ translations.skills[key] || key }}</span>
               <span v-else>{{ key }}</span>
