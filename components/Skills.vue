@@ -87,11 +87,15 @@ const skillsData = {
     { name: 'Express.js', wikiLink: 'https://fr.wikipedia.org/wiki/Express.js' },
     { name: 'React.js', wikiLink: 'https://fr.wikipedia.org/wiki/React' },
     { name: 'Vue.js', wikiLink: 'https://fr.wikipedia.org/wiki/Vue.js' },
-    { name: 'Nuxt.js', wikiLink: 'https://fr.wikipedia.org/wiki/Nuxt.js' },
+    { name: 'Symfony', wikiLink: 'https://fr.wikipedia.org/wiki/Symfony' },
+    { name: 'Nuxt.js', wikiLink: 'https://fr.wikipedia.org/wiki/Nuxt.js' }
+  ],
+  tools: [
     { name: 'Bootstrap', wikiLink: 'https://fr.wikipedia.org/wiki/Bootstrap_(framework)' },
     { name: 'Tailwind CSS', wikiLink: 'https://fr.wikipedia.org/wiki/Tailwind_CSS' },
-    { name: 'Symfony', wikiLink: 'https://fr.wikipedia.org/wiki/Symfony' },
-    { name: 'Docker', wikiLink: 'https://fr.wikipedia.org/wiki/Docker' }
+    { name: 'Docker', wikiLink: 'https://fr.wikipedia.org/wiki/Docker' },
+    { name: 'Kubernetes', wikiLink: 'https://fr.wikipedia.org/wiki/Kubernetes' },
+    { name: 'Jenkins', wikiLink: 'https://fr.wikipedia.org/wiki/Jenkins_(logiciel)' }
   ],
   databases: [
     { name: 'MongoDB', wikiLink: 'https://fr.wikipedia.org/wiki/MongoDB' },
@@ -110,6 +114,7 @@ const getCategoryIcon = (key) => {
     os: '💻',
     languages: '📝',
     frameworks: '🔧',
+    tools: '🛠️',
     databases: '🗄️',
     networks: '🌐'
   }
