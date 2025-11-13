@@ -25,7 +25,7 @@ Ce projet met en avant mes compétences, mes projets et mon parcours de façon m
 
 - [Nuxt.js 3](https://nuxt.com/) - Framework Vue.js pour applications web modernes
 - [Vue.js 3](https://vuejs.org/) - Framework JavaScript progressif
-- [JavaScript ES6+](https://developer.mozilla.org/fr/docs/Web/JavaScript) - Langage de programmation 
+- [JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript) - Langage de programmation 
 - [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utilitaire
 - [SVG Icons](https://heroicons.com/) - Icônes vectorielles optimisées
 
@@ -147,3 +147,4 @@ Les fichiers générés se trouvent dans le dossier `.output/public/` et peuvent
 - 🌐 [Portfolio](https://portfolio-ok.com/)
 - 💼 [LinkedIn](https://www.linkedin.com/in/deniz-ok/)
 - 💻 [GitHub](https://github.com/Deniz09OK)
+
