@@ -2,7 +2,7 @@
 
 ![Nuxt](https://img.shields.io/badge/Nuxt-3-00DC82?logo=nuxt.js)
 ![Vue.js](https://img.shields.io/badge/Vue.js-3-4FC08D?logo=vue.js)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38bdf8?logo=tailwindcss)
 
 ## 🚀 Présentation
@@ -147,4 +147,5 @@ Les fichiers générés se trouvent dans le dossier `.output/public/` et peuvent
 - 🌐 [Portfolio](https://portfolio-ok.com/)
 - 💼 [LinkedIn](https://www.linkedin.com/in/deniz-ok/)
 - 💻 [GitHub](https://github.com/Deniz09OK)
+
 
