@@ -1,0 +1,70 @@
+/* Styles pour Navigation.vue */
+
+/* Transitions pour le dropdown */
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdown-enter-from {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+}
+
+.dropdown-leave-to {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+}
+
+/* Transitions pour le menu mobile */
+.mobile-menu-enter-active,
+.mobile-menu-leave-active {
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-enter-from {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.mobile-menu-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+/* Styles pour LanguageToggle.vue */
+.lang-menu-enter-active,
+.lang-menu-leave-active {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lang-menu-enter-from {
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+}
+
+.lang-menu-leave-to {
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+}
+
+/* Styles pour ScrollToTop.vue */
+.fade-scale-enter-active,
+.fade-scale-leave-active {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-scale-enter-from {
+  opacity: 0;
+  transform: scale(0.5) translateY(20px);
+}
+
+.fade-scale-leave-to {
+  opacity: 0;
+  transform: scale(0.5) translateY(20px);
+}
+
+/* Styles pour Hero.vue */
+.particle {
+  pointer-events: none;
+}
