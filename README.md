@@ -144,8 +144,6 @@ Les fichiers générés se trouvent dans le dossier `.output/public/` et peuvent
 
 **Réalisé avec 💙 par Deniz OK**
 
-- 🌐 [Portfolio](https://portfolio-ok.com/)
+- 🌐 [Portfolio](https://portfolio-deniz.netlify.app/Portfolio/)
 - 💼 [LinkedIn](https://www.linkedin.com/in/deniz-ok/)
 - 💻 [GitHub](https://github.com/Deniz09OK)
-
-

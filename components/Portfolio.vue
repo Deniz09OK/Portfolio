@@ -109,7 +109,7 @@ const projects = computed(() => [
   },
   {
     name: 'Portfolio',
-    link: 'https://github.com/Deniz09OK/Portfolio-deniz',
+    link: 'https://portfolio-deniz.netlify.app/Portfolio/',
     description: t.value.portfolio.portfolioDesc,
     media: {
       type: 'image',

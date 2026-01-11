@@ -352,7 +352,7 @@ const getSectionContent = (sectionId) => {
 
 <span class="text-yellow-400">🌐 Portfolio</span>
   <span class="text-gray-400">${trans.portfolio.portfolioDesc}</span>
-  <span class="text-blue-400">→ github.com/Deniz09OK/Portfolio-deniz</span>
+  <span class="text-blue-400">→ portfolio-deniz.netlify.app/Portfolio/</span>
 
 <span class="text-yellow-400">🔒 NSA (Network Security Administration)</span>
   <span class="text-gray-400">${trans.portfolio.nsaDesc}</span>
