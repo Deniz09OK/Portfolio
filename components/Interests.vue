@@ -18,13 +18,13 @@
         >
           <div class="flex items-center gap-3 mb-4">
             <div class="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg shadow-lg">
-              <svg v-if="interest.title.includes('Japon') || interest.title.includes('Japanese')" class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg v-if="interest.title.includes('Japon') || interest.title.includes('Japanese') || interest.title.includes('Kültür')" class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
               </svg>
-              <svg v-else-if="interest.title.includes('Musique') || interest.title.includes('Music')" class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg v-else-if="interest.title.includes('Musique') || interest.title.includes('Music') || interest.title.includes('Müzik')" class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
               </svg>
-              <svg v-else-if="interest.title.includes('Jeux') || interest.title.includes('Video') || interest.title.includes('Games')" class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg v-else-if="interest.title.includes('Jeux') || interest.title.includes('Video') || interest.title.includes('Games') || interest.title.includes('Oyun')" class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/>
               </svg>
               <svg v-else class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,7 +50,7 @@
             </div>
             <div v-if="interest.others && interest.others.length > 0" class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600/50 backdrop-blur-sm">
               <h4 class="font-semibold text-gray-700 dark:text-gray-200 mb-2">
-                Autres :
+                {{ translations.interests.others }} :
               </h4>
               <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1 text-sm">
                 <li v-for="(item, i) in interest.others" :key="i" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{{ item }}</li>
@@ -77,7 +77,7 @@ const interests = computed(() => {
         title: 'Culture Japonaise',
         description: 'Passionné d\'animes et de mangas.',
         top3: ['Naruto', 'Fullmetal Alchemist: Brotherhood', 'Death Note'],
-        others: ['Dragon Ball Z', 'Les Chevaliers du Zodiaque', 'Yu-Gi-Oh!', 'Chainsaw Man', 'Jujutsu Kaisen']
+        others: ['Dragon Ball Z', 'Saint Seiya', 'Yu-Gi-Oh!', 'Chainsaw Man', 'Jujutsu Kaisen']
       },
       {
         title: 'Musique',
@@ -113,21 +113,13 @@ const interests = computed(() => {
   return [
     {
       title: trans.interests.japanese,
-      description: currentLanguage.value === 'fr' 
-        ? 'Passionné d\'animes et de mangas.'
-        : currentLanguage.value === 'en'
-        ? 'Passionate about anime and manga.'
-        : 'Anime ve manga tutkunu.',
+      description: trans.interests.japaneseDesc,
       top3: ['Naruto', 'Fullmetal Alchemist: Brotherhood', 'Death Note'],
-      others: ['Dragon Ball Z', 'Les Chevaliers du Zodiaque', 'Yu-Gi-Oh!', 'Chainsaw Man', 'Jujutsu Kaisen']
+      others: ['Dragon Ball Z', 'Saint Seiya', 'Yu-Gi-Oh!', 'Chainsaw Man', 'Jujutsu Kaisen']
     },
     {
       title: trans.interests.music,
-      description: currentLanguage.value === 'fr' 
-        ? 'Éclectique dans mes goûts musicaux.'
-        : currentLanguage.value === 'en'
-        ? 'Eclectic in my musical tastes.'
-        : 'Müzik zevkimde eklektik.',
+      description: trans.interests.musicDesc,
       top3: ['Linkin Park', 'Orelsan', 'Flow'],
       others: [
         'Rap : Future, Freeze Corleone, Kendrick Lamar',
@@ -137,28 +129,20 @@ const interests = computed(() => {
     },
     {
       title: trans.interests.gaming,
-      description: currentLanguage.value === 'fr' 
-        ? 'Amateur de jeux de stratégie et FPS.'
-        : currentLanguage.value === 'en'
-        ? 'Fan of strategy games and FPS.'
-        : 'Strateji oyunları ve FPS hayranı.',
+      description: trans.interests.gamingDesc,
       top3: ['Civilization', 'Age of Empires', 'Football Manager'],
       others: ['Doom', 'League of Legends', 'Crusader Kings III', 'Mobile Legends']
     },
     {
       title: trans.interests.mythology,
-      description: currentLanguage.value === 'fr' 
-        ? 'Passionné par les contes mythologiques.'
-        : currentLanguage.value === 'en'
-        ? 'Passionate about mythological tales.'
-        : 'Mitolojik hikayeler tutkunu.',
-      top3: ['Mythologie Grecque', 'Mythologie Viking', 'Mythologie Turque'],
+      description: trans.interests.mythologyDesc,
+      top3: [trans.interests.greekMythology, trans.interests.vikingMythology, trans.interests.turkishMythology],
       others: [
-        'Mythologie Romaine',
-        'Mythologie Aztèque',
-        'Mythologie Inca',
-        'Mythologie Maya',
-        'Mythologie Japonaise'
+        trans.interests.romanMythology,
+        trans.interests.aztecMythology,
+        trans.interests.incaMythology,
+        trans.interests.mayaMythology,
+        trans.interests.japaneseMythology
       ]
     }
   ]

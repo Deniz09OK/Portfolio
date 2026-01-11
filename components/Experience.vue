@@ -58,10 +58,10 @@ const experiences = computed(() => [
     company: 'Qualitest, Nancy',
     period: '02/2025 - ' + t.value.experience.current,
     tasks: [
-      'Développement de questionnaire et de reporting',
-      'Création d\'outils en PHP et JS',
-      'Gestion de base de données',
-      'Collaboration avec les charges d\'études'
+      t.value.experience.qualitestTask1,
+      t.value.experience.qualitestTask2,
+      t.value.experience.qualitestTask3,
+      t.value.experience.qualitestTask4
     ]
   },
   {
@@ -70,8 +70,8 @@ const experiences = computed(() => [
     company: 'Burger King, Vandoeuvre-lès-Nancy',
     period: '01/2024 - 03/2024',
     tasks: [
-      'Service à table et au drive - Entretien du restaurant',
-      'Service client : Accueil chaleureux, prise de commande rapide et précise'
+      t.value.experience.bkTask1,
+      t.value.experience.bkTask2
     ]
   },
   {
@@ -80,27 +80,19 @@ const experiences = computed(() => [
     company: '1er régiment du service militaire volontaire, Montigny-Lès-Metz',
     period: '03/2023 - 12/2023',
     tasks: [
-      'Développement de compétences essentielles en discipline et travail d\'équipe',
-      'Participation à des missions variées et enrichissantes',
-      'Obtention du certificat de Sauveteur Secouriste du Travail (SST)',
-      'Décoré de la médaille du mérite'
+      t.value.experience.smvTask1,
+      t.value.experience.smvTask2,
+      t.value.experience.smvTask3,
+      t.value.experience.smvTask4
     ]
   },
   {
     type: 'internship',
-    title: currentLanguage.value === 'fr' 
-      ? 'Assistant en Maintenance et Déploiement Informatique (Stage)'
-      : currentLanguage.value === 'en'
-      ? 'IT Maintenance and Deployment Assistant (Internship)'
-      : 'BT Bakım ve Dağıtım Asistanı (Staj)',
+    title: t.value.experience.itMaintenanceAssistant,
     company: 'Sciences Po, Nancy',
     period: '09/2019 - 10/2019',
     tasks: [
-      currentLanguage.value === 'fr' 
-        ? 'Assistance informatique pour le personnel et les étudiants'
-        : currentLanguage.value === 'en'
-        ? 'IT assistance for staff and students'
-        : 'Personel ve öğrenciler için BT desteği'
+      t.value.experience.itAssistanceTask
     ]
   },
   {
@@ -109,50 +101,26 @@ const experiences = computed(() => [
     company: 'CFA Charles de Foucauld, Nancy',
     period: '04/2021 - 06/2021',
     tasks: [
-      currentLanguage.value === 'fr' 
-        ? 'Installation de nouveaux ordinateurs dans une salle informatique'
-        : currentLanguage.value === 'en'
-        ? 'Installation of new computers in a computer room'
-        : 'Bilgisayar odasına yeni bilgisayarların kurulumu',
-      currentLanguage.value === 'fr' 
-        ? 'Création d\'adresses IP pour les étudiants en BTS'
-        : currentLanguage.value === 'en'
-        ? 'Creation of IP addresses for BTS students'
-        : 'BTS öğrencileri için IP adresi oluşturma'
+      t.value.experience.computerInstallTask,
+      t.value.experience.ipCreationTask
     ]
   },
   {
     type: 'internship',
-    title: currentLanguage.value === 'fr' 
-      ? 'Assistant en Maintenance et Déploiement Informatique (Stage)'
-      : currentLanguage.value === 'en'
-      ? 'IT Maintenance and Deployment Assistant (Internship)'
-      : 'BT Bakım ve Dağıtım Asistanı (Staj)',
+    title: t.value.experience.itMaintenanceAssistant,
     company: 'Lycée Henri Loritz, Nancy',
     period: '04/2019 - 05/2019',
     tasks: [
-      currentLanguage.value === 'fr' 
-        ? 'Assistance informatique pour le personnel et les étudiants'
-        : currentLanguage.value === 'en'
-        ? 'IT assistance for staff and students'
-        : 'Personel ve öğrenciler için BT desteği'
+      t.value.experience.itAssistanceTask
     ]
   },
   {
     type: 'internship',
-    title: currentLanguage.value === 'fr' 
-      ? 'Assistant en Maintenance et Déploiement Informatique (Stage)'
-      : currentLanguage.value === 'en'
-      ? 'IT Maintenance and Deployment Assistant (Internship)'
-      : 'BT Bakım ve Dağıtım Asistanı (Staj)',
+    title: t.value.experience.itMaintenanceAssistant,
     company: 'Lycée Henri Loritz, Nancy',
     period: '01/2019 - 02/2019',
     tasks: [
-      currentLanguage.value === 'fr' 
-        ? 'Assistance informatique pour le personnel et les étudiants'
-        : currentLanguage.value === 'en'
-        ? 'IT assistance for staff and students'
-        : 'Personel ve öğrenciler için BT desteği'
+      t.value.experience.itAssistanceTask
     ]
   }
 ])

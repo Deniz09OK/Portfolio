@@ -50,19 +50,19 @@ const educations = computed(() => [
     title: t.value.education.mscPro,
     school: t.value.education.epitech,
     period: '2024-2027 · ' + t.value.education.current,
-    description: 'Pédagogie active • Virtualisation (Debian, OpenBSD, FreeBSD) • Programmation (HTML, CSS, PHP, Python, Java, JavaScript) • Framework (Node.js, Express.js, React.js, Bootstrap, Tailwind CSS, Symfony)'
+    description: t.value.education.mscProDesc
   },
   {
     title: t.value.education.bts,
     school: 'Lycée Jean Prouvé, Nancy',
     period: '2020-2022',
-    description: 'Programmation (C/C++, HTML, CSS, Python) • Administration Réseau (VLAN, LAN, Routeur, Commutateur, IPv4, Sous-réseaux) • Virtualisation (Mageia)'
+    description: t.value.education.btsDesc
   },
   {
     title: t.value.education.bac,
     school: 'Lycée Jean Prouvé, Nancy',
     period: '2017-2020',
-    description: 'Administration Réseau (VLAN, LAN, Routeur, Commutateur, IPv4, Sous-réseaux) • Virtualisation (Debian)'
+    description: t.value.education.bacDesc
   }
 ])
 </script>

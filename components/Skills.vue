@@ -33,7 +33,6 @@
             </div>
             <h4 class="font-semibold text-lg text-gray-800 dark:text-gray-200">
               <span v-if="key === 'frameworks'">Frameworks</span>
-              <span v-else-if="key === 'tools'">Outils</span>
               <span v-else-if="translations">{{ translations.skills[key] || key }}</span>
               <span v-else>{{ key }}</span>
             </h4>
@@ -63,7 +62,7 @@ const { t } = useTranslations()
 
 const translations = computed(() => t.value)
 
-const skillsData = {
+const skillsData = computed(() => ({
   os: [
     { name: 'Linux', wikiLink: 'https://fr.wikipedia.org/wiki/Linux' },
     { name: 'Windows', wikiLink: 'https://fr.wikipedia.org/wiki/Microsoft_Windows' },
@@ -106,10 +105,10 @@ const skillsData = {
     { name: 'SQLite', wikiLink: 'https://fr.wikipedia.org/wiki/SQLite' }
   ],
   networks: [
-    { name: 'Configuration routeurs', wikiLink: 'https://fr.wikipedia.org/wiki/Routeur' },
-    { name: 'Configuration switches', wikiLink: 'https://fr.wikipedia.org/wiki/Commutateur_réseau' }
+    { name: t.value.skills.routerConfig, wikiLink: 'https://fr.wikipedia.org/wiki/Routeur' },
+    { name: t.value.skills.switchConfig, wikiLink: 'https://fr.wikipedia.org/wiki/Commutateur_réseau' }
   ]
-}
+}))
 
 const getCategoryIcon = (key) => {
   const icons = {

@@ -18,7 +18,7 @@
               preload="metadata"
             >
               <source :src="project.media.src" type="video/mp4" />
-              Votre navigateur ne supporte pas la lecture de vidéos.
+              {{ t.portfolio.videoNotSupported }}
             </video>
             <img
               v-else
@@ -71,14 +71,14 @@
         <button
           class="absolute top-4 right-4 text-white hover:text-blue-400 transition-colors text-4xl"
           @click="selectedImage = null"
-          title="Fermer"
-          aria-label="Fermer"
+          :title="t.portfolio.close"
+          :aria-label="t.portfolio.close"
         >
           ✕
         </button>
         <img
           :src="selectedImage"
-          alt="Vue agrandie"
+          :alt="t.portfolio.enlargedView"
           class="max-w-full max-h-[90vh] object-contain rounded-lg"
           @click.stop
         />
@@ -96,11 +96,11 @@ const openImageModal = (src) => {
   selectedImage.value = src
 }
 
-const projects = [
+const projects = computed(() => [
   {
     name: 'Popeye',
     link: 'https://github.com/Deniz09OK/Popeye',
-    description: 'Projet de conteneurisation avec Docker, mettant en place une application web complète avec une architecture microservices.',
+    description: t.value.portfolio.popeyeDesc,
     media: {
       type: 'image',
       src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
@@ -110,17 +110,17 @@ const projects = [
   {
     name: 'Portfolio',
     link: 'https://github.com/Deniz09OK/Portfolio-deniz',
-    description: 'Portfolio personnel développé avec Nuxt, Vite et JavaScript. Interface moderne et responsive.',
+    description: t.value.portfolio.portfolioDesc,
     media: {
       type: 'image',
       src: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      alt: 'Code sur un écran d\'ordinateur'
+      alt: 'Code on a computer screen'
     }
   },
   {
     name: 'NSA (Network Security Administration)',
     link: '#',
-    description: 'Infrastructure réseau sécurisée sous OpenBSD et FreeBSD. Configuration d\'une passerelle avec 3 réseaux privés.',
+    description: t.value.portfolio.nsaDesc,
     media: {
       type: 'image',
       src: 'https://images.unsplash.com/photo-1510511459019-5dda7724fd87?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
@@ -130,32 +130,32 @@ const projects = [
   {
     name: 'CultureQuiz',
     link: 'https://github.com/Deniz09OK/CultureQuiz',
-    description: 'Application de quiz interactif en Python avec interface Tkinter.',
+    description: t.value.portfolio.cultureQuizDesc,
     media: {
       type: 'image',
       src: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80',
-      alt: 'Quiz et apprentissage'
+      alt: 'Quiz and learning'
     }
   },
   {
     name: 'AI-Morpion',
     link: 'https://github.com/Deniz09OK/AI-Morpion',
-    description: 'Version moderne du Tic-Tac-Toe avec une IA avancée utilisant l\'algorithme Minimax.',
+    description: t.value.portfolio.aiMorpionDesc,
     media: {
       type: 'image',
       src: 'https://images.unsplash.com/photo-1611996575749-79a3a250f948?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      alt: 'Jeu de morpion'
+      alt: 'Tic-tac-toe game'
     }
   },
   {
     name: 'EpiQuest',
     link: 'https://github.com/Deniz09OK/Projet-Jeu-Java',
-    description: 'Jeu d\'aventure 2D développé avec Java et LibGDX.',
+    description: t.value.portfolio.epiQuestDesc,
     media: {
       type: 'image',
       src: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      alt: 'Jeu vidéo rétro'
+      alt: 'Retro video game'
     }
   }
-]
+])
 </script>
