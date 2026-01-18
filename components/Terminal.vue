@@ -2,7 +2,7 @@
   <!-- Bouton flottant terminal -->
   <button
     @click="toggleTerminal"
-    class="fixed bottom-24 left-4 z-40 bg-gray-900 hover:bg-gray-800 text-green-400 p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 border-2 border-green-500/50 group"
+    class="fixed bottom-24 left-4 z-[100] bg-gray-900 hover:bg-gray-800 text-green-400 p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 border-2 border-green-500/50 group"
     :title="isOpen ? uiTexts.close : uiTexts.open"
   >
     <svg v-if="!isOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -652,6 +652,10 @@ const autoComplete = () => {
     })
   }
 }
+
+onMounted(() => {
+  console.log('Terminal component mounted')
+})
 </script>
 
 <style scoped>

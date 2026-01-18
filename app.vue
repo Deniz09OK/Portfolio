@@ -41,6 +41,11 @@
 
         <!-- Scroll to Top -->
         <ScrollToTop />
+
+        <!-- Terminal -->
+        <ClientOnly>
+          <Terminal />
+        </ClientOnly>
       </div>
     </NuxtLayout>
   </div>
