@@ -306,19 +306,22 @@ const getSectionContent = (sectionId) => {
 ╚══════════════════════════════════════════════════════════╝</span>
 
 <span class="text-green-400">${trans.skills.os}:</span>
-  Linux, Windows, OpenBSD, FreeBSD, Debian, Ubuntu, Kali
+  Linux (Debian, Ubuntu, Kali), Windows, OpenBSD, FreeBSD
 
 <span class="text-green-400">${trans.skills.languages}:</span>
-  C/C++, HTML, CSS, PHP, Python, Java, JavaScript, TypeScript
+  JS/TS, Python, Java, PHP, C/C++, Groovy, HTML/CSS
 
 <span class="text-green-400">Frameworks:</span>
-  Node.js, Express.js, React.js, Vue.js, Symfony, Nuxt.js
+  React, Vue, Nuxt, Node, Express, Flask, Symfony, Socket.io, Playwright
 
 <span class="text-green-400">${trans.skills.databases}:</span>
-  MongoDB, MySQL, PostgreSQL, SQLite
+  PostgreSQL, MongoDB, MySQL, Redis, SQLite
 
 <span class="text-green-400">${trans.skills.tools}:</span>
-  Docker, Kubernetes, Jenkins, Bootstrap, Tailwind CSS`
+  Docker, K8s, Jenkins (CasC), GitLab CI, Traefik, Vite, Figma
+
+<span class="text-green-400">${trans.skills.security}:</span>
+  Metasploit, Burp Suite, Nmap, Hydra, Wireshark, John, Gobuster`
     },
     
     interests: () => {
@@ -399,7 +402,7 @@ const commands = {
   <span class="text-green-400">experience</span> - Afficher la section Expérience
   <span class="text-green-400">skills</span>     - Afficher la section Compétences
   <span class="text-green-400">interests</span>  - Afficher la section Centres d'intérêt
-  <span class="text-green-400">portfolio</span>  - Afficher la section Projets
+  <span class="text-green-400">projects</span>   - Afficher la section Projets
   <span class="text-green-400">languages</span>  - Afficher la section Langues
   <span class="text-green-400">contact</span>    - Envoyer un email
   <span class="text-green-400">github</span>     - Ouvrir mon GitHub
@@ -417,7 +420,7 @@ const commands = {
   <span class="text-green-400">experience</span> - Show Experience section
   <span class="text-green-400">skills</span>     - Show Skills section
   <span class="text-green-400">interests</span>  - Show Interests section
-  <span class="text-green-400">portfolio</span>  - Show Projects section
+  <span class="text-green-400">projects</span>   - Show Projects section
   <span class="text-green-400">languages</span>  - Show Languages section
   <span class="text-green-400">contact</span>    - Send an email
   <span class="text-green-400">github</span>     - Open my GitHub
@@ -435,7 +438,7 @@ const commands = {
   <span class="text-green-400">experience</span> - Deneyim bölümünü göster
   <span class="text-green-400">skills</span>     - Beceriler bölümünü göster
   <span class="text-green-400">interests</span>  - İlgi Alanları bölümünü göster
-  <span class="text-green-400">portfolio</span>  - Projeler bölümünü göster
+  <span class="text-green-400">projects</span>   - Projeler bölümünü göster
   <span class="text-green-400">languages</span>  - Diller bölümünü göster
   <span class="text-green-400">contact</span>    - E-posta gönder
   <span class="text-green-400">github</span>     - GitHub'ımı aç
@@ -477,7 +480,7 @@ const commands = {
   experience: () => getSectionContent('experience'),
   skills: () => getSectionContent('skills'),
   interests: () => getSectionContent('interests'),
-  portfolio: () => getSectionContent('portfolio'),
+  projects: () => getSectionContent('portfolio'),
   languages: () => getSectionContent('languages'),
 
   contact: () => {
@@ -535,7 +538,7 @@ const commands = {
   },
 
   ls: () => {
-    return `<span class="text-blue-400">about/</span>  <span class="text-blue-400">education/</span>  <span class="text-blue-400">experience/</span>  <span class="text-blue-400">skills/</span>  <span class="text-blue-400">interests/</span>  <span class="text-blue-400">portfolio/</span>  <span class="text-blue-400">languages/</span>
+    return `<span class="text-blue-400">about/</span>  <span class="text-blue-400">education/</span>  <span class="text-blue-400">experience/</span>  <span class="text-blue-400">skills/</span>  <span class="text-blue-400">interests/</span>  <span class="text-blue-400">projects/</span>  <span class="text-blue-400">languages/</span>
 <span class="text-gray-400">README.md</span>  <span class="text-gray-400">CV.pdf</span>`
   },
 

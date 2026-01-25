@@ -89,7 +89,8 @@ export const translations = {
       networks: 'Réseaux',
       tools: 'Outils',
       routerConfig: 'Configuration routeurs',
-      switchConfig: 'Configuration switches'
+      switchConfig: 'Configuration switches',
+      security: 'Cybersécurité'
     },
     interests: {
       title: 'Centres d\'intérêt',
@@ -221,7 +222,8 @@ export const translations = {
       networks: 'Networks',
       tools: 'Tools',
       routerConfig: 'Router configuration',
-      switchConfig: 'Switch configuration'
+      switchConfig: 'Switch configuration',
+      security: 'Cybersecurity'
     },
     interests: {
       title: 'Interests',
@@ -353,7 +355,8 @@ export const translations = {
       networks: 'Ağlar',
       tools: 'Araçlar',
       routerConfig: 'Yönlendirici yapılandırma',
-      switchConfig: 'Anahtar yapılandırma'
+      switchConfig: 'Anahtar yapılandırma',
+      security: 'Siber Güvenlik'
     },
     interests: {
       title: 'İlgi Alanları',

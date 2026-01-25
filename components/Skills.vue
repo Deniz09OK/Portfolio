@@ -27,6 +27,9 @@
               <svg v-else-if="key === 'databases'" class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
               </svg>
+              <svg v-else-if="key === 'security'" class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+              </svg>
               <svg v-else class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
               </svg>
@@ -74,35 +77,51 @@ const skillsData = computed(() => ({
     { name: 'Debian', wikiLink: 'https://fr.wikipedia.org/wiki/Debian' }
   ],
   languages: [
-    { name: 'C/C++', wikiLink: 'https://fr.wikipedia.org/wiki/C%2B%2B' },
-    { name: 'HTML', wikiLink: 'https://fr.wikipedia.org/wiki/Hypertext_Markup_Language' },
-    { name: 'CSS', wikiLink: 'https://fr.wikipedia.org/wiki/Feuilles_de_style_en_cascade' },
-    { name: 'PHP', wikiLink: 'https://fr.wikipedia.org/wiki/PHP' },
+    { name: 'JavaScript', wikiLink: 'https://fr.wikipedia.org/wiki/JavaScript' },
+    { name: 'TypeScript', wikiLink: 'https://fr.wikipedia.org/wiki/TypeScript' },
     { name: 'Python', wikiLink: 'https://fr.wikipedia.org/wiki/Python_(langage)' },
     { name: 'Java', wikiLink: 'https://fr.wikipedia.org/wiki/Java_(langage)' },
-    { name: 'JavaScript', wikiLink: 'https://fr.wikipedia.org/wiki/JavaScript' },
-    { name: 'TypeScript', wikiLink: 'https://fr.wikipedia.org/wiki/TypeScript' }
+    { name: 'PHP', wikiLink: 'https://fr.wikipedia.org/wiki/PHP' },
+    { name: 'C/C++', wikiLink: 'https://fr.wikipedia.org/wiki/C%2B%2B' },
+    { name: 'Groovy', wikiLink: 'https://en.wikipedia.org/wiki/Apache_Groovy' },
+    { name: 'HTML/CSS', wikiLink: 'https://fr.wikipedia.org/wiki/HTML' }
   ],
   frameworks: [
-    { name: 'Node.js', wikiLink: 'https://fr.wikipedia.org/wiki/Node.js' },
-    { name: 'Express.js', wikiLink: 'https://fr.wikipedia.org/wiki/Express.js' },
     { name: 'React.js', wikiLink: 'https://fr.wikipedia.org/wiki/React' },
     { name: 'Vue.js', wikiLink: 'https://fr.wikipedia.org/wiki/Vue.js' },
+    { name: 'Node.js', wikiLink: 'https://fr.wikipedia.org/wiki/Node.js' },
+    { name: 'Express.js', wikiLink: 'https://fr.wikipedia.org/wiki/Express.js' },
+    { name: 'Nuxt.js', wikiLink: 'https://fr.wikipedia.org/wiki/Nuxt.js' },
     { name: 'Symfony', wikiLink: 'https://fr.wikipedia.org/wiki/Symfony' },
-    { name: 'Nuxt.js', wikiLink: 'https://fr.wikipedia.org/wiki/Nuxt.js' }
+    { name: 'Flask', wikiLink: 'https://fr.wikipedia.org/wiki/Flask_(framework)' },
+    { name: 'Socket.io', wikiLink: 'https://fr.wikipedia.org/wiki/Socket.io' },
+    { name: 'Playwright', wikiLink: 'https://playwright.dev/' }
   ],
   tools: [
-    { name: 'Bootstrap', wikiLink: 'https://fr.wikipedia.org/wiki/Bootstrap_(framework)' },
-    { name: 'Tailwind CSS', wikiLink: 'https://fr.wikipedia.org/wiki/Tailwind_CSS' },
     { name: 'Docker', wikiLink: 'https://fr.wikipedia.org/wiki/Docker' },
     { name: 'Kubernetes', wikiLink: 'https://fr.wikipedia.org/wiki/Kubernetes' },
-    { name: 'Jenkins', wikiLink: 'https://fr.wikipedia.org/wiki/Jenkins_(logiciel)' }
+    { name: 'Jenkins', wikiLink: 'https://fr.wikipedia.org/wiki/Jenkins_(logiciel)' },
+    { name: 'GitLab CI/CD', wikiLink: 'https://about.gitlab.com/' },
+    { name: 'Traefik', wikiLink: 'https://traefik.io/' },
+    { name: 'Vite', wikiLink: 'https://vitejs.dev/' },
+    { name: 'Figma', wikiLink: 'https://www.figma.com/' },
+    { name: 'Tailwind CSS', wikiLink: 'https://tailwindcss.com/' }
   ],
   databases: [
+    { name: 'PostgreSQL', wikiLink: 'https://fr.wikipedia.org/wiki/PostgreSQL' },
     { name: 'MongoDB', wikiLink: 'https://fr.wikipedia.org/wiki/MongoDB' },
     { name: 'MySQL', wikiLink: 'https://fr.wikipedia.org/wiki/MySQL' },
-    { name: 'PostgreSQL', wikiLink: 'https://fr.wikipedia.org/wiki/PostgreSQL' },
+    { name: 'Redis', wikiLink: 'https://fr.wikipedia.org/wiki/Redis' },
     { name: 'SQLite', wikiLink: 'https://fr.wikipedia.org/wiki/SQLite' }
+  ],
+  security: [
+    { name: 'Metasploit', wikiLink: 'https://fr.wikipedia.org/wiki/Metasploit' },
+    { name: 'Burp Suite', wikiLink: 'https://fr.wikipedia.org/wiki/Burp_suite' },
+    { name: 'Nmap', wikiLink: 'https://fr.wikipedia.org/wiki/Nmap' },
+    { name: 'Hydra', wikiLink: 'https://github.com/vanhauser-thc/thc-hydra' },
+    { name: 'Wireshark', wikiLink: 'https://fr.wikipedia.org/wiki/Wireshark' },
+    { name: 'John the Ripper', wikiLink: 'https://fr.wikipedia.org/wiki/John_the_Ripper' },
+    { name: 'Gobuster', wikiLink: 'https://github.com/OJ/gobuster' }
   ],
   networks: [
     { name: t.value.skills.routerConfig, wikiLink: 'https://fr.wikipedia.org/wiki/Routeur' },
