@@ -3,10 +3,10 @@ import { defineNuxtConfig } from 'nuxt/config';
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  
+
   // Désactiver le SSR pour éviter les erreurs d'hydration
   ssr: false,
-  
+
   // Configuration pour GitHub Pages
   app: {
     baseURL: process.env.NODE_ENV === 'production' ? '/Portfolio/' : '/',
@@ -28,9 +28,11 @@ export default defineNuxtConfig({
       ]
     }
   },
-  
+
   modules: [
     '@nuxtjs/tailwindcss',
+    '@vueuse/motion/nuxt',
+    '@nuxt/image'
   ],
 
   css: [

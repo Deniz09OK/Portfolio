@@ -4,6 +4,7 @@
 ![Vue.js](https://img.shields.io/badge/Vue.js-3-4FC08D?logo=vue.js)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38bdf8?logo=tailwindcss)
+![PWA](https://img.shields.io/badge/PWA-Ready-5A0FC8?logo=pwa)
 
 ## 🚀 Présentation
 
@@ -15,19 +16,28 @@ Ce projet met en avant mes compétences, mes projets et mon parcours de façon m
 - 🌍 **Multilingue** : Support complet du Français, Anglais et Turc
 - 🌓 **Mode sombre/clair** : Changement de thème instantané et optimisé
 - 📱 **Design responsive** : Adapté à tous les écrans (mobile, tablette, desktop)
-- ✨ **Animations fluides** : Transitions et effets visuels modernes
-- 🎨 **Glassmorphism** : Design moderne avec effets de verre
-- ⚡ **Performances optimisées** : Chargement rapide et navigation fluide
+- ✨ **Animations fluides** : Transitions et effets visuels modernes avec `@vueuse/motion`
+- 🎨 **Glassmorphism Premium** : Design moderne avec effets de verre sophistiqués
+- ⚡ **Performances optimisées** : Images WebP via `@nuxt/image`
 - 🎯 **Navigation intuitive** : Menu latéral et scroll-to-top avec progression
 - 📊 **Sections complètes** : À propos, Formation, Expérience, Compétences, Centres d'intérêt, Projets, Langues
+- 📝 **Blog Technique** : Articles et retours d'expérience via `@nuxt/content`
+- 🖱️ **Curseur Personnalisé** : Effet "follower" premium sur desktop
+- 🌌 **Fond Animé** : Particules et dégradés dynamiques
+- 🎮 **Terminal Interactif** : Commandes, jeux et easter eggs cachés
+- 📲 **PWA Ready** : Application installable via `@vite-pwa/nuxt`
+- 🔍 **SEO Optimisé** : Balises Open Graph pour les réseaux sociaux
 
 ## 🛠️ Technologies utilisées
 
 - [Nuxt.js 3](https://nuxt.com/) - Framework Vue.js pour applications web modernes
 - [Vue.js 3](https://vuejs.org/) - Framework JavaScript progressif
-- [JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript) - Langage de programmation 
+- [JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript) - Langage de programmation
 - [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utilitaire
-- [SVG Icons](https://heroicons.com/) - Icônes vectorielles optimisées
+- [@vueuse/motion](https://motion.vueuse.org/) - Animations déclaratives
+- [@nuxt/content](https://content.nuxt.com/) - Gestion du contenu (Blog)
+- [@nuxt/image](https://image.nuxt.com/) - Optimisation des images
+- [@vite-pwa/nuxt](https://vite-pwa-org.netlify.app/) - Progressive Web App
 
 ## 📦 Installation
 
@@ -61,84 +71,74 @@ Ce projet met en avant mes compétences, mes projets et mon parcours de façon m
 
 ```
 Portfolio/
-├── assets/
-│   └── css/                    # Fichiers CSS globaux
-│       ├── main.css
-│       ├── components.css
-│       ├── timeline.css
-│       ├── animations.css
-│       └── theme-optimization.css
+├── assets/css/                 # Fichiers CSS globaux
 ├── components/                 # Composants Vue réutilisables
-│   ├── Navigation.vue         # Menu de navigation latéral
-│   ├── Hero.vue              # Section d'accueil
-│   ├── Education.vue         # Parcours académique
-│   ├── Experience.vue        # Expériences professionnelles
-│   ├── Skills.vue            # Compétences techniques
-│   ├── Interests.vue         # Centres d'intérêt
-│   ├── Portfolio.vue         # Projets réalisés
-│   ├── Languages.vue         # Langues parlées
-│   ├── Footer.vue            # Pied de page
-│   ├── ThemeToggle.vue       # Bouton de changement de thème
-│   ├── LanguageToggle.vue    # Sélecteur de langue
-│   └── ScrollToTop.vue       # Bouton retour en haut
-├── composables/               # Fonctions réutilisables
-│   ├── useLanguage.js        # Gestion de la langue
-│   └── useTranslations.js    # Traductions multilingues
-├── public/                    # Fichiers statiques
-│   ├── deniz.jpg            # Photo de profil
-│   └── favicon.ico
-├── app.vue                    # Composant racine
-├── nuxt.config.ts            # Configuration Nuxt
-└── package.json              # Dépendances du projet
+│   ├── AnimatedBackground.vue  # Fond animé avec particules
+│   ├── CustomCursor.vue        # Curseur personnalisé "follower"
+│   ├── Terminal.vue            # Terminal interactif gamifié
+│   └── ...                     # Autres composants
+├── composables/                # Fonctions réutilisables
+├── content/blog/               # Articles du blog (Markdown)
+├── pages/                      # Routes de l'application
+│   ├── index.vue               # Page d'accueil
+│   └── blog/                   # Pages du blog
+├── public/                     # Fichiers statiques
+├── app.vue                     # Composant racine avec layout
+├── nuxt.config.ts              # Configuration Nuxt
+└── package.json                # Dépendances du projet
 ```
 
 ## 🌐 Sections du Portfolio
 
 ### 🏠 Hero
-Présentation générale avec photo, titre, description et liens de contact.
+Présentation générale avec photo, animations d'entrée et liens de contact.
 
 ### 🎓 Formation
-Parcours académique de Epitech à aujourd'hui, avec détails des compétences acquises.
+Parcours académique de Epitech à aujourd'hui.
 
 ### 💼 Expérience
-Expériences professionnelles et stages, de l'alternance actuelle aux premiers stages.
+Expériences professionnelles et stages.
 
 ### ⚙️ Compétences
-Liste complète des compétences techniques : systèmes d'exploitation, langages, frameworks, bases de données et réseaux.
+Liste complète des compétences techniques.
 
 ### ❤️ Centres d'intérêt
 Passions personnelles : culture japonaise, musique, jeux vidéo et mythologie.
 
 ### 💻 Projets
-Portfolio de projets réalisés avec descriptions, technologies et liens GitHub.
+Portfolio de projets avec animations au scroll et effets glassmorphism.
 
 ### 🌍 Langues
-Maîtrise du Français (langue maternelle), Turc (langue maternelle) et Anglais (TOEIC 790/990).
+Maîtrise du Français, Turc et Anglais (TOEIC 790/990).
+
+### 📝 Blog
+Retrouvez mes articles techniques et retours d'expérience.
+
+## 🎮 Terminal Interactif
+
+Le terminal caché offre une expérience gamifiée :
+- Tapez `help` pour voir les commandes disponibles
+- Tapez `game` pour jouer au Juste Nombre
+- Trouvez les commandes secrètes comme `secret` ou `matrix`
 
 ## 🎨 Personnalisation
 
 ### Modifier les traductions
-Les traductions se trouvent dans `composables/useTranslations.js`. Vous pouvez ajouter ou modifier les textes en français, anglais et turc.
+Les traductions se trouvent dans `composables/useTranslations.js`.
+
+### Ajouter des articles de blog
+Créez de nouveaux fichiers Markdown dans `content/blog/`.
 
 ### Changer les couleurs
-Les couleurs principales sont définies dans `nuxt.config.ts` et peuvent être personnalisées via Tailwind CSS.
-
-### Ajouter des projets
-Modifiez le fichier `components/Portfolio.vue` pour ajouter vos propres projets.
+Les couleurs principales sont définies dans `nuxt.config.ts` et `tailwind.config.js`.
 
 ## 🚀 Déploiement
 
-### Build pour la production
 ```bash
 npm run build
 ```
 
-### Génération statique
-```bash
-npm run generate
-```
-
-Les fichiers générés se trouvent dans le dossier `.output/public/` et peuvent être déployés sur n'importe quel hébergeur statique (Netlify, Vercel, GitHub Pages, etc.).
+Les fichiers générés se trouvent dans `.output/public/` et peuvent être déployés sur Netlify, Vercel, GitHub Pages, etc.
 
 ---
 

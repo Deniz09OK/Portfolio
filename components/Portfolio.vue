@@ -6,9 +6,13 @@
       </h2>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div
-          v-for="project in projects"
+          v-for="(project, index) in projects"
           :key="project.name"
-          class="project-card bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700 group"
+          class="project-card glass-premium rounded-xl transform transition-all duration-300 hover:scale-[1.02] overflow-hidden group"
+          v-motion
+          :initial="{ opacity: 0, y: 50 }"
+          :visibleOnce="{ opacity: 1, y: 0 }"
+          :delay="index * 100"
         >
           <div class="relative overflow-hidden">
             <video
@@ -20,12 +24,14 @@
               <source :src="project.media.src" type="video/mp4" />
               {{ t.portfolio.videoNotSupported }}
             </video>
-            <img
+            <NuxtImg
               v-else
               :src="project.media.src"
               :alt="project.media.alt"
+              format="webp"
+              loading="lazy"
               :class="[
-                'w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110',
+                'w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110',
                 project.name.includes('NSA') ? 'cursor-zoom-in' : ''
               ]"
               @click="project.name.includes('NSA') && openImageModal(project.media.src)"
@@ -40,14 +46,14 @@
               {{ project.name }}
             </h3>
             
-            <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">{{ project.description }}</p>
+            <p class="text-gray-600 dark:text-blue-100 text-sm mb-4">{{ project.description }}</p>
             
             <a
               v-if="project.link && !project.name.includes('NSA')"
               :href="project.link"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center text-primary-blue dark:text-accent-blue hover:text-secondary-blue dark:hover:text-blue-300 transition-colors font-medium"
+              class="inline-flex items-center text-primary-blue dark:text-blue-300 hover:text-secondary-blue dark:hover:text-white transition-colors font-medium"
             >
               <span class="mr-2">→</span>
               {{ t.portfolio.viewGithub }}

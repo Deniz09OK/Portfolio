@@ -1,13 +1,31 @@
 export const useTranslations = () => {
   const { currentLanguage } = useLanguage()
-  
+
   const t = computed(() => translations[currentLanguage.value] || translations.fr)
-  
+
   return { t }
 }
 
 export const translations = {
   fr: {
+    terminal: {
+      welcome: 'Bienvenue dans le terminal de Deniz OK!',
+      typeHelp: 'Tapez "help" pour voir les commandes disponibles.',
+      tip: '💡 Astuce: Vous pouvez déplacer et redimensionner cette fenêtre!',
+      game: {
+        start: '🎮 JEU DU JUSTE NOMBRE<br>J\'ai choisi un nombre entre 1 et 100. À vous de deviner !<br><span class="text-gray-500">(Tapez "exit" pour quitter)</span>',
+        win: '🎉 GAGNÉ ! Vous avez trouvé le nombre {target} en {attempts} essais !',
+        higher: 'C\'est plus grand ! ⬆️',
+        lower: 'C\'est plus petit ! ⬇️',
+        invalid: 'Veuillez entrer un nombre valide !',
+        over: 'Jeu terminé.'
+      },
+      secret: '🕵️ Vous avez trouvé une commande secrète ! Le mot de passe est "42".',
+      matrix: 'Wake up, Neo...<br>The Matrix has you...',
+      notFound: 'commande introuvable',
+      opening: 'Ouverture de',
+      downloading: 'Téléchargement du CV...'
+    },
     nav: {
       about: 'À propos',
       education: 'Formation',
@@ -122,6 +140,24 @@ export const translations = {
     }
   },
   en: {
+    terminal: {
+      welcome: 'Welcome to Deniz OK\'s terminal!',
+      typeHelp: 'Type "help" to see available commands.',
+      tip: '💡 Tip: You can drag and resize this window!',
+      game: {
+        start: '🎮 NUMBER GUESSING GAME<br>I chose a number between 1 and 100. Try to guess it!<br><span class="text-gray-500">(Type "exit" to quit)</span>',
+        win: '🎉 YOU WON! You found the number {target} in {attempts} attempts!',
+        higher: 'It\'s higher! ⬆️',
+        lower: 'It\'s lower! ⬇️',
+        invalid: 'Please enter a valid number!',
+        over: 'Game over.'
+      },
+      secret: '🕵️ You found a secret command! The password is "42".',
+      matrix: 'Wake up, Neo...<br>The Matrix has you...',
+      notFound: 'command not found',
+      opening: 'Opening',
+      downloading: 'Downloading CV...'
+    },
     nav: {
       about: 'About',
       education: 'Education',
@@ -236,6 +272,24 @@ export const translations = {
     }
   },
   tr: {
+    terminal: {
+      welcome: 'Deniz OK\'un terminaline hoş geldiniz!',
+      typeHelp: 'Kullanılabilir komutları görmek için "help" yazın.',
+      tip: '💡 İpucu: Bu pencereyi sürükleyip yeniden boyutlandırabilirsiniz!',
+      game: {
+        start: '🎮 SAYI TAHMİN OYUNU<br>1 ile 100 arasında bir sayı tuttum. Tahmin etmeye çalış!<br><span class="text-gray-500">(Çıkmak için "exit" yazın)</span>',
+        win: '🎉 KAZANDIN! {target} sayısını {attempts} denemede buldun!',
+        higher: 'Daha büyük! ⬆️',
+        lower: 'Daha küçük! ⬇️',
+        invalid: 'Lütfen geçerli bir sayı girin!',
+        over: 'Oyun bitti.'
+      },
+      secret: '🕵️ Gizli bir komut buldun! Şifre "42".',
+      matrix: 'Uyan, Neo...<br>Matrix seni ele geçirdi...',
+      notFound: 'komut bulunamadı',
+      opening: 'Açılıyor:',
+      downloading: 'CV indiriliyor...'
+    },
     nav: {
       about: 'Hakkında',
       education: 'Eğitim',

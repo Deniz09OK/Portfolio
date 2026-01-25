@@ -29,10 +29,11 @@
       ]"
     >
       <div class="p-6">
-        <div class="text-xl font-bold text-primary-blue dark:text-accent-blue mb-8">Deniz OK</div>
+        <NuxtLink to="/" class="text-xl font-bold text-primary-blue dark:text-accent-blue mb-8 block" @click="isOpen = false">Deniz OK</NuxtLink>
         <div class="space-y-2">
+          <!-- Scroll-based menu items -->
           <button
-            v-for="item in menuItems"
+            v-for="item in scrollMenuItems"
             :key="item.id"
             @click="scrollToSection(item.id)"
             class="w-full flex items-center p-3 text-gray-600 dark:text-gray-300 hover:text-primary-blue dark:hover:text-accent-blue hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors group"
@@ -40,6 +41,8 @@
             <span class="flex-1 text-left">{{ item.name }}</span>
             <span class="opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all">→</span>
           </button>
+          
+          <!-- Link-based menu items (Blog) removed -->
         </div>
       </div>
     </nav>
@@ -51,7 +54,7 @@ const { currentLanguage } = useLanguage()
 const { t } = useTranslations()
 const isOpen = ref(false)
 
-const menuItems = computed(() => [
+const scrollMenuItems = computed(() => [
   { id: 'about', name: t.value.nav.about },
   { id: 'education', name: t.value.nav.education },
   { id: 'experience', name: t.value.nav.experience },
@@ -63,18 +66,32 @@ const menuItems = computed(() => [
 
 const scrollToSection = (id) => {
   if (process.client) {
-    const element = document.getElementById(id)
-    if (element) {
-      const offset = 20
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - offset
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
+    // Navigate to home first if not there
+    const router = useRouter()
+    const route = useRoute()
+    
+    if (route.path !== '/') {
+      router.push('/').then(() => {
+        setTimeout(() => scrollToElement(id), 100)
       })
+    } else {
+      scrollToElement(id)
     }
     isOpen.value = false
+  }
+}
+
+const scrollToElement = (id) => {
+  const element = document.getElementById(id)
+  if (element) {
+    const offset = 20
+    const elementPosition = element.getBoundingClientRect().top
+    const offsetPosition = elementPosition + window.pageYOffset - offset
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    })
   }
 }
 </script>

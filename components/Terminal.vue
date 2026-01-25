@@ -405,9 +405,10 @@ const commands = {
   <span class="text-green-400">github</span>     - Ouvrir mon GitHub
   <span class="text-green-400">linkedin</span>   - Ouvrir mon LinkedIn
   <span class="text-green-400">cv</span>         - Télécharger mon CV
+  <span class="text-green-400">game</span>       - Jouer au juste nombre
+  <span class="text-green-400">secret</span>     - ???
   <span class="text-green-400">clear</span>      - Effacer le terminal
   <span class="text-green-400">whoami</span>     - Qui suis-je ?
-  <span class="text-green-400">neofetch</span>   - Infos système
   <span class="text-green-400">help</span>       - Afficher cette aide`,
       en: `<span class="text-yellow-400">Available commands:</span>
 
@@ -422,9 +423,10 @@ const commands = {
   <span class="text-green-400">github</span>     - Open my GitHub
   <span class="text-green-400">linkedin</span>   - Open my LinkedIn
   <span class="text-green-400">cv</span>         - Download my CV
+  <span class="text-green-400">game</span>       - Play number guessing game
+  <span class="text-green-400">secret</span>     - ???
   <span class="text-green-400">clear</span>      - Clear terminal
   <span class="text-green-400">whoami</span>     - Who am I?
-  <span class="text-green-400">neofetch</span>   - System info
   <span class="text-green-400">help</span>       - Show this help`,
       tr: `<span class="text-yellow-400">Kullanılabilir komutlar:</span>
 
@@ -439,9 +441,10 @@ const commands = {
   <span class="text-green-400">github</span>     - GitHub'ımı aç
   <span class="text-green-400">linkedin</span>   - LinkedIn'imi aç
   <span class="text-green-400">cv</span>         - CV'mi indir
+  <span class="text-green-400">game</span>       - Sayı tahmin oyunu oyna
+  <span class="text-green-400">secret</span>     - ???
   <span class="text-green-400">clear</span>      - Terminali temizle
   <span class="text-green-400">whoami</span>     - Ben kimim?
-  <span class="text-green-400">neofetch</span>   - Sistem bilgisi
   <span class="text-green-400">help</span>       - Bu yardımı göster`
     }
     return helpText[lang] || helpText.fr
@@ -561,23 +564,20 @@ const toggleTerminal = () => {
     nextTick(() => {
       inputRef.value?.focus()
       if (history.value.length === 0) {
-        const lang = currentLanguage.value
-        const welcome = {
-          fr: `<span class="text-cyan-400">Bienvenue dans le terminal de Deniz OK!</span>
-<span class="text-gray-400">Tapez</span> <span class="text-yellow-400">help</span> <span class="text-gray-400">pour voir les commandes disponibles.</span>
-<span class="text-gray-400">💡 Astuce: Vous pouvez déplacer et redimensionner cette fenêtre!</span>`,
-          en: `<span class="text-cyan-400">Welcome to Deniz OK's terminal!</span>
-<span class="text-gray-400">Type</span> <span class="text-yellow-400">help</span> <span class="text-gray-400">to see available commands.</span>
-<span class="text-gray-400">💡 Tip: You can drag and resize this window!</span>`,
-          tr: `<span class="text-cyan-400">Deniz OK'un terminaline hoş geldiniz!</span>
-<span class="text-gray-400">Kullanılabilir komutları görmek için</span> <span class="text-yellow-400">help</span> <span class="text-gray-400">yazın.</span>
-<span class="text-gray-400">💡 İpucu: Bu pencereyi sürükleyip yeniden boyutlandırabilirsiniz!</span>`
-        }
-        history.value.push({ command: '', output: welcome[lang] || welcome.fr })
+        const welcome = `<span class="text-cyan-400">${t.value.terminal.welcome}</span>
+<span class="text-gray-400">${t.value.terminal.typeHelp}</span>
+<span class="text-gray-400">${t.value.terminal.tip}</span>`
+        history.value.push({ command: '', output: welcome })
       }
     })
   }
 }
+
+const gameState = ref({
+  active: false,
+  target: 0,
+  attempts: 0
+})
 
 const executeCommand = () => {
   const cmd = currentCommand.value.trim()
@@ -586,28 +586,68 @@ const executeCommand = () => {
   commandHistory.value.push(cmd)
   historyIndex.value = commandHistory.value.length
 
-  const [command, ...args] = cmd.toLowerCase().split(' ')
-  let output = null
-
-  if (commands[command]) {
-    output = typeof commands[command] === 'function' 
-      ? commands[command](args) 
-      : commands[command]
-  } else if (cmd) {
-    const lang = currentLanguage.value
-    const errorText = {
-      fr: `<span class="text-red-400">bash: ${command}: commande introuvable</span>
-<span class="text-gray-400">Tapez</span> <span class="text-yellow-400">help</span> <span class="text-gray-400">pour voir les commandes disponibles.</span>`,
-      en: `<span class="text-red-400">bash: ${command}: command not found</span>
-<span class="text-gray-400">Type</span> <span class="text-yellow-400">help</span> <span class="text-gray-400">to see available commands.</span>`,
-      tr: `<span class="text-red-400">bash: ${command}: komut bulunamadı</span>
-<span class="text-gray-400">Kullanılabilir komutları görmek için</span> <span class="text-yellow-400">help</span> <span class="text-gray-400">yazın.</span>`
+  // Game Logic
+  if (gameState.value.active) {
+    history.value.push({ command: cmd, output: null })
+    
+    if (cmd.toLowerCase() === 'exit') {
+      gameState.value.active = false
+      history.value.push({ command: '', output: `<span class="text-yellow-400">${t.value.terminal.game.over}</span>` })
+    } else {
+      const guess = parseInt(cmd)
+      if (isNaN(guess)) {
+        history.value.push({ command: '', output: `<span class="text-red-400">${t.value.terminal.game.invalid}</span>` })
+      } else {
+        gameState.value.attempts++
+        if (guess === gameState.value.target) {
+          const winMsg = t.value.terminal.game.win
+            .replace('{target}', gameState.value.target)
+            .replace('{attempts}', gameState.value.attempts)
+            
+          history.value.push({ 
+            command: '', 
+            output: `<span class="text-green-400">${winMsg}</span>` 
+          })
+          gameState.value.active = false
+        } else if (guess < gameState.value.target) {
+          history.value.push({ command: '', output: `<span class="text-blue-400">${t.value.terminal.game.higher}</span>` })
+        } else {
+          history.value.push({ command: '', output: `<span class="text-blue-400">${t.value.terminal.game.lower}</span>` })
+        }
+      }
     }
-    output = errorText[lang] || errorText.fr
-  }
+  } 
+  else {
+    // Normal Command Logic
+    const [command, ...args] = cmd.toLowerCase().split(' ')
+    let output = null
 
-  if (command !== 'clear') {
-    history.value.push({ command: cmd, output })
+    if (command === 'game') {
+      gameState.value = {
+        active: true,
+        target: Math.floor(Math.random() * 100) + 1,
+        attempts: 0
+      }
+      output = `<span class="text-cyan-400">${t.value.terminal.game.start}</span>`
+    }
+    else if (command === 'secret') {
+      output = `<span class="text-purple-400">${t.value.terminal.secret}</span>`
+    }
+    else if (command === 'matrix') {
+     output = `<span class="text-green-600 font-bold">${t.value.terminal.matrix}</span>`
+    }
+    else if (commands[command]) {
+      output = typeof commands[command] === 'function' 
+        ? commands[command](args) 
+        : commands[command]
+    } else if (cmd) {
+      output = `<span class="text-red-400">bash: ${command}: ${t.value.terminal.notFound}</span>
+<span class="text-gray-400">${t.value.terminal.typeHelp}</span>`
+    }
+
+    if (command !== 'clear') {
+      history.value.push({ command: cmd, output })
+    }
   }
 
   currentCommand.value = ''

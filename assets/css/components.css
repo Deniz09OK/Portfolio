@@ -68,3 +68,11 @@
 .particle {
   pointer-events: none;
 }
+
+/* Premium Glassmorphism */
+.glass-premium {
+  @apply bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)];
+}
+.dark .glass-premium {
+  @apply bg-gray-900/40 border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)];
+}
