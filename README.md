@@ -20,9 +20,8 @@ Ce projet met en avant mes compétences, mes projets et mon parcours de façon m
 - 🎨 **Glassmorphism Premium** : Design moderne avec effets de verre sophistiqués
 - ⚡ **Performances optimisées** : Images WebP via `@nuxt/image`
 - 🎯 **Navigation intuitive** : Menu latéral et scroll-to-top avec progression
-- 📊 **Sections complètes** : À propos, Formation, Expérience, Compétences, Centres d'intérêt, Projets, Langues
-- 📝 **Blog Technique** : Articles et retours d'expérience via `@nuxt/content`
-- 🖱️ **Curseur Personnalisé** : Effet "follower" premium sur desktop
+- 📊 **Sections complètes** : À propos, Formation, Expérience, Compétences (dont Cybersécurité), Centres d'intérêt, Projets, Langues
+- ️ **Curseur Personnalisé** : Effet "follower" premium sur desktop
 - 🌌 **Fond Animé** : Particules et dégradés dynamiques
 - 🎮 **Terminal Interactif** : Commandes, jeux et easter eggs cachés
 - 📲 **PWA Ready** : Application installable via `@vite-pwa/nuxt`
@@ -35,7 +34,6 @@ Ce projet met en avant mes compétences, mes projets et mon parcours de façon m
 - [JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript) - Langage de programmation
 - [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utilitaire
 - [@vueuse/motion](https://motion.vueuse.org/) - Animations déclaratives
-- [@nuxt/content](https://content.nuxt.com/) - Gestion du contenu (Blog)
 - [@nuxt/image](https://image.nuxt.com/) - Optimisation des images
 - [@vite-pwa/nuxt](https://vite-pwa-org.netlify.app/) - Progressive Web App
 
@@ -78,10 +76,8 @@ Portfolio/
 │   ├── Terminal.vue            # Terminal interactif gamifié
 │   └── ...                     # Autres composants
 ├── composables/                # Fonctions réutilisables
-├── content/blog/               # Articles du blog (Markdown)
 ├── pages/                      # Routes de l'application
-│   ├── index.vue               # Page d'accueil
-│   └── blog/                   # Pages du blog
+│   └── index.vue               # Page d'accueil
 ├── public/                     # Fichiers statiques
 ├── app.vue                     # Composant racine avec layout
 ├── nuxt.config.ts              # Configuration Nuxt
@@ -111,9 +107,6 @@ Portfolio de projets avec animations au scroll et effets glassmorphism.
 ### 🌍 Langues
 Maîtrise du Français, Turc et Anglais (TOEIC 790/990).
 
-### 📝 Blog
-Retrouvez mes articles techniques et retours d'expérience.
-
 ## 🎮 Terminal Interactif
 
 Le terminal caché offre une expérience gamifiée :
@@ -125,9 +118,6 @@ Le terminal caché offre une expérience gamifiée :
 
 ### Modifier les traductions
 Les traductions se trouvent dans `composables/useTranslations.js`.
-
-### Ajouter des articles de blog
-Créez de nouveaux fichiers Markdown dans `content/blog/`.
 
 ### Changer les couleurs
 Les couleurs principales sont définies dans `nuxt.config.ts` et `tailwind.config.js`.
