@@ -24,11 +24,10 @@
               <source :src="project.media.src" type="video/mp4" />
               {{ t.portfolio.videoNotSupported }}
             </video>
-            <NuxtImg
+            <img
               v-else
               :src="project.media.src"
               :alt="project.media.alt"
-              format="webp"
               loading="lazy"
               :class="[
                 'w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110',
