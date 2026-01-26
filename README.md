@@ -21,7 +21,6 @@ Ce projet met en avant mes compétences, mes projets et mon parcours de façon m
 - ⚡ **Performances optimisées** : Images WebP via `@nuxt/image`
 - 🎯 **Navigation intuitive** : Menu latéral et scroll-to-top avec progression
 - 📊 **Sections complètes** : À propos, Formation, Expérience, Compétences (dont Cybersécurité), Centres d'intérêt, Projets, Langues
-- ️ **Curseur Personnalisé** : Effet "follower" premium sur desktop
 - 🌌 **Fond Animé** : Particules et dégradés dynamiques
 - 🎮 **Terminal Interactif** : Commandes, jeux et easter eggs cachés
 - 📲 **PWA Ready** : Application installable via `@vite-pwa/nuxt`
