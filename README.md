@@ -34,22 +34,26 @@ Ce projet met en avant mes compétences, mes projets et mon parcours de façon m
 - [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utilitaire
 - [@vueuse/motion](https://motion.vueuse.org/) - Animations déclaratives
 - [@nuxt/image](https://image.nuxt.com/) - Optimisation des images
+- [@nuxt/content](https://content.nuxt.com/) - Gestion de contenu
 - [@vite-pwa/nuxt](https://vite-pwa-org.netlify.app/) - Progressive Web App
 
 ## 📦 Installation
 
 1. **Cloner le dépôt :**
+
    ```bash
    git clone https://github.com/Deniz09OK/Portfolio.git
    cd Portfolio
    ```
 
 2. **Installer les dépendances :**
+
    ```bash
    npm install
    ```
 
 3. **Lancer le projet en mode développement :**
+
    ```bash
    npm run dev
    ```
@@ -63,52 +67,68 @@ Ce projet met en avant mes compétences, mes projets et mon parcours de façon m
 - `npm run build` : Génère une version optimisée pour la production
 - `npm run preview` : Prévisualise le projet après le build
 - `npm run generate` : Génère un site statique
+- `npm run deploy` : Déploie le site sur GitHub Pages
 
 ## 📁 Structure du projet
 
 ```
 Portfolio/
-├── assets/css/                 # Fichiers CSS globaux
-├── components/                 # Composants Vue réutilisables
-│   ├── AnimatedBackground.vue  # Fond animé avec particules
-│   ├── CustomCursor.vue        # Curseur personnalisé "follower"
+├── assets/css/                 # Fichiers CSS (main, animations, components, timeline, theme)
+├── components/                 # 13 composants Vue réutilisables
+│   ├── Hero.vue                # Section d'accueil avec présentation
 │   ├── Terminal.vue            # Terminal interactif gamifié
-│   └── ...                     # Autres composants
+│   ├── Navigation.vue          # Menu de navigation latéral
+│   ├── ThemeToggle.vue         # Bouton mode sombre/clair
+│   ├── LanguageToggle.vue      # Sélecteur de langue
+│   └── ...                     # Education, Experience, Skills, Portfolio, etc.
 ├── composables/                # Fonctions réutilisables
+│   ├── useLanguage.js          # Gestion de la langue active
+│   └── useTranslations.js      # Traductions FR/EN/TR
 ├── pages/                      # Routes de l'application
 │   └── index.vue               # Page d'accueil
-├── public/                     # Fichiers statiques
+├── plugins/                    # Plugins Nuxt
+│   └── language.client.js      # Initialisation langue côté client
+├── public/                     # Fichiers statiques (images, favicon, robots.txt)
 ├── app.vue                     # Composant racine avec layout
 ├── nuxt.config.ts              # Configuration Nuxt
+├── tailwind.config.js          # Configuration Tailwind CSS
 └── package.json                # Dépendances du projet
 ```
 
 ## 🌐 Sections du Portfolio
 
 ### 🏠 Hero
+
 Présentation générale avec photo, animations d'entrée et liens de contact.
 
 ### 🎓 Formation
+
 Parcours académique de Epitech à aujourd'hui.
 
 ### 💼 Expérience
+
 Expériences professionnelles et stages.
 
 ### ⚙️ Compétences
+
 Liste complète des compétences techniques.
 
 ### ❤️ Centres d'intérêt
+
 Passions personnelles : culture japonaise, musique, jeux vidéo et mythologie.
 
 ### 💻 Projets
+
 Portfolio de projets avec animations au scroll et effets glassmorphism.
 
 ### 🌍 Langues
+
 Maîtrise du Français, Turc et Anglais (TOEIC 790/990).
 
 ## 🎮 Terminal Interactif
 
 Le terminal caché offre une expérience gamifiée :
+
 - Tapez `help` pour voir les commandes disponibles
 - Tapez `game` pour jouer au Juste Nombre
 - Trouvez les commandes secrètes comme `secret` ou `matrix`
@@ -116,9 +136,11 @@ Le terminal caché offre une expérience gamifiée :
 ## 🎨 Personnalisation
 
 ### Modifier les traductions
+
 Les traductions se trouvent dans `composables/useTranslations.js`.
 
 ### Changer les couleurs
+
 Les couleurs principales sont définies dans `nuxt.config.ts` et `tailwind.config.js`.
 
 ## 🚀 Déploiement
@@ -133,6 +155,6 @@ Les fichiers générés se trouvent dans `.output/public/` et peuvent être dép
 
 **Réalisé avec 💙 par Deniz OK**
 
-- 🌐 [Portfolio](https://portfolio-deniz.netlify.app/Portfolio/)
+- 🌐 [Portfolio](https://portfolio-deniz.netlify.app/)
 - 💼 [LinkedIn](https://www.linkedin.com/in/deniz-ok/)
 - 💻 [GitHub](https://github.com/Deniz09OK)
