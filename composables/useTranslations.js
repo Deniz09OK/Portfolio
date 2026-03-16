@@ -37,8 +37,8 @@ export const translations = {
     },
     hero: {
       title: 'Deniz OK',
-      subtitle: 'Assistant informatique',
-      description: 'Étudiant à Epitech en alternance chez Qualitest en tant que Assistant informatique depuis février 2025. Passionné par les technologies, par la cybersécurité je développe mes compétences en développement logiciel, programmation et gestion de projets dans un environnement innovant et dynamique.',
+      subtitle: 'Étudiant MSc en Cybersécurité & Cloud à Epitech Nancy | Alternant Assistant Informatique chez Qualitest',
+      description: 'Passionné par la Cybersécurité et les infrastructures Cloud, je suis actuellement en MSc à Epitech Nancy. Mon alternance chez Qualitest me permet de consolider mes bases techniques à travers la gestion de bases de données, l\'analyse de données et l\'automatisation de tâches grâce au scripting (PowerShell, PHP, Bash). Mes domaines de focus : Cybersécurité (protection des données et analyse de vulnérabilités), Cloud (déploiement et sécurisation d\'environnements dématérialisés), Infrastructure (maintenance système et réseau au quotidien). Je suis constamment à la recherche de nouveaux défis techniques pour allier sécurité et performance.',
       contact: 'Me contacter',
       viewPortfolio: 'Voir mes projets',
       downloadCV: 'Télécharger mon CV'
@@ -170,8 +170,8 @@ export const translations = {
     },
     hero: {
       title: 'Deniz OK',
-      subtitle: 'IT Assistant',
-      description: 'Epitech student working as an IT Assistant at Qualitest since February 2025. Passionate about technology and cybersecurity, I\'m developing my skills in software development, programming, and project management in an innovative and dynamic environment.',
+      subtitle: 'MSc Student in Cybersecurity & Cloud at Epitech Nancy | Work-Study IT Assistant at Qualitest',
+      description: 'Passionate about Cybersecurity and Cloud infrastructures, I am currently pursuing my MSc at Epitech Nancy. My work-study program at Qualitest allows me to strengthen my technical foundations through database management, data analysis, and task automation via scripting (PowerShell, PHP, Bash). My focus areas: Cybersecurity (data protection and vulnerability analysis), Cloud (deployment and security of dematerialized environments), Infrastructure (daily system and network maintenance). I am constantly seeking new technical challenges to combine security and performance.',
       contact: 'Contact me',
       viewPortfolio: 'View my projects',
       downloadCV: 'Download my CV'
@@ -303,8 +303,8 @@ export const translations = {
     },
     hero: {
       title: 'Deniz OK',
-      subtitle: 'BT Asistanı',
-      description: 'Şubat 2025\'ten beri Qualitest\'te BT Asistanı olarak çalışan Epitech öğrencisi. Teknoloji ve siber güvenlik tutkunu olarak, yenilikçi ve dinamik bir ortamda yazılım geliştirme, programlama ve proje yönetimi becerilerimi geliştiriyorum.',
+      subtitle: 'Epitech Nancy\'de Siber Güvenlik & Cloud MSc Öğrencisi | Qualitest\'te Yarı Zamanlı BT Asistanı',
+      description: 'Siber güvenlik ve Cloud altyapılarına tutkulu olan ben, şu anda Epitech Nancy\'de MSc eğitimime devam etmekteyim. Qualitest\'teki stajım sayesinde veritabanı yönetimi, veri analizi ve betik yazımı (PowerShell, PHP, Bash) aracılığıyla görev otomasyonu konularında teknik temellerimi pekiştiriyorum. Odak alanlarım: Siber Güvenlik (veri koruma ve güvenlik açığı analizi), Cloud (dış ortamların dağıtımı ve güvenliği), Altyapı (günlük sistem ve ağ bakımı). Güvenlik ile performansı bir araya getirmek için sürekli yeni teknik zorluklar arıyorum.',
       contact: 'İletişim',
       viewPortfolio: 'Projelerimi gör',
       downloadCV: 'CV İndir'
