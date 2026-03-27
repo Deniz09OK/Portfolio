@@ -349,7 +349,11 @@ const getSectionContent = (sectionId) => {
 ║                      <span class="text-yellow-400">${header[lang] || header.fr}</span>                           ║
 ╚══════════════════════════════════════════════════════════╝</span>
 
-<span class="text-yellow-400">📦 Popeye</span>
+<span class="text-yellow-400">� Linux System Inventory Tool</span>
+  <span class="text-gray-400">${trans.portfolio.linuxSystemInventoryDesc}</span>
+  <span class="text-blue-400">→ github.com/Deniz09OK/Linux-System-Inventory-Tool</span>
+
+<span class="text-yellow-400">�📦 Popeye</span>
   <span class="text-gray-400">${trans.portfolio.popeyeDesc}</span>
   <span class="text-blue-400">→ github.com/Deniz09OK/Popeye</span>
 
@@ -362,12 +366,15 @@ const getSectionContent = (sectionId) => {
 
 <span class="text-yellow-400">🧠 CultureQuiz</span>
   <span class="text-gray-400">${trans.portfolio.cultureQuizDesc}</span>
+  <span class="text-blue-400">→ github.com/Deniz09OK/CultureQuiz</span>
 
 <span class="text-yellow-400">🎮 AI-Morpion</span>
   <span class="text-gray-400">${trans.portfolio.aiMorpionDesc}</span>
+  <span class="text-blue-400">→ github.com/Deniz09OK/AI-Morpion</span>
 
 <span class="text-yellow-400">⚔️ EpiQuest</span>
-  <span class="text-gray-400">${trans.portfolio.epiQuestDesc}</span>`
+  <span class="text-gray-400">${trans.portfolio.epiQuestDesc}</span>
+  <span class="text-blue-400">→ github.com/Deniz09OK/Projet-Jeu-Java</span>`
     },
     
     languages: () => {

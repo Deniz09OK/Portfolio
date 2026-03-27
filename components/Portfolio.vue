@@ -103,6 +103,16 @@ const openImageModal = (src) => {
 
 const projects = computed(() => [
   {
+    name: 'Linux System Inventory Tool',
+    link: 'https://github.com/Deniz09OK/Linux-System-Inventory-Tool',
+    description: t.value.portfolio.linuxSystemInventoryDesc,
+    media: {
+      type: 'image',
+      src: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+      alt: 'Linux terminal illustration'
+    }
+  },
+  {
     name: 'Popeye',
     link: 'https://github.com/Deniz09OK/Popeye',
     description: t.value.portfolio.popeyeDesc,
