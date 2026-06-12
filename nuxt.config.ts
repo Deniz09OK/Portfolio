@@ -7,6 +7,7 @@ export default defineNuxtConfig({
 
   // Dark canvas by default — set before hydration to avoid a flash.
   app: {
+    baseURL: '/Portfolio/',
     head: {
       title: 'Deniz OK — Portfolio',
       htmlAttrs: { lang: 'fr' },
