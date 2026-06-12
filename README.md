@@ -2,42 +2,36 @@
 
 ![Nuxt](https://img.shields.io/badge/Nuxt-3-00DC82?logo=nuxt.js)
 ![Vue.js](https://img.shields.io/badge/Vue.js-3-4FC08D?logo=vue.js)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38bdf8?logo=tailwindcss)
-![PWA](https://img.shields.io/badge/PWA-Ready-5A0FC8?logo=pwa)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5)
 
 ## 🚀 Présentation
 
 Bienvenue sur mon portfolio !  
-Ce projet met en avant mes compétences, mes projets et mon parcours de façon moderne et responsive.
+Ce projet met en avant mes compétences, mes projets et mon parcours de façon moderne, dynamique et responsive. 
+
+Le design adopte le style **Arena**, un concept d'éditorial premium inspiré de l'univers sportif et de la culture japonaise, associant une esthétique minimaliste sombre, des typographies fortes et des effets de verre soignés (*glassmorphism*).
 
 ## ✨ Fonctionnalités
 
-- 🌍 **Multilingue** : Support complet du Français, Anglais et Turc
-- 🌓 **Mode sombre/clair** : Changement de thème instantané et optimisé
-- 📱 **Design responsive** : Adapté à tous les écrans (mobile, tablette, desktop)
-- ✨ **Animations fluides** : Transitions et effets visuels modernes avec `@vueuse/motion`
-- 🎨 **Glassmorphism Premium** : Design moderne avec effets de verre sophistiqués
-- ⚡ **Performances optimisées** : Images WebP via `@nuxt/image`
-- 🎯 **Navigation intuitive** : Menu latéral et scroll-to-top avec progression
-- 📊 **Sections complètes** : À propos, Formation, Expérience, Compétences (dont Cybersécurité), Centres d'intérêt, Projets, Langues
-- 🌌 **Fond Animé** : Particules et dégradés dynamiques
-- 🎮 **Terminal Interactif** : Commandes, jeux et easter eggs cachés
-- 📲 **PWA Ready** : Application installable via `@vite-pwa/nuxt`
-- 🔍 **SEO Optimisé** : Balises Open Graph pour les réseaux sociaux
+- 🌍 **Multilingue** : Support complet et réactif du **Français**, **Anglais** et **Turc**.
+- 🌓 **Mode sombre/clair** : Transition de thème fluide et instantanée, mémorisée et optimisée (sans flash au chargement grâce à un script côté serveur/client).
+- 📱 **Design responsive** : Parfaitement adapté à tous les écrans (mobiles, tablettes et ordinateurs de bureau).
+- ✨ **Animations fluides** : Révélation progressive et élégante des sections au défilement (*reveal-on-scroll*) via un plugin sur mesure.
+- 🎨 **Aesthetics Arena** : Fiche joueur en en-tête, bandeau de défilement style live-ticker, et cartes de saison détaillées pour les projets.
+- ⚡ **Performances optimisées** : Chargement ultra-rapide et utilisation d'images au format WebP optimisées avec `@nuxt/image`.
+- 🔍 **SEO de pointe** : Balises Open Graph dynamiques adaptées à la langue de l'utilisateur pour le partage sur les réseaux sociaux.
 
 ## 🛠️ Technologies utilisées
 
-- [Nuxt.js 3](https://nuxt.com/) - Framework Vue.js pour applications web modernes
-- [Vue.js 3](https://vuejs.org/) - Framework JavaScript progressif
-- [JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript) - Langage de programmation
-- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utilitaire
-- [@vueuse/motion](https://motion.vueuse.org/) - Animations déclaratives
-- [@nuxt/image](https://image.nuxt.com/) - Optimisation des images
-- [@nuxt/content](https://content.nuxt.com/) - Gestion de contenu
-- [@vite-pwa/nuxt](https://vite-pwa-org.netlify.app/) - Progressive Web App
+- [Nuxt 3](https://nuxt.com/) - Framework Vue.js pour applications web modernes (SSR & Génération Statique)
+- [Vue.js 3](https://vuejs.org/) - Composition API & Reactivité
+- [TypeScript](https://www.typescriptlang.org/) - Typage robuste et sécurisé
+- **Vanilla CSS (Variables CSS & Grid/Flexbox)** - Design system sur mesure léger et performant (sans framework tiers type Tailwind)
+- [@nuxt/image](https://image.nuxt.com/) - Optimisation automatique des images
 
-## 📦 Installation
+## 📦 Installation locale
 
 1. **Cloner le dépôt :**
 
@@ -58,103 +52,74 @@ Ce projet met en avant mes compétences, mes projets et mon parcours de façon m
    npm run dev
    ```
 
-4. **Accéder au portfolio :**
-   Ouvrez votre navigateur à l'adresse : `http://localhost:3000`
+4. **Accéder au site :**  
+   Ouvrez votre navigateur sur [http://localhost:3000](http://localhost:3000).
 
 ## 📜 Scripts disponibles
 
-- `npm run dev` : Lance le serveur de développement
-- `npm run build` : Génère une version optimisée pour la production
-- `npm run preview` : Prévisualise le projet après le build
-- `npm run generate` : Génère un site statique
-- `npm run deploy` : Déploie le site sur GitHub Pages
+- `npm run dev` : Lance le serveur de développement local.
+- `npm run build` : Compile le projet pour la production.
+- `npm run generate` : Génère le site entièrement statique dans le dossier `.output/public`.
+- `npm run preview` : Prévisualise localement le site généré.
+- `npm run test` : Lance les tests Playwright.
 
 ## 📁 Structure du projet
 
 ```
 Portfolio/
-├── assets/css/                 # Fichiers CSS (main, animations, components, timeline, theme)
-├── components/                 # 13 composants Vue réutilisables
-│   ├── Hero.vue                # Section d'accueil avec présentation
-│   ├── Terminal.vue            # Terminal interactif gamifié
-│   ├── Navigation.vue          # Menu de navigation latéral
-│   ├── ThemeToggle.vue         # Bouton mode sombre/clair
-│   ├── LanguageToggle.vue      # Sélecteur de langue
-│   └── ...                     # Education, Experience, Skills, Portfolio, etc.
-├── composables/                # Fonctions réutilisables
-│   ├── useLanguage.js          # Gestion de la langue active
-│   └── useTranslations.js      # Traductions FR/EN/TR
-├── pages/                      # Routes de l'application
-│   └── index.vue               # Page d'accueil
-├── plugins/                    # Plugins Nuxt
-│   └── language.client.js      # Initialisation langue côté client
-├── public/                     # Fichiers statiques (images, favicon, robots.txt)
-├── app.vue                     # Composant racine avec layout
-├── nuxt.config.ts              # Configuration Nuxt
-├── tailwind.config.js          # Configuration Tailwind CSS
-└── package.json                # Dépendances du projet
+├── .github/workflows/          # Workflows d'automatisation
+│   └── deploy.yml              # CI/CD pour le déploiement sur GitHub Pages via GitHub Actions
+├── assets/css/                 # Design System & Stylesheets par composants
+│   ├── arena.css               # Point d'entrée important toutes les feuilles de style
+│   ├── base.css                # Réinitialisation globale et règles HTML par défaut
+│   ├── variables.css           # Thèmes de couleurs (Variables HSL) et polices globales
+│   ├── utils.css               # Utilitaires globaux et animations communes
+│   ├── topbar.css              # Styles de la barre supérieure (TopBar.vue)
+│   ├── ticker.css              # Styles du bandeau défilant (LiveTicker.vue)
+│   ├── hero.css                # Styles de la fiche de présentation (HeroCard.vue)
+│   ├── matches.css             # Styles de la section des projets (MatchesSection.vue)
+│   ├── career.css              # Styles de la timeline académique/professionnelle (CareerSection.vue)
+│   ├── drills.css              # Styles de la section des compétences (DrillsSection.vue)
+│   ├── offcourt.css            # Styles de la section hors-clavier et modales (OffCourtSection.vue & OffModal.vue)
+│   └── languages.css           # Styles de la section des langues (LanguagesSection.vue)
+├── components/                 # Composants Vue du portfolio
+│   ├── TopBar.vue              # En-tête de page (changement de thème & sélecteur de langue)
+│   ├── LiveTicker.vue          # Bandeau de défilement dynamique (style bandeau sportif)
+│   ├── HeroCard.vue            # Fiche joueur de présentation principale
+│   ├── MatchesSection.vue      # Section projets ("Card de la saison")
+│   ├── CareerSection.vue       # Expériences et Études ("Saisons jouées" sous forme de timeline)
+│   ├── DrillsSection.vue       # Compétences techniques ("Entraînement quotidien")
+│   ├── OffCourtSection.vue     # Activités annexes ("Hors du clavier")
+│   ├── OffModal.vue            # Composant modale pour le détail des activités annexes
+│   ├── LanguagesSection.vue    # Indicateurs de maîtrise linguistique
+│   └── ContactSection.vue      # Liens et formulaire de contact ("Sifflet final")
+├── composables/                # Logique réutilisable
+│   ├── useLang.ts              # Gestion de l'internationalisation (FR / EN / TR)
+│   └── useTheme.ts             # Gestionnaire de thème sombre/clair
+├── data/                       # Données de l'application
+│   └── portfolio.ts            # Données structurées et traduites du portfolio
+├── plugins/                    # Plugins personnalisés de Nuxt
+│   ├── reveal.client.ts        # Gestion des animations d'entrée au scroll
+│   └── reveal.server.ts        # Compatibilité SSR pour les animations
+├── public/                     # Ressources statiques (images, favicon, portraits)
+├── app.vue                     # Fiche racine englobant les composants
+├── nuxt.config.ts              # Fichier de configuration de Nuxt (BaseURL, SEO, modules)
+└── tsconfig.json               # Fichier de configuration TypeScript
 ```
-
-## 🌐 Sections du Portfolio
-
-### 🏠 Hero
-
-Présentation générale avec photo, animations d'entrée et liens de contact.
-
-### 🎓 Formation
-
-Parcours académique de Epitech à aujourd'hui.
-
-### 💼 Expérience
-
-Expériences professionnelles et stages.
-
-### ⚙️ Compétences
-
-Liste complète des compétences techniques.
-
-### ❤️ Centres d'intérêt
-
-Passions personnelles : culture japonaise, musique, jeux vidéo et mythologie.
-
-### 💻 Projets
-
-Portfolio de projets avec animations au scroll et effets glassmorphism.
-
-### 🌍 Langues
-
-Maîtrise du Français, Turc et Anglais (TOEIC 790/990).
-
-## 🎮 Terminal Interactif
-
-Le terminal caché offre une expérience gamifiée :
-
-- Tapez `help` pour voir les commandes disponibles
-- Tapez `game` pour jouer au Juste Nombre
-- Trouvez les commandes secrètes comme `secret` ou `matrix`
-
-## 🎨 Personnalisation
-
-### Modifier les traductions
-
-Les traductions se trouvent dans `composables/useTranslations.js`.
-
-### Changer les couleurs
-
-Les couleurs principales sont définies dans `nuxt.config.ts` et `tailwind.config.js`.
 
 ## 🚀 Déploiement
 
-```bash
-npm run build
-```
+Le projet est configuré pour se déployer automatiquement sur **GitHub Pages** à l'aide de **GitHub Actions**. 
 
-Les fichiers générés se trouvent dans `.output/public/` et peuvent être déployés sur Netlify, Vercel, GitHub Pages, etc.
+Chaque commit poussé sur la branche `main` déclenche le workflow défini dans `.github/workflows/deploy.yml` qui :
+1. Installe les dépendances.
+2. Exécute `npm run generate` pour compiler le site statique.
+3. Déploie le dossier `.output/public` directement sur la plateforme GitHub Pages.
 
 ---
 
 **Réalisé avec 💙 par Deniz OK**
 
-- 🌐 [Portfolio](https://portfolio-deniz.netlify.app/)
+- 🌐 [Portfolio Live](https://deniz09ok.github.io/Portfolio/)
 - 💼 [LinkedIn](https://www.linkedin.com/in/deniz-ok/)
 - 💻 [GitHub](https://github.com/Deniz09OK)
