@@ -1,0 +1,36 @@
+/* ============ MOTION ============ */
+/* Reveal animation only kicks in once JS marks the page ready —
+   so content stays visible if JS fails or observer doesn't fire. */
+.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 800ms cubic-bezier(0.2,0.7,0.2,1), transform 800ms cubic-bezier(0.2,0.7,0.2,1);
+}
+.js-ready .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* ============ ADDITIONAL RESPONSIVE ============ */
+
+/* --- 320px (iPhone SE 1) --- */
+@media (max-width: 360px) {
+  .hero { padding-left: 14px; padding-right: 14px; }
+  .matches-head { padding: 0 14px; }
+  .match-poster { padding: 16px; }
+  .match-desc { font-size: 14px; }
+  .contact-email { font-size: clamp(13px, 4vw, 18px); padding: 14px 16px; }
+}
+
+
+/* --- Ultrawide (≥ 2560px) --- */
+@media (min-width: 2560px) {
+  main {
+    max-width: 2200px;
+    margin-inline: auto;
+  }
+  .match-inner,
+  .hero-inner,
+  .matches-head { max-width: 1600px; }
+}

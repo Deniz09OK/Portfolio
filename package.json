@@ -1,25 +1,23 @@
 {
-  "name": "portfolio",
+  "name": "deniz-ok-portfolio",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "nuxt dev",
     "build": "nuxt build",
+    "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "deploy": "nuxt generate && gh-pages -d .output/public"
-  },
-  "dependencies": {
-    "@nuxt/content": "^3.11.0",
-    "@nuxt/image": "^2.0.0",
-    "@nuxtjs/tailwindcss": "^6.12.2",
-    "@vite-pwa/nuxt": "^1.1.0",
-    "@vueuse/motion": "^3.0.3",
-    "better-sqlite3": "^12.6.2",
-    "nuxt": "^3.15.3",
-    "vue": "^3.5.13"
+    "postinstall": "nuxt prepare",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "@nuxt/image": "^2.0.0",
+    "@playwright/test": "^1.60.0",
+    "nuxt": "^3.13.0",
+    "playwright": "^1.60.0",
+    "typescript": "^5.6.0",
+    "vue": "^3.5.0",
+    "vue-router": "^4.4.0"
   }
 }

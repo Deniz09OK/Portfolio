@@ -1,0 +1,36 @@
+:root {
+  --bg: #0c0c10;
+  --bg-panel: #14141b;
+  --bg-elev: #1a1a23;
+  --ink: #f1ede2;
+  --ink-soft: #c8c4b8;
+  --muted: #696b75;
+  --line: #232530;
+  --line-strong: #353846;
+  --accent: #e63946;
+  --accent-soft: #2a1118;
+  --gold: #f4c542;
+  --green: #1ea662;
+  --jersey-stripe: rgba(241, 237, 226, 0.04);
+
+  --sans: "Space Grotesk", -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --display: "Bebas Neue", "Space Grotesk", sans-serif;
+  --jp: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+html.light {
+  --bg: #f0ede4;
+  --bg-panel: #e6e2d6;
+  --bg-elev: #ede9dd;
+  --ink: #0c0c10;
+  --ink-soft: #2a2a31;
+  --muted: #6e6d66;
+  --line: #d4cfbe;
+  --line-strong: #b8b1a0;
+  --accent: #c8323b;
+  --accent-soft: #f2d6d6;
+  --gold: #b88200;
+  --green: #167a47;
+  --jersey-stripe: rgba(12, 12, 16, 0.04);
+}

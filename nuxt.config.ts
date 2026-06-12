@@ -1,50 +1,46 @@
-import { defineNuxtConfig } from 'nuxt/config';
-
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
+  compatibilityDate: '2025-05-01',
   devtools: { enabled: true },
 
-  // Désactiver le SSR pour éviter les erreurs d'hydration
-  ssr: false,
+  modules: ['@nuxt/image'],
 
-  // Configuration pour GitHub Pages
+  // Dark canvas by default — set before hydration to avoid a flash.
   app: {
-    baseURL: process.env.NODE_ENV === 'production' ? '/Portfolio/' : '/',
     head: {
-      title: 'Portfolio de Deniz OK',
-      htmlAttrs: {
-        lang: 'fr'
-      },
+      title: 'Deniz OK — Portfolio',
+      htmlAttrs: { lang: 'fr' },
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'Portfolio de Deniz OK - Développeur Full Stack' }
+        { name: 'description', content: 'Portfolio de Deniz OK, Ingénieur Cybersécurité & Cloud et Développeur.' },
+        { name: 'author', content: 'Deniz OK' },
+        { name: 'theme-color', content: '#0c0c10' },
+        { property: 'og:title', content: 'Deniz OK — Portfolio' },
+        { property: 'og:description', content: 'Portfolio de Deniz OK, Ingénieur Cybersécurité & Cloud et Développeur.' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:image', content: '/portrait.jpg' },
+        { property: 'og:url', content: 'https://portfolio-deniz.netlify.app/' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: 'Deniz OK — Portfolio' },
+        { name: 'twitter:description', content: 'Portfolio de Deniz OK, Ingénieur Cybersécurité & Cloud et Développeur.' },
+        { name: 'twitter:image', content: '/portrait.jpg' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap' }
-      ]
-    }
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=Noto+Serif+JP:wght@400;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap',
+        },
+      ],
+    },
   },
 
-  modules: [
-    '@nuxtjs/tailwindcss',
-    '@vueuse/motion/nuxt',
-    '@nuxt/image'
-  ],
+  // Global stylesheet (the original arena design system).
+  css: ['~/assets/css/arena.css'],
 
-  css: [
-    '~/assets/css/main.css',
-    '~/assets/css/components.css',
-    '~/assets/css/timeline.css',
-    '~/assets/css/animations.css',
-    '~/assets/css/theme-optimization.css'
-  ],
-
-  // Ensure auto-imports are enabled
-  imports: {
-    autoImport: true
-  }
+  // Pure static front-end — no server runtime needed. `nuxt generate`
+  // produces a fully static site for Netlify / Vercel / GitHub Pages.
+  ssr: true,
 })

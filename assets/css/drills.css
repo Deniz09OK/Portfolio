@@ -1,0 +1,61 @@
+/* ============ DRILLS ============ */
+.drills {
+  padding: clamp(48px, 8vh, 120px) 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-panel);
+}
+.drills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+.drill {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.drill::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--accent);
+}
+.drill-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--line-strong);
+  margin-bottom: 16px;
+}
+.drill-pos {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+}
+.drill-label {
+  font-family: var(--display);
+  font-size: 28px;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+.drill-list { list-style: none; }
+.drill-list li {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 16px;
+  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.drill-list li::before {
+  content: "▸";
+  color: var(--accent);
+  font-size: 12px;
+}

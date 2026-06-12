@@ -1,59 +1,32 @@
+<script setup lang="ts">
+// Single-page portfolio. All sections are auto-imported components.
+const content = usePortfolio()
+const { lang } = useLang()
+
+// SEO / document head, reactive to the active language.
+useHead(() => ({
+  htmlAttrs: { lang: lang.value },
+  title: 'Deniz OK - Portfolio',
+  meta: [
+    { name: 'description', content: content.value.hero.bio },
+    { name: 'theme-color', content: '#0a0a0a' },
+  ],
+}))
+</script>
+
 <template>
   <div>
-    <NuxtLayout>
-      <div class="min-h-screen bg-blue-50 dark:bg-gray-900 relative transition-colors duration-300">
+    <TopBar />
+    <LiveTicker />
 
-        <!-- Navigation -->
-        <Navigation />
-        
-        <!-- Theme Toggle -->
-        <ThemeToggle />
-        
-        <!-- Language Toggle -->
-        <LanguageToggle />
-
-        <!-- Page Content -->
-        <NuxtPage />
-
-        <!-- Footer -->
-        <Footer />
-
-        <!-- Scroll to Top -->
-        <ScrollToTop />
-
-        <!-- Terminal -->
-        <ClientOnly>
-          <Terminal />
-        </ClientOnly>
-      </div>
-    </NuxtLayout>
+    <main id="top">
+      <HeroCard />
+      <MatchesSection />
+      <CareerSection />
+      <DrillsSection />
+      <OffCourtSection />
+      <LanguagesSection />
+      <ContactSection />
+    </main>
   </div>
 </template>
-
-<script setup>
-// SEO Meta Tags
-useSeoMeta({
-  title: 'Portfolio Deniz OK - Développeur Full Stack',
-  ogTitle: 'Portfolio Deniz OK - Développeur Full Stack',
-  description: 'Portfolio de Deniz OK, développeur Full Stack passionné. Découvrez mes projets, compétences et parcours.',
-  ogDescription: 'Portfolio de Deniz OK, développeur Full Stack passionné. Découvrez mes projets, compétences et parcours.',
-  ogImage: '/og-image.png',
-  twitterCard: 'summary_large_image',
-})
-
-// Initialize language immediately
-const { initLanguage } = useLanguage()
-
-// Initialize on mount
-onMounted(() => {
-  initLanguage()
-  
-  // Load theme preference
-  if (process.client) {
-    const savedTheme = localStorage.getItem('theme')
-    if (savedTheme === 'dark') {
-      document.documentElement.classList.add('dark')
-    }
-  }
-})
-</script>

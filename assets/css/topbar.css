@@ -1,0 +1,155 @@
+/* ============ TOP BAR ============ */
+.bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  background: color-mix(in oklab, var(--bg) 90%, transparent);
+  backdrop-filter: saturate(160%) blur(14px);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.bar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.bar-num {
+  font-family: var(--display);
+  font-size: 28px;
+  color: var(--accent);
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border: 1px solid var(--accent);
+}
+.bar-name { display: flex; flex-direction: column; line-height: 1.1; }
+.bar-name span {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+}
+.bar-name small {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+
+.bar-nav {
+  display: flex;
+  gap: 13px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.bar-nav a {
+  position: relative;
+  padding: 4px 0;
+}
+.bar-nav a::after {
+  content: "";
+  position: absolute; left: 0; right: 100%; bottom: -2px;
+  height: 1px; background: var(--accent);
+  transition: right 220ms ease;
+}
+.bar-nav a:hover::after { right: 0; }
+@media (max-width: 920px) { .bar-nav { display: none; } }
+
+.bar-tools { display: flex; align-items: center; gap: 12px; }
+.lang-pill {
+  display: flex;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  overflow: hidden;
+  font-family: var(--mono);
+  font-size: 11px;
+}
+.lang-btn { padding: 6px 10px; letter-spacing: 0.1em; color: var(--muted); transition: all 180ms; }
+.lang-btn.is-active { background: var(--accent); color: #fff; }
+.lang-btn:not(.is-active):hover { color: var(--ink); }
+.theme-btn {
+  width: 32px; height: 32px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  position: relative;
+  transition: border-color 200ms;
+}
+.theme-btn:hover { border-color: var(--accent); }
+.theme-sun, .theme-moon { position: absolute; transition: opacity 200ms, transform 200ms; }
+html:not(.light) .theme-sun { opacity: 0; transform: rotate(30deg); }
+html.light .theme-moon { opacity: 0; transform: rotate(-30deg); }
+
+/* ---- Mobile nav (burger) ---- */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.nav-toggle span {
+  display: block;
+  width: 14px;
+  height: 1.5px;
+  background: var(--ink);
+  transition: transform 220ms ease, opacity 220ms ease;
+}
+.nav-toggle.is-open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.nav-toggle.is-open span:nth-child(2) { opacity: 0; }
+.nav-toggle.is-open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.mobile-nav a {
+  padding: 16px 28px;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+}
+.mobile-nav a:last-child { border-bottom: 0; }
+
+@media (max-width: 920px) {
+  .nav-toggle { display: flex; }
+  .mobile-nav.is-open { display: flex; }
+}
+
+/* Compact top bar so brand + lang pill + theme + burger fit on 320px screens. */
+@media (max-width: 400px) {
+  .bar { padding: 12px 14px; }
+  .bar-brand { gap: 8px; }
+  .bar-name small { display: none; }
+  .bar-tools { gap: 6px; }
+  .lang-btn { padding: 5px 6px; font-size: 10px; }
+}
+
+/* Lock background scroll while the mobile nav (or off-court modal) is open. */
+html.modal-lock,
+html.modal-lock body,
+html.nav-lock,
+html.nav-lock body { overflow: hidden; }
