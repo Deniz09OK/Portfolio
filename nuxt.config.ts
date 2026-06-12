@@ -42,6 +42,14 @@ export default defineNuxtConfig({
   // Global stylesheet (the original arena design system).
   css: ['~/assets/css/arena.css'],
 
+  // Exposed to the client at build time (see .env.example) — not a secret,
+  // just kept out of the repo since it's a personal playlist ID.
+  runtimeConfig: {
+    public: {
+      playlistId: '',
+    },
+  },
+
   // Pure static front-end — no server runtime needed. `nuxt generate`
   // produces a fully static site for Netlify / Vercel / GitHub Pages.
   ssr: true,

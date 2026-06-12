@@ -28,5 +28,7 @@ useHead(() => ({
       <LanguagesSection />
       <ContactSection />
     </main>
+
+    <MusicPlayer />
   </div>
 </template>

@@ -2,8 +2,8 @@ import type { Portfolio } from '~/types/portfolio'
 
 
 export const portfolio: Portfolio = {
-  fr: {
-    nav: { roster: "Fiche", matches: "Card de la saison", career: "Saisons jouées", drills: "Entraînement quotidien", off: "Hors du clavier", languages: "Trois langues", contact: "Sifflet final" },
+  fr: {    nav: { roster: "Fiche", matches: "Card de la saison", career: "Saisons jouées", drills: "Entraînement quotidien", off: "Hors du clavier", languages: "Trois langues", contact: "Sifflet final", music: "Playlist" },
+
     hero: {
       number: "619",
       name1: "DENIZ",
@@ -100,7 +100,7 @@ export const portfolio: Portfolio = {
   },
 
   en: {
-    nav: { roster: "Roster", matches: "Season card", career: "Seasons played", drills: "Daily training", off: "Off the keyboard", languages: "Three languages", contact: "Final whistle" },
+    nav: { roster: "Roster", matches: "Season card", career: "Seasons played", drills: "Daily training", off: "Off the keyboard", languages: "Three languages", contact: "Final whistle", music: "Playlist" },
     hero: {
       number: "619",
       name1: "DENIZ",
@@ -186,7 +186,7 @@ export const portfolio: Portfolio = {
   },
 
   tr: {
-    nav: { roster: "Kadro", matches: "Sezon kartı", career: "Oynanan sezonlar", drills: "Günlük antrenman", off: "Klavyenin dışında", languages: "Üç dil", contact: "Son düdük" },
+    nav: { roster: "Kadro", matches: "Sezon kartı", career: "Oynanan sezonlar", drills: "Günlük antrenman", off: "Klavyenin dışında", languages: "Üç dil", contact: "Son düdük", music: "Çalma listesi" },
     hero: {
       number: "619",
       name1: "DENIZ",

@@ -8,6 +8,7 @@ export interface NavContent {
   off: string
   languages: string
   contact: string
+  music: string
 }
 
 export interface HeroStat {
