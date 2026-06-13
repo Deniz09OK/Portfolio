@@ -20,7 +20,6 @@ Le design adopte le style **Arena**, un concept d'éditorial premium inspiré de
 - 📱 **Design responsive** : Parfaitement adapté à tous les écrans (mobiles, tablettes et ordinateurs de bureau).
 - ✨ **Animations fluides** : Révélation progressive et élégante des sections au défilement (*reveal-on-scroll*) via un plugin sur mesure.
 - 🎨 **Aesthetics Arena** : Fiche joueur en en-tête, bandeau de défilement style live-ticker, et cartes de saison détaillées pour les projets.
-- 🎵 **Playlist flottante** : Widget audio déplaçable et redimensionnable, lecture aléatoire d'une playlist YouTube via l'IFrame Player API (titre, artiste, contrôles play/pause/suivant).
 - ⚡ **Performances optimisées** : Chargement ultra-rapide et utilisation d'images au format WebP optimisées avec `@nuxt/image`.
 - 🔍 **SEO de pointe** : Balises Open Graph dynamiques adaptées à la langue de l'utilisateur pour le partage sur les réseaux sociaux.
 
@@ -47,21 +46,13 @@ Le design adopte le style **Arena**, un concept d'éditorial premium inspiré de
    npm install
    ```
 
-3. **Configurer les variables d'environnement :**
-
-   ```bash
-   cp .env.example .env
-   ```
-
-   Renseignez `NUXT_PUBLIC_PLAYLIST_ID` avec l'ID de votre playlist YouTube (utilisé par le widget musical flottant).
-
-4. **Lancer le projet en mode développement :**
+3. **Lancer le projet en mode développement :**
 
    ```bash
    npm run dev
    ```
 
-5. **Accéder au site :**  
+4. **Accéder au site :**  
    Ouvrez votre navigateur sur [http://localhost:3000](http://localhost:3000).
 
 ## 📜 Scripts disponibles
@@ -90,8 +81,7 @@ Portfolio/
 │   ├── career.css              # Styles de la timeline académique/professionnelle (CareerSection.vue)
 │   ├── drills.css              # Styles de la section des compétences (DrillsSection.vue)
 │   ├── offcourt.css            # Styles de la section hors-clavier et modales (OffCourtSection.vue & OffModal.vue)
-│   ├── languages.css           # Styles de la section des langues (LanguagesSection.vue)
-│   └── music.css                # Styles du widget de playlist flottant (MusicPlayer.vue)
+│   └── languages.css           # Styles de la section des langues (LanguagesSection.vue)
 ├── components/                 # Composants Vue du portfolio
 │   ├── TopBar.vue              # En-tête de page (changement de thème & sélecteur de langue)
 │   ├── LiveTicker.vue          # Bandeau de défilement dynamique (style bandeau sportif)
@@ -102,8 +92,7 @@ Portfolio/
 │   ├── OffCourtSection.vue     # Activités annexes ("Hors du clavier")
 │   ├── OffModal.vue            # Composant modale pour le détail des activités annexes
 │   ├── LanguagesSection.vue    # Indicateurs de maîtrise linguistique
-│   ├── ContactSection.vue      # Liens et formulaire de contact ("Sifflet final")
-│   └── MusicPlayer.vue          # Widget de playlist audio flottant (déplaçable, redimensionnable, lecture aléatoire)
+│   └── ContactSection.vue      # Liens de contact ("Sifflet final")
 ├── composables/                # Logique réutilisable
 │   ├── useLang.ts              # Gestion de l'internationalisation (FR / EN / TR)
 │   └── useTheme.ts             # Gestionnaire de thème sombre/clair
@@ -127,8 +116,6 @@ Chaque commit poussé sur la branche `main` déclenche le workflow défini dans 
 1. Installe les dépendances.
 2. Exécute `npm run generate` pour compiler le site statique.
 3. Déploie le dossier `.output/public` directement sur la plateforme GitHub Pages.
-
-> ⚠️ **Secret requis :** le widget de playlist musicale a besoin de la variable `NUXT_PUBLIC_PLAYLIST_ID` au moment du build. Renseignez l'ID de votre playlist YouTube dans un secret GitHub nommé `PLAYLIST_ID` (Settings → Secrets and variables → Actions), il sera injecté automatiquement par le workflow.
 
 ---
 
