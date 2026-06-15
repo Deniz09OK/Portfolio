@@ -64,15 +64,6 @@ function downloadCV() {
         </div>
       </div>
 
-      <!-- STAT BOX -->
-      <div class="hero-stats">
-        <div v-for="(s, i) in hero.stats" :key="i" class="stat">
-          <div class="stat-label">{{ s.label }}</div>
-          <div class="stat-value">{{ s.value }}</div>
-          <div class="stat-sub">{{ s.sub }}</div>
-        </div>
-      </div>
-
       <!-- TALE OF THE TAPE -->
       <div class="hero-tape">
         <div v-for="(c, i) in hero.tale" :key="i" class="tape-cell">

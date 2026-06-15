@@ -60,7 +60,7 @@ const labels = computed(() => {
             <div class="match-vs">
               <div class="match-vs-side match-vs-side-deniz">
                 <span class="micro">CHALLENGER</span>
-                DENIZ #09
+                DENIZ #23
               </div>
               <div class="match-vs-x">×</div>
               <div class="match-vs-side match-vs-side-opp match-vs-side-right">

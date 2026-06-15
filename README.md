@@ -81,7 +81,8 @@ Portfolio/
 │   ├── career.css              # Styles de la timeline académique/professionnelle (CareerSection.vue)
 │   ├── drills.css              # Styles de la section des compétences (DrillsSection.vue)
 │   ├── offcourt.css            # Styles de la section hors-clavier et modales (OffCourtSection.vue & OffModal.vue)
-│   └── languages.css           # Styles de la section des langues (LanguagesSection.vue)
+│   ├── languages.css           # Styles de la section des langues (LanguagesSection.vue)
+│   └── contact.css             # Styles de la section de contact (ContactSection.vue)
 ├── components/                 # Composants Vue du portfolio
 │   ├── TopBar.vue              # En-tête de page (changement de thème & sélecteur de langue)
 │   ├── LiveTicker.vue          # Bandeau de défilement dynamique (style bandeau sportif)
@@ -98,13 +99,14 @@ Portfolio/
 │   └── useTheme.ts             # Gestionnaire de thème sombre/clair
 ├── data/                       # Données de l'application
 │   └── portfolio.ts            # Données structurées et traduites du portfolio
+├── types/                      # Définitions TypeScript
+│   └── portfolio.ts            # Interfaces décrivant la structure du contenu du portfolio
 ├── plugins/                    # Plugins personnalisés de Nuxt
 │   ├── reveal.client.ts        # Gestion des animations d'entrée au scroll
 │   └── reveal.server.ts        # Compatibilité SSR pour les animations
 ├── public/                     # Ressources statiques (images, favicon, portraits)
 ├── app.vue                     # Fiche racine englobant les composants
-├── nuxt.config.ts              # Fichier de configuration de Nuxt (BaseURL, SEO, modules, runtimeConfig)
-├── .env.example                 # Modèle des variables d'environnement (à copier en .env)
+├── nuxt.config.ts              # Fichier de configuration de Nuxt (BaseURL, SEO, modules)
 └── tsconfig.json               # Fichier de configuration TypeScript
 ```
 

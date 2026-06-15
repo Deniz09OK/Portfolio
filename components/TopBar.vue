@@ -68,7 +68,6 @@ onBeforeUnmount(() => {
       <span class="bar-num">23</span>
       <span class="bar-name">
         <span>DENIZ.OK</span>
-        <small>2026 ROSTER</small>
       </span>
     </a>
 
