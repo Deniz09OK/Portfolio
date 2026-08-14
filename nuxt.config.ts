@@ -6,9 +6,8 @@ export default defineNuxtConfig({
 
   modules: ['@nuxt/image'],
 
-  // Dark canvas by default — set before hydration to avoid a flash.
-  app: {
-    baseURL: '/Portfolio/',
+app: {
+    baseURL: '/',    
     head: {
       title: 'Deniz OK — Portfolio',
       htmlAttrs: { lang: 'fr' },
@@ -22,7 +21,7 @@ export default defineNuxtConfig({
         { property: 'og:description', content: 'Portfolio de Deniz OK, Ingénieur Cybersécurité & Cloud et Développeur.' },
         { property: 'og:type', content: 'website' },
         { property: 'og:image', content: '/portrait.jpg' },
-        { property: 'og:url', content: 'https://portfolio-deniz.netlify.app/' },
+        { property: 'og:url', content: 'https://portfolio-deniz.me/,' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'Deniz OK — Portfolio' },
         { name: 'twitter:description', content: 'Portfolio de Deniz OK, Ingénieur Cybersécurité & Cloud et Développeur.' },
