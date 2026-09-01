@@ -14,3 +14,9 @@ node_modules
 .env
 .DS_Store
 
+# Rapports de scan de sécurité (ZAP, Nikto...)
+zap-report.html
+zap.yaml
+*.nikto.txt
+nikto-*.txt
+

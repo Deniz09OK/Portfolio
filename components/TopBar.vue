@@ -64,8 +64,8 @@ onBeforeUnmount(() => {
 
 <template>
   <header ref="bar" class="bar">
-    <a href="#top" class="bar-brand" aria-label="Deniz OK">
-      <span class="bar-num">23</span>
+    <a href="#top" class="bar-brand">
+      <span class="bar-num" aria-hidden="true">23</span>
       <span class="bar-name">
         <span>DENIZ.OK</span>
       </span>

@@ -71,7 +71,7 @@
   font-size: 11px;
 }
 .lang-btn { padding: 6px 10px; letter-spacing: 0.1em; color: var(--muted); transition: all 180ms; }
-.lang-btn.is-active { background: var(--accent); color: #fff; }
+.lang-btn.is-active { background: color-mix(in oklab, var(--accent) 88%, black); color: #fff; }
 .lang-btn:not(.is-active):hover { color: var(--ink); }
 .theme-btn {
   width: 32px; height: 32px;
