@@ -33,7 +33,7 @@ const labels = computed(() => {
         <div class="match-inner">
           <div class="match-poster">
             <div class="match-poster-head">
-              <span class="match-round">{{ labels.round }} {{ p.idx }} / 07</span>
+              <span class="match-round">{{ labels.round }} {{ p.idx }} / {{ String(projects.length).padStart(2, '0') }}</span>
               <span>{{ p.year }}</span>
             </div>
             <div class="match-idx-big">{{ p.idx }}</div>
