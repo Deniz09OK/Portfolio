@@ -9,16 +9,15 @@ const hero = computed(() => content.value.hero)
 const portraitSrc = '/portrait.jpg'
 const portraitMissing = ref(false)
 
-// Localised CV links (Google Drive preview pages).
+// Localised CV files, served statically from /public (no external dependency).
+// Turkish falls back to the English version.
 const cvUrls: Record<string, string> = {
-  fr: 'https://drive.google.com/file/d/1vQ8PkOMx0fr-YoGacFOwWDQnWMThKFS2/view',
-  en: 'https://drive.google.com/file/d/1ZJG6kY_AEZjh0aw7SAzywQ5bCfplxd6n/view',
-  tr: 'https://drive.google.com/file/d/1ZJG6kY_AEZjh0aw7SAzywQ5bCfplxd6n/view',
+  fr: '/cv-deniz-ok-fr.pdf',
+  en: '/cv-deniz-ok-en.pdf',
+  tr: '/cv-deniz-ok-en.pdf',
 }
 
-function downloadCV() {
-  window.open(cvUrls[lang.value] || cvUrls.fr, '_blank')
-}
+const cvUrl = computed(() => cvUrls[lang.value] || cvUrls.fr)
 </script>
 
 <template>
@@ -77,9 +76,9 @@ function downloadCV() {
         <a class="cta cta-primary" href="#matches">
           <span>{{ hero.cta1 }}</span> <span class="cta-arr">→</span>
         </a>
-        <button class="cta cta-ghost" @click="downloadCV">
+        <a class="cta cta-ghost" :href="cvUrl" target="_blank" rel="noopener">
           <span>{{ hero.cta2 }}</span> <span class="cta-arr">↓</span>
-        </button>
+        </a>
         <a class="cta cta-ghost" href="#contact">
           <span>{{ hero.cta3 }}</span> <span class="cta-arr">↗</span>
         </a>
