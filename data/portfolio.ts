@@ -66,14 +66,16 @@ export const portfolio: Portfolio = {
     ],
     drills: {
       title: "Entraînement quotidien",
+      sub: "Deux statuts, pas de liste gonflée : titulaire quand c'est pratiqué pour de vrai, remplaçant quand c'est seulement vu en cours.",
+      legend: { starter: "TITULAIRE — utilisé sur un projet livré, en alternance ou dans une room TryHackMe dédiée", bench: "REMPLAÇANT — vu en cours ou en lab, sans pratique dédiée, ou il y a plusieurs saisons" },
       groups: [
-        { label: "SYSTÈMES", pos: "GARDIEN", items: ["Linux", "Debian", "Ubuntu", "Kali Linux", "OpenBSD", "FreeBSD", "Mageia", "Windows"] },
-        { label: "BASES DE DONNÉES", pos: "DÉFENSE", items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "SQLite"] },
-        { label: "RÉSEAUX", pos: "LATÉRAL", items: ["Configuration routeurs", "Configuration switches"] },
-        { label: "CYBERSÉCURITÉ", pos: "LIBÉRO", items: ["Metasploit", "Burp Suite", "Nmap", "Hydra", "Wireshark", "John the Ripper", "Gobuster"] },
-        { label: "OUTILS", pos: "MILIEU", items: ["Docker", "Kubernetes", "Jenkins", "GitLab CI/CD", "Traefik", "Vite", "Figma", "Tailwind CSS"] },
-        { label: "LANGAGES", pos: "MENEUR DE JEU", items: ["JavaScript", "TypeScript", "Python", "Java", "PHP", "C/C++", "Groovy", "HTML/CSS"] },
-        { label: "FRAMEWORKS", pos: "AILIER", items: ["React.js", "Vue.js", "Node.js", "Express.js", "Nuxt.js", "Symfony", "Flask", "Socket.io", "Playwright"] }
+        { label: "INFRASTRUCTURE & RÉSEAU", pos: "GARDIEN", items: [{ name: "Proxmox VE", tier: "starter" }, { name: "pfSense", tier: "starter" }, { name: "OpenVPN", tier: "starter" }, { name: "NetBox (IPAM)", tier: "starter" }, { name: "OpenBSD", tier: "starter" }, { name: "FreeBSD", tier: "starter" }, { name: "Debian / Ubuntu", tier: "starter" }, { name: "Kali Linux", tier: "starter" }, { name: "Windows", tier: "starter" }, { name: "Vagrant", tier: "starter" }, { name: "VLAN, routage, switches", tier: "bench" }] },
+        { label: "SÉCURITÉ OFFENSIVE", pos: "LIBÉRO", items: [{ name: "Élévation de privilèges Linux", tier: "starter" }, { name: "Reverse & bind shells", tier: "starter" }, { name: "Énumération web & sous-domaines", tier: "starter" }, { name: "Vulnérabilités web (SSRF)", tier: "starter" }, { name: "John the Ripper", tier: "starter" }, { name: "Gobuster", tier: "starter" }, { name: "Nmap", tier: "starter" }, { name: "Burp Suite", tier: "starter" }, { name: "Metasploit", tier: "starter" }, { name: "Hydra", tier: "starter" }], proof: { label: "Profil TryHackMe · 32 rooms · Top 15 %", url: "https://tryhackme.com/p/Deniz23Ok" } },
+        { label: "SÉCURITÉ DÉFENSIVE & OBSERVABILITÉ", pos: "STOPPEUR", items: [{ name: "Elasticsearch", tier: "starter" }, { name: "Wazuh (SIEM)", tier: "starter" }, { name: "Splunk", tier: "starter" }, { name: "Sysmon", tier: "starter" }, { name: "Hashing & cryptographie", tier: "starter" }, { name: "Fondamentaux SOC & SIEM", tier: "starter" }, { name: "Wireshark", tier: "bench" }] },
+        { label: "AUTOMATISATION & DEVOPS", pos: "MILIEU", items: [{ name: "Docker / Compose", tier: "starter" }, { name: "GitHub Actions", tier: "starter" }, { name: "GitLab CI/CD", tier: "starter" }, { name: "Bash", tier: "starter" }, { name: "PowerShell", tier: "starter" }, { name: "pytest", tier: "starter" }, { name: "Playwright", tier: "starter" }, { name: "Jenkins", tier: "starter" }, { name: "Kubernetes", tier: "bench" }, { name: "Traefik", tier: "bench" }] },
+        { label: "LANGAGES", pos: "MENEUR DE JEU", items: [{ name: "Python", tier: "starter" }, { name: "JavaScript", tier: "starter" }, { name: "TypeScript", tier: "starter" }, { name: "PHP", tier: "starter" }, { name: "Java", tier: "starter" }, { name: "HTML / CSS", tier: "starter" }, { name: "C / C++", tier: "bench" }] },
+        { label: "FRAMEWORKS", pos: "AILIER", items: [{ name: "Vue.js", tier: "starter" }, { name: "Nuxt", tier: "starter" }, { name: "Node.js", tier: "starter" }, { name: "Express", tier: "starter" }, { name: "Socket.io", tier: "starter" }, { name: "Flask", tier: "starter" }, { name: "React", tier: "starter" }, { name: "Tailwind CSS", tier: "starter" }, { name: "Symfony", tier: "bench" }] },
+        { label: "BASES DE DONNÉES", pos: "ARRIÈRE", items: [{ name: "PostgreSQL", tier: "starter" }, { name: "Redis", tier: "starter" }, { name: "SQLite", tier: "starter" }, { name: "MySQL", tier: "bench" }, { name: "MongoDB", tier: "bench" }] }
       ]
     },
     off: {
@@ -160,14 +162,16 @@ export const portfolio: Portfolio = {
     ],
     drills: {
       title: "Daily training",
+      sub: "Two statuses, no padded list: starter when genuinely practised, bench when only covered in class.",
+      legend: { starter: "STARTER — used on a shipped project, at work or in a dedicated TryHackMe room", bench: "BENCH — covered in class or a lab without dedicated practice, or several seasons ago" },
       groups: [
-        { label: "SYSTEMS", pos: "KEEPER", items: ["Linux", "Debian", "Ubuntu", "Kali Linux", "OpenBSD", "FreeBSD", "Mageia", "Windows"] },
-        { label: "DATABASES", pos: "DEFENSE", items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "SQLite"] },
-        { label: "NETWORKS", pos: "FULL-BACK", items: ["Router configuration", "Switch configuration"] },
-        { label: "CYBERSECURITY", pos: "SWEEPER", items: ["Metasploit", "Burp Suite", "Nmap", "Hydra", "Wireshark", "John the Ripper", "Gobuster"] },
-        { label: "TOOLS", pos: "MID-FIELD", items: ["Docker", "Kubernetes", "Jenkins", "GitLab CI/CD", "Traefik", "Vite", "Figma", "Tailwind CSS"] },
-        { label: "LANGUAGES", pos: "PLAYMAKER", items: ["JavaScript", "TypeScript", "Python", "Java", "PHP", "C/C++", "Groovy", "HTML/CSS"] },
-        { label: "FRAMEWORKS", pos: "WINGER", items: ["React.js", "Vue.js", "Node.js", "Express.js", "Nuxt.js", "Symfony", "Flask", "Socket.io", "Playwright"] }
+        { label: "INFRASTRUCTURE & NETWORK", pos: "KEEPER", items: [{ name: "Proxmox VE", tier: "starter" }, { name: "pfSense", tier: "starter" }, { name: "OpenVPN", tier: "starter" }, { name: "NetBox (IPAM)", tier: "starter" }, { name: "OpenBSD", tier: "starter" }, { name: "FreeBSD", tier: "starter" }, { name: "Debian / Ubuntu", tier: "starter" }, { name: "Kali Linux", tier: "starter" }, { name: "Windows", tier: "starter" }, { name: "Vagrant", tier: "starter" }, { name: "VLANs, routing, switches", tier: "bench" }] },
+        { label: "OFFENSIVE SECURITY", pos: "SWEEPER", items: [{ name: "Linux privilege escalation", tier: "starter" }, { name: "Reverse & bind shells", tier: "starter" }, { name: "Web & subdomain enumeration", tier: "starter" }, { name: "Web vulnerabilities (SSRF)", tier: "starter" }, { name: "John the Ripper", tier: "starter" }, { name: "Gobuster", tier: "starter" }, { name: "Nmap", tier: "starter" }, { name: "Burp Suite", tier: "starter" }, { name: "Metasploit", tier: "starter" }, { name: "Hydra", tier: "starter" }], proof: { label: "TryHackMe profile · 32 rooms · Top 15%", url: "https://tryhackme.com/p/Deniz23Ok" } },
+        { label: "DEFENSIVE SECURITY & OBSERVABILITY", pos: "CENTRE-BACK", items: [{ name: "Elasticsearch", tier: "starter" }, { name: "Wazuh (SIEM)", tier: "starter" }, { name: "Splunk", tier: "starter" }, { name: "Sysmon", tier: "starter" }, { name: "Hashing & cryptography", tier: "starter" }, { name: "SOC & SIEM fundamentals", tier: "starter" }, { name: "Wireshark", tier: "bench" }] },
+        { label: "AUTOMATION & DEVOPS", pos: "MID-FIELD", items: [{ name: "Docker / Compose", tier: "starter" }, { name: "GitHub Actions", tier: "starter" }, { name: "GitLab CI/CD", tier: "starter" }, { name: "Bash", tier: "starter" }, { name: "PowerShell", tier: "starter" }, { name: "pytest", tier: "starter" }, { name: "Playwright", tier: "starter" }, { name: "Jenkins", tier: "starter" }, { name: "Kubernetes", tier: "bench" }, { name: "Traefik", tier: "bench" }] },
+        { label: "LANGUAGES", pos: "PLAYMAKER", items: [{ name: "Python", tier: "starter" }, { name: "JavaScript", tier: "starter" }, { name: "TypeScript", tier: "starter" }, { name: "PHP", tier: "starter" }, { name: "Java", tier: "starter" }, { name: "HTML / CSS", tier: "starter" }, { name: "C / C++", tier: "bench" }] },
+        { label: "FRAMEWORKS", pos: "WINGER", items: [{ name: "Vue.js", tier: "starter" }, { name: "Nuxt", tier: "starter" }, { name: "Node.js", tier: "starter" }, { name: "Express", tier: "starter" }, { name: "Socket.io", tier: "starter" }, { name: "Flask", tier: "starter" }, { name: "React", tier: "starter" }, { name: "Tailwind CSS", tier: "starter" }, { name: "Symfony", tier: "bench" }] },
+        { label: "DATABASES", pos: "FULL-BACK", items: [{ name: "PostgreSQL", tier: "starter" }, { name: "Redis", tier: "starter" }, { name: "SQLite", tier: "starter" }, { name: "MySQL", tier: "bench" }, { name: "MongoDB", tier: "bench" }] }
       ]
     },
     off: {
@@ -250,14 +254,16 @@ export const portfolio: Portfolio = {
     ],
     drills: {
       title: "Günlük antrenman",
+      sub: "İki statü, şişirilmiş liste yok: gerçekten pratik yapıldıysa ilk 11, yalnızca derste görüldüyse yedek.",
+      legend: { starter: "İLK 11 — teslim edilmiş bir projede, işte ya da özel bir TryHackMe odasında kullanıldı", bench: "YEDEK — derste ya da laboratuvarda görüldü, özel pratik yok, ya da birkaç sezon önce" },
       groups: [
-        { label: "SİSTEMLER", pos: "KALECİ", items: ["Linux", "Debian", "Ubuntu", "Kali Linux", "OpenBSD", "FreeBSD", "Mageia", "Windows"] },
-        { label: "VERİTABANLARI", pos: "DEFANS", items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "SQLite"] },
-        { label: "AĞLAR", pos: "BEK", items: ["Router yapılandırması", "Switch yapılandırması"] },
-        { label: "SİBER GÜVENLİK", pos: "LİBERO", items: ["Metasploit", "Burp Suite", "Nmap", "Hydra", "Wireshark", "John the Ripper", "Gobuster"] },
-        { label: "ARAÇLAR", pos: "ORTA SAHA", items: ["Docker", "Kubernetes", "Jenkins", "GitLab CI/CD", "Traefik", "Vite", "Figma", "Tailwind CSS"] },
-        { label: "DİLLER", pos: "OYUN KURUCU", items: ["JavaScript", "TypeScript", "Python", "Java", "PHP", "C/C++", "Groovy", "HTML/CSS"] },
-        { label: "FRAMEWORK'LER", pos: "KANAT", items: ["React.js", "Vue.js", "Node.js", "Express.js", "Nuxt.js", "Symfony", "Flask", "Socket.io", "Playwright"] }
+        { label: "ALTYAPI & AĞ", pos: "KALECİ", items: [{ name: "Proxmox VE", tier: "starter" }, { name: "pfSense", tier: "starter" }, { name: "OpenVPN", tier: "starter" }, { name: "NetBox (IPAM)", tier: "starter" }, { name: "OpenBSD", tier: "starter" }, { name: "FreeBSD", tier: "starter" }, { name: "Debian / Ubuntu", tier: "starter" }, { name: "Kali Linux", tier: "starter" }, { name: "Windows", tier: "starter" }, { name: "Vagrant", tier: "starter" }, { name: "VLAN, yönlendirme, switch", tier: "bench" }] },
+        { label: "OFANSİF GÜVENLİK", pos: "LİBERO", items: [{ name: "Linux yetki yükseltme", tier: "starter" }, { name: "Reverse & bind shell", tier: "starter" }, { name: "Web & alt alan adı keşfi", tier: "starter" }, { name: "Web zafiyetleri (SSRF)", tier: "starter" }, { name: "John the Ripper", tier: "starter" }, { name: "Gobuster", tier: "starter" }, { name: "Nmap", tier: "starter" }, { name: "Burp Suite", tier: "starter" }, { name: "Metasploit", tier: "starter" }, { name: "Hydra", tier: "starter" }], proof: { label: "TryHackMe profili · 32 oda · İlk %15", url: "https://tryhackme.com/p/Deniz23Ok" } },
+        { label: "DEFANSİF GÜVENLİK & GÖZLEMLENEBİLİRLİK", pos: "STOPER", items: [{ name: "Elasticsearch", tier: "starter" }, { name: "Wazuh (SIEM)", tier: "starter" }, { name: "Splunk", tier: "starter" }, { name: "Sysmon", tier: "starter" }, { name: "Hashing & kriptografi", tier: "starter" }, { name: "SOC & SIEM temelleri", tier: "starter" }, { name: "Wireshark", tier: "bench" }] },
+        { label: "OTOMASYON & DEVOPS", pos: "ORTA SAHA", items: [{ name: "Docker / Compose", tier: "starter" }, { name: "GitHub Actions", tier: "starter" }, { name: "GitLab CI/CD", tier: "starter" }, { name: "Bash", tier: "starter" }, { name: "PowerShell", tier: "starter" }, { name: "pytest", tier: "starter" }, { name: "Playwright", tier: "starter" }, { name: "Jenkins", tier: "starter" }, { name: "Kubernetes", tier: "bench" }, { name: "Traefik", tier: "bench" }] },
+        { label: "DİLLER", pos: "OYUN KURUCU", items: [{ name: "Python", tier: "starter" }, { name: "JavaScript", tier: "starter" }, { name: "TypeScript", tier: "starter" }, { name: "PHP", tier: "starter" }, { name: "Java", tier: "starter" }, { name: "HTML / CSS", tier: "starter" }, { name: "C / C++", tier: "bench" }] },
+        { label: "FRAMEWORK'LER", pos: "KANAT", items: [{ name: "Vue.js", tier: "starter" }, { name: "Nuxt", tier: "starter" }, { name: "Node.js", tier: "starter" }, { name: "Express", tier: "starter" }, { name: "Socket.io", tier: "starter" }, { name: "Flask", tier: "starter" }, { name: "React", tier: "starter" }, { name: "Tailwind CSS", tier: "starter" }, { name: "Symfony", tier: "bench" }] },
+        { label: "VERİTABANLARI", pos: "BEK", items: [{ name: "PostgreSQL", tier: "starter" }, { name: "Redis", tier: "starter" }, { name: "SQLite", tier: "starter" }, { name: "MySQL", tier: "bench" }, { name: "MongoDB", tier: "bench" }] }
       ]
     },
     off: {

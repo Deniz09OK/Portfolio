@@ -7,6 +7,11 @@ const drills = computed(() => content.value.drills)
   <section class="drills" id="drills">
     <div class="container">
       <h2 class="display">{{ drills.title }}</h2>
+      <p class="display-sub drills-sub">{{ drills.sub }}</p>
+      <ul class="drills-legend" aria-label="Légende">
+        <li><span class="drill-dot drill-dot--starter" aria-hidden="true"></span>{{ drills.legend.starter }}</li>
+        <li><span class="drill-dot drill-dot--bench" aria-hidden="true"></span>{{ drills.legend.bench }}</li>
+      </ul>
       <div class="drills-grid">
         <div v-for="(g, i) in drills.groups" :key="i" v-reveal class="drill">
           <div class="drill-head">
@@ -14,8 +19,14 @@ const drills = computed(() => content.value.drills)
             <span class="drill-pos">{{ g.pos }}</span>
           </div>
           <ul class="drill-list">
-            <li v-for="(s, j) in g.items" :key="j">{{ s }}</li>
+            <li v-for="(s, j) in g.items" :key="j" :class="`drill-item drill-item--${s.tier}`">
+              <span class="drill-dot" :class="`drill-dot--${s.tier}`" aria-hidden="true"></span>
+              <span class="drill-name">{{ s.name }}</span>
+            </li>
           </ul>
+          <a v-if="g.proof" class="drill-proof" :href="g.proof.url" target="_blank" rel="noopener">
+            {{ g.proof.label }} <span>↗</span>
+          </a>
         </div>
       </div>
     </div>

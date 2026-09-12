@@ -76,14 +76,24 @@ export interface ExpItem {
   current?: boolean
 }
 
+/** starter = used on a delivered project or at work · bench = practised in class, lab or long ago */
+export type DrillTier = 'starter' | 'bench'
+export interface DrillItem {
+  name: string
+  tier: DrillTier
+}
 export interface DrillsGroup {
   label: string
   pos: string
-  items: string[]
+  items: DrillItem[]
+  /** Optional proof link shown under the list (e.g. TryHackMe profile). */
+  proof?: { label: string; url: string }
 }
 
 export interface DrillsContent {
   title: string
+  sub: string
+  legend: { starter: string; bench: string }
   groups: DrillsGroup[]
 }
 
