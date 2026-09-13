@@ -52,7 +52,7 @@ export const portfolio: Portfolio = {
     },
     edu: [
       { year: "2024 — 2027", school: "EPITECH NANCY", title: "MSc Pro — Cybersécurité & Cloud", desc: "Pédagogie active · Debian/OpenBSD/FreeBSD · Sécu offensive & défensive", current: true },
-      { year: "2020 — 2022", school: "LYCÉE JEAN PROUVÉ", title: "BTS SNIR", desc: "C/C++, Python · VLAN, routage, sous-réseaux · Mageia" },
+      { year: "2020 — 2022", school: "CHARLES DE FOUCAULD", title: "BTS SNIR", desc: "C/C++, Python · VLAN, routage, sous-réseaux · Mageia" },
       { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Bac Pro SNIR", desc: "Bases réseau & systèmes · Virtualisation Debian" }
     ],
     exp: [
@@ -148,7 +148,7 @@ export const portfolio: Portfolio = {
     career: { title: "Seasons played", eduLabel: "ACADEMY", expLabel: "FIELD" },
     edu: [
       { year: "2024 — 2027", school: "EPITECH NANCY", title: "MSc Pro — Cybersecurity & Cloud", desc: "Active pedagogy · Debian/OpenBSD/FreeBSD · Offensive & defensive security", current: true },
-      { year: "2020 — 2022", school: "LYCÉE JEAN PROUVÉ", title: "BTS SNIR", desc: "C/C++, Python · VLAN, routing, subnets · Mageia" },
+      { year: "2020 — 2022", school: "CHARLES DE FOUCAULD", title: "BTS SNIR", desc: "C/C++, Python · VLAN, routing, subnets · Mageia" },
       { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Vocational Baccalaureate SNIR", desc: "Network & system foundations · Debian virtualization" }
     ],
     exp: [
@@ -240,7 +240,7 @@ export const portfolio: Portfolio = {
     career: { title: "Oynanan sezonlar", eduLabel: "AKADEMİ", expLabel: "SAHA" },
     edu: [
       { year: "2024 — 2027", school: "EPITECH NANCY", title: "MSc Pro — Siber Güv. & Bulut", desc: "Aktif pedagoji · Debian/OpenBSD/FreeBSD · Saldırı & savunma", current: true },
-      { year: "2020 — 2022", school: "LYCÉE JEAN PROUVÉ", title: "BTS SNIR", desc: "C/C++, Python · VLAN, yönlendirme · Mageia" },
+      { year: "2020 — 2022", school: "CHARLES DE FOUCAULD", title: "BTS SNIR", desc: "C/C++, Python · VLAN, yönlendirme · Mageia" },
       { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Mesleki Lise SNIR", desc: "Ağ ve sistem temelleri · Debian" }
     ],
     exp: [
