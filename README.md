@@ -104,7 +104,11 @@ Portfolio/
 ├── plugins/                    # Plugins personnalisés de Nuxt
 │   ├── reveal.client.ts        # Gestion des animations d'entrée au scroll
 │   └── reveal.server.ts        # Compatibilité SSR pour les animations
-├── public/                     # Ressources statiques (images, favicon, portraits)
+├── public/                     # Ressources statiques
+│   ├── portrait.jpg            # Portrait utilisé en hero et dans les balises Open Graph
+│   ├── cv-deniz-ok-fr.pdf      # CV téléchargeable (FR)
+│   ├── cv-deniz-ok-en.pdf      # CV téléchargeable (EN/TR)
+│   └── robots.txt              # Autorisation d'indexation pour les moteurs de recherche
 ├── app.vue                     # Fiche racine englobant les composants
 ├── nuxt.config.ts              # Fichier de configuration de Nuxt (BaseURL, SEO, modules)
 └── tsconfig.json               # Fichier de configuration TypeScript
@@ -112,7 +116,7 @@ Portfolio/
 
 ## 🚀 Déploiement
 
-Le projet est configuré pour se déployer automatiquement sur **GitHub Pages** à l'aide de **GitHub Actions**. 
+Le projet est configuré pour se déployer automatiquement sur **GitHub Pages** à l'aide de **GitHub Actions**, et servi sur le domaine personnalisé [portfolio-deniz.me](https://portfolio-deniz.me/).
 
 Chaque commit poussé sur la branche `main` déclenche le workflow défini dans `.github/workflows/deploy.yml` qui :
 1. Installe les dépendances.
@@ -123,6 +127,6 @@ Chaque commit poussé sur la branche `main` déclenche le workflow défini dans 
 
 **Réalisé avec 💙 par Deniz OK**
 
-- 🌐 [Portfolio Live](https://deniz09ok.github.io/Portfolio/)
+- 🌐 [Portfolio Live](https://portfolio-deniz.me/)
 - 💼 [LinkedIn](https://www.linkedin.com/in/deniz-ok/)
 - 💻 [GitHub](https://github.com/Deniz09OK)
