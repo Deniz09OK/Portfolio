@@ -14,7 +14,7 @@ export const portfolio: Portfolio = {
       kanji: "戦",
       stats: [
         { label: "MATCHS JOUÉS", value: "11", sub: "projets livrés" },
-        { label: "EXPÉRIENCES", value: "05", sub: "stages, jobs, alternance" },
+        { label: "EXPÉRIENCES", value: "07", sub: "stages, jobs, alternance" },
         { label: "LANGUES OPS", value: "07", sub: "Py · Bash · PHP · JS · C · Java · PS" },
         { label: "OS MAÎTRISÉS", value: "05", sub: "Debian · *BSD · Win" }
       ],
@@ -56,7 +56,7 @@ export const portfolio: Portfolio = {
       { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Bac Pro SNIR", desc: "Bases réseau & systèmes · Virtualisation Debian" }
     ],
     exp: [
-      { year: "02/2025 — ...", company: "QUALITEST", title: "Assistant informatique (alternance)", desc: "Questionnaires & reporting · Outils PHP/JS · BDD · Études", current: true },
+      { year: "02/2025 — ...", company: "QUALITEST", title: "Assistant informatique (alternance)", desc: "Questionnaires & reporting (Sphinx, IQ3, Dataviv') · BDD & analyse de données · Automatisation (extraction, transferts Dropbox, détection d'anomalies)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Équipier polyvalent", desc: "Service salle & drive · Relation client" },
       { year: "03/2023 — 12/2023", company: "1ER RSMV · MONTIGNY-LÈS-METZ", title: "Volontaire stagiaire", desc: "Discipline & cohésion · SST · Médaille du mérite" },
       { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "Salle informatique (stage)", desc: "Déploiement postes · Adressage IP pour BTS" },
@@ -117,7 +117,7 @@ export const portfolio: Portfolio = {
       kanji: "戦",
       stats: [
         { label: "MATCHES PLAYED", value: "11", sub: "shipped projects" },
-        { label: "EXPERIENCES", value: "05", sub: "internships, jobs, work-study" },
+        { label: "EXPERIENCES", value: "07", sub: "internships, jobs, work-study" },
         { label: "OPS LANGUAGES", value: "07", sub: "Py · Bash · PHP · JS · C · Java · PS" },
         { label: "OS MASTERED", value: "05", sub: "Debian · *BSD · Win" }
       ],
@@ -152,7 +152,7 @@ export const portfolio: Portfolio = {
       { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Vocational Baccalaureate SNIR", desc: "Network & system foundations · Debian virtualization" }
     ],
     exp: [
-      { year: "02/2025 — now", company: "QUALITEST", title: "IT Assistant (work-study)", desc: "Questionnaire & reporting · PHP/JS tools · DB · Research team", current: true },
+      { year: "02/2025 — now", company: "QUALITEST", title: "IT Assistant (work-study)", desc: "Questionnaire & reporting (Sphinx, IQ3, Dataviv') · Database management & data analysis · Automated scripts (extraction, Dropbox transfers, anomaly detection)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Crew member", desc: "Front of house & drive · Customer service" },
       { year: "03/2023 — 12/2023", company: "1ST RSMV · MONTIGNY-LÈS-METZ", title: "Volunteer trainee", desc: "Discipline & teamwork · First-aid (SST) · Merit medal" },
       { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "Computer room (intern)", desc: "Workstation rollout · IP addressing for BTS" },
@@ -209,7 +209,7 @@ export const portfolio: Portfolio = {
       kanji: "戦",
       stats: [
         { label: "OYNANAN MAÇ", value: "11", sub: "teslim proje" },
-        { label: "DENEYİMLER", value: "05", sub: "stajlar, işler, yarı zamanlı" },
+        { label: "DENEYİMLER", value: "07", sub: "stajlar, işler, yarı zamanlı" },
         { label: "OPS DİL", value: "07", sub: "Py · Bash · PHP · JS · C · Java · PS" },
         { label: "OS HÂKİM", value: "05", sub: "Debian · *BSD · Win" }
       ],
@@ -244,7 +244,7 @@ export const portfolio: Portfolio = {
       { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Mesleki Lise SNIR", desc: "Ağ ve sistem temelleri · Debian" }
     ],
     exp: [
-      { year: "02/2025 — şimdi", company: "QUALITEST", title: "BT Asistanı (yarı zamanlı)", desc: "Anket & raporlama · PHP/JS · Veritabanı · Araştırma", current: true },
+      { year: "02/2025 — şimdi", company: "QUALITEST", title: "BT Asistanı (yarı zamanlı)", desc: "Anket & raporlama (Sphinx, IQ3, Dataviv') · Veritabanı yönetimi & veri analizi · Otomasyon (çıkarma, Dropbox aktarımları, anomali tespiti)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Ekip üyesi", desc: "Salon & drive · Müşteri" },
       { year: "03/2023 — 12/2023", company: "1. RSMV · MONTIGNY-LÈS-METZ", title: "Gönüllü stajyer", desc: "Disiplin & takım · SST · Liyakat madalyası" },
       { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "Bilgisayar odası (staj)", desc: "Kurulum · BTS için IP adresleme" },
