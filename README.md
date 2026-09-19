@@ -15,13 +15,15 @@ Le design adopte le style **Arena**, un concept d'éditorial premium inspiré de
 
 ## ✨ Fonctionnalités
 
-- 🌍 **Multilingue** : Support complet et réactif du **Français**, **Anglais** et **Turc**.
-- 🌓 **Mode sombre/clair** : Transition de thème fluide et instantanée, mémorisée et optimisée (sans flash au chargement grâce à un script côté serveur/client).
-- 📱 **Design responsive** : Parfaitement adapté à tous les écrans (mobiles, tablettes et ordinateurs de bureau).
+- 🌍 **Multilingue** : Support complet et réactif du **Français**, **Anglais** et **Turc** (contenus, libellés d'interface, bandeau défilant et libellés d'accessibilité). La langue choisie est mémorisée.
+- 🌓 **Mode sombre/clair** : Transition de thème fluide, choix mémorisé et restauré au chargement de la page.
+- 📱 **Design responsive** : Testé du 320 px à l'ultrawide 3440 px, en portrait et en paysage, sur Chromium, Firefox et WebKit.
+- ♿ **Accessibilité** : Cibles tactiles d'au moins 44 × 44 px, `aria-label` traduits dans les trois langues, respect de `prefers-reduced-motion`.
 - ✨ **Animations fluides** : Révélation progressive et élégante des sections au défilement (*reveal-on-scroll*) via un plugin sur mesure.
 - 🎨 **Aesthetics Arena** : Fiche joueur en en-tête, bandeau de défilement style live-ticker, et cartes de saison détaillées pour les projets.
 - ⚡ **Performances optimisées** : Chargement ultra-rapide et utilisation d'images au format WebP optimisées avec `@nuxt/image`.
-- 🔍 **SEO de pointe** : Balises Open Graph dynamiques adaptées à la langue de l'utilisateur pour le partage sur les réseaux sociaux.
+- 🔍 **SEO** : Balises Open Graph et Twitter Card, lien canonique, `sitemap.xml` et `robots.txt`. Le titre et les descriptions suivent la langue active dans le navigateur ; le HTML prérendu, lu par les réseaux sociaux, est en français.
+- 🚫 **Page 404 dédiée** : Page « Hors du terrain » trilingue, prérendue dans `404.html` pour GitHub Pages.
 
 ## 🛠️ Technologies utilisées
 
@@ -61,7 +63,7 @@ Le design adopte le style **Arena**, un concept d'éditorial premium inspiré de
 - `npm run build` : Compile le projet pour la production.
 - `npm run generate` : Génère le site entièrement statique dans le dossier `.output/public`.
 - `npm run preview` : Prévisualise localement le site généré.
-- `npm run test` : Lance les tests Playwright.
+- `npm run test` : Lance Playwright (aucune suite de tests n'est encore versionnée dans le dépôt).
 
 ## 📁 Structure du projet
 
@@ -113,7 +115,7 @@ Portfolio/
 │   └── robots.txt              # Autorisation d'indexation et lien vers le sitemap
 ├── app.vue                     # Fiche racine englobant les composants
 ├── error.vue                   # Page 404 trilingue, prérendue en 404.html pour GitHub Pages
-├── nuxt.config.ts              # Fichier de configuration de Nuxt (BaseURL, SEO, modules)
+├── nuxt.config.ts              # Fichier de configuration de Nuxt (BaseURL, SEO, prérendu de la 404)
 └── tsconfig.json               # Fichier de configuration TypeScript
 ```
 
@@ -125,6 +127,8 @@ Chaque commit poussé sur la branche `main` déclenche le workflow défini dans 
 1. Installe les dépendances.
 2. Exécute `npm run generate` pour compiler le site statique.
 3. Déploie le dossier `.output/public` directement sur la plateforme GitHub Pages.
+
+La page 404 est générée à partir de `error.vue` : Nuxt produit toujours `/404.html` comme une coquille vide remplie en JavaScript, la route `/404` est donc rendue côté serveur puis écrite dans `404.html` via le hook Nitro `prerender:generate` (voir `nuxt.config.ts`).
 
 ---
 
