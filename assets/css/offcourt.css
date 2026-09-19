@@ -2,7 +2,8 @@
 .off { padding: clamp(48px, 8vh, 120px) 0; border-bottom: 1px solid var(--line); }
 .off-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  /* 220px lets the five cards share one row on desktop instead of leaving one alone. */
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
   gap: 16px;
   margin-top: 8px;
 }

@@ -76,10 +76,11 @@ export const portfolio: Portfolio = {
     },
     off: {
       title: "Hors du clavier",
-      sub: "Quatre disciplines qui me façonnent. Quatre écoles de discipline, de jeu et de récit.",
+      sub: "Cinq disciplines qui me façonnent. Cinq écoles de discipline, de jeu et de récit.",
       cta: "Lire l’histoire",
       close: "Fermer",
       items: [
+        { id: "football", kanji: "蹴球", roman: "SHŪKYŪ", label: "Football", color: "#e30a17", colorAlt: "#0055a4", role: "DERNIER REMPART", desc: "PSG, France, Turquie. Un club, deux nations, et un cœur neutre les soirs de France–Turquie.", story: "Plus jeune, je jouais gardien ou défenseur central. J’étais grand, alors on me mettait derrière — mais balle au pied, je reste pire que Matuidi.\n\nJe suis fan du PSG, de l’équipe de France et de la Turquie. Alors quand il y a un France–Turquie, la famille se divise… et moi, je reste neutre : je suis pour la Suisse.\n\nEt si mes compétences sont rangées par poste sur ce site, ce n’est pas un hasard : j’ai toujours joué pour défendre le but. Aujourd’hui, je le fais en cybersécurité." },
         { id: "japan", kanji: "日本", roman: "NIPPON", label: "Japon", color: "#e63946", role: "FORME & SILENCE", desc: "Animes, mangas, langue, philosophie. La façon dont la forme structure le sens.", story: "Ma passion pour le Japon vient des mangas que j’ai lus et des animes que j’ai vus — Naruto, Bleach, ou encore Fullmetal Alchemist: Brotherhood.\n\nMais aussi de ses paysages, de sa culture, de ses temples et de ses traditions." },
         { id: "wrestle", kanji: "格闘", roman: "PURORESU", label: "Catch", color: "#ffb800", role: "STORYTELLING BRUT", desc: "WWE en premier, AEW depuis peu. L’art de raconter une histoire avec un corps, un personnage, un public.", story: "J’ai commencé à regarder le catch pendant la Ruthless Aggression Era.\n\nRey Mysterio en premier, pour son style de catch — vif, aérien, lisible.\n\nEt après, ce fut The Deadman, The Undertaker, et le Heartbreak Kid, Shawn Michaels." },
         { id: "music", kanji: "音楽", roman: "ONGAKU", label: "Musique", color: "#ff7700", role: "ÉNERGIE & RYTHME", desc: "Rock, rap français, metal, synth japonais. Le mélange large, du clavier aux écouteurs.", story: "Je suis un fan absolu de rap et de rock.\n\nEt comme je sais que vous voulez que je me mouille un peu, voici mon top 3 :\n- « San » — Orelsan\n- « Breaking the Habit » — Linkin Park\n- « Sign » — Flow" },
@@ -168,10 +169,11 @@ export const portfolio: Portfolio = {
     },
     off: {
       title: "Off the keyboard",
-      sub: "Four disciplines that shape me. Four schools of discipline, play and story.",
+      sub: "Five disciplines that shape me. Five schools of discipline, play and story.",
       cta: "Read the story",
       close: "Close",
       items: [
+        { id: "football", kanji: "蹴球", roman: "SHŪKYŪ", label: "Football", color: "#e30a17", colorAlt: "#0055a4", role: "LAST LINE OF DEFENCE", desc: "PSG, France, Turkey. One club, two nations, and a neutral heart whenever France play Turkey.", story: "When I was younger, I played in goal or at centre-back. I was tall, so they put me at the back — but with the ball at my feet, I’m still worse than Matuidi.\n\nI support PSG, the French national team and Turkey. So whenever France play Turkey, the family is split… and I stay neutral: I support Switzerland.\n\nAnd if my skills on this site are sorted by position, that’s no accident: I’ve always played to defend the goal. Today, I do it in cybersecurity." },
         { id: "japan", kanji: "日本", roman: "NIPPON", label: "Japan", color: "#e63946", role: "FORM & SILENCE", desc: "Anime, manga, language, philosophy. How form shapes meaning.", story: "My passion for Japan started with the anime and manga I grew up reading and watching — Naruto, Bleach, Fullmetal Alchemist: Brotherhood.\n\nBut also its landscapes, its culture, its temples and its traditions." },
         { id: "wrestle", kanji: "格闘", roman: "PURORESU", label: "Wrestling", color: "#ffb800", role: "RAW STORYTELLING", desc: "WWE first, AEW lately. Telling a story with a body, a character, a crowd.", story: "I started watching wrestling during the Ruthless Aggression Era.\n\nRey Mysterio first, for his style — fast, aerial, readable.\n\nAnd after that, The Deadman, The Undertaker, and the Heartbreak Kid, Shawn Michaels." },
         { id: "music", kanji: "音楽", roman: "ONGAKU", label: "Music", color: "#ff7700", role: "ENERGY & RHYTHM", desc: "Rock, French rap, metal, Japanese synth. Wide mix, from the keyboard to the headphones.", story: "I'm an absolute rap and rock fan.\n\nAnd since you want me to open up a bit, here's my personal top 3:\n- “San” — Orelsan\n- “Breaking the Habit” — Linkin Park\n- “Sign” — Flow" },
@@ -256,10 +258,11 @@ export const portfolio: Portfolio = {
     },
     off: {
       title: "Klavyenin dışında",
-      sub: "Beni şekillendiren dört disiplin. Disiplin, oyun ve anlatı için dört okul.",
+      sub: "Beni şekillendiren beş disiplin. Disiplin, oyun ve anlatı için beş okul.",
       cta: "Hikâyeyi oku",
       close: "Kapat",
       items: [
+        { id: "football", kanji: "蹴球", roman: "SHŪKYŪ", label: "Futbol", color: "#e30a17", colorAlt: "#0055a4", role: "SON KALE", desc: "PSG, Fransa, Türkiye. Bir kulüp, iki millet ve Fransa–Türkiye akşamlarında tarafsız bir kalp.", story: "Küçükken kaleci ya da stoper oynardım. Uzun boyluydum, o yüzden beni hep arkaya koyarlardı — ama top ayağımdayken Matuidi’den bile kötüyüm.\n\nPSG’yi, Fransa Milli Takımı’nı ve Türkiye’yi tutuyorum. Bu yüzden bir Fransa–Türkiye maçı olduğunda aile ikiye bölünür… ben ise tarafsız kalırım: İsviçre’yi tutuyorum.\n\nBu sitede yeteneklerimin mevkilere göre sıralanması tesadüf değil: hep kaleyi savunmak için oynadım. Bugün bunu siber güvenlikte yapıyorum." },
         { id: "japan", kanji: "日本", roman: "NIPPON", label: "Japonya", color: "#e63946", role: "BİÇİM & SESSİZLİK", desc: "Anime, manga, dil, felsefe. Biçimin anlamı nasıl şekillendirdiği.", story: "Japonya tutkum, okuduğum ve izlediğim anime ve mangalardan geliyor — Naruto, Bleach, Fullmetal Alchemist: Brotherhood.\n\nAma aynı zamanda manzaralarından, kültüründen, tapınaklarından ve geleneklerinden de." },
         { id: "wrestle", kanji: "格闘", roman: "PURORESU", label: "Güreş", color: "#ffb800", role: "HAM ANLATI", desc: "Önce WWE, son zamanlarda AEW. Beden, karakter, seyirciyle hikâye anlatma sanatı.", story: "Güreş izlemeye Ruthless Aggression Era döneminde başladım.\n\nÖnce Rey Mysterio — tarzı için: hızlı, havai, okunabilir.\n\nSonra The Deadman, The Undertaker ve Heartbreak Kid, Shawn Michaels." },
         { id: "music", kanji: "音楽", roman: "ONGAKU", label: "Müzik", color: "#ff7700", role: "ENERJİ & RİTİM", desc: "Rock, Fransız rap, metal, Japon synth. Geniş karışım, klavyeden kulaklıklara.", story: "Tam bir rap ve rock hayranıyım.\n\nMadem biraz açılmamı istiyorsunuz, işte favori şarkılarımın top 3'ü:\n- Orelsan'dan “San”\n- Linkin Park'tan “Breaking the Habit”\n- Flow'dan “Sign”" },
