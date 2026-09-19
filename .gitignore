@@ -23,3 +23,7 @@ nikto-*.txt
 
 # Rapports QA locaux (jamais commités)
 qa-reports/
+
+# Playwright
+test-results/
+playwright-report/
