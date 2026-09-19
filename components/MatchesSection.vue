@@ -5,6 +5,9 @@ const { lang } = useLang()
 const matches = computed(() => content.value.matches)
 const projects = computed(() => content.value.projects)
 
+// Keep each "·" on the same line as the item before it, so a wrapped line never starts with a separator.
+const keepSeparators = (stack: string) => stack.replaceAll(' · ', ' · ')
+
 const labels = computed(() => {
   const l = lang.value
   return {
@@ -52,7 +55,7 @@ const labels = computed(() => {
               </div>
               <div>
                 <div class="match-tape-k">{{ labels.stack }}</div>
-                <div class="match-tape-v">{{ p.stack }}</div>
+                <div class="match-tape-v">{{ keepSeparators(p.stack) }}</div>
               </div>
             </div>
           </div>
