@@ -1,3 +1,4 @@
+// Also read by the inline anti-flash script in nuxt.config.ts.
 const STORAGE_KEY = 'deniz-arena-theme'
 
 

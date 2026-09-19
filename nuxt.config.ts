@@ -11,6 +11,14 @@ app: {
     head: {
       title: 'Deniz OK — Portfolio',
       htmlAttrs: { lang: 'fr' },
+      // Apply the saved theme before first paint, so light-mode visitors never see the dark page flash.
+      // Must stay in sync with STORAGE_KEY in composables/useTheme.ts.
+      script: [
+        {
+          innerHTML: "try{if(localStorage.getItem('deniz-arena-theme')==='light')document.documentElement.classList.add('light')}catch(e){}",
+          tagPriority: 'critical',
+        },
+      ],
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
