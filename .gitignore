@@ -20,3 +20,6 @@ zap.yaml
 *.nikto.txt
 nikto-*.txt
 
+
+# Rapports QA locaux (jamais commités)
+qa-reports/
