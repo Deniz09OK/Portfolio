@@ -16,7 +16,7 @@ Le design adopte le style **Arena**, un concept d'éditorial premium inspiré de
 ## ✨ Fonctionnalités
 
 - 🌍 **Multilingue** : Support complet et réactif du **Français**, **Anglais** et **Turc** (contenus, libellés d'interface, bandeau défilant et libellés d'accessibilité). La langue choisie est mémorisée.
-- 🌓 **Mode sombre/clair** : Transition de thème fluide, choix mémorisé et restauré au chargement de la page.
+- 🌓 **Mode sombre/clair** : Transition de thème fluide, choix mémorisé et appliqué avant le premier affichage (aucun flash du thème sombre).
 - 📱 **Design responsive** : Testé du 320 px à l'ultrawide 3440 px, en portrait et en paysage, sur Chromium, Firefox et WebKit.
 - ♿ **Accessibilité** : Cibles tactiles d'au moins 44 × 44 px, `aria-label` traduits dans les trois langues, respect de `prefers-reduced-motion`.
 - ✨ **Animations fluides** : Révélation progressive et élégante des sections au défilement (*reveal-on-scroll*) via un plugin sur mesure.
@@ -63,14 +63,33 @@ Le design adopte le style **Arena**, un concept d'éditorial premium inspiré de
 - `npm run build` : Compile le projet pour la production.
 - `npm run generate` : Génère le site entièrement statique dans le dossier `.output/public`.
 - `npm run preview` : Prévisualise localement le site généré.
-- `npm run test` : Lance Playwright (aucune suite de tests n'est encore versionnée dans le dépôt).
+- `npm run test` : Lance les tests Playwright sur le site généré (lancer `npm run generate` avant).
+
+## 🧪 Tests
+
+Les tests Playwright (`tests/portfolio.spec.ts`) tournent sur le site statique généré, servi comme sur GitHub Pages par `tests/serve.mjs` (404.html compris), sur trois profils : Chromium desktop, Chromium mobile (Pixel 7) et WebKit mobile (iPhone 15). Ils vérifient :
+
+- le rendu des trois langues, sans erreur JavaScript ;
+- que chaque projet affiche un seul statut (lien vers le code, « Confidentiel » ou « En développement ») ;
+- la navigation vers chaque section, desktop et burger mobile ;
+- l'ouverture et la fermeture des modales (clic et Échap) ;
+- l'absence de défilement horizontal à 320 px dans les trois langues ;
+- des cibles tactiles d'au moins 44 × 44 px sur mobile ;
+- l'application du thème clair avant le chargement de l'application, et sa mémorisation ;
+- une vraie page 404 pour les URL inconnues.
+
+```bash
+npm run generate
+npx playwright install chromium webkit   # une seule fois
+npm test
+```
 
 ## 📁 Structure du projet
 
 ```
 Portfolio/
 ├── .github/workflows/          # Workflows d'automatisation
-│   └── deploy.yml              # CI/CD pour le déploiement sur GitHub Pages via GitHub Actions
+│   └── deploy.yml              # CI/CD : génération, tests Playwright puis déploiement sur GitHub Pages
 ├── assets/css/                 # Design System & Stylesheets par composants
 │   ├── arena.css               # Point d'entrée important toutes les feuilles de style
 │   ├── base.css                # Réinitialisation globale et règles HTML par défaut
@@ -106,6 +125,9 @@ Portfolio/
 ├── plugins/                    # Plugins personnalisés de Nuxt
 │   ├── reveal.client.ts        # Gestion des animations d'entrée au scroll
 │   └── reveal.server.ts        # Compatibilité SSR pour les animations
+├── tests/                      # Tests de bout en bout
+│   ├── portfolio.spec.ts       # Suite Playwright
+│   └── serve.mjs               # Serveur statique reproduisant GitHub Pages (404.html)
 ├── public/                     # Ressources statiques
 │   ├── portrait.jpg            # Portrait utilisé en hero et dans les balises Open Graph
 │   ├── cv-deniz-ok-fr.pdf      # CV téléchargeable (FR)
@@ -116,6 +138,7 @@ Portfolio/
 ├── app.vue                     # Fiche racine englobant les composants
 ├── error.vue                   # Page 404 trilingue, prérendue en 404.html pour GitHub Pages
 ├── nuxt.config.ts              # Fichier de configuration de Nuxt (BaseURL, SEO, prérendu de la 404)
+├── playwright.config.ts        # Configuration Playwright (profils desktop et mobile)
 └── tsconfig.json               # Fichier de configuration TypeScript
 ```
 
@@ -126,7 +149,10 @@ Le projet est configuré pour se déployer automatiquement sur **GitHub Pages** 
 Chaque commit poussé sur la branche `main` déclenche le workflow défini dans `.github/workflows/deploy.yml` qui :
 1. Installe les dépendances.
 2. Exécute `npm run generate` pour compiler le site statique.
-3. Déploie le dossier `.output/public` directement sur la plateforme GitHub Pages.
+3. Lance les tests Playwright sur ce build. **Si un test échoue, rien n'est déployé** et le rapport est disponible dans les artefacts du workflow.
+4. Déploie sur GitHub Pages le dossier `.output/public` qui vient d'être testé.
+
+Sur une pull request, seuls la génération et les tests sont exécutés.
 
 La page 404 est générée à partir de `error.vue` : Nuxt produit toujours `/404.html` comme une coquille vide remplie en JavaScript, la route `/404` est donc rendue côté serveur puis écrite dans `404.html` via le hook Nitro `prerender:generate` (voir `nuxt.config.ts`).
 
@@ -137,3 +163,4 @@ La page 404 est générée à partir de `error.vue` : Nuxt produit toujours `/40
 - 🌐 [Portfolio Live](https://portfolio-deniz.me/)
 - 💼 [LinkedIn](https://www.linkedin.com/in/deniz-ok/)
 - 💻 [GitHub](https://github.com/Deniz09OK)
+- 🦊 [GitLab](https://gitlab.com/Deniz09OK)
