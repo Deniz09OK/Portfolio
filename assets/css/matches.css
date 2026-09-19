@@ -187,6 +187,7 @@ html.light .match::before { color: var(--accent-soft); opacity: 0.7; }
   max-width: 56ch;
   margin-bottom: 28px;
 }
+.match-links { display: flex; flex-wrap: wrap; gap: 12px; }
 .match-link {
   display: inline-flex;
   align-items: center;

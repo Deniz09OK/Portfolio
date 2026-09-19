@@ -79,25 +79,27 @@ const labels = computed(() => {
             <div class="match-verdict">{{ labels.verdict }} — {{ p.verdict }}</div>
             <p class="match-desc">{{ p.desc }}</p>
 
-            <a
-              v-if="p.link"
-              class="match-link"
-              :href="p.link"
-              target="_blank"
-              rel="noopener"
-            >
-              {{ labels.link }} <span>↗</span>
-            </a>
-            <a
-              v-if="p.demo"
-              class="match-link"
-              :href="p.demo"
-              target="_blank"
-              rel="noopener"
-            >
-              {{ labels.demo }} <span>↗</span>
-            </a>
-            <span v-else class="match-link-locked">🔒 {{ labels.locked }}</span>
+            <div class="match-links">
+              <a
+                v-if="p.link"
+                class="match-link"
+                :href="p.link"
+                target="_blank"
+                rel="noopener"
+              >
+                {{ labels.link }} <span>↗</span>
+              </a>
+              <span v-else class="match-link-locked">🔒 {{ labels.locked }}</span>
+              <a
+                v-if="p.demo"
+                class="match-link"
+                :href="p.demo"
+                target="_blank"
+                rel="noopener"
+              >
+                {{ labels.demo }} <span>↗</span>
+              </a>
+            </div>
           </div>
         </div>
       </article>
