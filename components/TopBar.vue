@@ -6,6 +6,7 @@ const { lang, setLang, supported } = useLang()
 const { isLight, toggle } = useTheme()
 
 const nav = computed(() => content.value.nav)
+const a11y = computed(() => content.value.a11y)
 
 const links = computed(() => [
   { href: '#roster', label: nav.value.roster },
@@ -71,12 +72,12 @@ onBeforeUnmount(() => {
       </span>
     </a>
 
-    <nav class="bar-nav" aria-label="primary">
+    <nav class="bar-nav" :aria-label="a11y.navPrimary">
       <a v-for="l in links" :key="l.href" :href="l.href">{{ l.label }}</a>
     </nav>
 
     <div class="bar-tools">
-      <div class="lang-pill" role="radiogroup" aria-label="Language">
+      <div class="lang-pill" role="radiogroup" :aria-label="a11y.language">
         <button
           v-for="code in supported"
           :key="code"
@@ -87,7 +88,7 @@ onBeforeUnmount(() => {
           {{ code.toUpperCase() }}
         </button>
       </div>
-      <button class="theme-btn" aria-label="Toggle theme" @click="toggle">
+      <button class="theme-btn" :aria-label="a11y.theme" @click="toggle">
         <span class="theme-sun">☀</span>
         <span class="theme-moon">☾</span>
       </button>
@@ -95,7 +96,7 @@ onBeforeUnmount(() => {
         class="nav-toggle"
         :class="{ 'is-open': mobileOpen }"
         type="button"
-        aria-label="Menu"
+        :aria-label="a11y.menu"
         aria-controls="mobileNav"
         :aria-expanded="mobileOpen"
         @click="toggleMobileNav"
@@ -108,7 +109,7 @@ onBeforeUnmount(() => {
       id="mobileNav"
       class="mobile-nav"
       :class="{ 'is-open': mobileOpen }"
-      aria-label="primary mobile"
+      :aria-label="a11y.navMobile"
     >
       <a v-for="l in links" :key="l.href" :href="l.href" @click="closeMobileNav">{{ l.label }}</a>
     </nav>

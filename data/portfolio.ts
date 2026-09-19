@@ -3,6 +3,8 @@ import type { Portfolio } from '~/types/portfolio'
 
 export const portfolio: Portfolio = {
   fr: {    nav: { roster: "Fiche", matches: "Card de la saison", career: "Saisons jouées", drills: "Entraînement quotidien", off: "Hors du clavier", languages: "Trois langues", contact: "Sifflet final" },
+    a11y: { navPrimary: "Navigation principale", navMobile: "Navigation mobile", language: "Langue", theme: "Changer de thème", menu: "Menu", legend: "Légende" },
+    ticker: ["LIVE", "·", "PORTFOLIO 2026", "·", "MSc CYBERSÉCURITÉ & CLOUD", "·", "EPITECH NANCY", "·", "ALTERNANCE QUALITEST", "·", "TRILINGUE FR/EN/TR", "·"],
 
     hero: {
       number: "619",
@@ -10,14 +12,8 @@ export const portfolio: Portfolio = {
       name2: "OK",
       position: "CYBERSÉCURITÉ & CLOUD",
       team: "QUALITEST × EPITECH NANCY",
-      bio: "Passionné par la Cybersécurité et les infrastructures Cloud, je suis actuellement en MSc à Epitech Nancy. Mon alternance chez Qualitest me permet de consolider mes bases techniques à travers la gestion de bases de données, l'analyse de données et l'automatisation de tâches grâce au scripting (PowerShell, PHP, Bash). Mes domaines de focus : Cybersécurité (protection des données et analyse de vulnérabilités), Cloud (déploiement et sécurisation d'environnements dématérialisés), Infrastructure (maintenance système et réseau au quotidien). Je suis constamment à la recherche de nouveaux défis techniques pour allier sécurité et performance.",
+      bio: "Passionné par la Cybersécurité et les infrastructures Cloud, je suis actuellement en MSc à Epitech Nancy. Mon alternance chez Qualitest me permet de consolider mes bases techniques à travers la gestion de bases de données, l’analyse de données et l’automatisation de tâches grâce au scripting (PowerShell, PHP, Bash). Mes domaines de prédilection : Cybersécurité (protection des données et analyse de vulnérabilités), Cloud (déploiement et sécurisation d’environnements dématérialisés), Infrastructure (maintenance système et réseau au quotidien). Je suis constamment à la recherche de nouveaux défis techniques pour allier sécurité et performance.",
       kanji: "戦",
-      stats: [
-        { label: "MATCHS JOUÉS", value: "11", sub: "projets livrés" },
-        { label: "EXPÉRIENCES", value: "07", sub: "stages, jobs, alternance" },
-        { label: "LANGUES OPS", value: "07", sub: "Py · Bash · PHP · JS · C · Java · PS" },
-        { label: "OS MAÎTRISÉS", value: "05", sub: "Debian · *BSD · Win" }
-      ],
       tale: [
         { k: "BASE", v: "Jarville-la-Malgrange · FR" },
         { k: "DRAFT", v: "Epitech Nancy · Promo 2027" },
@@ -33,17 +29,17 @@ export const portfolio: Portfolio = {
       sub: "Onze matchs joués. Onze façons de gagner."
     },
     projects: [
-      { idx: "01", name: "CIA — Infrastructure hybride Proxmox", kanji: "要塞", type: "Infrastructure cloud hybride", stack: "PROXMOX · PFSENSE · OPENVPN · NETBOX · ELASTICSEARCH", year: "2026", opponent: "SITES ISOLÉS ET EXPOSÉS", verdict: "INFRA HYBRIDE SÉCURISÉE", desc: "Conception, déploiement et sécurisation d'une infrastructure hybride sur deux sites Proxmox (on-prem et distant) : VPN site-à-site OpenVPN, pare-feu pfSense de chaque côté avec coupure d'urgence, bastion pour l'accès externe, IPAM NetBox mis à jour automatiquement, logs centralisés dans Elasticsearch, DNS forwarding entre sites et site web interne. Déploiement en IaC, runbooks et PRA, architecture prête pour un troisième site.", link: null },
-      { idx: "02", name: "Veille DevSecOps IA", kanji: "視", type: "Veille technologique", stack: "PYTHON · DEVSECOPS · IA", year: "2026", opponent: "FAILLES IGNORÉES", verdict: "SÉCURITÉ ANTICIPÉE", desc: "Ressources et scripts autour de l'intégration de l'Intelligence Artificielle dans les processus et la culture DevSecOps.", link: "https://github.com/Deniz09OK/veille-devsecops-ia" },
-      { idx: "03", name: "MediSync", kanji: "癒", type: "Plateforme de santé", stack: "VUE.JS · SANTÉ", year: "2025-2026", opponent: "SUIVI COMPLEXE", verdict: "DONNÉES OBJECTIVES", desc: "Plateforme de santé connectée reliant l'observance médicamenteuse au vécu réel du patient pour offrir une prise en charge médicale personnalisée.", link: "https://github.com/Deniz09OK/MediSync" },
-      { idx: "04", name: "NSA — Network Security", kanji: "結界", type: "Infrastructure réseau", stack: "OPENBSD · FREEBSD", year: "2026", opponent: "RÉSEAU NON SEGMENTÉ", verdict: "PASSERELLE SÉCURISÉE", desc: "Infrastructure réseau sécurisée sous OpenBSD et FreeBSD. Configuration d'une passerelle segmentant trois réseaux privés.", link: null },
-      { idx: "05", name: "Linux System Inventory", kanji: "監査", type: "Outil système", stack: "PYTHON · LINUX · VAGRANT", year: "2026", opponent: "PARC LINUX HÉTÉROGÈNE", verdict: "AUDIT AUTOMATISÉ", desc: "Outil d'inventaire système pour Linux automatisant la collecte d'informations matérielles et logicielles. Génère un rapport exploitable du parc.", link: "https://github.com/Deniz09OK/Linux-System-Inventory-Tool" },
-      { idx: "06", name: "Portfolio", kanji: "書庫", type: "Site personnel", stack: "NUXT · VUE · TAILWIND", year: "2025-2026", opponent: "PAGE BLANCHE", verdict: "VITRINE ÉVOLUTIVE", desc: "Design éditorial mêlant cybersécurité et culture sportive/japonaise. Storytelling au scroll, multilingue FR/EN/TR, dark & light, fiche joueur en hero.", link: "https://github.com/Deniz09OK/Portfolio" },
-      { idx: "07", name: "GoCrew", kanji: "旅", type: "Application web", stack: "JAVASCRIPT · WEB", year: "2025", opponent: "ORGANISATION CHAOTIQUE", verdict: "VOYAGE CENTRALISÉ", desc: "Application web collaborative (Pré-MSc Epitech). Centralise l'organisation de voyages en groupe dans une interface unique et intuitive.", link: "https://github.com/Deniz09OK/GoCrew" },
-      { idx: "08", name: "AI-Morpion", kanji: "戦略", type: "Jeu · IA", stack: "PYTHON · MINIMAX · ALPHA-BETA", year: "2025", opponent: "JOUEUR HUMAIN", verdict: "IA INVINCIBLE", desc: "Version moderne du Tic-Tac-Toe avec une IA avancée utilisant l'algorithme Minimax. Élagage alpha-beta : l'IA ne perd jamais.", link: "https://github.com/Deniz09OK/AI-Morpion" },
+      { idx: "01", name: "CIA — Infrastructure hybride Proxmox", kanji: "要塞", type: "Infrastructure cloud hybride", stack: "PROXMOX · PFSENSE · OPENVPN · NETBOX · ELASTICSEARCH", year: "2026", opponent: "SITES ISOLÉS ET EXPOSÉS", verdict: "INFRA HYBRIDE SÉCURISÉE", desc: "Conception, déploiement et sécurisation d’une infrastructure hybride sur deux sites Proxmox (on-prem et distant) : VPN site à site OpenVPN, pare-feu pfSense de chaque côté avec coupure d’urgence, bastion pour l’accès externe, IPAM NetBox mis à jour automatiquement, logs centralisés dans Elasticsearch, DNS forwarding entre sites et site web interne. Déploiement en IaC, runbooks et PRA, architecture prête pour un troisième site.", link: null },
+      { idx: "02", name: "Veille DevSecOps IA", kanji: "視", type: "Veille technologique", stack: "PYTHON · DEVSECOPS · IA", year: "2026", opponent: "FAILLES IGNORÉES", verdict: "SÉCURITÉ ANTICIPÉE", desc: "Ressources et scripts autour de l’intégration de l’intelligence artificielle dans les processus et la culture DevSecOps.", link: "https://github.com/Deniz09OK/veille-devsecops-ia" },
+      { idx: "03", name: "MediSync", kanji: "癒", type: "Plateforme de santé", stack: "VUE.JS · SANTÉ", year: "2025-2026", opponent: "SUIVI COMPLEXE", verdict: "DONNÉES OBJECTIVES", desc: "Plateforme de santé connectée reliant l’observance médicamenteuse au vécu réel du patient pour offrir une prise en charge médicale personnalisée.", link: "https://github.com/Deniz09OK/MediSync", demo: "https://deniz09ok.github.io/MediSync/" },
+      { idx: "04", name: "NSA — Network Security", kanji: "結界", type: "Infrastructure réseau", stack: "OPENBSD · FREEBSD", year: "2026", opponent: "RÉSEAU NON SEGMENTÉ", verdict: "PASSERELLE SÉCURISÉE", desc: "Infrastructure réseau sécurisée sous OpenBSD et FreeBSD. Configuration d’une passerelle segmentant trois réseaux privés.", link: null },
+      { idx: "05", name: "Linux System Inventory", kanji: "監査", type: "Outil système", stack: "PYTHON · LINUX · VAGRANT", year: "2026", opponent: "PARC LINUX HÉTÉROGÈNE", verdict: "AUDIT AUTOMATISÉ", desc: "Outil d’inventaire système pour Linux automatisant la collecte d’informations matérielles et logicielles. Génère un rapport exploitable sur le parc.", link: "https://github.com/Deniz09OK/Linux-System-Inventory-Tool" },
+      { idx: "06", name: "Portfolio", kanji: "書庫", type: "Site personnel", stack: "NUXT · VUE · TYPESCRIPT", year: "2025-2026", opponent: "PAGE BLANCHE", verdict: "VITRINE ÉVOLUTIVE", desc: "Design éditorial mêlant cybersécurité et culture sportive/japonaise. Storytelling au scroll, multilingue FR/EN/TR, dark & light, fiche joueur en hero.", link: "https://github.com/Deniz09OK/Portfolio" },
+      { idx: "07", name: "GoCrew", kanji: "旅", type: "Application web", stack: "JAVASCRIPT · WEB", year: "2025", opponent: "ORGANISATION CHAOTIQUE", verdict: "VOYAGE CENTRALISÉ", desc: "Application web collaborative (Pré-MSc Epitech). Centralise l’organisation de voyages en groupe dans une interface unique et intuitive.", link: "https://github.com/Deniz09OK/GoCrew" },
+      { idx: "08", name: "AI-Morpion", kanji: "戦略", type: "Jeu · IA", stack: "PYTHON · MINIMAX · ALPHA-BETA", year: "2025", opponent: "JOUEUR HUMAIN", verdict: "IA INVINCIBLE", desc: "Version moderne du Tic-Tac-Toe avec une IA avancée utilisant l’algorithme Minimax. Élagage alpha-bêta : l’IA joue de façon optimale.", link: "https://github.com/Deniz09OK/AI-Morpion" },
       { idx: "09", name: "CultureQuiz", kanji: "知識", type: "App desktop", stack: "PYTHON · TKINTER · GUI", year: "2025", opponent: "ENNUI", verdict: "QUIZ INTERACTIF", desc: "Application de quiz interactif en Python avec interface Tkinter. Base de questions extensible, scoring, timer par manche.", link: "https://github.com/Deniz09OK/CultureQuiz" },
-      { idx: "10", name: "Popeye", kanji: "船団", type: "Conteneurisation", stack: "DOCKER · MICROSERVICES", year: "2025", opponent: "MONOLITHE WEB", verdict: "ARCHITECTURE MODULAIRE", desc: "Projet de conteneurisation avec Docker. Application web complète en architecture microservices, communication inter-services et persistance.", link: "https://github.com/Deniz09OK/Popeye" },
-      { idx: "11", name: "EpiQuest", kanji: "冒険", type: "Jeu vidéo 2D", stack: "JAVA · LIBGDX · GAMEDEV", year: "2024", opponent: "MOTEUR VIDE", verdict: "PLATFORMEUR JOUABLE", desc: "Jeu d'aventure 2D développé avec Java et LibGDX. Système de combat, dialogues, progression. Projet équipe.", link: "https://github.com/Deniz09OK/Projet-Jeu-Java" }
+      { idx: "10", name: "Popeye", kanji: "船団", type: "Conteneurisation", stack: "DOCKER · FLASK · NODE.JS · POSTGRESQL", year: "2025", opponent: "MONOLITHE WEB", verdict: "ARCHITECTURE MODULAIRE", desc: "Projet de conteneurisation avec Docker. Application web complète en architecture microservices, communication inter-services et persistance.", link: "https://github.com/Deniz09OK/Popeye" },
+      { idx: "11", name: "EpiQuest", kanji: "冒険", type: "Jeu vidéo 2D", stack: "JAVA · LIBGDX · GAMEDEV", year: "2024", opponent: "MOTEUR VIDE", verdict: "AVENTURE JOUABLE", desc: "Jeu d’aventure 2D développé avec Java et LibGDX. Système de combat, dialogues, progression. Projet en équipe.", link: "https://github.com/Deniz09OK/Projet-Jeu-Java" }
     ],
     career: {
       title: "Saisons jouées",
@@ -56,7 +52,7 @@ export const portfolio: Portfolio = {
       { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Bac Pro SNIR", desc: "Bases réseau & systèmes · Virtualisation Debian" }
     ],
     exp: [
-      { year: "02/2025 — ...", company: "QUALITEST", title: "Assistant informatique (alternance)", desc: "Questionnaires & reporting (Sphinx, IQ3, Dataviv') · BDD & analyse de données · Automatisation (extraction, transferts Dropbox, détection d'anomalies)", current: true },
+      { year: "02/2025 — aujourd’hui", company: "QUALITEST", title: "Assistant informatique (alternance)", desc: "Questionnaires & reporting (Sphinx, IQ3, Dataviv') · BDD & analyse de données · Automatisation (extraction, transferts Dropbox, détection d’anomalies)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Équipier polyvalent", desc: "Service salle & drive · Relation client" },
       { year: "03/2023 — 12/2023", company: "1ER RSMV · MONTIGNY-LÈS-METZ", title: "Volontaire stagiaire", desc: "Discipline & cohésion · SST · Médaille du mérite" },
       { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "Salle informatique (stage)", desc: "Déploiement postes · Adressage IP pour BTS" },
@@ -66,10 +62,10 @@ export const portfolio: Portfolio = {
     ],
     drills: {
       title: "Entraînement quotidien",
-      sub: "Deux statuts, pas de liste gonflée : titulaire quand c'est pratiqué pour de vrai, remplaçant quand c'est seulement vu en cours.",
-      legend: { starter: "TITULAIRE — utilisé sur un projet livré, en alternance ou dans une room TryHackMe dédiée", bench: "REMPLAÇANT — vu en cours ou en lab, sans pratique dédiée, ou il y a plusieurs saisons" },
+      sub: "Deux statuts, pas de liste gonflée : titulaire quand c’est pratiqué pour de vrai, remplaçant quand c’est seulement vu en cours.",
+      legend: { starter: "TITULAIRE — utilisé sur un projet livré, en alternance ou dans une room TryHackMe dédiée", bench: "REMPLAÇANT — vu en cours ou en lab, sans pratique dédiée, ou pratiqué il y a plusieurs saisons" },
       groups: [
-        { label: "INFRASTRUCTURE & RÉSEAU", pos: "GARDIEN", items: [{ name: "Proxmox VE", tier: "starter" }, { name: "pfSense", tier: "starter" }, { name: "OpenVPN", tier: "starter" }, { name: "NetBox (IPAM)", tier: "starter" }, { name: "OpenBSD", tier: "starter" }, { name: "FreeBSD", tier: "starter" }, { name: "Debian / Ubuntu", tier: "starter" }, { name: "Kali Linux", tier: "starter" }, { name: "Windows", tier: "starter" }, { name: "Vagrant", tier: "starter" }, { name: "VLAN, routage, switches", tier: "bench" }] },
+        { label: "INFRASTRUCTURE & RÉSEAU", pos: "GARDIEN", items: [{ name: "Proxmox VE", tier: "starter" }, { name: "pfSense", tier: "starter" }, { name: "OpenVPN", tier: "starter" }, { name: "NetBox (IPAM)", tier: "starter" }, { name: "OpenBSD", tier: "starter" }, { name: "FreeBSD", tier: "starter" }, { name: "Debian / Ubuntu", tier: "starter" }, { name: "Kali Linux", tier: "starter" }, { name: "Windows", tier: "starter" }, { name: "Vagrant", tier: "starter" }, { name: "VLAN, routage, commutateurs", tier: "bench" }] },
         { label: "SÉCURITÉ OFFENSIVE", pos: "LIBÉRO", items: [{ name: "Élévation de privilèges Linux", tier: "starter" }, { name: "Reverse & bind shells", tier: "starter" }, { name: "Énumération web & sous-domaines", tier: "starter" }, { name: "Vulnérabilités web (SSRF)", tier: "starter" }, { name: "John the Ripper", tier: "starter" }, { name: "Gobuster", tier: "starter" }, { name: "Nmap", tier: "starter" }, { name: "Burp Suite", tier: "starter" }, { name: "Metasploit", tier: "starter" }, { name: "Hydra", tier: "starter" }], proof: { label: "Profil TryHackMe · 32 rooms · Top 15 %", url: "https://tryhackme.com/p/Deniz23Ok" } },
         { label: "SÉCURITÉ DÉFENSIVE & OBSERVABILITÉ", pos: "STOPPEUR", items: [{ name: "Elasticsearch", tier: "starter" }, { name: "Wazuh (SIEM)", tier: "starter" }, { name: "Splunk", tier: "starter" }, { name: "Sysmon", tier: "starter" }, { name: "Hashing & cryptographie", tier: "starter" }, { name: "Fondamentaux SOC & SIEM", tier: "starter" }, { name: "Wireshark", tier: "bench" }] },
         { label: "AUTOMATISATION & DEVOPS", pos: "MILIEU", items: [{ name: "Docker / Compose", tier: "starter" }, { name: "GitHub Actions", tier: "starter" }, { name: "GitLab CI/CD", tier: "starter" }, { name: "Bash", tier: "starter" }, { name: "PowerShell", tier: "starter" }, { name: "pytest", tier: "starter" }, { name: "Playwright", tier: "starter" }, { name: "Jenkins", tier: "starter" }, { name: "Kubernetes", tier: "bench" }, { name: "Traefik", tier: "bench" }] },
@@ -81,13 +77,13 @@ export const portfolio: Portfolio = {
     off: {
       title: "Hors du clavier",
       sub: "Quatre disciplines qui me façonnent. Quatre écoles de discipline, de jeu et de récit.",
-      cta: "Lire l'histoire",
+      cta: "Lire l’histoire",
       close: "Fermer",
       items: [
-        { id: "japan", kanji: "日本", roman: "NIPPON", label: "Japon", color: "#e63946", role: "FORME & SILENCE", desc: "Animes, mangas, langue, philosophie. La façon dont la forme structure le sens.", story: "Ma passion pour le Japon vient des animes et mangas que j'ai pu lire et voir — Naruto, Bleach, ou encore Fullmetal Alchemist : Brotherhood.\n\nMais aussi de ses paysages, de sa culture, de ses temples et de ses traditions." },
-        { id: "wrestle", kanji: "格闘", roman: "PURORESU", label: "Catch", color: "#ffb800", role: "STORYTELLING BRUT", desc: "WWE en premier, AEW depuis peu. L'art de raconter une histoire avec un corps, un personnage, un public.", story: "J'ai commencé à regarder le catch pendant la Ruthless Aggression Era.\n\nRey Mysterio en premier, pour son style de catch — vif, aérien, lisible.\n\nEt après, ce fut The Deadman, The Undertaker, et le Heartbreak Kid, Shawn Michaels." },
-        { id: "music", kanji: "音楽", roman: "ONGAKU", label: "Musique", color: "#ff7700", role: "ÉNERGIE & RYTHME", desc: "Rock, rap français, metal, synth japonais. Le mélange large, du clavier aux écouteurs.", story: "Je suis un fan absolu de rap et de rock.\n\nEt comme je sais que vous voulez que je me mouille un peu, voici mon top 3 :\n- « San » — Orelsan\n- « Breaking the Habit » — Linkin Park\n- « Sign » — Flow" },
-        { id: "myth", kanji: "神話", roman: "SHINWA", label: "Mythologies", color: "#9e7bff", role: "RÉCITS FONDATEURS", desc: "Grecque, viking, turque, romaine, aztèque, inca, maya, japonaise. Ce que les humains racontent pour tenir.", story: "Petite histoire : avant de vouloir travailler dans l'IT, et plus précisément dans la cyber, je voulais devenir archéologue.\n\nPour faire des découvertes historiques, et pour prouver que certains mythes ont vraiment existé." }
+        { id: "japan", kanji: "日本", roman: "NIPPON", label: "Japon", color: "#e63946", role: "FORME & SILENCE", desc: "Animes, mangas, langue, philosophie. La façon dont la forme structure le sens.", story: "Ma passion pour le Japon vient des mangas que j’ai lus et des animes que j’ai vus — Naruto, Bleach, ou encore Fullmetal Alchemist: Brotherhood.\n\nMais aussi de ses paysages, de sa culture, de ses temples et de ses traditions." },
+        { id: "wrestle", kanji: "格闘", roman: "PURORESU", label: "Catch", color: "#ffb800", role: "STORYTELLING BRUT", desc: "WWE en premier, AEW depuis peu. L’art de raconter une histoire avec un corps, un personnage, un public.", story: "J’ai commencé à regarder le catch pendant la Ruthless Aggression Era.\n\nRey Mysterio en premier, pour son style de catch — vif, aérien, lisible.\n\nEt après, ce fut The Deadman, The Undertaker, et le Heartbreak Kid, Shawn Michaels." },
+        { id: "music", kanji: "音楽", roman: "ONGAKU", label: "Musique", color: "#ff7700", role: "ÉNERGIE & RYTHME", desc: "Rock, rap français, metal, synth japonais. Le mélange large, du clavier aux écouteurs.", story: "Je suis un fan absolu de rap et de rock.\n\nEt comme je sais que vous voulez que je me mouille un peu, voici mon top 3 :\n- « San » — Orelsan\n- « Breaking the Habit » — Linkin Park\n- « Sign » — Flow" },
+        { id: "myth", kanji: "神話", roman: "SHINWA", label: "Mythologies", color: "#9e7bff", role: "RÉCITS FONDATEURS", desc: "Grecque, viking, turque, romaine, aztèque, inca, maya, japonaise. Ce que les humains racontent pour tenir.", story: "Petite histoire : avant de vouloir travailler dans l’IT, et plus précisément dans la cyber, je voulais devenir archéologue.\n\nPour faire des découvertes historiques, et pour prouver que certains mythes ont vraiment existé." }
       ]
     },
     languages: {
@@ -100,27 +96,23 @@ export const portfolio: Portfolio = {
     },
     contact: {
       title: "Sifflet final.",
-      lead: "Parler cyber, projet ou juste dire bonjour ? Les vestiaires sont ouverts.",
+      lead: "Parler cyber, projet ou juste dire bonjour ? Les vestiaires sont ouverts.",
       email: "deniz.ok@epitech.eu"
     }
   },
 
   en: {
     nav: { roster: "Roster", matches: "Season card", career: "Seasons played", drills: "Daily training", off: "Off the keyboard", languages: "Three languages", contact: "Final whistle" },
+    a11y: { navPrimary: "Primary navigation", navMobile: "Mobile navigation", language: "Language", theme: "Toggle theme", menu: "Menu", legend: "Legend" },
+    ticker: ["LIVE", "·", "PORTFOLIO 2026", "·", "MSc CYBERSECURITY & CLOUD", "·", "EPITECH NANCY", "·", "QUALITEST WORK-STUDY", "·", "TRILINGUAL FR/EN/TR", "·"],
     hero: {
       number: "619",
       name1: "DENIZ",
       name2: "OK",
       position: "CYBERSECURITY & CLOUD",
       team: "QUALITEST × EPITECH NANCY",
-      bio: "Passionate about Cybersecurity and Cloud infrastructure, I am currently pursuing an MSc at Epitech Nancy. My work-study position at Qualitest allows me to strengthen my technical foundations through database management, data analysis, and task automation via scripting (PowerShell, PHP, Bash). My focus areas: Cybersecurity (data protection and vulnerability analysis), Cloud (deployment and securing of dematerialised environments), Infrastructure (day-to-day system and network maintenance). I am constantly seeking new technical challenges to combine security and performance.",
+      bio: "Passionate about Cybersecurity and Cloud infrastructure, I am currently pursuing an MSc at Epitech Nancy. My work-study position at Qualitest allows me to strengthen my technical foundations through database management, data analysis, and task automation via scripting (PowerShell, PHP, Bash). My focus areas: Cybersecurity (data protection and vulnerability analysis), Cloud (deploying and securing cloud environments), Infrastructure (day-to-day system and network maintenance). I am constantly seeking new technical challenges to combine security and performance.",
       kanji: "戦",
-      stats: [
-        { label: "MATCHES PLAYED", value: "11", sub: "shipped projects" },
-        { label: "EXPERIENCES", value: "07", sub: "internships, jobs, work-study" },
-        { label: "OPS LANGUAGES", value: "07", sub: "Py · Bash · PHP · JS · C · Java · PS" },
-        { label: "OS MASTERED", value: "05", sub: "Debian · *BSD · Win" }
-      ],
       tale: [
         { k: "BASE", v: "Jarville-la-Malgrange · FR" },
         { k: "DRAFT", v: "Epitech Nancy · Class of 2027" },
@@ -133,29 +125,29 @@ export const portfolio: Portfolio = {
     },
     matches: { title: "Season card", sub: "Eleven matches played. Eleven ways to win." },
     projects: [
-      { idx: "01", name: "CIA — Proxmox Hybrid Infrastructure", kanji: "要塞", type: "Hybrid cloud infrastructure", stack: "PROXMOX · PFSENSE · OPENVPN · NETBOX · ELASTICSEARCH", year: "2026", opponent: "ISOLATED, EXPOSED SITES", verdict: "SECURED HYBRID INFRA", desc: "Design, deployment and hardening of a hybrid infrastructure across two Proxmox sites (on-prem and remote): OpenVPN site-to-site VPN, pfSense firewalls on both sides with an emergency kill switch, bastion host for external access, auto-updated NetBox IPAM, centralised logs in Elasticsearch, cross-site DNS forwarding and an internal-only website. Deployed as IaC, with runbooks, a DRP and an architecture ready for a third site.", link: null },
+      { idx: "01", name: "CIA — Proxmox Hybrid Infrastructure", kanji: "要塞", type: "Hybrid cloud infrastructure", stack: "PROXMOX · PFSENSE · OPENVPN · NETBOX · ELASTICSEARCH", year: "2026", opponent: "ISOLATED, EXPOSED SITES", verdict: "SECURED HYBRID INFRA", desc: "Design, deployment and hardening of a hybrid infrastructure across two Proxmox sites (on-prem and remote): OpenVPN site-to-site tunnel, pfSense firewalls on both sides with an emergency kill switch, bastion host for external access, auto-updated NetBox IPAM, centralised logs in Elasticsearch, cross-site DNS forwarding and an internal-only website. Deployed as IaC, with runbooks, a DRP and an architecture ready for a third site.", link: null },
       { idx: "02", name: "Veille DevSecOps IA", kanji: "視", type: "Tech watch", stack: "PYTHON · DEVSECOPS · AI", year: "2026", opponent: "IGNORED FLAWS", verdict: "ANTICIPATED SECURITY", desc: "Resources and scripts focused on integrating Artificial Intelligence into DevSecOps processes and culture.", link: "https://github.com/Deniz09OK/veille-devsecops-ia" },
-      { idx: "03", name: "MediSync", kanji: "癒", type: "Health platform", stack: "VUE.JS · HEALTH", year: "2025-2026", opponent: "COMPLEX FOLLOW-UP", verdict: "OBJECTIVE DATA", desc: "Connected health platform linking medication adherence to the patient's real daily experience, to deliver personalised medical care.", link: "https://github.com/Deniz09OK/MediSync" },
+      { idx: "03", name: "MediSync", kanji: "癒", type: "Health platform", stack: "VUE.JS · HEALTH", year: "2025-2026", opponent: "COMPLEX FOLLOW-UP", verdict: "OBJECTIVE DATA", desc: "Connected health platform linking medication adherence to the patient's real daily experience, to deliver personalised medical care.", link: "https://github.com/Deniz09OK/MediSync", demo: "https://deniz09ok.github.io/MediSync/" },
       { idx: "04", name: "NSA — Network Security", kanji: "結界", type: "Network infrastructure", stack: "OPENBSD · FREEBSD", year: "2026", opponent: "FLAT NETWORK", verdict: "SECURE GATEWAY", desc: "Secure network infrastructure on OpenBSD and FreeBSD. Configuration of a gateway segmenting three private networks.", link: null },
       { idx: "05", name: "Linux System Inventory", kanji: "監査", type: "System tool", stack: "PYTHON · LINUX · VAGRANT", year: "2026", opponent: "MIXED LINUX FLEET", verdict: "AUTOMATED AUDIT", desc: "Linux system inventory tool automating hardware and software information collection. Generates an actionable fleet report.", link: "https://github.com/Deniz09OK/Linux-System-Inventory-Tool" },
-      { idx: "06", name: "Portfolio", kanji: "書庫", type: "Personal site", stack: "NUXT · VUE · TAILWIND", year: "2025-2026", opponent: "BLANK PAGE", verdict: "LIVING SHOWCASE", desc: "Editorial design blending cybersecurity with sports and Japanese culture. Scroll storytelling, FR/EN/TR i18n, dark & light, player-card hero.", link: "https://github.com/Deniz09OK/Portfolio" },
+      { idx: "06", name: "Portfolio", kanji: "書庫", type: "Personal site", stack: "NUXT · VUE · TYPESCRIPT", year: "2025-2026", opponent: "BLANK PAGE", verdict: "LIVING SHOWCASE", desc: "Editorial design blending cybersecurity with sports and Japanese culture. Scroll storytelling, FR/EN/TR i18n, dark & light, player-card hero.", link: "https://github.com/Deniz09OK/Portfolio" },
       { idx: "07", name: "GoCrew", kanji: "旅", type: "Web application", stack: "JAVASCRIPT · WEB", year: "2025", opponent: "CHAOTIC PLANNING", verdict: "CENTRALISED TRIP", desc: "Collaborative web app (Epitech Pre-MSc). Centralises group trip planning in a single, intuitive interface.", link: "https://github.com/Deniz09OK/GoCrew" },
-      { idx: "08", name: "AI-Morpion", kanji: "戦略", type: "Game · AI", stack: "PYTHON · MINIMAX · ALPHA-BETA", year: "2025", opponent: "HUMAN PLAYER", verdict: "UNBEATABLE AI", desc: "Modern take on Tic-Tac-Toe with an advanced AI powered by the Minimax algorithm. Alpha-beta pruning: the AI never loses.", link: "https://github.com/Deniz09OK/AI-Morpion" },
+      { idx: "08", name: "AI-Morpion", kanji: "戦略", type: "Game · AI", stack: "PYTHON · MINIMAX · ALPHA-BETA", year: "2025", opponent: "HUMAN PLAYER", verdict: "UNBEATABLE AI", desc: "Modern take on Tic-Tac-Toe with an advanced AI powered by the Minimax algorithm. Alpha-beta pruning: the AI plays optimally.", link: "https://github.com/Deniz09OK/AI-Morpion" },
       { idx: "09", name: "CultureQuiz", kanji: "知識", type: "Desktop app", stack: "PYTHON · TKINTER · GUI", year: "2025", opponent: "BOREDOM", verdict: "INTERACTIVE QUIZ", desc: "Interactive quiz application in Python with a Tkinter interface. Extensible question bank, scoring, per-round timer.", link: "https://github.com/Deniz09OK/CultureQuiz" },
-      { idx: "10", name: "Popeye", kanji: "船団", type: "Containerisation", stack: "DOCKER · MICROSERVICES", year: "2025", opponent: "WEB MONOLITH", verdict: "MODULAR ARCHITECTURE", desc: "Docker containerisation project. Full web application in a microservices architecture, with inter-service communication and persistence.", link: "https://github.com/Deniz09OK/Popeye" },
-      { idx: "11", name: "EpiQuest", kanji: "冒険", type: "2D video game", stack: "JAVA · LIBGDX · GAMEDEV", year: "2024", opponent: "EMPTY ENGINE", verdict: "PLAYABLE PLATFORMER", desc: "2D adventure game built with Java and LibGDX. Combat system, dialogues, progression. Team project.", link: "https://github.com/Deniz09OK/Projet-Jeu-Java" }
+      { idx: "10", name: "Popeye", kanji: "船団", type: "Containerisation", stack: "DOCKER · FLASK · NODE.JS · POSTGRESQL", year: "2025", opponent: "WEB MONOLITH", verdict: "MODULAR ARCHITECTURE", desc: "Docker containerisation project. Full web application in a microservices architecture, with inter-service communication and persistence.", link: "https://github.com/Deniz09OK/Popeye" },
+      { idx: "11", name: "EpiQuest", kanji: "冒険", type: "2D video game", stack: "JAVA · LIBGDX · GAMEDEV", year: "2024", opponent: "EMPTY ENGINE", verdict: "PLAYABLE ADVENTURE", desc: "2D adventure game built with Java and LibGDX. Combat system, dialogues, progression. Team project.", link: "https://github.com/Deniz09OK/Projet-Jeu-Java" }
     ],
     career: { title: "Seasons played", eduLabel: "ACADEMY", expLabel: "FIELD" },
     edu: [
       { year: "2024 — 2027", school: "EPITECH NANCY", title: "MSc Pro — Cybersecurity & Cloud", desc: "Active pedagogy · Debian/OpenBSD/FreeBSD · Offensive & defensive security", current: true },
       { year: "2020 — 2022", school: "CHARLES DE FOUCAULD", title: "BTS SNIR", desc: "C/C++, Python · VLAN, routing, subnets · Mageia" },
-      { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Vocational Baccalaureate SNIR", desc: "Network & system foundations · Debian virtualization" }
+      { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Vocational Baccalaureate SNIR", desc: "Network & system foundations · Debian virtualisation" }
     ],
     exp: [
-      { year: "02/2025 — now", company: "QUALITEST", title: "IT Assistant (work-study)", desc: "Questionnaire & reporting (Sphinx, IQ3, Dataviv') · Database management & data analysis · Automated scripts (extraction, Dropbox transfers, anomaly detection)", current: true },
+      { year: "02/2025 — now", company: "QUALITEST", title: "IT Assistant (work-study)", desc: "Questionnaires & reporting (Sphinx, IQ3, Dataviv') · Database management & data analysis · Automated scripts (extraction, Dropbox transfers, anomaly detection)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Crew member", desc: "Front of house & drive · Customer service" },
       { year: "03/2023 — 12/2023", company: "1ST RSMV · MONTIGNY-LÈS-METZ", title: "Volunteer trainee", desc: "Discipline & teamwork · First-aid (SST) · Merit medal" },
-      { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "Computer room (intern)", desc: "Workstation rollout · IP addressing for BTS" },
+      { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "IT room support (internship)", desc: "Workstation rollout · IP addressing for BTS" },
       { year: "09/2019 — 10/2019", company: "SCIENCES PO NANCY", title: "IT maintenance & deployment (intern)", desc: "Staff & student support" },
       { year: "04/2019 — 05/2019", company: "LYCÉE HENRI LORITZ", title: "IT maintenance & deployment (intern)", desc: "Staff & student support" },
       { year: "01/2019 — 02/2019", company: "LYCÉE HENRI LORITZ", title: "IT maintenance & deployment (intern)", desc: "Staff & student support" }
@@ -182,8 +174,8 @@ export const portfolio: Portfolio = {
       items: [
         { id: "japan", kanji: "日本", roman: "NIPPON", label: "Japan", color: "#e63946", role: "FORM & SILENCE", desc: "Anime, manga, language, philosophy. How form shapes meaning.", story: "My passion for Japan started with the anime and manga I grew up reading and watching — Naruto, Bleach, Fullmetal Alchemist: Brotherhood.\n\nBut also its landscapes, its culture, its temples and its traditions." },
         { id: "wrestle", kanji: "格闘", roman: "PURORESU", label: "Wrestling", color: "#ffb800", role: "RAW STORYTELLING", desc: "WWE first, AEW lately. Telling a story with a body, a character, a crowd.", story: "I started watching wrestling during the Ruthless Aggression Era.\n\nRey Mysterio first, for his style — fast, aerial, readable.\n\nAnd after that, The Deadman, The Undertaker, and the Heartbreak Kid, Shawn Michaels." },
-        { id: "music", kanji: "音楽", roman: "ONGAKU", label: "Music", color: "#ff7700", role: "ENERGY & RHYTHM", desc: "Rock, French rap, metal, Japanese synth. Wide mix, from the keyboard to the headphones.", story: "I'm an absolute rap and rock fan.\n\nAnd since you want me to open up a bit, here's my personal top 3:\n- \"San\" — Orelsan\n- \"Breaking the Habit\" — Linkin Park\n- \"Sign\" — Flow" },
-        { id: "myth", kanji: "神話", roman: "SHINWA", label: "Mythologies", color: "#9e7bff", role: "FOUNDING NARRATIVES", desc: "Greek, Viking, Turkish, Roman, Aztec, Inca, Maya, Japanese. What humans tell to hold together.", story: "A small backstory: before wanting to work in IT — and more specifically in cybersecurity — I wanted to be an archaeologist.\n\nTo make historical discoveries, and to prove that some myths really did happen." }
+        { id: "music", kanji: "音楽", roman: "ONGAKU", label: "Music", color: "#ff7700", role: "ENERGY & RHYTHM", desc: "Rock, French rap, metal, Japanese synth. Wide mix, from the keyboard to the headphones.", story: "I'm an absolute rap and rock fan.\n\nAnd since you want me to open up a bit, here's my personal top 3:\n- “San” — Orelsan\n- “Breaking the Habit” — Linkin Park\n- “Sign” — Flow" },
+        { id: "myth", kanji: "神話", roman: "SHINWA", label: "Mythologies", color: "#9e7bff", role: "FOUNDING NARRATIVES", desc: "Greek, Viking, Turkish, Roman, Aztec, Inca, Maya, Japanese. What humans tell themselves to keep going.", story: "A little backstory: before wanting to work in IT — and more specifically in cybersecurity — I wanted to be an archaeologist.\n\nTo make historical discoveries, and to prove that some myths really did happen." }
       ]
     },
     languages: {
@@ -194,30 +186,26 @@ export const portfolio: Portfolio = {
         { code: "EN", flag: "EN", label: "English", level: "TOEIC 790 / 990" }
       ]
     },
-    contact: { title: "Final whistle.", lead: "Want to talk cyber, a project, or just say hi? Locker room is open.", email: "deniz.ok@epitech.eu" }
+    contact: { title: "Final whistle.", lead: "Want to talk cyber, a project, or just say hi? The locker room is open.", email: "deniz.ok@epitech.eu" }
   },
 
   tr: {
     nav: { roster: "Kadro", matches: "Sezon kartı", career: "Oynanan sezonlar", drills: "Günlük antrenman", off: "Klavyenin dışında", languages: "Üç dil", contact: "Son düdük" },
+    a11y: { navPrimary: "Ana gezinme", navMobile: "Mobil gezinme", language: "Dil", theme: "Temayı değiştir", menu: "Menü", legend: "Açıklama" },
+    ticker: ["CANLI", "·", "PORTFOLYO 2026", "·", "MSc SİBER GÜVENLİK & BULUT", "·", "EPITECH NANCY", "·", "QUALITEST DÖNÜŞÜMLÜ EĞİTİM", "·", "ÜÇ DİLLİ FR/EN/TR", "·"],
     hero: {
       number: "619",
       name1: "DENIZ",
       name2: "OK",
       position: "SİBER GÜVENLİK & BULUT",
       team: "QUALITEST × EPITECH NANCY",
-      bio: "Siber Güvenlik ve Bulut altyapılarına tutkuyla bağlı biri olarak, şu anda Epitech Nancy'de MSc eğitimime devam ediyorum. Qualitest'teki yarı zamanlı çalışmam, veritabanı yönetimi, veri analizi ve scripting (PowerShell, PHP, Bash) ile görev otomasyonu aracılığıyla teknik temellerimi güçlendirmeme olanak tanıyor. Odak alanlarım: Siber Güvenlik (veri koruma ve güvenlik açığı analizi), Bulut (sanallaştırılmış ortamların dağıtımı ve güvenliği), Altyapı (günlük sistem ve ağ bakımı). Güvenliği ve performansı bir araya getirecek yeni teknik meydan okumalar arıyorum.",
+      bio: "Siber Güvenlik ve Bulut altyapılarına tutkuyla bağlı biri olarak, şu anda Epitech Nancy'de MSc eğitimime devam ediyorum. Qualitest'teki dönüşümlü eğitim çalışmam, veritabanı yönetimi, veri analizi ve scripting (PowerShell, PHP, Bash) ile görev otomasyonu aracılığıyla teknik temellerimi güçlendirmeme olanak tanıyor. Odak alanlarım: Siber Güvenlik (veri koruma ve güvenlik açığı analizi), Bulut (sanallaştırılmış ortamların dağıtımı ve güvenliği), Altyapı (günlük sistem ve ağ bakımı). Güvenliği ve performansı bir araya getirecek yeni teknik zorlukları sürekli arıyorum.",
       kanji: "戦",
-      stats: [
-        { label: "OYNANAN MAÇ", value: "11", sub: "teslim proje" },
-        { label: "DENEYİMLER", value: "07", sub: "stajlar, işler, yarı zamanlı" },
-        { label: "OPS DİL", value: "07", sub: "Py · Bash · PHP · JS · C · Java · PS" },
-        { label: "OS HÂKİM", value: "05", sub: "Debian · *BSD · Win" }
-      ],
       tale: [
         { k: "ÜS", v: "Jarville-la-Malgrange · FR" },
         { k: "DRAFT", v: "Epitech Nancy · 2027 mezunu" },
-        { k: "SÖZLEŞME", v: "Yarı zamanlı — Qualitest" },
-        { k: "DURUM", v: "YARI ZAMANLI · QUALITEST + EPITECH" }
+        { k: "SÖZLEŞME", v: "Dönüşümlü eğitim — Qualitest" },
+        { k: "DURUM", v: "DÖNÜŞÜMLÜ EĞİTİM · QUALITEST + EPITECH" }
       ],
       cta1: "Kartı gör",
       cta2: "CV indir",
@@ -226,28 +214,28 @@ export const portfolio: Portfolio = {
     matches: { title: "Sezon kartı", sub: "On bir maç oynandı. On bir kazanma yolu." },
     projects: [
       { idx: "01", name: "CIA — Proxmox Hibrit Altyapı", kanji: "要塞", type: "Hibrit bulut altyapısı", stack: "PROXMOX · PFSENSE · OPENVPN · NETBOX · ELASTICSEARCH", year: "2026", opponent: "İZOLE VE AÇIKTA SİTELER", verdict: "GÜVENLİ HİBRİT ALTYAPI", desc: "İki Proxmox sitesi (yerinde ve uzak) üzerinde hibrit bir altyapının tasarımı, kurulumu ve güvenliğinin sağlanması: OpenVPN ile siteler arası VPN, her iki tarafta acil kesme özellikli pfSense güvenlik duvarları, dış erişim için bastion sunucusu, otomatik güncellenen NetBox IPAM, Elasticsearch'te merkezi log toplama, siteler arası DNS yönlendirme ve yalnızca iç ağdan erişilebilen web sitesi. IaC ile dağıtım, runbook'lar, felaket kurtarma planı ve üçüncü siteye hazır mimari.", link: null },
-      { idx: "02", name: "Veille DevSecOps IA", kanji: "視", type: "Teknoloji takibi", stack: "PYTHON · DEVSECOPS · YZ", year: "2026", opponent: "GÖZ ARDI EDİLEN AÇIKLAR", verdict: "ÖNGÖRÜLEN GÜVENLİK", desc: "Yapay Zekânın DevSecOps süreçlerine ve kültürüne entegrasyonu üzerine kaynaklar ve betikler.", link: "https://github.com/Deniz09OK/veille-devsecops-ia" },
-      { idx: "03", name: "MediSync", kanji: "癒", type: "Sağlık platformu", stack: "VUE.JS · SAĞLIK", year: "2025-2026", opponent: "KARMAŞIK TAKİP", verdict: "OBJEKTİF VERİ", desc: "Kişiselleştirilmiş tıbbi bakım sunmak için ilaç uyumunu hastanın gerçek günlük deneyimiyle ilişkilendiren bağlantılı sağlık platformu.", link: "https://github.com/Deniz09OK/MediSync" },
+      { idx: "02", name: "Veille DevSecOps IA", kanji: "視", type: "Teknoloji takibi", stack: "PYTHON · DEVSECOPS · YZ", year: "2026", opponent: "GÖZ ARDI EDİLEN AÇIKLAR", verdict: "ÖNGÖRÜLEN GÜVENLİK", desc: "yapay zekânın DevSecOps süreçlerine ve kültürüne entegrasyonu üzerine kaynaklar ve betikler.", link: "https://github.com/Deniz09OK/veille-devsecops-ia" },
+      { idx: "03", name: "MediSync", kanji: "癒", type: "Sağlık platformu", stack: "VUE.JS · SAĞLIK", year: "2025-2026", opponent: "KARMAŞIK TAKİP", verdict: "OBJEKTİF VERİ", desc: "Kişiselleştirilmiş tıbbi bakım sunmak için ilaç uyumunu hastanın gerçek günlük deneyimiyle ilişkilendiren bağlantılı sağlık platformu.", link: "https://github.com/Deniz09OK/MediSync", demo: "https://deniz09ok.github.io/MediSync/" },
       { idx: "04", name: "NSA — Network Security", kanji: "結界", type: "Ağ altyapısı", stack: "OPENBSD · FREEBSD", year: "2026", opponent: "SEGMENTSİZ AĞ", verdict: "GÜVENLİ AĞ GEÇİDİ", desc: "OpenBSD ve FreeBSD üzerinde güvenli ağ altyapısı. Üç özel ağı segmentlere ayıran bir ağ geçidinin yapılandırılması.", link: null },
       { idx: "05", name: "Linux System Inventory", kanji: "監査", type: "Sistem aracı", stack: "PYTHON · LINUX · VAGRANT", year: "2026", opponent: "KARIŞIK LINUX FİLOSU", verdict: "OTOMATİK DENETİM", desc: "Donanım ve yazılım bilgilerinin toplanmasını otomatikleştiren Linux sistem envanter aracı. Filo için kullanılabilir bir rapor üretir.", link: "https://github.com/Deniz09OK/Linux-System-Inventory-Tool" },
-      { idx: "06", name: "Portfolio", kanji: "書庫", type: "Kişisel site", stack: "NUXT · VUE · TAILWIND", year: "2025-2026", opponent: "BOŞ SAYFA", verdict: "YAŞAYAN VİTRİN", desc: "Siber güvenlik ile spor ve Japon kültürünü harmanlayan editöryel tasarım. Kaydırmalı anlatım, FR/EN/TR çoklu dil, koyu ve açık tema, hero'da oyuncu kartı.", link: "https://github.com/Deniz09OK/Portfolio" },
+      { idx: "06", name: "Portfolio", kanji: "書庫", type: "Kişisel site", stack: "NUXT · VUE · TYPESCRIPT", year: "2025-2026", opponent: "BOŞ SAYFA", verdict: "YAŞAYAN VİTRİN", desc: "Siber güvenlik ile spor ve Japon kültürünü harmanlayan editöryel tasarım. Kaydırmalı anlatım, FR/EN/TR çoklu dil, koyu ve açık tema, hero'da oyuncu kartı.", link: "https://github.com/Deniz09OK/Portfolio" },
       { idx: "07", name: "GoCrew", kanji: "旅", type: "Web uygulaması", stack: "JAVASCRIPT · WEB", year: "2025", opponent: "KAOTİK PLANLAMA", verdict: "MERKEZİ SEYAHAT", desc: "İş birliğine dayalı web uygulaması (Epitech Pre-MSc). Grup seyahat organizasyonunu tek ve sezgisel bir arayüzde toplar.", link: "https://github.com/Deniz09OK/GoCrew" },
-      { idx: "08", name: "AI-Morpion", kanji: "戦略", type: "Oyun · YZ", stack: "PYTHON · MINIMAX · ALPHA-BETA", year: "2025", opponent: "İNSAN OYUNCU", verdict: "YENİLMEZ YZ", desc: "Minimax algoritmasını kullanan gelişmiş bir YZ ile Tic-Tac-Toe'nun modern sürümü. Alfa-beta budama: YZ asla kaybetmez.", link: "https://github.com/Deniz09OK/AI-Morpion" },
-      { idx: "09", name: "CultureQuiz", kanji: "知識", type: "Masaüstü uygulaması", stack: "PYTHON · TKINTER · GUI", year: "2025", opponent: "SIKINTI", verdict: "İNTERAKTİF QUIZ", desc: "Tkinter arayüzlü, Python ile geliştirilmiş interaktif bilgi yarışması uygulaması. Genişletilebilir soru tabanı, puanlama, tur başına zamanlayıcı.", link: "https://github.com/Deniz09OK/CultureQuiz" },
-      { idx: "10", name: "Popeye", kanji: "船団", type: "Konteynerleştirme", stack: "DOCKER · MİKROSERVİS", year: "2025", opponent: "WEB MONOLİT", verdict: "MODÜLER MİMARİ", desc: "Docker ile konteynerleştirme projesi. Mikroservis mimarisinde tam bir web uygulaması, servisler arası iletişim ve kalıcılık.", link: "https://github.com/Deniz09OK/Popeye" },
-      { idx: "11", name: "EpiQuest", kanji: "冒険", type: "2D video oyunu", stack: "JAVA · LIBGDX · OYUN", year: "2024", opponent: "BOŞ MOTOR", verdict: "OYNANABİLİR PLATFORMER", desc: "Java ve LibGDX ile geliştirilmiş 2D macera oyunu. Savaş sistemi, diyaloglar, ilerleme. Takım projesi.", link: "https://github.com/Deniz09OK/Projet-Jeu-Java" }
+      { idx: "08", name: "AI-Morpion", kanji: "戦略", type: "Oyun · YZ", stack: "PYTHON · MINIMAX · ALPHA-BETA", year: "2025", opponent: "İNSAN OYUNCU", verdict: "YENİLMEZ YZ", desc: "Minimax algoritmasını kullanan gelişmiş bir YZ ile Tic-Tac-Toe'nun modern sürümü. Alfa-beta budama: YZ en iyi hamleyi oynar.", link: "https://github.com/Deniz09OK/AI-Morpion" },
+      { idx: "09", name: "CultureQuiz", kanji: "知識", type: "Masaüstü uygulaması", stack: "PYTHON · TKINTER · GUI", year: "2025", opponent: "SIKINTI", verdict: "İNTERAKTİF BİLGİ YARIŞMASI", desc: "Tkinter arayüzlü, Python ile geliştirilmiş interaktif bilgi yarışması uygulaması. Genişletilebilir soru tabanı, puanlama, tur başına zamanlayıcı.", link: "https://github.com/Deniz09OK/CultureQuiz" },
+      { idx: "10", name: "Popeye", kanji: "船団", type: "Konteynerleştirme", stack: "DOCKER · FLASK · NODE.JS · POSTGRESQL", year: "2025", opponent: "WEB MONOLİT", verdict: "MODÜLER MİMARİ", desc: "Docker ile konteynerleştirme projesi. Mikroservis mimarisinde tam bir web uygulaması, servisler arası iletişim ve kalıcılık.", link: "https://github.com/Deniz09OK/Popeye" },
+      { idx: "11", name: "EpiQuest", kanji: "冒険", type: "2D video oyunu", stack: "JAVA · LIBGDX · OYUN", year: "2024", opponent: "BOŞ MOTOR", verdict: "OYNANABİLİR MACERA", desc: "Java ve LibGDX ile geliştirilmiş 2D macera oyunu. Savaş sistemi, diyaloglar, ilerleme. Takım projesi.", link: "https://github.com/Deniz09OK/Projet-Jeu-Java" }
     ],
     career: { title: "Oynanan sezonlar", eduLabel: "AKADEMİ", expLabel: "SAHA" },
     edu: [
-      { year: "2024 — 2027", school: "EPITECH NANCY", title: "MSc Pro — Siber Güv. & Bulut", desc: "Aktif pedagoji · Debian/OpenBSD/FreeBSD · Saldırı & savunma", current: true },
-      { year: "2020 — 2022", school: "CHARLES DE FOUCAULD", title: "BTS SNIR", desc: "C/C++, Python · VLAN, yönlendirme · Mageia" },
-      { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Mesleki Lise SNIR", desc: "Ağ ve sistem temelleri · Debian" }
+      { year: "2024 — 2027", school: "EPITECH NANCY", title: "MSc Pro — Siber Güvenlik & Bulut", desc: "Aktif pedagoji · Debian/OpenBSD/FreeBSD · Saldırı & savunma", current: true },
+      { year: "2020 — 2022", school: "CHARLES DE FOUCAULD", title: "BTS SNIR", desc: "C/C++, Python · VLAN, yönlendirme, alt ağlar · Mageia" },
+      { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Mesleki Lise SNIR", desc: "Ağ ve sistem temelleri · Debian sanallaştırma" }
     ],
     exp: [
-      { year: "02/2025 — şimdi", company: "QUALITEST", title: "BT Asistanı (yarı zamanlı)", desc: "Anket & raporlama (Sphinx, IQ3, Dataviv') · Veritabanı yönetimi & veri analizi · Otomasyon (çıkarma, Dropbox aktarımları, anomali tespiti)", current: true },
-      { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Ekip üyesi", desc: "Salon & drive · Müşteri" },
-      { year: "03/2023 — 12/2023", company: "1. RSMV · MONTIGNY-LÈS-METZ", title: "Gönüllü stajyer", desc: "Disiplin & takım · SST · Liyakat madalyası" },
-      { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "Bilgisayar odası (staj)", desc: "Kurulum · BTS için IP adresleme" },
+      { year: "02/2025 — şimdi", company: "QUALITEST", title: "BT Asistanı (dönüşümlü eğitim)", desc: "Anket & raporlama (Sphinx, IQ3, Dataviv') · Veritabanı yönetimi & veri analizi · Otomasyon (çıkarma, Dropbox aktarımları, anomali tespiti)", current: true },
+      { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Ekip üyesi", desc: "Salon & drive · Müşteri ilişkileri" },
+      { year: "03/2023 — 12/2023", company: "1. RSMV · MONTIGNY-LÈS-METZ", title: "Gönüllü stajyer", desc: "Disiplin & takım çalışması · SST · Liyakat madalyası" },
+      { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "Bilgisayar odası (staj)", desc: "İş istasyonu kurulumu · BTS için IP adresleme" },
       { year: "09/2019 — 10/2019", company: "SCIENCES PO NANCY", title: "BT bakım & dağıtım (staj)", desc: "Personel & öğrenci desteği" },
       { year: "04/2019 — 05/2019", company: "LYCÉE HENRI LORITZ", title: "BT bakım & dağıtım (staj)", desc: "Personel & öğrenci desteği" },
       { year: "01/2019 — 02/2019", company: "LYCÉE HENRI LORITZ", title: "BT bakım & dağıtım (staj)", desc: "Personel & öğrenci desteği" }
@@ -272,10 +260,10 @@ export const portfolio: Portfolio = {
       cta: "Hikâyeyi oku",
       close: "Kapat",
       items: [
-        { id: "japan", kanji: "日本", roman: "NIPPON", label: "Japonya", color: "#e63946", role: "BİÇİM & SESSİZLİK", desc: "Anime, manga, dil, felsefe. Biçimin anlamı nasıl şekillendirdiği.", story: "Japonya tutkum, okuduğum ve izlediğim animelerle mangalardan geliyor — Naruto, Bleach, Fullmetal Alchemist: Brotherhood.\n\nAma aynı zamanda manzaralarından, kültüründen, tapınaklarından ve geleneklerinden de." },
-        { id: "wrestle", kanji: "格闘", roman: "PURORESU", label: "Güreş", color: "#ffb800", role: "HAM ANLATI", desc: "Önce WWE, son zamanlarda AEW. Beden, karakter, seyirciyle hikâye anlatma sanatı.", story: "Güreş izlemeye Ruthless Aggression Era döneminde başladım.\n\nÖnce Rey Mysterio — tarzı için: hızlı, havadar, okunabilir.\n\nSonra The Deadman, The Undertaker ve Heartbreak Kid, Shawn Michaels." },
-        { id: "music", kanji: "音楽", roman: "ONGAKU", label: "Müzik", color: "#ff7700", role: "ENERJİ & RİTİM", desc: "Rock, Fransız rap, metal, Japon synth. Geniş karışım, klavyeden kulaklıklara.", story: "Tam bir rap ve rock hayranıyım.\n\nMadem biraz açılmamı istiyorsunuz, işte favori şarkılarımın top 3'ü:\n- Orelsan'dan « San »\n- Linkin Park'tan « Breaking the Habit »\n- « Sign » — Flow" },
-        { id: "myth", kanji: "神話", roman: "SHINWA", label: "Mitolojiler", color: "#9e7bff", role: "KURUCU ANLATILAR", desc: "Yunan, Viking, Türk, Roma, Aztek, İnka, Maya, Japon.", story: "Küçük bir hikâye: BT'de — daha doğrusu siber güvenlikte — çalışmak istemeden önce arkeolog olmak istiyordum.\n\nTarihsel keşifler yapmak ve bazı mitlerin gerçekten yaşandığını kanıtlamak için." }
+        { id: "japan", kanji: "日本", roman: "NIPPON", label: "Japonya", color: "#e63946", role: "BİÇİM & SESSİZLİK", desc: "Anime, manga, dil, felsefe. Biçimin anlamı nasıl şekillendirdiği.", story: "Japonya tutkum, okuduğum ve izlediğim anime ve mangalardan geliyor — Naruto, Bleach, Fullmetal Alchemist: Brotherhood.\n\nAma aynı zamanda manzaralarından, kültüründen, tapınaklarından ve geleneklerinden de." },
+        { id: "wrestle", kanji: "格闘", roman: "PURORESU", label: "Güreş", color: "#ffb800", role: "HAM ANLATI", desc: "Önce WWE, son zamanlarda AEW. Beden, karakter, seyirciyle hikâye anlatma sanatı.", story: "Güreş izlemeye Ruthless Aggression Era döneminde başladım.\n\nÖnce Rey Mysterio — tarzı için: hızlı, havai, okunabilir.\n\nSonra The Deadman, The Undertaker ve Heartbreak Kid, Shawn Michaels." },
+        { id: "music", kanji: "音楽", roman: "ONGAKU", label: "Müzik", color: "#ff7700", role: "ENERJİ & RİTİM", desc: "Rock, Fransız rap, metal, Japon synth. Geniş karışım, klavyeden kulaklıklara.", story: "Tam bir rap ve rock hayranıyım.\n\nMadem biraz açılmamı istiyorsunuz, işte favori şarkılarımın top 3'ü:\n- Orelsan'dan “San”\n- Linkin Park'tan “Breaking the Habit”\n- Flow'dan “Sign”" },
+        { id: "myth", kanji: "神話", roman: "SHINWA", label: "Mitolojiler", color: "#9e7bff", role: "KURUCU ANLATILAR", desc: "Yunan, Viking, Türk, Roma, Aztek, İnka, Maya, Japon. İnsanların ayakta kalmak için anlattıkları.", story: "Küçük bir hikâye: BT'de — daha doğrusu siber güvenlikte — çalışmak istemeden önce arkeolog olmak istiyordum.\n\nTarihsel keşifler yapmak ve bazı mitlerin gerçekten yaşandığını kanıtlamak için." }
       ]
     },
     languages: {
@@ -286,6 +274,6 @@ export const portfolio: Portfolio = {
         { code: "EN", flag: "EN", label: "English", level: "TOEIC 790 / 990" }
       ]
     },
-    contact: { title: "Son düdük.", lead: "Siber, bir proje ya da sadece merhaba demek mi istersin? Soyunma odası açık.", email: "deniz.ok@epitech.eu" }
+    contact: { title: "Son düdük.", lead: "Siber güvenlik ya da bir proje hakkında konuşmak, ya da sadece merhaba demek mi istersin? Soyunma odası açık.", email: "deniz.ok@epitech.eu" }
   }
 }

@@ -10,12 +10,6 @@ export interface NavContent {
   contact: string
 }
 
-export interface HeroStat {
-  label: string
-  value: string
-  sub: string
-}
-
 export interface HeroTale {
   k: string
   v: string
@@ -29,7 +23,6 @@ export interface HeroContent {
   team: string
   bio: string
   kanji: string
-  stats: HeroStat[]
   tale: HeroTale[]
   cta1: string
   cta2: string
@@ -52,6 +45,8 @@ export interface Project {
   verdict: string
   desc: string
   link: string | null
+  /** Optional live demo URL shown next to the GitHub link. */
+  demo?: string
 }
 
 export interface CareerContent {
@@ -135,8 +130,20 @@ export interface ContactContent {
   email: string
 }
 
+/** Localised accessible names for controls that have no visible text. */
+export interface A11yContent {
+  navPrimary: string
+  navMobile: string
+  language: string
+  theme: string
+  menu: string
+  legend: string
+}
+
 export interface LocaleContent {
   nav: NavContent
+  a11y: A11yContent
+  ticker: string[]
   hero: HeroContent
   matches: MatchesContent
   projects: Project[]

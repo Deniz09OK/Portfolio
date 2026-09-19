@@ -52,9 +52,7 @@ const cvUrl = computed(() => cvUrls[lang.value] || cvUrls.fr)
             format="webp"
             quality="80"
           />
-          <div v-else class="portrait-empty">
-            Ajoutez votre photo&nbsp;: public/portrait.jpg
-          </div>
+          <div v-else class="portrait-empty" aria-hidden="true"></div>
           <div class="hero-portrait-cap">
             <span>PORTRAIT</span>
             <span class="dot dot-live"></span>

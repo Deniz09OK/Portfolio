@@ -11,6 +11,12 @@ const labels = computed(() => {
     link: l === 'tr' ? "GITHUB'DA GÖR" : l === 'en' ? 'VIEW ON GITHUB' : 'VOIR SUR GITHUB',
     locked: l === 'tr' ? 'GİZLİ' : l === 'en' ? 'CONFIDENTIAL' : 'CONFIDENTIEL',
     round: l === 'tr' ? 'RAUND' : 'ROUND',
+    demo: l === 'tr' ? 'DEMOYU GÖR' : l === 'en' ? 'VIEW DEMO' : 'VOIR LA DÉMO',
+    type: l === 'tr' ? 'TÜR' : 'TYPE',
+    stack: l === 'tr' ? 'TEKNOLOJİLER' : 'STACK',
+    challenger: l === 'tr' ? 'MEYDAN OKUYAN' : 'CHALLENGER',
+    opponent: l === 'tr' ? 'RAKİP' : l === 'en' ? 'OPPONENT' : 'ADVERSAIRE',
+    verdict: l === 'tr' ? 'SONUÇ' : 'VERDICT',
   }
 })
 </script>
@@ -40,11 +46,11 @@ const labels = computed(() => {
             <div class="match-kanji">{{ p.kanji }}</div>
             <div class="match-tape">
               <div>
-                <div class="match-tape-k">TYPE</div>
+                <div class="match-tape-k">{{ labels.type }}</div>
                 <div class="match-tape-v">{{ p.type }}</div>
               </div>
               <div>
-                <div class="match-tape-k">STACK</div>
+                <div class="match-tape-k">{{ labels.stack }}</div>
                 <div class="match-tape-v">{{ p.stack }}</div>
               </div>
             </div>
@@ -59,17 +65,17 @@ const labels = computed(() => {
 
             <div class="match-vs">
               <div class="match-vs-side match-vs-side-deniz">
-                <span class="micro">CHALLENGER</span>
+                <span class="micro">{{ labels.challenger }}</span>
                 DENIZ #23
               </div>
               <div class="match-vs-x">×</div>
               <div class="match-vs-side match-vs-side-opp match-vs-side-right">
-                <span class="micro">OPPONENT</span>
+                <span class="micro">{{ labels.opponent }}</span>
                 {{ p.opponent }}
               </div>
             </div>
 
-            <div class="match-verdict">VERDICT — {{ p.verdict }}</div>
+            <div class="match-verdict">{{ labels.verdict }} — {{ p.verdict }}</div>
             <p class="match-desc">{{ p.desc }}</p>
 
             <a
@@ -80,6 +86,15 @@ const labels = computed(() => {
               rel="noopener"
             >
               {{ labels.link }} <span>↗</span>
+            </a>
+            <a
+              v-if="p.demo"
+              class="match-link"
+              :href="p.demo"
+              target="_blank"
+              rel="noopener"
+            >
+              {{ labels.demo }} <span>↗</span>
             </a>
             <span v-else class="match-link-locked">🔒 {{ labels.locked }}</span>
           </div>

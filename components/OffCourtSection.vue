@@ -51,6 +51,7 @@ function close() {
       :index="openIndex"
       :total="off.items.length"
       :eyebrow="off.title"
+      :close-label="off.close"
       @close="close"
     />
   </section>

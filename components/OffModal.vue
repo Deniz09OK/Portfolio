@@ -6,6 +6,7 @@ const props = defineProps<{
   index: number | null
   total: number
   eyebrow: string
+  closeLabel: string
 }>()
 
 const emit = defineEmits<{ close: [] }>()
@@ -94,7 +95,7 @@ const modalStyle = computed(() => {
       <div class="off-modal-backdrop" @click="emit('close')"></div>
       <article v-if="item" class="off-modal-card" role="document">
         <span class="off-modal-stripe" aria-hidden="true"></span>
-        <button type="button" class="off-modal-close" aria-label="Close" @click="emit('close')">
+        <button type="button" class="off-modal-close" :aria-label="closeLabel" @click="emit('close')">
           <span aria-hidden="true">×</span>
         </button>
         <div class="off-modal-meta">

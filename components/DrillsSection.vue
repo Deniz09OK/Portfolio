@@ -8,7 +8,7 @@ const drills = computed(() => content.value.drills)
     <div class="container">
       <h2 class="display">{{ drills.title }}</h2>
       <p class="display-sub drills-sub">{{ drills.sub }}</p>
-      <ul class="drills-legend" aria-label="Légende">
+      <ul class="drills-legend" :aria-label="content.a11y.legend">
         <li><span class="drill-dot drill-dot--starter" aria-hidden="true"></span>{{ drills.legend.starter }}</li>
         <li><span class="drill-dot drill-dot--bench" aria-hidden="true"></span>{{ drills.legend.bench }}</li>
       </ul>

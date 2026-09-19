@@ -1,10 +1,7 @@
 <script setup lang="ts">
-// Static marquee strip. Duplicated once so the CSS -50% scroll loops seamlessly.
-const items = [
-  'LIVE', '·', 'PORTFOLIO 2026', '·', 'MSc CYBERSECURITY & CLOUD', '·',
-  'EPITECH NANCY', '·', 'QUALITEST WORK-STUDY', '·', 'TRILINGUAL FR/TR/EN', '·',
-]
-const track = [...items, ...items]
+// Localised marquee strip. Duplicated once so the CSS -50% scroll loops seamlessly.
+const content = usePortfolio()
+const track = computed(() => [...content.value.ticker, ...content.value.ticker])
 </script>
 
 <template>
