@@ -47,6 +47,8 @@ export interface Project {
   link: string | null
   /** Optional live demo URL shown next to the GitHub link. */
   demo?: string
+  /** In development and not public yet: shows an "in development" badge instead of "confidential". */
+  wip?: boolean
 }
 
 export interface CareerContent {

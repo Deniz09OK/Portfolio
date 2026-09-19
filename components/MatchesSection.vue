@@ -13,6 +13,7 @@ const labels = computed(() => {
   return {
     link: l === 'tr' ? "GITHUB'DA GÖR" : l === 'en' ? 'VIEW ON GITHUB' : 'VOIR SUR GITHUB',
     locked: l === 'tr' ? 'GİZLİ' : l === 'en' ? 'CONFIDENTIAL' : 'CONFIDENTIEL',
+    wip: l === 'tr' ? 'GELİŞTİRİLİYOR' : l === 'en' ? 'IN DEVELOPMENT' : 'EN DÉVELOPPEMENT',
     round: l === 'tr' ? 'RAUND' : 'ROUND',
     demo: l === 'tr' ? 'DEMOYU GÖR' : l === 'en' ? 'VIEW DEMO' : 'VOIR LA DÉMO',
     type: l === 'tr' ? 'TÜR' : 'TYPE',
@@ -92,6 +93,7 @@ const labels = computed(() => {
               >
                 {{ labels.link }} <span>↗</span>
               </a>
+              <span v-else-if="p.wip" class="match-link-locked">🛠 {{ labels.wip }}</span>
               <span v-else class="match-link-locked">🔒 {{ labels.locked }}</span>
               <a
                 v-if="p.demo"
