@@ -8,10 +8,18 @@ const projects = computed(() => content.value.projects)
 // Keep each "·" on the same line as the item before it, so a wrapped line never starts with a separator.
 const keepSeparators = (stack: string) => stack.replaceAll(' · ', ' · ')
 
+// Name the host the link points to, so a GitLab repository is not labelled "GitHub".
+const HOSTS: Record<string, string> = { 'github.com': 'GITHUB', 'gitlab.com': 'GITLAB' }
+function linkLabel(url: string) {
+  const l = lang.value
+  const host = HOSTS[new URL(url).hostname.replace(/^www\./, '')]
+  if (!host) return l === 'tr' ? 'KODU GÖR' : l === 'en' ? 'VIEW CODE' : 'VOIR LE CODE'
+  return l === 'tr' ? `${host}'DA GÖR` : l === 'en' ? `VIEW ON ${host}` : `VOIR SUR ${host}`
+}
+
 const labels = computed(() => {
   const l = lang.value
   return {
-    link: l === 'tr' ? "GITHUB'DA GÖR" : l === 'en' ? 'VIEW ON GITHUB' : 'VOIR SUR GITHUB',
     locked: l === 'tr' ? 'GİZLİ' : l === 'en' ? 'CONFIDENTIAL' : 'CONFIDENTIEL',
     wip: l === 'tr' ? 'GELİŞTİRİLİYOR' : l === 'en' ? 'IN DEVELOPMENT' : 'EN DÉVELOPPEMENT',
     round: l === 'tr' ? 'RAUND' : 'ROUND',
@@ -91,7 +99,7 @@ const labels = computed(() => {
                 target="_blank"
                 rel="noopener"
               >
-                {{ labels.link }} <span>↗</span>
+                {{ linkLabel(p.link) }} <span>↗</span>
               </a>
               <span v-else-if="p.wip" class="match-link-locked">🛠 {{ labels.wip }}</span>
               <span v-else class="match-link-locked">🔒 {{ labels.locked }}</span>
