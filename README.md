@@ -108,8 +108,11 @@ Portfolio/
 │   ├── portrait.jpg            # Portrait utilisé en hero et dans les balises Open Graph
 │   ├── cv-deniz-ok-fr.pdf      # CV téléchargeable (FR)
 │   ├── cv-deniz-ok-en.pdf      # CV téléchargeable (EN/TR)
-│   └── robots.txt              # Autorisation d'indexation pour les moteurs de recherche
+│   ├── favicon.ico             # Favicon de repli pour les navigateurs qui le demandent par défaut
+│   ├── sitemap.xml             # Plan du site pour les moteurs de recherche
+│   └── robots.txt              # Autorisation d'indexation et lien vers le sitemap
 ├── app.vue                     # Fiche racine englobant les composants
+├── error.vue                   # Page 404 trilingue, prérendue en 404.html pour GitHub Pages
 ├── nuxt.config.ts              # Fichier de configuration de Nuxt (BaseURL, SEO, modules)
 └── tsconfig.json               # Fichier de configuration TypeScript
 ```

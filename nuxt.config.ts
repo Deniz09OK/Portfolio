@@ -14,17 +14,17 @@ app: {
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'Portfolio de Deniz OK, Ingénieur Cybersécurité & Cloud et Développeur.' },
+        { name: 'description', content: 'Portfolio de Deniz OK, étudiant en MSc Cybersécurité & Cloud à Epitech Nancy, alternant chez Qualitest.' },
         { name: 'author', content: 'Deniz OK' },
         { name: 'theme-color', content: '#0c0c10' },
         { property: 'og:title', content: 'Deniz OK — Portfolio' },
-        { property: 'og:description', content: 'Portfolio de Deniz OK, Ingénieur Cybersécurité & Cloud et Développeur.' },
+        { property: 'og:description', content: 'Portfolio de Deniz OK, étudiant en MSc Cybersécurité & Cloud à Epitech Nancy, alternant chez Qualitest.' },
         { property: 'og:type', content: 'website' },
         { property: 'og:image', content: 'https://portfolio-deniz.me/portrait.jpg' },
         { property: 'og:url', content: 'https://portfolio-deniz.me/' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'Deniz OK — Portfolio' },
-        { name: 'twitter:description', content: 'Portfolio de Deniz OK, Ingénieur Cybersécurité & Cloud et Développeur.' },
+        { name: 'twitter:description', content: 'Portfolio de Deniz OK, étudiant en MSc Cybersécurité & Cloud à Epitech Nancy, alternant chez Qualitest.' },
         { name: 'twitter:image', content: 'https://portfolio-deniz.me/portrait.jpg' }
       ],
       link: [
@@ -33,6 +33,7 @@ app: {
           type: 'image/svg+xml',
           href: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%230c0c10%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-family=%22Arial,Helvetica,sans-serif%22 font-weight=%22700%22 font-size=%2215%22 fill=%22%23fff%22 text-anchor=%22middle%22%3E23%3C/text%3E%3C/svg%3E',
         },
+        { rel: 'canonical', href: 'https://portfolio-deniz.me/' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         {
@@ -49,4 +50,25 @@ app: {
   // Pure static front-end — no server runtime needed. `nuxt generate`
   // produces a fully static site for Netlify / Vercel / GitHub Pages.
   ssr: true,
+
+  // GitHub Pages serves 404.html for unknown URLs. Nuxt always prerenders /404.html as an
+  // empty SPA shell, so render /404 (error.vue, server-side) and write it to 404.html instead.
+  nitro: {
+    prerender: { routes: ['/404'] },
+    hooks: {
+      'prerender:generate'(route) {
+        if (route.route === '/404.html') route.skip = true
+        if (route.route === '/404') {
+          route.error = undefined
+          route.fileName = '404.html'
+        }
+      },
+    },
+  },
+
+  // The payload preload was never used on this single static page and triggered
+  // a console warning in Safari and Firefox.
+  experimental: {
+    payloadExtraction: false,
+  },
 })
