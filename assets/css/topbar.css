@@ -1,4 +1,8 @@
 /* ============ TOP BAR ============ */
+/* Real bar height before TopBar.vue measures it, so the ticker and hero do not shift on load. */
+:root { --bar-h: 75px; }
+@media (max-width: 400px) { :root { --bar-h: 71px; } }
+
 .bar {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -16,6 +20,8 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 44px;
+  min-height: 44px;
 }
 .bar-num {
   font-family: var(--display);
@@ -32,12 +38,6 @@
   font-size: 13px;
   letter-spacing: 0.16em;
   font-weight: 700;
-}
-.bar-name small {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  color: var(--muted);
 }
 
 .bar-nav {
@@ -59,6 +59,8 @@
   transition: right 220ms ease;
 }
 .bar-nav a:hover::after { right: 0; }
+/* Tablettes tactiles au-dessus de 920px : zone de tap de 44px sans changer le rendu desktop. */
+@media (pointer: coarse) { .bar-nav a { padding: 11px 0; } }
 @media (max-width: 920px) { .bar-nav { display: none; } }
 
 .bar-tools { display: flex; align-items: center; gap: 12px; }
@@ -70,11 +72,11 @@
   font-family: var(--mono);
   font-size: 11px;
 }
-.lang-btn { padding: 6px 10px; letter-spacing: 0.1em; color: var(--muted); transition: all 180ms; }
+.lang-btn { padding: 12px 14px; min-width: 44px; min-height: 44px; letter-spacing: 0.1em; color: var(--muted); transition: all 180ms; }
 .lang-btn.is-active { background: color-mix(in oklab, var(--accent) 88%, black); color: #fff; }
 .lang-btn:not(.is-active):hover { color: var(--ink); }
 .theme-btn {
-  width: 32px; height: 32px;
+  width: 44px; height: 44px;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   display: grid;
@@ -95,8 +97,8 @@ html.light .theme-moon { opacity: 0; transform: rotate(-30deg); }
   align-items: center;
   justify-content: center;
   gap: 4px;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   flex-shrink: 0;
@@ -139,13 +141,14 @@ html.light .theme-moon { opacity: 0; transform: rotate(-30deg); }
   .mobile-nav.is-open { display: flex; }
 }
 
-/* Compact top bar so brand + lang pill + theme + burger fit on 320px screens. */
+/* Compact top bar so brand + lang pill + theme + burger fit on 320px screens.
+   Les cibles gardent 44x44 : seul le nom texte est masque, le badge "23" reste le lien d'accueil. */
 @media (max-width: 400px) {
   .bar { padding: 12px 14px; }
   .bar-brand { gap: 8px; }
-  .bar-name small { display: none; }
+  .bar-name { display: none; }
   .bar-tools { gap: 6px; }
-  .lang-btn { padding: 5px 6px; font-size: 10px; }
+  .lang-btn { padding: 0 6px; }
 }
 
 /* Lock background scroll while the mobile nav (or off-court modal) is open. */

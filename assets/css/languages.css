@@ -38,9 +38,6 @@
   color: var(--muted);
   text-transform: uppercase;
 }
-.lang-bars { display: flex; gap: 4px; }
-.lang-bar { width: 32px; height: 8px; background: var(--line-strong); border-radius: 1px; }
-.lang-bar.is-on { background: var(--accent); }
 @media (max-width: 720px) {
-  .lang-level, .lang-bars { grid-column: 2; }
+  .lang-level { grid-column: 2; }
 }

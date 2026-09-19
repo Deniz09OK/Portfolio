@@ -53,4 +53,9 @@
   font-size: 12px;
   letter-spacing: 0.18em;
 }
+.contact-socials a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
 .contact-socials a:hover { color: var(--accent); }

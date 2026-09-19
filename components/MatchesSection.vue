@@ -35,6 +35,7 @@ const labels = computed(() => {
         v-reveal
         class="match"
         :id="`match-${p.idx}`"
+        :data-idx="p.idx"
       >
         <div class="match-inner">
           <div class="match-poster">

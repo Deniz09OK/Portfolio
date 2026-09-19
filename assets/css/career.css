@@ -62,13 +62,13 @@
 }
 .timeline-year {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.16em;
   color: var(--muted);
 }
 .timeline-school {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   color: var(--accent);
   font-weight: 700;
