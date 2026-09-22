@@ -3,8 +3,10 @@ import type { Portfolio } from '~/types/portfolio'
 
 export const portfolio: Portfolio = {
   fr: {    nav: { roster: "Fiche", matches: "Card de la saison", career: "Saisons jouées", drills: "Entraînement quotidien", off: "Hors du clavier", languages: "Trois langues", contact: "Sifflet final" },
+    sectionLabels: { roster: "Profil", matches: "Projets", career: "Parcours", drills: "Compétences", off: "Centres d'intérêt", languages: "Langues", contact: "Contact" },
     a11y: { navPrimary: "Navigation principale", navMobile: "Navigation mobile", language: "Langue", theme: "Changer de thème", menu: "Menu", legend: "Légende" },
-    ticker: ["LIVE", "·", "PORTFOLIO 2026", "·", "MSc CYBERSÉCURITÉ & CLOUD", "·", "EPITECH NANCY", "·", "ALTERNANCE QUALITEST", "·", "TRILINGUE FR/EN/TR", "·"],
+    ticker: ["LIVE", "·", "PORTFOLIO 2026", "·", "MSc CYBERSÉCURITÉ & CLOUD", "·", "EPITECH NANCY", "·", "ALTERNANCE QUALITEST", "·", "TRILINGUE FR/EN/TR", "·", "OUVERT AUX OPPORTUNITÉS", "·"],
+    seoDescription: "Deniz OK — MSc Cybersécurité & Cloud à Epitech Nancy, alternant chez Qualitest. En recherche d'une nouvelle alternance.",
 
     hero: {
       number: "619",
@@ -12,13 +14,13 @@ export const portfolio: Portfolio = {
       name2: "OK",
       position: "CYBERSÉCURITÉ & CLOUD",
       team: "QUALITEST × EPITECH NANCY",
-      bio: "Passionné par la Cybersécurité et les infrastructures Cloud, je suis actuellement en MSc à Epitech Nancy. Mon alternance chez Qualitest me permet de consolider mes bases techniques à travers la gestion de bases de données, l’analyse de données et l’automatisation de tâches grâce au scripting (PowerShell, PHP, Bash). Mes domaines de prédilection : Cybersécurité (protection des données et analyse de vulnérabilités), Cloud (déploiement et sécurisation d’environnements dématérialisés), Infrastructure (maintenance système et réseau au quotidien). Je suis constamment à la recherche de nouveaux défis techniques pour allier sécurité et performance.",
+      bio: "Passionné par la Cybersécurité et les infrastructures Cloud, je suis actuellement en MSc à Epitech Nancy. Mon alternance chez Qualitest me permet de consolider mes bases techniques à travers la gestion de bases de données, l’analyse de données et l’automatisation de tâches grâce au scripting (Python, PowerShell, PHP, Bash). Mes domaines de prédilection : Cybersécurité (protection des données et analyse de vulnérabilités), Cloud (déploiement et sécurisation d’environnements dématérialisés), Infrastructure (maintenance système et réseau au quotidien). Je suis constamment à la recherche de nouveaux défis techniques pour allier sécurité et performance. Je recherche aujourd’hui une nouvelle alternance pour la suite de mon MSc (jusqu’en 2027), en cybersécurité, infrastructure/cloud ou développement.",
       kanji: "戦",
       tale: [
         { k: "BASE", v: "Jarville-la-Malgrange · FR" },
         { k: "DRAFT", v: "Epitech Nancy · Promo 2027" },
         { k: "CONTRAT", v: "Alternance — Qualitest" },
-        { k: "STATUT", v: "EN ALTERNANCE · QUALITEST + EPITECH" }
+        { k: "STATUT", v: "EN RECHERCHE D'ALTERNANCE · DISPONIBLE" }
       ],
       cta1: "Voir les matchs",
       cta2: "Télécharger CV",
@@ -52,7 +54,7 @@ export const portfolio: Portfolio = {
       { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Bac Pro SNIR", desc: "Bases réseau & systèmes · Virtualisation Debian" }
     ],
     exp: [
-      { year: "02/2025 — aujourd’hui", company: "QUALITEST", title: "Assistant informatique (alternance)", desc: "Questionnaires & reporting (Sphinx, IQ3, Dataviv') · BDD & analyse de données · Automatisation (extraction, transferts Dropbox, détection d’anomalies)", current: true },
+      { year: "02/2025 — aujourd’hui", company: "QUALITEST", title: "Assistant informatique (alternance)", desc: "Pipelines de données Python en production pour des clients (ex. intégration d’enquêtes Sphinx vers Odoo) · Administration Windows Server & outillage interne · Migration d’un sous-domaine vers un nouveau serveur (gestion DNS chez OVH) · Questionnaires & reporting (Sphinx, IQ3, Dataviv'), bases de données & analyse · Rédaction de procédures internes (traitement de bases e-mails clients)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Équipier polyvalent", desc: "Service salle & drive · Relation client" },
       { year: "03/2023 — 12/2023", company: "1ER RSMV · MONTIGNY-LÈS-METZ", title: "Volontaire stagiaire", desc: "Discipline & cohésion · SST · Médaille du mérite" },
       { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "Salle informatique (stage)", desc: "Déploiement postes · Adressage IP pour BTS" },
@@ -99,27 +101,29 @@ export const portfolio: Portfolio = {
     contact: {
       title: "Sifflet final.",
       lead: "Parler cyber, projet ou juste dire bonjour ? Les vestiaires sont ouverts.",
-      email: "deniz.ok@epitech.eu"
+      email: "deniz16ok@gmail.com"
     }
   },
 
   en: {
     nav: { roster: "Roster", matches: "Season card", career: "Seasons played", drills: "Daily training", off: "Off the keyboard", languages: "Three languages", contact: "Final whistle" },
+    sectionLabels: { roster: "Profile", matches: "Projects", career: "Experience", drills: "Skills", off: "Interests", languages: "Languages", contact: "Contact" },
     a11y: { navPrimary: "Primary navigation", navMobile: "Mobile navigation", language: "Language", theme: "Toggle theme", menu: "Menu", legend: "Legend" },
-    ticker: ["LIVE", "·", "PORTFOLIO 2026", "·", "MSc CYBERSECURITY & CLOUD", "·", "EPITECH NANCY", "·", "QUALITEST WORK-STUDY", "·", "TRILINGUAL FR/EN/TR", "·"],
+    ticker: ["LIVE", "·", "PORTFOLIO 2026", "·", "MSc CYBERSECURITY & CLOUD", "·", "EPITECH NANCY", "·", "QUALITEST WORK-STUDY", "·", "TRILINGUAL FR/EN/TR", "·", "OPEN TO WORK", "·"],
+    seoDescription: "Deniz OK — MSc Cybersecurity & Cloud at Epitech Nancy, currently at Qualitest. Looking for a new work-study placement.",
     hero: {
       number: "619",
       name1: "DENIZ",
       name2: "OK",
       position: "CYBERSECURITY & CLOUD",
       team: "QUALITEST × EPITECH NANCY",
-      bio: "Passionate about Cybersecurity and Cloud infrastructure, I am currently pursuing an MSc at Epitech Nancy. My work-study position at Qualitest allows me to strengthen my technical foundations through database management, data analysis, and task automation via scripting (PowerShell, PHP, Bash). My focus areas: Cybersecurity (data protection and vulnerability analysis), Cloud (deploying and securing cloud environments), Infrastructure (day-to-day system and network maintenance). I am constantly seeking new technical challenges to combine security and performance.",
+      bio: "Passionate about Cybersecurity and Cloud infrastructure, I am currently pursuing an MSc at Epitech Nancy. My work-study position at Qualitest allows me to strengthen my technical foundations through database management, data analysis, and task automation via scripting (Python, PowerShell, PHP, Bash). My focus areas: Cybersecurity (data protection and vulnerability analysis), Cloud (deploying and securing cloud environments), Infrastructure (day-to-day system and network maintenance). I am constantly seeking new technical challenges to combine security and performance. I am currently looking for a new work-study placement for the rest of my MSc (until 2027), in cybersecurity, infrastructure/cloud or development.",
       kanji: "戦",
       tale: [
         { k: "BASE", v: "Jarville-la-Malgrange · FR" },
         { k: "DRAFT", v: "Epitech Nancy · Class of 2027" },
         { k: "CONTRACT", v: "Work-study — Qualitest" },
-        { k: "STATUS", v: "WORK-STUDY · QUALITEST + EPITECH" }
+        { k: "STATUS", v: "SEEKING WORK-STUDY · AVAILABLE NOW" }
       ],
       cta1: "See the card",
       cta2: "Download CV",
@@ -146,7 +150,7 @@ export const portfolio: Portfolio = {
       { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Vocational Baccalaureate SNIR", desc: "Network & system foundations · Debian virtualisation" }
     ],
     exp: [
-      { year: "02/2025 — now", company: "QUALITEST", title: "IT Assistant (work-study)", desc: "Questionnaires & reporting (Sphinx, IQ3, Dataviv') · Database management & data analysis · Automated scripts (extraction, Dropbox transfers, anomaly detection)", current: true },
+      { year: "02/2025 — now", company: "QUALITEST", title: "IT Assistant (work-study)", desc: "Production Python data pipelines for clients (e.g. Sphinx survey data into Odoo) · Windows Server administration & internal tooling · Migrated a subdomain to a new server (DNS management on OVH) · Questionnaires & reporting (Sphinx, IQ3, Dataviv'), databases & analysis · Wrote internal procedures (client email database handling)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Crew member", desc: "Front of house & drive · Customer service" },
       { year: "03/2023 — 12/2023", company: "1ST RSMV · MONTIGNY-LÈS-METZ", title: "Volunteer trainee", desc: "Discipline & teamwork · First-aid (SST) · Merit medal" },
       { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "IT room support (internship)", desc: "Workstation rollout · IP addressing for BTS" },
@@ -190,26 +194,28 @@ export const portfolio: Portfolio = {
         { code: "EN", flag: "EN", label: "English", level: "TOEIC 790 / 990" }
       ]
     },
-    contact: { title: "Final whistle.", lead: "Want to talk cyber, a project, or just say hi? The locker room is open.", email: "deniz.ok@epitech.eu" }
+    contact: { title: "Final whistle.", lead: "Want to talk cyber, a project, or just say hi? The locker room is open.", email: "deniz16ok@gmail.com" }
   },
 
   tr: {
     nav: { roster: "Kadro", matches: "Sezon kartı", career: "Oynanan sezonlar", drills: "Günlük antrenman", off: "Klavyenin dışında", languages: "Üç dil", contact: "Son düdük" },
+    sectionLabels: { roster: "Profil", matches: "Projeler", career: "Deneyim", drills: "Yetenekler", off: "İlgi Alanları", languages: "Diller", contact: "İletişim" },
     a11y: { navPrimary: "Ana gezinme", navMobile: "Mobil gezinme", language: "Dil", theme: "Temayı değiştir", menu: "Menü", legend: "Açıklama" },
-    ticker: ["CANLI", "·", "PORTFOLYO 2026", "·", "MSc SİBER GÜVENLİK & BULUT", "·", "EPITECH NANCY", "·", "QUALITEST DÖNÜŞÜMLÜ EĞİTİM", "·", "ÜÇ DİLLİ FR/EN/TR", "·"],
+    ticker: ["CANLI", "·", "PORTFOLYO 2026", "·", "MSc SİBER GÜVENLİK & BULUT", "·", "EPITECH NANCY", "·", "QUALITEST DÖNÜŞÜMLÜ EĞİTİM", "·", "ÜÇ DİLLİ FR/EN/TR", "·", "YENİ FIRSATLARA AÇIĞIM", "·"],
+    seoDescription: "Deniz OK — Epitech Nancy'de MSc Siber Güvenlik & Bulut öğrencisi, Qualitest'te çalışıyor. Yeni bir dönüşümlü eğitim arıyor.",
     hero: {
       number: "619",
       name1: "DENIZ",
       name2: "OK",
       position: "SİBER GÜVENLİK & BULUT",
       team: "QUALITEST × EPITECH NANCY",
-      bio: "Siber Güvenlik ve Bulut altyapılarına tutkuyla bağlı biri olarak, şu anda Epitech Nancy'de MSc eğitimime devam ediyorum. Qualitest'teki dönüşümlü eğitim çalışmam, veritabanı yönetimi, veri analizi ve scripting (PowerShell, PHP, Bash) ile görev otomasyonu aracılığıyla teknik temellerimi güçlendirmeme olanak tanıyor. Odak alanlarım: Siber Güvenlik (veri koruma ve güvenlik açığı analizi), Bulut (sanallaştırılmış ortamların dağıtımı ve güvenliği), Altyapı (günlük sistem ve ağ bakımı). Güvenliği ve performansı bir araya getirecek yeni teknik zorlukları sürekli arıyorum.",
+      bio: "Siber Güvenlik ve Bulut altyapılarına tutkuyla bağlı biri olarak, şu anda Epitech Nancy'de MSc eğitimime devam ediyorum. Qualitest'teki dönüşümlü eğitim çalışmam, veritabanı yönetimi, veri analizi ve scripting (Python, PowerShell, PHP, Bash) ile görev otomasyonu aracılığıyla teknik temellerimi güçlendirmeme olanak tanıyor. Odak alanlarım: Siber Güvenlik (veri koruma ve güvenlik açığı analizi), Bulut (sanallaştırılmış ortamların dağıtımı ve güvenliği), Altyapı (günlük sistem ve ağ bakımı). Güvenliği ve performansı bir araya getirecek yeni teknik zorlukları sürekli arıyorum. Şu anda MSc eğitimimin devamı için (2027'ye kadar), siber güvenlik, altyapı/bulut veya yazılım geliştirme alanlarında yeni bir dönüşümlü eğitim arıyorum.",
       kanji: "戦",
       tale: [
         { k: "ÜS", v: "Jarville-la-Malgrange · FR" },
         { k: "DRAFT", v: "Epitech Nancy · 2027 mezunu" },
         { k: "SÖZLEŞME", v: "Dönüşümlü eğitim — Qualitest" },
-        { k: "DURUM", v: "DÖNÜŞÜMLÜ EĞİTİM · QUALITEST + EPITECH" }
+        { k: "DURUM", v: "DÖNÜŞÜMLÜ EĞİTİM ARIYORUM · MÜSAİT" }
       ],
       cta1: "Kartı gör",
       cta2: "CV indir",
@@ -236,7 +242,7 @@ export const portfolio: Portfolio = {
       { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Mesleki Lise SNIR", desc: "Ağ ve sistem temelleri · Debian sanallaştırma" }
     ],
     exp: [
-      { year: "02/2025 — şimdi", company: "QUALITEST", title: "BT Asistanı (dönüşümlü eğitim)", desc: "Anket & raporlama (Sphinx, IQ3, Dataviv') · Veritabanı yönetimi & veri analizi · Otomasyon (çıkarma, Dropbox aktarımları, anomali tespiti)", current: true },
+      { year: "02/2025 — şimdi", company: "QUALITEST", title: "BT Asistanı (dönüşümlü eğitim)", desc: "Müşteriler için üretimde Python veri hatları (ör. Sphinx anket verilerinin Odoo'ya aktarımı) · Windows Server yönetimi & iç araçlar · Bir alt alan adının yeni bir sunucuya taşınması (OVH'de DNS yönetimi) · Anket & raporlama (Sphinx, IQ3, Dataviv'), veritabanları & analiz · İç prosedürlerin yazımı (müşteri e-posta veritabanlarının işlenmesi)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Ekip üyesi", desc: "Salon & drive · Müşteri ilişkileri" },
       { year: "03/2023 — 12/2023", company: "1. RSMV · MONTIGNY-LÈS-METZ", title: "Gönüllü stajyer", desc: "Disiplin & takım çalışması · SST · Liyakat madalyası" },
       { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "Bilgisayar odası (staj)", desc: "İş istasyonu kurulumu · BTS için IP adresleme" },
@@ -280,6 +286,6 @@ export const portfolio: Portfolio = {
         { code: "EN", flag: "EN", label: "English", level: "TOEIC 790 / 990" }
       ]
     },
-    contact: { title: "Son düdük.", lead: "Siber güvenlik ya da bir proje hakkında konuşmak, ya da sadece merhaba demek mi istersin? Soyunma odası açık.", email: "deniz.ok@epitech.eu" }
+    contact: { title: "Son düdük.", lead: "Siber güvenlik ya da bir proje hakkında konuşmak, ya da sadece merhaba demek mi istersin? Soyunma odası açık.", email: "deniz16ok@gmail.com" }
   }
 }

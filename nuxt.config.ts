@@ -22,17 +22,17 @@ app: {
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'Portfolio de Deniz OK, étudiant en MSc Cybersécurité & Cloud à Epitech Nancy, alternant chez Qualitest.' },
+        { name: 'description', content: "Deniz OK — MSc Cybersécurité & Cloud à Epitech Nancy, alternant chez Qualitest. En recherche d'une nouvelle alternance." },
         { name: 'author', content: 'Deniz OK' },
         { name: 'theme-color', content: '#0c0c10' },
         { property: 'og:title', content: 'Deniz OK — Portfolio' },
-        { property: 'og:description', content: 'Portfolio de Deniz OK, étudiant en MSc Cybersécurité & Cloud à Epitech Nancy, alternant chez Qualitest.' },
+        { property: 'og:description', content: "Deniz OK — MSc Cybersécurité & Cloud à Epitech Nancy, alternant chez Qualitest. En recherche d'une nouvelle alternance." },
         { property: 'og:type', content: 'website' },
         { property: 'og:image', content: 'https://portfolio-deniz.me/portrait.jpg' },
         { property: 'og:url', content: 'https://portfolio-deniz.me/' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'Deniz OK — Portfolio' },
-        { name: 'twitter:description', content: 'Portfolio de Deniz OK, étudiant en MSc Cybersécurité & Cloud à Epitech Nancy, alternant chez Qualitest.' },
+        { name: 'twitter:description', content: "Deniz OK — MSc Cybersécurité & Cloud à Epitech Nancy, alternant chez Qualitest. En recherche d'une nouvelle alternance." },
         { name: 'twitter:image', content: 'https://portfolio-deniz.me/portrait.jpg' }
       ],
       link: [

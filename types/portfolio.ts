@@ -10,6 +10,17 @@ export interface NavContent {
   contact: string
 }
 
+/** Explicit, recruiter-facing labels shown alongside each themed section title (nav + section headers). */
+export interface SectionLabels {
+  roster: string
+  matches: string
+  career: string
+  drills: string
+  off: string
+  languages: string
+  contact: string
+}
+
 export interface HeroTale {
   k: string
   v: string
@@ -144,8 +155,11 @@ export interface A11yContent {
 
 export interface LocaleContent {
   nav: NavContent
+  sectionLabels: SectionLabels
   a11y: A11yContent
   ticker: string[]
+  /** Short, dedicated SEO summary (<=160 chars) — used for meta/OG/Twitter description instead of truncating the bio. */
+  seoDescription: string
   hero: HeroContent
   matches: MatchesContent
   projects: Project[]
