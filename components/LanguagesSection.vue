@@ -6,6 +6,7 @@ const languages = computed(() => content.value.languages)
 <template>
   <section class="languages" id="languages">
     <div class="container">
+      <span class="section-label">{{ content.sectionLabels.languages }}</span>
       <h2 class="display">{{ languages.title }}</h2>
       <div class="languages-list">
         <div v-for="lg in languages.items" :key="lg.code" v-reveal class="lang-row">

@@ -8,6 +8,7 @@ const exp = computed(() => content.value.exp)
 <template>
   <section class="career" id="career">
     <div class="container">
+      <span class="section-label">{{ content.sectionLabels.career }}</span>
       <h2 class="display">{{ career.title }}</h2>
 
       <div class="career-grid">

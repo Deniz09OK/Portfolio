@@ -14,6 +14,7 @@ function close() {
 <template>
   <section class="off" id="off">
     <div class="container">
+      <span class="section-label">{{ content.sectionLabels.off }}</span>
       <h2 class="display">{{ off.title }}</h2>
       <p class="display-sub">{{ off.sub }}</p>
 

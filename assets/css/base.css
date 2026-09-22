@@ -40,3 +40,14 @@ button { background: none; border: 0; cursor: pointer; color: inherit; font: inh
   max-width: 56ch;
   margin-bottom: clamp(24px, 4vh, 64px);
 }
+
+/* Small explicit label shown above a themed section title (e.g. "Projets" above "Card de la saison"). */
+.section-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}

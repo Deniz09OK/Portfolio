@@ -6,6 +6,7 @@ const drills = computed(() => content.value.drills)
 <template>
   <section class="drills" id="drills">
     <div class="container">
+      <span class="section-label">{{ content.sectionLabels.drills }}</span>
       <h2 class="display">{{ drills.title }}</h2>
       <p class="display-sub drills-sub">{{ drills.sub }}</p>
       <ul class="drills-legend" :aria-label="content.a11y.legend">

@@ -36,6 +36,7 @@ const labels = computed(() => {
 <template>
   <section class="matches" id="matches">
     <div class="matches-head">
+      <span class="section-label">{{ content.sectionLabels.matches }}</span>
       <h2 class="display">{{ matches.title }}</h2>
       <p class="display-sub">{{ matches.sub }}</p>
     </div>

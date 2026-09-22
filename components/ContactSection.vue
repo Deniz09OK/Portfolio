@@ -6,6 +6,7 @@ const contact = computed(() => content.value.contact)
 <template>
   <section class="contact" id="contact">
     <div class="container">
+      <span class="section-label">{{ content.sectionLabels.contact }}</span>
       <h2 class="contact-title">{{ contact.title }}</h2>
       <p class="contact-lead">{{ contact.lead }}</p>
       <a class="contact-email" :href="`mailto:${contact.email}`">

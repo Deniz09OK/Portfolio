@@ -7,15 +7,16 @@ const { isLight, toggle } = useTheme()
 
 const nav = computed(() => content.value.nav)
 const a11y = computed(() => content.value.a11y)
+const sectionLabels = computed(() => content.value.sectionLabels)
 
 const links = computed(() => [
-  { href: '#roster', label: nav.value.roster },
-  { href: '#matches', label: nav.value.matches },
-  { href: '#career', label: nav.value.career },
-  { href: '#drills', label: nav.value.drills },
-  { href: '#off', label: nav.value.off },
-  { href: '#languages', label: nav.value.languages },
-  { href: '#contact', label: nav.value.contact },
+  { href: '#roster', label: nav.value.roster, sub: sectionLabels.value.roster },
+  { href: '#matches', label: nav.value.matches, sub: sectionLabels.value.matches },
+  { href: '#career', label: nav.value.career, sub: sectionLabels.value.career },
+  { href: '#drills', label: nav.value.drills, sub: sectionLabels.value.drills },
+  { href: '#off', label: nav.value.off, sub: sectionLabels.value.off },
+  { href: '#languages', label: nav.value.languages, sub: sectionLabels.value.languages },
+  { href: '#contact', label: nav.value.contact, sub: sectionLabels.value.contact },
 ])
 
 // Sync the live ticker offset to the real bar height (1 or 2 nav lines).
@@ -73,7 +74,10 @@ onBeforeUnmount(() => {
     </a>
 
     <nav class="bar-nav" :aria-label="a11y.navPrimary">
-      <a v-for="l in links" :key="l.href" :href="l.href">{{ l.label }}</a>
+      <a v-for="l in links" :key="l.href" :href="l.href" class="bar-nav-link">
+        <span class="bar-nav-label">{{ l.label }}</span>
+        <span class="bar-nav-sub">{{ l.sub }}</span>
+      </a>
     </nav>
 
     <div class="bar-tools">
@@ -111,7 +115,10 @@ onBeforeUnmount(() => {
       :class="{ 'is-open': mobileOpen }"
       :aria-label="a11y.navMobile"
     >
-      <a v-for="l in links" :key="l.href" :href="l.href" @click="closeMobileNav">{{ l.label }}</a>
+      <a v-for="l in links" :key="l.href" :href="l.href" class="mobile-nav-link" @click="closeMobileNav">
+        <span class="mobile-nav-label">{{ l.label }}</span>
+        <span class="mobile-nav-sub">{{ l.sub }}</span>
+      </a>
     </nav>
   </header>
 </template>
