@@ -18,6 +18,7 @@ const contact = computed(() => content.value.contact)
         <a href="https://gitlab.com/Deniz09OK" target="_blank" rel="noopener">GITLAB ↗</a>
         <a href="https://www.linkedin.com/in/deniz-ok/" target="_blank" rel="noopener">LINKEDIN ↗</a>
         <a href="https://tryhackme.com/p/Deniz23Ok" target="_blank" rel="noopener">TRYHACKME ↗</a>
+        <a href="https://app.hackthebox.com/users/4005432" target="_blank" rel="noopener">HACKTHEBOX ↗</a>
         <a :href="`mailto:${contact.email}`">EMAIL ↗</a>
       </div>
     </div>
