@@ -54,7 +54,7 @@ export const portfolio: Portfolio = {
       { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Bac Pro SNIR", desc: "Bases réseau & systèmes · Virtualisation Debian" }
     ],
     exp: [
-      { year: "02/2025 — aujourd’hui", company: "QUALITEST", title: "Assistant informatique (alternance)", desc: "Pipelines de données Python en production pour des clients (ex. intégration d’enquêtes Sphinx vers Odoo) · Administration Windows Server & outillage interne · Migration d’un sous-domaine vers un nouveau serveur (gestion DNS chez OVH) · Questionnaires & reporting (Sphinx, IQ3, Dataviv'), bases de données & analyse · Rédaction de procédures internes (traitement de bases e-mails clients)", current: true },
+      { year: "02/2025 — aujourd’hui", company: "QUALITEST", title: "Assistant informatique (alternance)", desc: "Traitement et fiabilisation de fichiers de contacts CSV pour des clients · Création de questionnaires et reporting sous Sphinx IQ3 · Pipelines de données Python (intégration d’enquêtes Sphinx vers Odoo) et automatisation (PowerShell, Bash) · Rédaction de procédures internes", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Équipier polyvalent", desc: "Service salle & drive · Relation client" },
       { year: "03/2023 — 12/2023", company: "1ER RSMV · MONTIGNY-LÈS-METZ", title: "Volontaire stagiaire", desc: "Discipline & cohésion · SST · Médaille du mérite" },
       { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "Salle informatique (stage)", desc: "Déploiement postes · Adressage IP pour BTS" },
@@ -150,7 +150,7 @@ export const portfolio: Portfolio = {
       { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Vocational Baccalaureate SNIR", desc: "Network & system foundations · Debian virtualisation" }
     ],
     exp: [
-      { year: "02/2025 — now", company: "QUALITEST", title: "IT Assistant (work-study)", desc: "Production Python data pipelines for clients (e.g. Sphinx survey data into Odoo) · Windows Server administration & internal tooling · Migrated a subdomain to a new server (DNS management on OVH) · Questionnaires & reporting (Sphinx, IQ3, Dataviv'), databases & analysis · Wrote internal procedures (client email database handling)", current: true },
+      { year: "02/2025 — now", company: "QUALITEST", title: "IT Assistant (work-study)", desc: "Cleaning and processing client contact CSV files · Building surveys and reports with Sphinx IQ3 · Python data pipelines (Sphinx survey integration into Odoo) and automation (PowerShell, Bash) · Writing internal procedures", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Crew member", desc: "Front of house & drive · Customer service" },
       { year: "03/2023 — 12/2023", company: "1ST RSMV · MONTIGNY-LÈS-METZ", title: "Volunteer trainee", desc: "Discipline & teamwork · First-aid (SST) · Merit medal" },
       { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "IT room support (internship)", desc: "Workstation rollout · IP addressing for BTS" },
@@ -242,7 +242,7 @@ export const portfolio: Portfolio = {
       { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Mesleki Lise SNIR", desc: "Ağ ve sistem temelleri · Debian sanallaştırma" }
     ],
     exp: [
-      { year: "02/2025 — şimdi", company: "QUALITEST", title: "BT Asistanı (dönüşümlü eğitim)", desc: "Müşteriler için üretimde Python veri hatları (ör. Sphinx anket verilerinin Odoo'ya aktarımı) · Windows Server yönetimi & iç araçlar · Bir alt alan adının yeni bir sunucuya taşınması (OVH'de DNS yönetimi) · Anket & raporlama (Sphinx, IQ3, Dataviv'), veritabanları & analiz · İç prosedürlerin yazımı (müşteri e-posta veritabanlarının işlenmesi)", current: true },
+      { year: "02/2025 — şimdi", company: "QUALITEST", title: "BT Asistanı (dönüşümlü eğitim)", desc: "Müşteriler için CSV kişi dosyalarının temizlenmesi ve işlenmesi · Sphinx IQ3 ile anket ve rapor hazırlama · Python veri hatları (Sphinx anket verilerinin Odoo'ya aktarımı) ve otomasyon (PowerShell, Bash) · İç prosedürlerin yazımı", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Ekip üyesi", desc: "Salon & drive · Müşteri ilişkileri" },
       { year: "03/2023 — 12/2023", company: "1. RSMV · MONTIGNY-LÈS-METZ", title: "Gönüllü stajyer", desc: "Disiplin & takım çalışması · SST · Liyakat madalyası" },
       { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "Bilgisayar odası (staj)", desc: "İş istasyonu kurulumu · BTS için IP adresleme" },
