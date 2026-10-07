@@ -1,0 +1,71 @@
+{
+  "updatedAt": "2026-10-07T13:06:10.597Z",
+  "profile": {
+    "id": 4005432,
+    "name": "Sorouto",
+    "rank": "Noob",
+    "nextRank": "Script Kiddie",
+    "rankProgress": 80.4,
+    "points": 2,
+    "globalRanking": 1013,
+    "systemOwns": 4,
+    "userOwns": 5,
+    "bloods": 0,
+    "respects": 0,
+    "country": "FR",
+    "joinedAt": "2026-09-23",
+    "url": "https://app.hackthebox.com/users/4005432"
+  },
+  "boxes": [
+    {
+      "name": "Touch",
+      "difficulty": "Easy",
+      "os": "Windows",
+      "solved": "root",
+      "solvedAt": "2026-10-07T09:45:26.000Z"
+    },
+    {
+      "name": "Fireflow",
+      "difficulty": "Medium",
+      "os": "Linux",
+      "solved": "root",
+      "solvedAt": "2026-09-26T10:47:56.000Z"
+    },
+    {
+      "name": "Cap",
+      "difficulty": "Easy",
+      "os": "Linux",
+      "solved": "root",
+      "solvedAt": "2026-09-25T19:49:25.000Z"
+    },
+    {
+      "name": "Silentium",
+      "difficulty": "Easy",
+      "os": "Linux",
+      "solved": "root",
+      "solvedAt": "2026-09-25T17:46:30.000Z"
+    },
+    {
+      "name": "Layover",
+      "difficulty": "Medium",
+      "os": "Linux",
+      "solved": "user",
+      "solvedAt": null
+    }
+  ],
+  "season": {
+    "id": 21,
+    "name": "Season 12",
+    "endsAt": "2026-11-28T19:00:01.000Z",
+    "league": "Silver",
+    "rank": 2159,
+    "totalPlayers": 4175,
+    "points": 75,
+    "nextLeague": "Ruby",
+    "flags": {
+      "obtained": 3,
+      "total": 18
+    },
+    "bloods": 0
+  }
+}
