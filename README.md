@@ -156,6 +156,14 @@ Sur une pull request, seuls la génération et les tests sont exécutés.
 
 La page 404 est générée à partir de `error.vue` : Nuxt produit toujours `/404.html` comme une coquille vide remplie en JavaScript, la route `/404` est donc rendue côté serveur puis écrite dans `404.html` via le hook Nitro `prerender:generate` (voir `nuxt.config.ts`).
 
+### Statistiques Hack The Box
+
+La section « Hack The Box » lit `public/data/htb.json`, généré par `scripts/fetch-htb.mjs` (données publiques uniquement : rang, points, boxes résolues, saison en cours). Le workflow `.github/workflows/htb-sync.yml` l'exécute toutes les 6 h, à la demande, et à chaque push sur `main`, commite le JSON s'il a changé puis relance `deploy.yml`.
+
+- Secret requis : `API_TOKEN` (Settings → Secrets and variables → Actions). En local, la même variable peut être mise dans un `.env` (ignoré par git).
+- `node scripts/fetch-htb.mjs` met à jour le JSON ; `node scripts/fetch-htb.mjs --probe` teste les endpoints (statuts et clés uniquement, jamais le jeton).
+- En cas d'erreur API (401, 403, 429, timeout), l'ancien JSON est conservé.
+
 ---
 
 **Réalisé avec 💙 par Deniz OK**
