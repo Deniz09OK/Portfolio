@@ -4,7 +4,7 @@ import { portfolio } from '../data/portfolio'
 const LANGS = ['fr', 'en', 'tr'] as const
 type Lang = (typeof LANGS)[number]
 
-const SECTIONS = ['roster', 'matches', 'career', 'drills', 'off', 'languages', 'contact']
+const SECTIONS = ['roster', 'matches', 'career', 'drills', 'htb', 'off', 'languages', 'contact']
 const OPPONENT_LABEL: Record<Lang, string> = { fr: 'ADVERSAIRE', en: 'OPPONENT', tr: 'RAKİP' }
 const HOST_LABEL: Record<string, string> = { 'github.com': 'GITHUB', 'gitlab.com': 'GITLAB' }
 
@@ -67,6 +67,8 @@ test('every project card shows exactly one status', async ({ page }) => {
 })
 
 test('the menu reaches every section', async ({ page }) => {
+  // One menu round-trip per section: WebKit mobile needs about 5s each.
+  test.setTimeout(90_000)
   await openSite(page)
   const burger = page.locator('.nav-toggle')
 

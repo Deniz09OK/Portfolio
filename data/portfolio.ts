@@ -2,8 +2,8 @@ import type { Portfolio } from '~/types/portfolio'
 
 
 export const portfolio: Portfolio = {
-  fr: {    nav: { roster: "Fiche", matches: "Card de la saison", career: "Saisons jouées", drills: "Entraînement quotidien", off: "Hors du clavier", languages: "Trois langues", contact: "Sifflet final" },
-    sectionLabels: { roster: "Profil", matches: "Projets", career: "Parcours", drills: "Compétences", off: "Centres d'intérêt", languages: "Langues", contact: "Contact" },
+  fr: {    nav: { roster: "Fiche", matches: "Card de la saison", career: "Saisons jouées", drills: "Entraînement quotidien", htb: "Classement HTB", off: "Hors du clavier", languages: "Trois langues", contact: "Sifflet final" },
+    sectionLabels: { roster: "Profil", matches: "Projets", career: "Parcours", drills: "Compétences", htb: "Hack The Box", off: "Centres d'intérêt", languages: "Langues", contact: "Contact" },
     a11y: { navPrimary: "Navigation principale", navMobile: "Navigation mobile", language: "Langue", theme: "Changer de thème", menu: "Menu", legend: "Légende" },
     ticker: ["LIVE", "·", "PORTFOLIO 2026", "·", "MSc CYBERSÉCURITÉ & CLOUD", "·", "EPITECH NANCY", "·", "RECHERCHE ALTERNANCE → 09/2027", "·", "TRILINGUE FR/EN/TR", "·", "OUVERT AUX OPPORTUNITÉS", "·"],
     seoDescription: "Deniz OK — MSc Cybersécurité & Cloud à Epitech Nancy. En recherche d'une alternance jusqu'en 09/2027 (cybersécurité, infrastructure/cloud).",
@@ -77,6 +77,37 @@ export const portfolio: Portfolio = {
         { label: "GESTION DE PROJET", pos: "CAPITAINE", items: [{ name: "Scrum (Scrum Master, MediSync)", tier: "starter" }, { name: "Kanban (projet CIA)", tier: "starter" }, { name: "Jira", tier: "starter" }, { name: "Confluence", tier: "starter" }, { name: "Conventional Commits", tier: "starter" }] }
       ]
     },
+    htb: {
+      "title": "Le classement en direct",
+      "sub": "Statistiques publiques tirées de l’API Hack The Box et synchronisées automatiquement : rang, boxes résolues et saison en cours.",
+      "labels": {
+        "rank": "Rang",
+        "points": "Points",
+        "ranking": "Classement mondial",
+        "boxes": "Boxes résolues",
+        "bloods": "First bloods",
+        "nextRank": "Prochain rang",
+        "season": "Saison en cours",
+        "seasonRank": "Classement",
+        "seasonPoints": "Points de saison",
+        "seasonFlags": "Flags",
+        "nextLeague": "Prochaine ligue",
+        "boxesTitle": "Boxes résolues",
+        "colBox": "Box",
+        "colDifficulty": "Difficulté",
+        "colOs": "Système",
+        "colFlag": "Flag",
+        "colDate": "Date",
+        "root": "ROOT",
+        "user": "USER",
+        "noDate": "—",
+        "updated": "Dernière mise à jour",
+        "profile": "Voir le profil Hack The Box",
+        "statsLabel": "Statistiques Hack The Box",
+        "empty": "Les statistiques Hack The Box ne sont pas disponibles pour le moment.",
+        "emptyLink": "Voir directement mon profil"
+      }
+    },
     off: {
       title: "Hors du clavier",
       sub: "Cinq disciplines qui me façonnent. Cinq écoles de discipline, de jeu et de récit.",
@@ -106,8 +137,8 @@ export const portfolio: Portfolio = {
   },
 
   en: {
-    nav: { roster: "Roster", matches: "Season card", career: "Seasons played", drills: "Daily training", off: "Off the keyboard", languages: "Three languages", contact: "Final whistle" },
-    sectionLabels: { roster: "Profile", matches: "Projects", career: "Experience", drills: "Skills", off: "Interests", languages: "Languages", contact: "Contact" },
+    nav: { roster: "Roster", matches: "Season card", career: "Seasons played", drills: "Daily training", htb: "HTB ranking", off: "Off the keyboard", languages: "Three languages", contact: "Final whistle" },
+    sectionLabels: { roster: "Profile", matches: "Projects", career: "Experience", drills: "Skills", htb: "Hack The Box", off: "Interests", languages: "Languages", contact: "Contact" },
     a11y: { navPrimary: "Primary navigation", navMobile: "Mobile navigation", language: "Language", theme: "Toggle theme", menu: "Menu", legend: "Legend" },
     ticker: ["LIVE", "·", "PORTFOLIO 2026", "·", "MSc CYBERSECURITY & CLOUD", "·", "EPITECH NANCY", "·", "SEEKING WORK-STUDY → 09/2027", "·", "TRILINGUAL FR/EN/TR", "·", "OPEN TO WORK", "·"],
     seoDescription: "Deniz OK — MSc Cybersecurity & Cloud at Epitech Nancy. Currently seeking a work-study placement until 09/2027 (cybersecurity, infrastructure/cloud).",
@@ -173,6 +204,37 @@ export const portfolio: Portfolio = {
         { label: "PROJECT MANAGEMENT", pos: "CAPTAIN", items: [{ name: "Scrum (Scrum Master, MediSync)", tier: "starter" }, { name: "Kanban (CIA project)", tier: "starter" }, { name: "Jira", tier: "starter" }, { name: "Confluence", tier: "starter" }, { name: "Conventional Commits", tier: "starter" }] }
       ]
     },
+    htb: {
+      "title": "Live standings",
+      "sub": "Public stats pulled from the Hack The Box API and synced automatically: rank, solved boxes and the current season.",
+      "labels": {
+        "rank": "Rank",
+        "points": "Points",
+        "ranking": "Global ranking",
+        "boxes": "Boxes solved",
+        "bloods": "First bloods",
+        "nextRank": "Next rank",
+        "season": "Current season",
+        "seasonRank": "Standing",
+        "seasonPoints": "Season points",
+        "seasonFlags": "Flags",
+        "nextLeague": "Next league",
+        "boxesTitle": "Solved boxes",
+        "colBox": "Box",
+        "colDifficulty": "Difficulty",
+        "colOs": "OS",
+        "colFlag": "Flag",
+        "colDate": "Date",
+        "root": "ROOT",
+        "user": "USER",
+        "noDate": "—",
+        "updated": "Last updated",
+        "profile": "View Hack The Box profile",
+        "statsLabel": "Hack The Box stats",
+        "empty": "Hack The Box stats are not available right now.",
+        "emptyLink": "Open my profile directly"
+      }
+    },
     off: {
       title: "Off the keyboard",
       sub: "Five disciplines that shape me. Five schools of discipline, play and story.",
@@ -198,8 +260,8 @@ export const portfolio: Portfolio = {
   },
 
   tr: {
-    nav: { roster: "Kadro", matches: "Sezon kartı", career: "Oynanan sezonlar", drills: "Günlük antrenman", off: "Klavyenin dışında", languages: "Üç dil", contact: "Son düdük" },
-    sectionLabels: { roster: "Profil", matches: "Projeler", career: "Deneyim", drills: "Yetenekler", off: "İlgi Alanları", languages: "Diller", contact: "İletişim" },
+    nav: { roster: "Kadro", matches: "Sezon kartı", career: "Oynanan sezonlar", drills: "Günlük antrenman", htb: "HTB sıralaması", off: "Klavyenin dışında", languages: "Üç dil", contact: "Son düdük" },
+    sectionLabels: { roster: "Profil", matches: "Projeler", career: "Deneyim", drills: "Yetenekler", htb: "Hack The Box", off: "İlgi Alanları", languages: "Diller", contact: "İletişim" },
     a11y: { navPrimary: "Ana gezinme", navMobile: "Mobil gezinme", language: "Dil", theme: "Temayı değiştir", menu: "Menü", legend: "Açıklama" },
     ticker: ["CANLI", "·", "PORTFOLYO 2026", "·", "MSc SİBER GÜVENLİK & BULUT", "·", "EPITECH NANCY", "·", "DÖNÜŞÜMLÜ EĞİTİM ARIYORUM → 09/2027", "·", "ÜÇ DİLLİ FR/EN/TR", "·", "YENİ FIRSATLARA AÇIĞIM", "·"],
     seoDescription: "Deniz OK — Epitech Nancy'de MSc Siber Güvenlik & Bulut öğrencisi. 09/2027'ye kadar bir dönüşümlü eğitim arıyor (siber güvenlik, altyapı/bulut).",
@@ -264,6 +326,37 @@ export const portfolio: Portfolio = {
         { label: "VERİTABANLARI", pos: "BEK", items: [{ name: "PostgreSQL", tier: "starter" }, { name: "Redis", tier: "starter" }, { name: "SQLite", tier: "starter" }, { name: "MySQL", tier: "bench" }, { name: "MongoDB", tier: "bench" }] },
         { label: "PROJE YÖNETİMİ", pos: "KAPTAN", items: [{ name: "Scrum (Scrum Master, MediSync)", tier: "starter" }, { name: "Kanban (CIA projesi)", tier: "starter" }, { name: "Jira", tier: "starter" }, { name: "Confluence", tier: "starter" }, { name: "Conventional Commits", tier: "starter" }] }
       ]
+    },
+    htb: {
+      "title": "Canlı sıralama",
+      "sub": "Hack The Box API’sinden alınan, otomatik senkronize edilen herkese açık istatistikler: seviye, çözülen kutular ve mevcut sezon.",
+      "labels": {
+        "rank": "Seviye",
+        "points": "Puan",
+        "ranking": "Dünya sıralaması",
+        "boxes": "Çözülen kutular",
+        "bloods": "First blood",
+        "nextRank": "Sonraki seviye",
+        "season": "Mevcut sezon",
+        "seasonRank": "Sıralama",
+        "seasonPoints": "Sezon puanı",
+        "seasonFlags": "Bayraklar",
+        "nextLeague": "Sonraki lig",
+        "boxesTitle": "Çözülen kutular",
+        "colBox": "Kutu",
+        "colDifficulty": "Zorluk",
+        "colOs": "Sistem",
+        "colFlag": "Bayrak",
+        "colDate": "Tarih",
+        "root": "ROOT",
+        "user": "USER",
+        "noDate": "—",
+        "updated": "Son güncelleme",
+        "profile": "Hack The Box profilini gör",
+        "statsLabel": "Hack The Box istatistikleri",
+        "empty": "Hack The Box istatistikleri şu anda kullanılamıyor.",
+        "emptyLink": "Profilimi doğrudan aç"
+      }
     },
     off: {
       title: "Klavyenin dışında",

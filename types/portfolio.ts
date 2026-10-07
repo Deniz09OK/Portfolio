@@ -105,6 +105,39 @@ export interface DrillsContent {
   groups: DrillsGroup[]
 }
 
+export interface HtbContent {
+  title: string
+  sub: string
+  /** Labels of the stat tiles, the season card and the boxes list. */
+  labels: {
+    rank: string
+    points: string
+    ranking: string
+    boxes: string
+    bloods: string
+    nextRank: string
+    season: string
+    seasonRank: string
+    seasonPoints: string
+    seasonFlags: string
+    nextLeague: string
+    boxesTitle: string
+    colBox: string
+    colDifficulty: string
+    colOs: string
+    colFlag: string
+    colDate: string
+    root: string
+    user: string
+    noDate: string
+    updated: string
+    profile: string
+    statsLabel: string
+    empty: string
+    emptyLink: string
+  }
+}
+
 export interface OffItem {
   id: string
   kanji: string
