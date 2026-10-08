@@ -2,7 +2,7 @@ import type { Portfolio } from '~/types/portfolio'
 
 
 export const portfolio: Portfolio = {
-  fr: {    nav: { roster: "Fiche", matches: "Card de la saison", career: "Saisons jouées", drills: "Entraînement quotidien", htb: "Classement HTB", off: "Hors du clavier", languages: "Trois langues", contact: "Sifflet final" },
+  fr: {    nav: { roster: "Fiche", matches: "Card de la saison", career: "Saisons jouées", drills: "Entraînement quotidien", htb: "Labs HTB", off: "Hors du clavier", languages: "Trois langues", contact: "Sifflet final" },
     sectionLabels: { roster: "Profil", matches: "Projets", career: "Parcours", drills: "Compétences", htb: "Hack The Box", off: "Centres d'intérêt", languages: "Langues", contact: "Contact" },
     a11y: { navPrimary: "Navigation principale", navMobile: "Navigation mobile", language: "Langue", theme: "Changer de thème", menu: "Menu", legend: "Légende" },
     ticker: ["RECHERCHE ALTERNANCE → 09/2027", "·", "MSc CYBERSÉCURITÉ & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUE FR/EN/TR", "·", "OUVERT AUX OPPORTUNITÉS", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
@@ -75,8 +75,8 @@ export const portfolio: Portfolio = {
       ]
     },
     htb: {
-      "title": "Le classement en direct",
-      "sub": "Statistiques publiques tirées de l’API Hack The Box et synchronisées automatiquement : rang, boxes résolues et saison en cours.",
+      "title": "La pratique en direct",
+      "sub": "Depuis fin septembre 2026. Statistiques publiques synchronisées automatiquement depuis l’API Hack The Box : machines compromises et saison en cours.",
       "labels": {
         "rank": "Rang",
         "points": "Points",
@@ -136,7 +136,7 @@ export const portfolio: Portfolio = {
   },
 
   en: {
-    nav: { roster: "Roster", matches: "Season card", career: "Seasons played", drills: "Daily training", htb: "HTB ranking", off: "Off the keyboard", languages: "Three languages", contact: "Final whistle" },
+    nav: { roster: "Roster", matches: "Season card", career: "Seasons played", drills: "Daily training", htb: "HTB labs", off: "Off the keyboard", languages: "Three languages", contact: "Final whistle" },
     sectionLabels: { roster: "Profile", matches: "Projects", career: "Experience", drills: "Skills", htb: "Hack The Box", off: "Interests", languages: "Languages", contact: "Contact" },
     a11y: { navPrimary: "Primary navigation", navMobile: "Mobile navigation", language: "Language", theme: "Toggle theme", menu: "Menu", legend: "Legend" },
     ticker: ["SEEKING WORK-STUDY → 09/2027", "·", "MSc CYBERSECURITY & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUAL FR/EN/TR", "·", "OPEN TO WORK", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
@@ -201,8 +201,8 @@ export const portfolio: Portfolio = {
       ]
     },
     htb: {
-      "title": "Live standings",
-      "sub": "Public stats pulled from the Hack The Box API and synced automatically: rank, solved boxes and the current season.",
+      "title": "Live practice",
+      "sub": "Since late September 2026. Public stats synced automatically from the Hack The Box API: owned machines and current season.",
       "labels": {
         "rank": "Rank",
         "points": "Points",
@@ -258,7 +258,7 @@ export const portfolio: Portfolio = {
   },
 
   tr: {
-    nav: { roster: "Kadro", matches: "Sezon kartı", career: "Oynanan sezonlar", drills: "Günlük antrenman", htb: "HTB sıralaması", off: "Klavyenin dışında", languages: "Üç dil", contact: "Son düdük" },
+    nav: { roster: "Kadro", matches: "Sezon kartı", career: "Oynanan sezonlar", drills: "Günlük antrenman", htb: "HTB lab'ları", off: "Klavyenin dışında", languages: "Üç dil", contact: "Son düdük" },
     sectionLabels: { roster: "Profil", matches: "Projeler", career: "Deneyim", drills: "Yetenekler", htb: "Hack The Box", off: "İlgi Alanları", languages: "Diller", contact: "İletişim" },
     a11y: { navPrimary: "Ana gezinme", navMobile: "Mobil gezinme", language: "Dil", theme: "Temayı değiştir", menu: "Menü", legend: "Açıklama" },
     ticker: ["DÖNÜŞÜMLÜ EĞİTİM ARIYORUM → 09/2027", "·", "MSc SİBER GÜVENLİK & BULUT", "·", "EPITECH NANCY", "·", "ÜÇ DİLLİ FR/EN/TR", "·", "YENİ FIRSATLARA AÇIĞIM", "·", "CANLI", "·", "PORTFOLYO 2026", "·"],
@@ -323,8 +323,8 @@ export const portfolio: Portfolio = {
       ]
     },
     htb: {
-      "title": "Canlı sıralama",
-      "sub": "Hack The Box API’sinden alınan, otomatik senkronize edilen herkese açık istatistikler: seviye, çözülen kutular ve mevcut sezon.",
+      "title": "Canlı pratik",
+      "sub": "Eylül 2026 sonundan beri. Hack The Box API'sinden otomatik senkronize edilen herkese açık istatistikler: ele geçirilen makineler ve mevcut sezon.",
       "labels": {
         "rank": "Seviye",
         "points": "Puan",
