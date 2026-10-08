@@ -5,7 +5,7 @@ export const portfolio: Portfolio = {
   fr: {    nav: { roster: "Fiche", matches: "Card de la saison", career: "Saisons jouées", drills: "Entraînement quotidien", htb: "Classement HTB", off: "Hors du clavier", languages: "Trois langues", contact: "Sifflet final" },
     sectionLabels: { roster: "Profil", matches: "Projets", career: "Parcours", drills: "Compétences", htb: "Hack The Box", off: "Centres d'intérêt", languages: "Langues", contact: "Contact" },
     a11y: { navPrimary: "Navigation principale", navMobile: "Navigation mobile", language: "Langue", theme: "Changer de thème", menu: "Menu", legend: "Légende" },
-    ticker: ["LIVE", "·", "PORTFOLIO 2026", "·", "MSc CYBERSÉCURITÉ & CLOUD", "·", "EPITECH NANCY", "·", "RECHERCHE ALTERNANCE → 09/2027", "·", "TRILINGUE FR/EN/TR", "·", "OUVERT AUX OPPORTUNITÉS", "·"],
+    ticker: ["RECHERCHE ALTERNANCE → 09/2027", "·", "MSc CYBERSÉCURITÉ & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUE FR/EN/TR", "·", "OUVERT AUX OPPORTUNITÉS", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
     seoDescription: "Deniz OK — MSc Cybersécurité & Cloud à Epitech Nancy. En recherche d'une alternance jusqu'en 09/2027 (cybersécurité, infrastructure/cloud).",
 
     hero: {
@@ -140,7 +140,7 @@ export const portfolio: Portfolio = {
     nav: { roster: "Roster", matches: "Season card", career: "Seasons played", drills: "Daily training", htb: "HTB ranking", off: "Off the keyboard", languages: "Three languages", contact: "Final whistle" },
     sectionLabels: { roster: "Profile", matches: "Projects", career: "Experience", drills: "Skills", htb: "Hack The Box", off: "Interests", languages: "Languages", contact: "Contact" },
     a11y: { navPrimary: "Primary navigation", navMobile: "Mobile navigation", language: "Language", theme: "Toggle theme", menu: "Menu", legend: "Legend" },
-    ticker: ["LIVE", "·", "PORTFOLIO 2026", "·", "MSc CYBERSECURITY & CLOUD", "·", "EPITECH NANCY", "·", "SEEKING WORK-STUDY → 09/2027", "·", "TRILINGUAL FR/EN/TR", "·", "OPEN TO WORK", "·"],
+    ticker: ["SEEKING WORK-STUDY → 09/2027", "·", "MSc CYBERSECURITY & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUAL FR/EN/TR", "·", "OPEN TO WORK", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
     seoDescription: "Deniz OK — MSc Cybersecurity & Cloud at Epitech Nancy. Currently seeking a work-study placement until 09/2027 (cybersecurity, infrastructure/cloud).",
     hero: {
       number: "619",
@@ -263,7 +263,7 @@ export const portfolio: Portfolio = {
     nav: { roster: "Kadro", matches: "Sezon kartı", career: "Oynanan sezonlar", drills: "Günlük antrenman", htb: "HTB sıralaması", off: "Klavyenin dışında", languages: "Üç dil", contact: "Son düdük" },
     sectionLabels: { roster: "Profil", matches: "Projeler", career: "Deneyim", drills: "Yetenekler", htb: "Hack The Box", off: "İlgi Alanları", languages: "Diller", contact: "İletişim" },
     a11y: { navPrimary: "Ana gezinme", navMobile: "Mobil gezinme", language: "Dil", theme: "Temayı değiştir", menu: "Menü", legend: "Açıklama" },
-    ticker: ["CANLI", "·", "PORTFOLYO 2026", "·", "MSc SİBER GÜVENLİK & BULUT", "·", "EPITECH NANCY", "·", "DÖNÜŞÜMLÜ EĞİTİM ARIYORUM → 09/2027", "·", "ÜÇ DİLLİ FR/EN/TR", "·", "YENİ FIRSATLARA AÇIĞIM", "·"],
+    ticker: ["DÖNÜŞÜMLÜ EĞİTİM ARIYORUM → 09/2027", "·", "MSc SİBER GÜVENLİK & BULUT", "·", "EPITECH NANCY", "·", "ÜÇ DİLLİ FR/EN/TR", "·", "YENİ FIRSATLARA AÇIĞIM", "·", "CANLI", "·", "PORTFOLYO 2026", "·"],
     seoDescription: "Deniz OK — Epitech Nancy'de MSc Siber Güvenlik & Bulut öğrencisi. 09/2027'ye kadar bir dönüşümlü eğitim arıyor (siber güvenlik, altyapı/bulut).",
     hero: {
       number: "619",
