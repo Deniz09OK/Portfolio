@@ -70,18 +70,32 @@ function fmt(iso: string | null, withTime = false) {
   }).format(new Date(iso))
 }
 const num = (n: number) => new Intl.NumberFormat(LOCALES[lang.value]).format(n)
+// Short day + month ("7 oct.") for the latest-machine tile, in the same fixed UTC time zone as fmt().
+const dayMonth = (iso: string) =>
+  new Intl.DateTimeFormat(LOCALES[lang.value], { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(iso))
 
 const solvedCount = computed(() => data.value?.boxes.filter((b) => b.solved === 'root').length ?? 0)
+// Rank, points and global ranking are left out on purpose: the tiles show practice, not a beginner score.
 const tiles = computed(() => {
   const d = data.value
   if (!d) return []
   const p = d.profile
+  // Root machines per OS, most first; ties sorted by name so the prerendered HTML and the browser agree.
+  const perOs = new Map<string, number>()
+  for (const b of d.boxes) if (b.solved === 'root') perOs.set(b.os, (perOs.get(b.os) ?? 0) + 1)
+  const systems = [...perOs].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  // Most recently solved machine, root or user (boxes without a date are skipped).
+  // OS and machine names are English proper nouns: lang="en" keeps them out of Turkish uppercasing (i → İ).
+  const latest = d.boxes
+    .filter((b): b is HtbBox & { solvedAt: string } => !!b.solvedAt)
+    .sort((a, b) => b.solvedAt.localeCompare(a.solvedAt))[0]
   return [
-    { k: t.value.rank, v: p.rank, sub: p.nextRank ? `${t.value.nextRank} : ${p.nextRank}` : '' },
-    { k: t.value.points, v: num(p.points), sub: '' },
-    { k: t.value.ranking, v: p.globalRanking ? `#${num(p.globalRanking)}` : '—', sub: '' },
     { k: t.value.boxes, v: String(solvedCount.value), sub: `USER ${p.userOwns} · ROOT ${p.systemOwns}` },
-    { k: t.value.bloods, v: String(p.bloods), sub: '' },
+    ...(systems.length
+      ? [{ k: systems.map(([os]) => os).join(' / '), kLang: 'en', v: systems.map(([, n]) => n).join(' / '), sub: t.value.systemsSub }]
+      : []),
+    ...(latest ? [{ k: t.value.latest, v: dayMonth(latest.solvedAt), sub: latest.name, subLang: 'en' }] : []),
+    ...(p.bloods > 0 ? [{ k: t.value.bloods, v: String(p.bloods), sub: '' }] : []),
   ]
 })
 
@@ -103,9 +117,9 @@ const diffClass = (d: string) => `htb-diff--${d.toLowerCase().replace(/[^a-z]/g,
       <template v-if="data">
         <ul class="htb-tiles" :aria-label="t.statsLabel">
           <li v-for="tile in tiles" :key="tile.k" v-reveal class="htb-tile">
-            <span class="htb-tile-k">{{ tile.k }}</span>
+            <span class="htb-tile-k" :lang="tile.kLang">{{ tile.k }}</span>
             <span class="htb-tile-v">{{ tile.v }}</span>
-            <span v-if="tile.sub" class="htb-tile-sub">{{ tile.sub }}</span>
+            <span v-if="tile.sub" class="htb-tile-sub" :lang="tile.subLang">{{ tile.sub }}</span>
           </li>
         </ul>
 

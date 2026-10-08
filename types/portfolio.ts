@@ -123,6 +123,8 @@ export interface HtbContent {
     seasonPoints: string
     seasonFlags: string
     nextLeague: string
+    latest: string
+    systemsSub: string
     boxesTitle: string
     colBox: string
     colDifficulty: string
