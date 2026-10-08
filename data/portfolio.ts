@@ -14,7 +14,7 @@ export const portfolio: Portfolio = {
       name2: "OK",
       position: "CYBERSÉCURITÉ & CLOUD",
       team: "AGENT LIBRE × EPITECH NANCY",
-      bio: "Passionné par la Cybersécurité et les infrastructures Cloud, je suis actuellement en MSc à Epitech Nancy. Mon alternance chez Qualitest m'a permis de consolider mes bases techniques à travers la gestion de bases de données, l’analyse de données et l’automatisation de tâches grâce au scripting (Python, PowerShell, PHP, Bash). Mes domaines de prédilection : Cybersécurité (protection des données et analyse de vulnérabilités), Cloud (déploiement et sécurisation d’environnements dématérialisés), Infrastructure (maintenance système et réseau au quotidien). Je suis constamment à la recherche de nouveaux défis techniques pour allier sécurité et performance. Je recherche aujourd’hui une nouvelle alternance pour la suite de mon MSc (jusqu’en 2027), en cybersécurité, infrastructure/cloud ou développement.",
+      bio: "Étudiant en MSc Cybersécurité & Cloud à Epitech Nancy, je recherche une nouvelle alternance jusqu’en septembre 2027, en cybersécurité, infrastructure/cloud ou développement. Depuis février 2025 chez Qualitest, je développe des pipelines de données Python pour des clients, j’administre des serveurs Windows et j’automatise les traitements (Python, PowerShell, PHP, Bash).",
       kanji: "戦",
       tale: [
         { k: "BASE", v: "Jarville-la-Malgrange · FR" },
@@ -148,7 +148,7 @@ export const portfolio: Portfolio = {
       name2: "OK",
       position: "CYBERSECURITY & CLOUD",
       team: "FREE AGENT × EPITECH NANCY",
-      bio: "Passionate about Cybersecurity and Cloud infrastructure, I am currently pursuing an MSc at Epitech Nancy. My work-study position at Qualitest allowed me to strengthen my technical foundations through database management, data analysis, and task automation via scripting (Python, PowerShell, PHP, Bash). My focus areas: Cybersecurity (data protection and vulnerability analysis), Cloud (deploying and securing cloud environments), Infrastructure (day-to-day system and network maintenance). I am constantly seeking new technical challenges to combine security and performance. I am currently looking for a new work-study placement for the rest of my MSc (until 2027), in cybersecurity, infrastructure/cloud or development.",
+      bio: "MSc Cybersecurity & Cloud student at Epitech Nancy, looking for a new work-study position until September 2027, in cybersecurity, infrastructure/cloud or development. At Qualitest since February 2025, I build Python data pipelines for clients, administer Windows servers and automate data processing (Python, PowerShell, PHP, Bash).",
       kanji: "戦",
       tale: [
         { k: "BASE", v: "Jarville-la-Malgrange · FR" },
@@ -271,7 +271,7 @@ export const portfolio: Portfolio = {
       name2: "OK",
       position: "SİBER GÜVENLİK & BULUT",
       team: "SERBEST OYUNCU × EPITECH NANCY",
-      bio: "Siber Güvenlik ve Bulut altyapılarına tutkuyla bağlı biri olarak, şu anda Epitech Nancy'de MSc eğitimime devam ediyorum. Qualitest'teki dönüşümlü eğitim çalışmam, veritabanı yönetimi, veri analizi ve scripting (Python, PowerShell, PHP, Bash) ile görev otomasyonu aracılığıyla teknik temellerimi güçlendirmeme olanak tanıdı. Odak alanlarım: Siber Güvenlik (veri koruma ve güvenlik açığı analizi), Bulut (sanallaştırılmış ortamların dağıtımı ve güvenliği), Altyapı (günlük sistem ve ağ bakımı). Güvenliği ve performansı bir araya getirecek yeni teknik zorlukları sürekli arıyorum. Şu anda MSc eğitimimin devamı için (2027'ye kadar), siber güvenlik, altyapı/bulut veya yazılım geliştirme alanlarında yeni bir dönüşümlü eğitim arıyorum.",
+      bio: "Epitech Nancy'de MSc Siber Güvenlik & Bulut öğrencisiyim; Eylül 2027'ye kadar siber güvenlik, altyapı/bulut veya yazılım geliştirme alanında yeni bir dönüşümlü eğitim arıyorum. Şubat 2025'ten beri Qualitest'te müşteriler için Python veri hatları geliştiriyor, Windows sunucularını yönetiyor ve süreçleri otomatikleştiriyorum (Python, PowerShell, PHP, Bash).",
       kanji: "戦",
       tale: [
         { k: "ÜS", v: "Jarville-la-Malgrange · FR" },
