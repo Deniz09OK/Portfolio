@@ -225,7 +225,7 @@
   .hero-cta { flex-direction: column; }
   .cta { width: 100%; justify-content: center; }
 }
-.cta-primary { background: var(--accent); color: #fff; }
+.cta-primary { background: color-mix(in oklab, var(--accent) 88%, #000); color: #fff; }
 .cta-primary:hover { background: var(--gold); color: var(--bg); }
 .cta-ghost { border-color: var(--line-strong); color: var(--ink); }
 .cta-ghost:hover { border-color: var(--accent); color: var(--accent); }

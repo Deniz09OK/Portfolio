@@ -34,3 +34,11 @@
   .hero-inner,
   .matches-head { max-width: 1600px; }
 }
+
+/* Browsers without color-mix() (Safari < 16.2, Chrome < 111) would drop these backgrounds to transparent:
+   keep the plain accent there. Loaded last so it overrides ticker.css, hero.css and contact.css. */
+@supports not (color: color-mix(in oklab, red, red)) {
+  .ticker,
+  .cta-primary,
+  .contact-email { background: var(--accent); }
+}
