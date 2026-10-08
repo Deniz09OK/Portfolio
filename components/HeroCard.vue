@@ -9,7 +9,15 @@ const hero = computed(() => content.value.hero)
 const portraitSrc = '/portrait.jpg'
 const portraitMissing = ref(false)
 
-const cvUrl = computed(() => CV_URLS[lang.value])
+// Localised CV files, served statically from /public (no external dependency).
+// Turkish falls back to the English version.
+const cvUrls: Record<string, string> = {
+  fr: '/cv-deniz-ok-fr.pdf',
+  en: '/cv-deniz-ok-en.pdf',
+  tr: '/cv-deniz-ok-en.pdf',
+}
+
+const cvUrl = computed(() => cvUrls[lang.value] || cvUrls.fr)
 </script>
 
 <template>

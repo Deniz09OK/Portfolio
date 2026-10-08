@@ -4,13 +4,6 @@ import type { LangCode } from '~/types/portfolio'
 const STORAGE_KEY = 'deniz-arena-lang'
 const SUPPORTED: LangCode[] = ['fr', 'en', 'tr']
 
-/** Localised CV files, served statically from /public. Turkish falls back to the English version. */
-export const CV_URLS: Record<LangCode, string> = {
-  fr: '/cv-deniz-ok-fr.pdf',
-  en: '/cv-deniz-ok-en.pdf',
-  tr: '/cv-deniz-ok-en.pdf',
-}
-
 export function useLang() {
   // useState gives one shared, SSR-safe reactive value across components.
   const lang = useState<LangCode>('lang', () => 'fr')
