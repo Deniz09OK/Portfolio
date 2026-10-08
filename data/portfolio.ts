@@ -54,7 +54,7 @@ export const portfolio: Portfolio = {
       { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Bac Pro SNIR", desc: "Bases réseau & systèmes · Virtualisation Debian" }
     ],
     exp: [
-      { year: "02/2025 — aujourd’hui", company: "QUALITEST", title: "Assistant informatique (alternance)", desc: "Traitement et fiabilisation de fichiers de contacts CSV pour des clients · Création de questionnaires et reporting sous Sphinx IQ3 · Pipelines de données Python (intégration d’enquêtes Sphinx vers Odoo) et automatisation (PowerShell, Bash) · Rédaction de procédures internes", current: true },
+      { year: "02/2025 — aujourd’hui", company: "QUALITEST · NANCY", title: "Assistant informatique (alternance)", desc: "Pipelines de données Python en production pour des clients (intégration d’enquêtes Sphinx vers Odoo) · Administration Windows Server, outils internes PHP/JS et automatisation (PowerShell, Bash) · Questionnaires et reporting (Sphinx iQ 3, Dataviv’), bases de données et analyse · Rédaction de procédures internes (traitement des bases e-mails clients)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Équipier polyvalent", desc: "Service salle & drive · Relation client" },
       { year: "03/2023 — 12/2023", company: "1ER RSMV · MONTIGNY-LÈS-METZ", title: "Volontaire stagiaire", desc: "Discipline & cohésion · SST · Médaille du mérite" },
       { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "Salle informatique (stage)", desc: "Déploiement postes · Adressage IP pour BTS" },
@@ -181,7 +181,7 @@ export const portfolio: Portfolio = {
       { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Vocational Baccalaureate SNIR", desc: "Network & system foundations · Debian virtualisation" }
     ],
     exp: [
-      { year: "02/2025 — now", company: "QUALITEST", title: "IT Assistant (work-study)", desc: "Cleaning and processing client contact CSV files · Building surveys and reports with Sphinx IQ3 · Python data pipelines (Sphinx survey integration into Odoo) and automation (PowerShell, Bash) · Writing internal procedures", current: true },
+      { year: "02/2025 — now", company: "QUALITEST · NANCY", title: "IT Assistant (work-study)", desc: "Production Python data pipelines for clients (Sphinx survey data into Odoo) · Windows Server administration, internal PHP/JS tools and automation (PowerShell, Bash) · Surveys & reporting (Sphinx iQ 3, Dataviv’), databases and data analysis · Internal procedures (client email database processing)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Crew member", desc: "Front of house & drive · Customer service" },
       { year: "03/2023 — 12/2023", company: "1ST RSMV · MONTIGNY-LÈS-METZ", title: "Volunteer trainee", desc: "Discipline & teamwork · First-aid (SST) · Merit medal" },
       { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "IT room support (internship)", desc: "Workstation rollout · IP addressing for BTS" },
@@ -304,7 +304,7 @@ export const portfolio: Portfolio = {
       { year: "2017 — 2020", school: "LYCÉE JEAN PROUVÉ", title: "Mesleki Lise SNIR", desc: "Ağ ve sistem temelleri · Debian sanallaştırma" }
     ],
     exp: [
-      { year: "02/2025 — şimdi", company: "QUALITEST", title: "BT Asistanı (dönüşümlü eğitim)", desc: "Müşteriler için CSV kişi dosyalarının temizlenmesi ve işlenmesi · Sphinx IQ3 ile anket ve rapor hazırlama · Python veri hatları (Sphinx anket verilerinin Odoo'ya aktarımı) ve otomasyon (PowerShell, Bash) · İç prosedürlerin yazımı", current: true },
+      { year: "02/2025 — şimdi", company: "QUALITEST · NANCY", title: "BT Asistanı (dönüşümlü eğitim)", desc: "Müşteriler için üretimde çalışan Python veri hatları (Sphinx anket verilerinin Odoo'ya aktarımı) · Windows Server yönetimi, PHP/JS iç araçlar ve otomasyon (PowerShell, Bash) · Anket ve raporlama (Sphinx iQ 3, Dataviv’), veritabanları ve veri analizi · İç prosedürlerin yazımı (müşteri e-posta veritabanlarının işlenmesi)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Ekip üyesi", desc: "Salon & drive · Müşteri ilişkileri" },
       { year: "03/2023 — 12/2023", company: "1. RSMV · MONTIGNY-LÈS-METZ", title: "Gönüllü stajyer", desc: "Disiplin & takım çalışması · SST · Liyakat madalyası" },
       { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "Bilgisayar odası (staj)", desc: "İş istasyonu kurulumu · BTS için IP adresleme" },
