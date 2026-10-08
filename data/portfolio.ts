@@ -13,7 +13,7 @@ export const portfolio: Portfolio = {
       name1: "DENIZ",
       name2: "OK",
       position: "CYBERSÉCURITÉ & CLOUD",
-      team: "AGENT LIBRE × EPITECH NANCY",
+      team: "EN RECHERCHE D’ALTERNANCE · EPITECH NANCY",
       bio: "Étudiant en MSc Cybersécurité & Cloud à Epitech Nancy, je recherche une nouvelle alternance jusqu’en septembre 2027, en cybersécurité, infrastructure/cloud ou développement. Depuis février 2025 chez Qualitest, je développe des pipelines de données Python pour des clients, j’administre des serveurs Windows et j’automatise les traitements (Python, PowerShell, PHP, Bash).",
       kanji: "戦",
       tale: [
@@ -147,7 +147,7 @@ export const portfolio: Portfolio = {
       name1: "DENIZ",
       name2: "OK",
       position: "CYBERSECURITY & CLOUD",
-      team: "FREE AGENT × EPITECH NANCY",
+      team: "SEEKING WORK-STUDY · EPITECH NANCY",
       bio: "MSc Cybersecurity & Cloud student at Epitech Nancy, looking for a new work-study position until September 2027, in cybersecurity, infrastructure/cloud or development. At Qualitest since February 2025, I build Python data pipelines for clients, administer Windows servers and automate data processing (Python, PowerShell, PHP, Bash).",
       kanji: "戦",
       tale: [
@@ -270,7 +270,7 @@ export const portfolio: Portfolio = {
       name1: "DENIZ",
       name2: "OK",
       position: "SİBER GÜVENLİK & BULUT",
-      team: "SERBEST OYUNCU × EPITECH NANCY",
+      team: "DÖNÜŞÜMLÜ EĞİTİM ARIYOR · EPITECH NANCY",
       bio: "Epitech Nancy'de MSc Siber Güvenlik & Bulut öğrencisiyim; Eylül 2027'ye kadar siber güvenlik, altyapı/bulut veya yazılım geliştirme alanında yeni bir dönüşümlü eğitim arıyorum. Şubat 2025'ten beri Qualitest'te müşteriler için Python veri hatları geliştiriyor, Windows sunucularını yönetiyor ve süreçleri otomatikleştiriyorum (Python, PowerShell, PHP, Bash).",
       kanji: "戦",
       tale: [
