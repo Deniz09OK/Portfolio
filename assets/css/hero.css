@@ -45,7 +45,7 @@
 }
 .hero-number-glyph {
   font-family: var(--display);
-  font-size: clamp(100px, 25vw, 500px);
+  font-size: clamp(100px, min(25vw, 28vh), 500px);
   color: var(--accent);
   display: block;
   letter-spacing: -0.02em;
@@ -57,7 +57,7 @@
   top: -28px;
   font-family: var(--jp);
   font-weight: 900;
-  font-size: clamp(24px, 6vw, 80px);
+  font-size: clamp(24px, min(6vw, 6.72vh), 80px);
   color: var(--ink);
   opacity: 0.96;
   background: var(--bg);
@@ -75,7 +75,7 @@
 }
 .hero-name {
   font-family: var(--display);
-  font-size: clamp(48px, 14vw, 240px);
+  font-size: clamp(48px, min(14vw, 13vh), 240px);
   line-height: 0.85;
   letter-spacing: -0.005em;
   margin-bottom: clamp(16px, 3vh, 32px);
