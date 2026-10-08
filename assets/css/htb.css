@@ -84,20 +84,20 @@
   background: var(--accent);
   padding: 4px 10px;
 }
-.htb-season-rank {
+.htb-season-flags {
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
   gap: 4px 10px;
   margin: 18px 0 14px;
 }
-.htb-season-rank-v {
+.htb-season-flags-v {
   font-family: var(--display);
   font-size: clamp(44px, 6vw, 64px);
   line-height: 1;
   color: var(--ink);
 }
-.htb-season-rank-of { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.htb-season-flags-of { font-family: var(--mono); font-size: 13px; color: var(--muted); }
 .htb-season-stats {
   display: grid;
   gap: 10px;

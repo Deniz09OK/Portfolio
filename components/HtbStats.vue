@@ -129,18 +129,14 @@ const diffClass = (d: string) => `htb-diff--${d.toLowerCase().replace(/[^a-z]/g,
               <span id="htbSeasonTitle" class="htb-box-title">{{ t.season }} · {{ season.name }}</span>
               <span class="htb-league">{{ season.league }}</span>
             </header>
-            <p class="htb-season-rank">
-              <span class="htb-season-rank-v">#{{ num(season.rank) }}</span>
-              <span class="htb-season-rank-of">/ {{ num(season.totalPlayers) }}</span>
+            <p class="htb-season-flags">
+              <span class="htb-season-flags-v">{{ season.flags.obtained }}</span>
+              <span class="htb-season-flags-of">/ {{ season.flags.total }} {{ t.seasonFlags }}</span>
             </p>
             <dl class="htb-season-stats">
               <div>
                 <dt>{{ t.seasonPoints }}</dt>
                 <dd>{{ num(season.points) }}</dd>
-              </div>
-              <div>
-                <dt>{{ t.seasonFlags }}</dt>
-                <dd>{{ season.flags.obtained }} / {{ season.flags.total }}</dd>
               </div>
               <div v-if="season.nextLeague">
                 <dt>{{ t.nextLeague }}</dt>
