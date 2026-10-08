@@ -57,10 +57,7 @@ export const portfolio: Portfolio = {
       { year: "02/2025 — aujourd’hui", company: "QUALITEST · NANCY", title: "Assistant informatique (alternance)", desc: "Pipelines de données Python en production pour des clients (intégration d’enquêtes Sphinx vers Odoo) · Administration Windows Server, outils internes PHP/JS et automatisation (PowerShell, Bash) · Questionnaires et reporting (Sphinx iQ 3, Dataviv’), bases de données et analyse · Rédaction de procédures internes (traitement des bases e-mails clients)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Équipier polyvalent", desc: "Service salle & drive · Relation client" },
       { year: "03/2023 — 12/2023", company: "1ER RSMV · MONTIGNY-LÈS-METZ", title: "Volontaire stagiaire", desc: "Discipline & cohésion · SST · Médaille du mérite" },
-      { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "Salle informatique (stage)", desc: "Déploiement postes · Adressage IP pour BTS" },
-      { year: "09/2019 — 10/2019", company: "SCIENCES PO NANCY", title: "Maintenance & déploiement IT (stage)", desc: "Support personnel & étudiants" },
-      { year: "04/2019 — 05/2019", company: "LYCÉE HENRI LORITZ", title: "Maintenance & déploiement IT (stage)", desc: "Support personnel & étudiants" },
-      { year: "01/2019 — 02/2019", company: "LYCÉE HENRI LORITZ", title: "Maintenance & déploiement IT (stage)", desc: "Support personnel & étudiants" }
+      { year: "01/2019 — 06/2021", company: "LYCÉE HENRI LORITZ · SCIENCES PO NANCY · CFA CHARLES DE FOUCAULD", title: "Stages IT (Bac Pro puis BTS)", desc: "Maintenance et déploiement de postes · Support personnel & étudiants · Adressage IP" }
     ],
     drills: {
       title: "Entraînement quotidien",
@@ -184,10 +181,7 @@ export const portfolio: Portfolio = {
       { year: "02/2025 — now", company: "QUALITEST · NANCY", title: "IT Assistant (work-study)", desc: "Production Python data pipelines for clients (Sphinx survey data into Odoo) · Windows Server administration, internal PHP/JS tools and automation (PowerShell, Bash) · Surveys & reporting (Sphinx iQ 3, Dataviv’), databases and data analysis · Internal procedures (client email database processing)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Crew member", desc: "Front of house & drive · Customer service" },
       { year: "03/2023 — 12/2023", company: "1ST RSMV · MONTIGNY-LÈS-METZ", title: "Volunteer trainee", desc: "Discipline & teamwork · First-aid (SST) · Merit medal" },
-      { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "IT room support (internship)", desc: "Workstation rollout · IP addressing for BTS" },
-      { year: "09/2019 — 10/2019", company: "SCIENCES PO NANCY", title: "IT maintenance & deployment (intern)", desc: "Staff & student support" },
-      { year: "04/2019 — 05/2019", company: "LYCÉE HENRI LORITZ", title: "IT maintenance & deployment (intern)", desc: "Staff & student support" },
-      { year: "01/2019 — 02/2019", company: "LYCÉE HENRI LORITZ", title: "IT maintenance & deployment (intern)", desc: "Staff & student support" }
+      { year: "01/2019 — 06/2021", company: "LYCÉE HENRI LORITZ · SCIENCES PO NANCY · CFA CHARLES DE FOUCAULD", title: "IT internships (vocational bac, then BTS)", desc: "Workstation maintenance & rollout · Staff & student support · IP addressing" }
     ],
     drills: {
       title: "Daily training",
@@ -307,10 +301,7 @@ export const portfolio: Portfolio = {
       { year: "02/2025 — şimdi", company: "QUALITEST · NANCY", title: "BT Asistanı (dönüşümlü eğitim)", desc: "Müşteriler için üretimde çalışan Python veri hatları (Sphinx anket verilerinin Odoo'ya aktarımı) · Windows Server yönetimi, PHP/JS iç araçlar ve otomasyon (PowerShell, Bash) · Anket ve raporlama (Sphinx iQ 3, Dataviv’), veritabanları ve veri analizi · İç prosedürlerin yazımı (müşteri e-posta veritabanlarının işlenmesi)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING", title: "Ekip üyesi", desc: "Salon & drive · Müşteri ilişkileri" },
       { year: "03/2023 — 12/2023", company: "1. RSMV · MONTIGNY-LÈS-METZ", title: "Gönüllü stajyer", desc: "Disiplin & takım çalışması · SST · Liyakat madalyası" },
-      { year: "04/2021 — 06/2021", company: "CFA CHARLES DE FOUCAULD", title: "Bilgisayar odası (staj)", desc: "İş istasyonu kurulumu · BTS için IP adresleme" },
-      { year: "09/2019 — 10/2019", company: "SCIENCES PO NANCY", title: "BT bakım & dağıtım (staj)", desc: "Personel & öğrenci desteği" },
-      { year: "04/2019 — 05/2019", company: "LYCÉE HENRI LORITZ", title: "BT bakım & dağıtım (staj)", desc: "Personel & öğrenci desteği" },
-      { year: "01/2019 — 02/2019", company: "LYCÉE HENRI LORITZ", title: "BT bakım & dağıtım (staj)", desc: "Personel & öğrenci desteği" }
+      { year: "01/2019 — 06/2021", company: "LYCÉE HENRI LORITZ · SCIENCES PO NANCY · CFA CHARLES DE FOUCAULD", title: "BT stajları (Mesleki Lise, ardından BTS)", desc: "İş istasyonu bakımı ve kurulumu · Personel & öğrenci desteği · IP adresleme" }
     ],
     drills: {
       title: "Günlük antrenman",
