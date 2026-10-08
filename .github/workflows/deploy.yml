@@ -32,6 +32,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # No secrets in this job: the HTB token only lives in htb-sync.yml. A NUXT_PUBLIC_* variable
+      # passed here would be written into the public JS bundle.
       - name: Generate static site
         run: npm run generate
 

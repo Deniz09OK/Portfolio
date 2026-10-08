@@ -161,6 +161,7 @@ La page 404 est générée à partir de `error.vue` : Nuxt produit toujours `/40
 La section « Hack The Box » lit `public/data/htb.json`, généré par `scripts/fetch-htb.mjs` (données publiques uniquement : rang, points, boxes résolues, saison en cours). Le workflow `.github/workflows/htb-sync.yml` l'exécute toutes les 6 h, à la demande, et à chaque push sur `main`, commite le JSON s'il a changé puis relance `deploy.yml`.
 
 - Secret requis : `API_TOKEN` (Settings → Secrets and variables → Actions). En local, la même variable peut être mise dans un `.env` (ignoré par git).
+- `API_TOKEN` reste un secret de CI : seul `scripts/fetch-htb.mjs` le lit, jamais l'application Nuxt. Ne jamais le déclarer dans `runtimeConfig`, ni le préfixer `NUXT_PUBLIC_` ou `VITE_` (ces valeurs sont copiées dans le JavaScript public `_nuxt/*.js`), ni le passer à l'étape `npm run generate` de `deploy.yml`. Le navigateur ne reçoit que `htb.json`, déjà formaté.
 - `node scripts/fetch-htb.mjs` met à jour le JSON ; `node scripts/fetch-htb.mjs --probe` teste les endpoints (statuts et clés uniquement, jamais le jeton).
 - En cas d'erreur API (401, 403, 429, timeout), l'ancien JSON est conservé.
 
