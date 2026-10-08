@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const content = usePortfolio()
+const { lang } = useLang()
 const contact = computed(() => content.value.contact)
+const cvUrl = computed(() => CV_URLS[lang.value])
 </script>
 
 <template>
@@ -14,6 +16,7 @@ const contact = computed(() => content.value.contact)
         <span class="cta-arr">→</span>
       </a>
       <div class="contact-socials">
+        <a :href="cvUrl" target="_blank" rel="noopener">CV ↗</a>
         <a href="https://github.com/Deniz09OK" target="_blank" rel="noopener">GITHUB ↗</a>
         <a href="https://gitlab.com/Deniz09OK" target="_blank" rel="noopener">GITLAB ↗</a>
         <a href="https://www.linkedin.com/in/deniz-ok/" target="_blank" rel="noopener">LINKEDIN ↗</a>
