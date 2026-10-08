@@ -17,10 +17,10 @@ export const portfolio: Portfolio = {
       bio: "Étudiant en MSc Cybersécurité & Cloud à Epitech Nancy, je recherche une nouvelle alternance jusqu’en septembre 2027, en cybersécurité, infrastructure/cloud ou développement. Depuis février 2025 chez Qualitest, je développe des pipelines de données Python pour des clients, j’administre des serveurs Windows et j’automatise les traitements (Python, PowerShell, PHP, Bash).",
       kanji: "戦",
       tale: [
-        { k: "BASE", v: "Jarville-la-Malgrange · FR" },
+        { k: "BASE", v: "Jarville-la-Malgrange (Nancy) · train/bus, déménagement possible" },
         { k: "DRAFT", v: "Epitech Nancy · Promo 2027" },
-        { k: "CONTRAT", v: "Alternance (apprentissage ou pro) · jusqu'en 09/2027" },
-        { k: "STATUT", v: "EN RECHERCHE D'ALTERNANCE · DISPONIBLE" }
+        { k: "CONTRAT", v: "Alternance (apprentissage ou pro) · 4 j entreprise / 1 j école · jusqu'en 09/2027" },
+        { k: "STATUT", v: "EN RECHERCHE D'ALTERNANCE · DISPONIBLE IMMÉDIATEMENT" }
       ],
       cta1: "Voir les matchs",
       cta2: "Télécharger CV",
@@ -151,10 +151,10 @@ export const portfolio: Portfolio = {
       bio: "MSc Cybersecurity & Cloud student at Epitech Nancy, looking for a new work-study position until September 2027, in cybersecurity, infrastructure/cloud or development. At Qualitest since February 2025, I build Python data pipelines for clients, administer Windows servers and automate data processing (Python, PowerShell, PHP, Bash).",
       kanji: "戦",
       tale: [
-        { k: "BASE", v: "Jarville-la-Malgrange · FR" },
+        { k: "BASE", v: "Jarville-la-Malgrange (Nancy) · train/bus, open to relocating" },
         { k: "DRAFT", v: "Epitech Nancy · Class of 2027" },
-        { k: "CONTRACT", v: "Work-study (apprenticeship) · until 09/2027" },
-        { k: "STATUS", v: "SEEKING WORK-STUDY · AVAILABLE NOW" }
+        { k: "CONTRACT", v: "Work-study (apprenticeship or professionalisation contract) · 4 days company / 1 day school · until 09/2027" },
+        { k: "STATUS", v: "SEEKING WORK-STUDY · AVAILABLE IMMEDIATELY" }
       ],
       cta1: "See the card",
       cta2: "Download CV",
@@ -274,10 +274,10 @@ export const portfolio: Portfolio = {
       bio: "Epitech Nancy'de MSc Siber Güvenlik & Bulut öğrencisiyim; Eylül 2027'ye kadar siber güvenlik, altyapı/bulut veya yazılım geliştirme alanında yeni bir dönüşümlü eğitim arıyorum. Şubat 2025'ten beri Qualitest'te müşteriler için Python veri hatları geliştiriyor, Windows sunucularını yönetiyor ve süreçleri otomatikleştiriyorum (Python, PowerShell, PHP, Bash).",
       kanji: "戦",
       tale: [
-        { k: "ÜS", v: "Jarville-la-Malgrange · FR" },
+        { k: "ÜS", v: "Jarville-la-Malgrange (Nancy) · tren/otobüs, taşınmaya açık" },
         { k: "DRAFT", v: "Epitech Nancy · 2027 mezunu" },
-        { k: "SÖZLEŞME", v: "Dönüşümlü eğitim (çıraklık) · 09/2027'ye kadar" },
-        { k: "DURUM", v: "DÖNÜŞÜMLÜ EĞİTİM ARIYORUM · MÜSAİT" }
+        { k: "SÖZLEŞME", v: "Dönüşümlü eğitim (çıraklık veya profesyonelleşme sözleşmesi) · 4 gün şirket / 1 gün okul · 09/2027'ye kadar" },
+        { k: "DURUM", v: "DÖNÜŞÜMLÜ EĞİTİM ARIYORUM · HEMEN MÜSAİT" }
       ],
       cta1: "Kartı gör",
       cta2: "CV indir",
