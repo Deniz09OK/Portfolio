@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-08T10:06:43.678Z",
+  "updatedAt": "2026-10-08T13:33:04.621Z",
   "profile": {
     "id": 4005432,
     "name": "Sorouto",
@@ -8,8 +8,8 @@
     "rankProgress": 80.4,
     "points": 2,
     "globalRanking": 1011,
-    "systemOwns": 5,
-    "userOwns": 6,
+    "systemOwns": 6,
+    "userOwns": 7,
     "bloods": 0,
     "respects": 0,
     "country": "FR",
@@ -17,6 +17,13 @@
     "url": "https://app.hackthebox.com/users/4005432"
   },
   "boxes": [
+    {
+      "name": "Reactor",
+      "difficulty": "Easy",
+      "os": "Linux",
+      "solved": "root",
+      "solvedAt": "2026-10-08T11:45:09.000Z"
+    },
     {
       "name": "TwoMillion",
       "difficulty": "Easy",
@@ -65,8 +72,8 @@
     "name": "Season 12",
     "endsAt": "2026-11-28T19:00:01.000Z",
     "league": "Silver",
-    "rank": 2300,
-    "totalPlayers": 4414,
+    "rank": 2321,
+    "totalPlayers": 4488,
     "points": 75,
     "nextLeague": "Ruby",
     "flags": {
