@@ -45,6 +45,8 @@ export interface HeroContent {
 export interface MatchesContent {
   title: string
   sub: string
+  /** Label of the button that reveals the archived (older) projects. */
+  more: string
 }
 
 export interface Project {
@@ -62,6 +64,8 @@ export interface Project {
   demo?: string
   /** In development and not public yet: shows an "in development" badge instead of "confidential". */
   wip?: boolean
+  /** Older project, hidden behind the "earlier projects" button until the visitor asks for it. */
+  archived?: boolean
 }
 
 export interface CareerContent {

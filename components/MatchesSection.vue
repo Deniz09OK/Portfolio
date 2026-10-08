@@ -5,6 +5,19 @@ const { lang } = useLang()
 const matches = computed(() => content.value.matches)
 const projects = computed(() => content.value.projects)
 
+// Older projects stay in the page (and in the prerendered HTML) but are hidden until asked for.
+const showArchived = ref(false)
+// Without JS the button cannot work: show every project and hide the button instead.
+useHead({ noscript: [{ innerHTML: '<style>.match{display:flex!important}.match-more{display:none!important}</style>' }] })
+
+// The button disappears once used: hand keyboard focus to the first revealed project instead of losing it.
+async function showMore() {
+  showArchived.value = true
+  await nextTick()
+  const first = projects.value.find((p) => p.archived)
+  if (first) document.querySelector<HTMLElement>(`#match-${first.idx} .match-name`)?.focus()
+}
+
 // Keep each "·" on the same line as the item before it, so a wrapped line never starts with a separator.
 const keepSeparators = (stack: string) => stack.replaceAll(' · ', ' · ')
 
@@ -44,6 +57,7 @@ const labels = computed(() => {
     <div class="match-stream">
       <article
         v-for="p in projects"
+        v-show="!p.archived || showArchived"
         :key="p.idx"
         v-reveal
         class="match"
@@ -75,7 +89,7 @@ const labels = computed(() => {
               <span class="match-year">{{ p.year }}</span>
               <span>{{ p.type }}</span>
             </div>
-            <h3 class="match-name">{{ p.name }}</h3>
+            <h3 class="match-name" :tabindex="p.archived ? -1 : undefined">{{ p.name }}</h3>
 
             <div class="match-vs">
               <div class="match-vs-side match-vs-side-deniz">
@@ -117,6 +131,12 @@ const labels = computed(() => {
           </div>
         </div>
       </article>
+    </div>
+
+    <div v-if="!showArchived && projects.some((p) => p.archived)" class="match-more">
+      <button type="button" class="cta cta-ghost" aria-controls="matches" :aria-expanded="showArchived" @click="showMore">
+        <span>{{ matches.more }}</span> <span class="cta-arr">↓</span>
+      </button>
     </div>
   </section>
 </template>

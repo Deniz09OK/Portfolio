@@ -10,6 +10,7 @@
 }
 
 .match-stream { display: flex; flex-direction: column; }
+.match-more { display: flex; justify-content: center; padding: 32px 16px 56px; }
 
 .match {
   padding: clamp(48px, 6vh, 80px) clamp(16px, 4vw, 32px);
