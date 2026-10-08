@@ -5,6 +5,7 @@ export interface NavContent {
   matches: string
   career: string
   drills: string
+  htb: string
   off: string
   languages: string
   contact: string
@@ -16,6 +17,7 @@ export interface SectionLabels {
   matches: string
   career: string
   drills: string
+  htb: string
   off: string
   languages: string
   contact: string
@@ -200,6 +202,7 @@ export interface LocaleContent {
   edu: EduItem[]
   exp: ExpItem[]
   drills: DrillsContent
+  htb: HtbContent
   off: OffContent
   languages: LanguagesContent
   contact: ContactContent
