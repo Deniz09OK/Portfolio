@@ -192,3 +192,24 @@ test('unknown URLs get a real 404 page', async ({ page, request }) => {
   await expect(page.locator('h1')).toHaveText('404')
   await expect(page.locator('a[href="/"]')).toBeVisible()
 })
+
+test('off-court modal moves focus in, traps Tab and returns focus to its opener', async ({ page, isMobile }) => {
+  test.skip(!!isMobile, 'keyboard focus is a desktop concern')
+  await openSite(page)
+  const card = page.locator('.off-card').first()
+  await card.focus()
+  await page.keyboard.press('Enter')
+  await expect(page.locator('.off-modal')).toHaveClass(/is-open/)
+  await expect(page.locator('.off-modal-card')).toBeFocused()
+
+  await page.keyboard.press('Tab')
+  await expect(page.locator('.off-modal-close')).toBeFocused()
+  await page.keyboard.press('Tab')
+  await expect(page.locator('.off-modal-close')).toBeFocused()
+  await page.keyboard.press('Shift+Tab')
+  await expect(page.locator('.off-modal-close')).toBeFocused()
+
+  await page.keyboard.press('Escape')
+  await expect(page.locator('.off-modal')).not.toHaveClass(/is-open/)
+  await expect(card).toBeFocused()
+})
