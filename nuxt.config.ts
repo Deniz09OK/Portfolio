@@ -43,12 +43,6 @@ app: {
           href: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%230c0c10%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-family=%22Arial,Helvetica,sans-serif%22 font-weight=%22700%22 font-size=%2215%22 fill=%22%23fff%22 text-anchor=%22middle%22%3E23%3C/text%3E%3C/svg%3E',
         },
         { rel: 'canonical', href: 'https://portfolio-deniz.me/' },
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=Noto+Serif+JP:wght@400;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap',
-        },
       ],
     },
   },
