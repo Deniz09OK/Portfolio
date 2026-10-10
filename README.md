@@ -89,9 +89,11 @@ npm test
 ```
 Portfolio/
 ├── .github/workflows/          # Workflows d'automatisation
-│   └── deploy.yml              # CI/CD : génération, tests Playwright puis déploiement sur GitHub Pages
+│   ├── deploy.yml              # CI/CD : typecheck, génération, tests Playwright, déploiement sur GitHub Pages, puis tag de version
+│   └── htb-sync.yml            # Synchro des stats Hack The Box et TryHackMe (public/data/*.json), toutes les 6 h
 ├── assets/css/                 # Design System & Stylesheets par composants
 │   ├── arena.css               # Point d'entrée important toutes les feuilles de style
+│   ├── fonts.css               # Polices auto-hébergées (@font-face vers public/fonts/)
 │   ├── base.css                # Réinitialisation globale et règles HTML par défaut
 │   ├── variables.css           # Thèmes de couleurs (Variables HSL) et polices globales
 │   ├── utils.css               # Utilitaires globaux et animations communes
@@ -101,6 +103,7 @@ Portfolio/
 │   ├── matches.css             # Styles de la section des projets (MatchesSection.vue)
 │   ├── career.css              # Styles de la timeline académique/professionnelle (CareerSection.vue)
 │   ├── drills.css              # Styles de la section des compétences (DrillsSection.vue)
+│   ├── htb.css                 # Styles des blocs Hack The Box et TryHackMe (HtbStats.vue & ThmStats.vue)
 │   ├── offcourt.css            # Styles de la section hors-clavier et modales (OffCourtSection.vue & OffModal.vue)
 │   ├── languages.css           # Styles de la section des langues (LanguagesSection.vue)
 │   └── contact.css             # Styles de la section de contact (ContactSection.vue)
@@ -111,13 +114,16 @@ Portfolio/
 │   ├── MatchesSection.vue      # Section projets ("Card de la saison")
 │   ├── CareerSection.vue       # Expériences et Études ("Saisons jouées" sous forme de timeline)
 │   ├── DrillsSection.vue       # Compétences techniques ("Entraînement quotidien")
+│   ├── HtbStats.vue            # Statistiques Hack The Box (lit public/data/htb.json)
+│   ├── ThmStats.vue            # Statistiques TryHackMe (lit public/data/thm.json)
 │   ├── OffCourtSection.vue     # Activités annexes ("Hors du clavier")
 │   ├── OffModal.vue            # Composant modale pour le détail des activités annexes
 │   ├── LanguagesSection.vue    # Indicateurs de maîtrise linguistique
 │   └── ContactSection.vue      # Liens de contact ("Sifflet final")
 ├── composables/                # Logique réutilisable
 │   ├── useLang.ts              # Gestion de l'internationalisation (FR / EN / TR)
-│   └── useTheme.ts             # Gestionnaire de thème sombre/clair
+│   ├── useTheme.ts             # Gestionnaire de thème sombre/clair
+│   └── useThm.ts               # Chargement et validation de public/data/thm.json
 ├── data/                       # Données de l'application
 │   └── portfolio.ts            # Données structurées et traduites du portfolio
 ├── types/                      # Définitions TypeScript
@@ -125,10 +131,19 @@ Portfolio/
 ├── plugins/                    # Plugins personnalisés de Nuxt
 │   ├── reveal.client.ts        # Gestion des animations d'entrée au scroll
 │   └── reveal.server.ts        # Compatibilité SSR pour les animations
+├── server/plugins/             # Plugins Nitro
+│   └── csp.ts                  # Content-Security-Policy en balise <meta> (hachage SHA-256 des scripts inline)
+├── scripts/                    # Scripts Node lancés par la CI
+│   ├── fetch-htb.mjs           # Récupère les stats Hack The Box et écrit public/data/htb.json
+│   └── fetch-thm.mjs           # Récupère les stats TryHackMe et écrit public/data/thm.json
 ├── tests/                      # Tests de bout en bout
 │   ├── portfolio.spec.ts       # Suite Playwright
 │   └── serve.mjs               # Serveur statique reproduisant GitHub Pages (404.html)
 ├── public/                     # Ressources statiques
+│   ├── data/                   # Données synchronisées automatiquement
+│   │   ├── htb.json            # Stats Hack The Box
+│   │   └── thm.json            # Stats TryHackMe
+│   ├── fonts/                  # Polices auto-hébergées (woff2)
 │   ├── portrait.jpg            # Portrait utilisé en hero et dans les balises Open Graph
 │   ├── cv-deniz-ok-fr.pdf      # CV téléchargeable (FR)
 │   ├── cv-deniz-ok-en.pdf      # CV téléchargeable (EN/TR)
@@ -138,6 +153,7 @@ Portfolio/
 ├── app.vue                     # Fiche racine englobant les composants
 ├── error.vue                   # Page 404 trilingue, prérendue en 404.html pour GitHub Pages
 ├── nuxt.config.ts              # Fichier de configuration de Nuxt (BaseURL, SEO, prérendu de la 404)
+├── package.json                # Dépendances et scripts npm
 ├── playwright.config.ts        # Configuration Playwright (profils desktop et mobile)
 └── tsconfig.json               # Fichier de configuration TypeScript
 ```
