@@ -85,6 +85,7 @@ onBeforeUnmount(() => {
       <span class="bar-num" aria-hidden="true">23</span>
       <span class="bar-name">
         <span>DENIZ.OK</span>
+        <span class="bar-note">{{ content.hero.luckyNote }}</span>
       </span>
     </a>
 

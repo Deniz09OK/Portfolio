@@ -10,6 +10,8 @@ export const portfolio: Portfolio = {
 
     hero: {
       number: "619",
+      numberNote: "Clin d’œil au 619, la prise de finish de Rey Mysterio et de Dominik Mysterio.",
+      luckyNote: "Mon chiffre porte-bonheur : 23",
       name1: "DENIZ",
       name2: "OK",
       position: "CYBERSÉCURITÉ & CLOUD",
@@ -160,6 +162,8 @@ export const portfolio: Portfolio = {
     seoDescription: "Deniz OK — MSc Cybersecurity & Cloud at Epitech Nancy. Currently seeking a work-study placement until 09/2027 (cybersecurity, infrastructure/cloud).",
     hero: {
       number: "619",
+      numberNote: "A nod to the 619, the finishing move of Rey Mysterio and Dominik Mysterio.",
+      luckyNote: "My lucky number: 23",
       name1: "DENIZ",
       name2: "OK",
       position: "CYBERSECURITY & CLOUD",
@@ -298,6 +302,8 @@ export const portfolio: Portfolio = {
     seoDescription: "Deniz OK — Epitech Nancy'de MSc Siber Güvenlik & Bulut öğrencisi. 09/2027'ye kadar bir dönüşümlü eğitim arıyor (siber güvenlik, altyapı/bulut).",
     hero: {
       number: "619",
+      numberNote: "Rey Mysterio ve Dominik Mysterio’nun bitiriş hamlesi 619’a bir selam.",
+      luckyNote: "Şans sayım: 23",
       name1: "DENIZ",
       name2: "OK",
       position: "SİBER GÜVENLİK & BULUT",

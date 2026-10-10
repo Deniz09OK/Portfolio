@@ -33,6 +33,10 @@ export interface HeroTale {
 
 export interface HeroContent {
   number: string
+  /** Caption shown under the big number (the 619 wink). */
+  numberNote: string
+  /** Caption shown next to the 23 in the top bar. */
+  luckyNote: string
   name1: string
   name2: string
   position: string
