@@ -1,6 +1,16 @@
 <script setup lang="ts">
 const content = usePortfolio()
 const drills = computed(() => content.value.drills)
+
+// TryHackMe figures come from public/data/thm.json (see scripts/fetch-thm.mjs). Labels carry {rooms} / {top}
+// markers; without data, the figures are dropped and only the profile name stays.
+const thm = await useThm()
+function proofLabel(label: string) {
+  if (!label.includes('{')) return label
+  const d = thm.value
+  if (!d) return label.split(' · ')[0]
+  return label.replace('{rooms}', String(d.rooms)).replace('{top}', String(d.topPercent))
+}
 </script>
 
 <template>
@@ -26,7 +36,7 @@ const drills = computed(() => content.value.drills)
             </li>
           </ul>
           <a v-for="p in g.proofs" :key="p.url" class="drill-proof" :href="p.url" target="_blank" rel="noopener">
-            {{ p.label }} <span>↗</span>
+            {{ proofLabel(p.label) }} <span>↗</span>
           </a>
         </div>
       </div>
