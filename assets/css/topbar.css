@@ -170,14 +170,32 @@ html.light .theme-moon { opacity: 0; transform: rotate(-30deg); }
   .mobile-nav.is-open { display: flex; }
 }
 
+/* Purely decorative "back to top" mark, only shown where the DENIZ.OK text is hidden (<= 400px). */
+.bar-name .bar-top {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  min-height: 44px;
+  font-size: 18px;
+  letter-spacing: 0;
+  color: var(--accent);
+}
+
 /* Compact top bar so brand + lang pill + theme + burger fit on 320px screens.
-   Les cibles gardent 44x44 : seul le nom texte est masque, le badge "23" reste le lien d'accueil. */
+   Les cibles gardent 44x44 : le nom texte est masque et remplace par une fleche decorative (lien d'accueil), le badge "23" ouvre la bulle. */
 @media (max-width: 400px) {
   .bar { padding: 12px 14px; }
   .bar-brand { gap: 8px; }
-  .bar-name { display: none; }
+  .bar-name-text { display: none; }
+  .bar-name .bar-top { display: flex; }
   .bar-tools { gap: 6px; }
   .lang-btn { padding: 0 6px; }
+}
+
+/* No room left for the mark next to the brand badge, lang pill, theme and burger (320px phones). */
+@media (max-width: 345px) {
+  .bar-name .bar-top { display: none; }
 }
 
 /* Lock background scroll while the mobile nav (or off-court modal) is open. */

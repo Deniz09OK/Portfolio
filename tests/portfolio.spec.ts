@@ -281,3 +281,17 @@ test('the top bar nav stays on one line at 1400px and 1440px', async ({ page, is
     expect(overflow, `overflow at ${width}`).toBeLessThanOrEqual(0)
   }
 })
+
+test('under 400px the back-to-top link keeps a visible, clickable mark', async ({ page, isMobile }) => {
+  test.skip(!!isMobile, 'sets its own narrow viewport')
+  await page.setViewportSize({ width: 390, height: 700 })
+  await openSite(page)
+  await page.evaluate(() => window.scrollTo(0, 600))
+  const link = page.locator('a.bar-name')
+  const box = await link.boundingBox()
+  expect(box!.width).toBeGreaterThan(20)
+  expect(box!.height).toBeGreaterThanOrEqual(44)
+  await expect(page.locator('.bar-top')).toHaveAttribute('aria-hidden', 'true')
+  await link.click()
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(10)
+})
