@@ -54,6 +54,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+  white-space: nowrap;
 }
 .bar-nav-link::after {
   content: "";
@@ -68,9 +69,9 @@
   color: var(--muted);
   text-transform: none;
 }
-/* Tablettes tactiles au-dessus de 920px : zone de tap de 44px sans changer le rendu desktop. */
+/* Tablettes tactiles au-dessus de 1399px : zone de tap de 44px sans changer le rendu desktop. */
 @media (pointer: coarse) { .bar-nav-link { padding: 11px 0; } }
-@media (max-width: 920px) { .bar-nav { display: none; } }
+@media (max-width: 1399px) { .bar-nav { display: none; } }
 
 .bar-tools { display: flex; align-items: center; gap: 12px; }
 .lang-pill {
@@ -156,7 +157,7 @@ html.light .theme-moon { opacity: 0; transform: rotate(-30deg); }
   color: var(--muted);
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1399px) {
   .nav-toggle { display: flex; }
   .mobile-nav.is-open { display: flex; }
 }
