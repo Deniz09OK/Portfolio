@@ -17,7 +17,7 @@ Le design adopte le style **Arena**, un concept d'éditorial premium inspiré de
 
 - 🌍 **Multilingue** : Support complet et réactif du **Français**, **Anglais** et **Turc** (contenus, libellés d'interface, bandeau défilant et libellés d'accessibilité). La langue choisie est mémorisée.
 - 🌓 **Mode sombre/clair** : Transition de thème fluide, choix mémorisé et appliqué avant le premier affichage (aucun flash du thème sombre).
-- 📱 **Design responsive** : Testé du 320 px à l'ultrawide 3440 px, en portrait et en paysage, sur Chromium, Firefox et WebKit.
+- 📱 **Design responsive** : Testé du 320 px à l'ultrawide 3440 px, en portrait et en paysage, sur Chromium et WebKit.
 - ♿ **Accessibilité** : Cibles tactiles d'au moins 44 × 44 px, `aria-label` traduits dans les trois langues, respect de `prefers-reduced-motion`.
 - ✨ **Animations fluides** : Révélation progressive et élégante des sections au défilement (*reveal-on-scroll*) via un plugin sur mesure.
 - 🎨 **Aesthetics Arena** : Fiche joueur en en-tête, bandeau de défilement style live-ticker, et cartes de saison détaillées pour les projets.
