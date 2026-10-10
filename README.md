@@ -63,6 +63,7 @@ Le design adopte le style **Arena**, un concept d'éditorial premium inspiré de
 - `npm run build` : Compile le projet pour la production.
 - `npm run generate` : Génère le site entièrement statique dans le dossier `.output/public`.
 - `npm run preview` : Prévisualise localement le site généré.
+- `npm run typecheck` : Vérifie les types avec `vue-tsc` (lance d'abord `nuxt prepare`).
 - `npm run test` : Lance les tests Playwright sur le site généré (lancer `npm run generate` avant).
 
 ## 🧪 Tests
@@ -164,11 +165,17 @@ Le projet est configuré pour se déployer automatiquement sur **GitHub Pages** 
 
 Chaque commit poussé sur la branche `main` déclenche le workflow défini dans `.github/workflows/deploy.yml` qui :
 1. Installe les dépendances.
-2. Exécute `npm run generate` pour compiler le site statique.
-3. Lance les tests Playwright sur ce build. **Si un test échoue, rien n'est déployé** et le rapport est disponible dans les artefacts du workflow.
-4. Déploie sur GitHub Pages le dossier `.output/public` qui vient d'être testé.
+2. Vérifie les types avec `npm run typecheck`. **Une nouvelle erreur de types fait échouer la CI.**
+3. Exécute `npm run generate` pour compiler le site statique.
+4. Lance les tests Playwright sur ce build. **Si un test échoue, rien n'est déployé** et le rapport est disponible dans les artefacts du workflow.
+5. Déploie sur GitHub Pages le dossier `.output/public` qui vient d'être testé.
+6. Crée un tag de version sur le commit déployé (job `tag`, voir ci-dessous).
 
-Sur une pull request, seuls la génération et les tests sont exécutés.
+Sur une pull request, seuls la vérification des types, la génération et les tests sont exécutés.
+
+### Tag de version automatique
+
+Après chaque déploiement réussi sur `main`, le job `tag` de `deploy.yml` crée et pousse un tag annoté `vMAJEUR.MINEUR.PATCH` sur le commit déployé. La version est calculée à partir des messages Conventional Commits depuis le dernier tag de ce format : `feat` donne une version mineure, `fix` et `perf` un patch, `type!:` ou `BREAKING CHANGE` une version majeure. Les autres types (`docs`, `chore`, `ci`, etc.) ne créent pas de tag, pas plus que les commits automatiques `chore(htb)` de la synchro. Un tag existant n'est jamais déplacé et seul le tag est poussé (aucun commit).
 
 La page 404 est générée à partir de `error.vue` : Nuxt produit toujours `/404.html` comme une coquille vide remplie en JavaScript, la route `/404` est donc rendue côté serveur puis écrite dans `404.html` via le hook Nitro `prerender:generate` (voir `nuxt.config.ts`).
 
@@ -180,6 +187,13 @@ La section « Hack The Box » lit `public/data/htb.json`, généré par `scripts
 - `API_TOKEN` reste un secret de CI : seul `scripts/fetch-htb.mjs` le lit, jamais l'application Nuxt. Ne jamais le déclarer dans `runtimeConfig`, ni le préfixer `NUXT_PUBLIC_` ou `VITE_` (ces valeurs sont copiées dans le JavaScript public `_nuxt/*.js`), ni le passer à l'étape `npm run generate` de `deploy.yml`. Le navigateur ne reçoit que `htb.json`, déjà formaté.
 - `node scripts/fetch-htb.mjs` met à jour le JSON ; `node scripts/fetch-htb.mjs --probe` teste les endpoints (statuts et clés uniquement, jamais le jeton).
 - En cas d'erreur API (401, 403, 429, timeout), l'ancien JSON est conservé.
+
+### Statistiques TryHackMe
+
+La section « TryHackMe » lit `public/data/thm.json`, généré par `scripts/fetch-thm.mjs` à partir de l'API publique de TryHackMe, **sans secret** : rooms complétées, Top %, rang, niveau, badges et points. La série, la ligue et l'avatar ne sont jamais conservés. Le même workflow `htb-sync.yml` l'exécute (toutes les 6 h et à la demande), commite le JSON s'il a changé (`chore(thm): ...`) puis relance `deploy.yml`.
+
+- `node scripts/fetch-thm.mjs` met à jour le JSON.
+- La réponse est validée (types et bornes) avant écriture. Panne passagère (réseau, 403, 429, 5xx) : l'ancien JSON est conservé et l'étape ne casse pas la synchro. Réponse invalide : l'ancien JSON est conservé et l'étape échoue.
 
 ---
 
