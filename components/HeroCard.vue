@@ -8,6 +8,9 @@ const hero = computed(() => content.value.hero)
 // If the file is missing the dashed placeholder is shown instead.
 const portraitSrc = '/portrait.jpg'
 const portraitMissing = ref(false)
+// @nuxt/image adds onerror="this.setAttribute('data-error', 1)" to the server-rendered <img>. The CSP
+// (server/plugins/csp.ts) blocks that inline handler and Firefox reports it on every page load, so
+// :onerror="null" drops it. Load errors after hydration still reach @error.
 
 const cvUrl = computed(() => CV_URLS[lang.value])
 </script>
@@ -40,6 +43,7 @@ const cvUrl = computed(() => CV_URLS[lang.value])
             class="portrait-img"
             :src="portraitSrc"
             alt="Deniz OK"
+            :onerror="null"
             @error="portraitMissing = true"
             format="webp"
             quality="80"

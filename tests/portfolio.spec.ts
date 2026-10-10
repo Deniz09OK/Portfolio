@@ -13,8 +13,7 @@ async function openSite(page: Page, lang: Lang = 'fr') {
   const errors: string[] = []
   page.on('pageerror', (e) => errors.push(e.message))
   page.on('console', (m) => {
-    // Google Fonts is a third party: a network hiccup there is not a site bug.
-    if (m.type() === 'error' && !/fonts\.(googleapis|gstatic)\.com/.test(m.text())) errors.push(m.text())
+    if (m.type() === 'error') errors.push(m.text())
   })
   await page.addInitScript((l) => localStorage.setItem('deniz-arena-lang', l), lang)
   await page.goto('/')
@@ -141,6 +140,47 @@ test('the theme toggle is remembered after a reload', async ({ page }) => {
   await expect(html).toHaveClass(/(^|\s)light(\s|$)/)
   await page.reload()
   await expect(html).toHaveClass(/(^|\s)light(\s|$)/)
+})
+
+test('the CSP is set and blocks nothing on the page', async ({ page }) => {
+  await page.addInitScript(() => {
+    const w = window as Window & { cspViolations?: string[] }
+    w.cspViolations = []
+    document.addEventListener('securitypolicyviolation', (e) => w.cspViolations!.push(`${e.violatedDirective} ${e.blockedURI}`))
+  })
+  const errors = await openSite(page)
+  const csp = await page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute('content')
+  expect(csp).toMatch(/script-src 'self' 'sha256-/)
+  expect(csp).not.toMatch(/unsafe-eval|fonts\.g/)
+
+  // Content shown later: the blocks revealed on scroll and an off-court modal.
+  await page.locator('#contact').scrollIntoViewIfNeeded()
+  await page.locator('.off-card').first().click()
+  await expect(page.locator('.off-modal')).toHaveClass(/is-open/)
+
+  expect(await page.evaluate(() => (window as Window & { cspViolations?: string[] }).cspViolations)).toEqual([])
+  expect(errors).toEqual([])
+})
+
+test('every kanji has a self-hosted Noto Serif JP subset', async ({ page }) => {
+  await openSite(page)
+  // unicode-range of the Noto Serif JP @font-face rules (assets/css/fonts.css), as [first, last] code points.
+  const ranges = await page.evaluate(() =>
+    [...document.fonts]
+      .filter((f) => f.family.replace(/["']/g, '') === 'Noto Serif JP')
+      .flatMap((f) => f.unicodeRange.split(',').map((r) => {
+        const [first = '', last = first] = r.trim().replace(/^U\+/i, '').split('-')
+        return [parseInt(first, 16), parseInt(last, 16)] as const
+      })),
+  )
+  for (const lang of LANGS) {
+    const { hero, projects, off } = portfolio[lang]
+    for (const char of [hero.kanji, ...projects.map((p) => p.kanji), ...off.items.map((i) => i.kanji)].join('')) {
+      const cp = char.codePointAt(0)!
+      const label = `${char} (U+${cp.toString(16).toUpperCase()}) needs its Google subset in assets/css/fonts.css`
+      expect(ranges.some(([first, last]) => cp >= first && cp <= last), label).toBe(true)
+    }
+  }
 })
 
 test('unknown URLs get a real 404 page', async ({ page, request }) => {
