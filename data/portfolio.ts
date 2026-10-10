@@ -3,7 +3,7 @@ import type { Portfolio } from '~/types/portfolio'
 
 export const portfolio: Portfolio = {
   fr: {    nav: { roster: "Fiche", matches: "Card de la saison", career: "Saisons jouées", drills: "Entraînement quotidien", htb: "Labs HTB", off: "Hors du clavier", languages: "Trois langues", contact: "Sifflet final" },
-    sectionLabels: { roster: "Profil", matches: "Projets", career: "Parcours", drills: "Compétences", htb: "Hack The Box", off: "Centres d'intérêt", languages: "Langues", contact: "Contact" },
+    sectionLabels: { roster: "Profil", matches: "Projets", career: "Parcours", drills: "Compétences", htb: "Hack The Box", thm: "TryHackMe", off: "Centres d'intérêt", languages: "Langues", contact: "Contact" },
     a11y: { navPrimary: "Navigation principale", navMobile: "Navigation mobile", language: "Langue", theme: "Changer de thème", menu: "Menu", legend: "Légende" },
     ticker: ["RECHERCHE ALTERNANCE → 09/2027", "·", "MSc CYBERSÉCURITÉ & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUE FR/EN/TR", "·", "OUVERT AUX OPPORTUNITÉS", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
     seoDescription: "Deniz OK — MSc Cybersécurité & Cloud à Epitech Nancy. En recherche d'une alternance jusqu'en 09/2027 (cybersécurité, infrastructure/cloud).",
@@ -66,7 +66,7 @@ export const portfolio: Portfolio = {
       legend: { starter: "TITULAIRE — utilisé sur un projet réel (livré ou en cours), en alternance ou dans une room TryHackMe dédiée", bench: "REMPLAÇANT — vu en cours ou en lab, sans pratique dédiée, ou pratiqué il y a plusieurs saisons" },
       groups: [
         { label: "INFRASTRUCTURE & RÉSEAU", pos: "GARDIEN", items: [{ name: "Proxmox VE", tier: "starter" }, { name: "pfSense", tier: "starter" }, { name: "OpenVPN", tier: "starter" }, { name: "NetBox (IPAM)", tier: "starter" }, { name: "OpenBSD", tier: "starter" }, { name: "FreeBSD", tier: "starter" }, { name: "Debian / Ubuntu", tier: "starter" }, { name: "Kali Linux", tier: "starter" }, { name: "Windows", tier: "starter" }, { name: "Vagrant", tier: "starter" }, { name: "VLAN, routage, commutateurs", tier: "bench" }] },
-        { label: "SÉCURITÉ OFFENSIVE", pos: "LIBÉRO", items: [{ name: "Élévation de privilèges Linux", tier: "starter" }, { name: "Reverse & bind shells", tier: "starter" }, { name: "Énumération web & sous-domaines", tier: "starter" }, { name: "Vulnérabilités web (SSRF)", tier: "starter" }, { name: "John the Ripper", tier: "starter" }, { name: "Gobuster", tier: "starter" }, { name: "Nmap", tier: "starter" }, { name: "Burp Suite", tier: "starter" }, { name: "Metasploit", tier: "starter" }, { name: "Hydra", tier: "starter" }], proofs: [{ label: "Profil TryHackMe · {rooms} rooms · Top {top} %", url: "https://tryhackme.com/p/Deniz23Ok" }, { label: "Profil Hack The Box", url: "https://app.hackthebox.com/users/4005432" }] },
+        { label: "SÉCURITÉ OFFENSIVE", pos: "LIBÉRO", items: [{ name: "Élévation de privilèges Linux", tier: "starter" }, { name: "Reverse & bind shells", tier: "starter" }, { name: "Énumération web & sous-domaines", tier: "starter" }, { name: "Vulnérabilités web (SSRF)", tier: "starter" }, { name: "John the Ripper", tier: "starter" }, { name: "Gobuster", tier: "starter" }, { name: "Nmap", tier: "starter" }, { name: "Burp Suite", tier: "starter" }, { name: "Metasploit", tier: "starter" }, { name: "Hydra", tier: "starter" }], proofs: [{ label: "Profil TryHackMe", url: "https://tryhackme.com/p/Deniz23Ok" }, { label: "Profil Hack The Box", url: "https://app.hackthebox.com/users/4005432" }] },
         { label: "SÉCURITÉ DÉFENSIVE & OBSERVABILITÉ", pos: "STOPPEUR", items: [{ name: "Elasticsearch", tier: "starter" }, { name: "Wazuh (SIEM)", tier: "starter" }, { name: "Splunk", tier: "starter" }, { name: "Sysmon", tier: "starter" }, { name: "Hashing & cryptographie", tier: "starter" }, { name: "Fondamentaux SOC & SIEM", tier: "starter" }, { name: "Wireshark", tier: "bench" }] },
         { label: "AUTOMATISATION & DEVOPS", pos: "MILIEU", items: [{ name: "Docker / Compose", tier: "starter" }, { name: "GitHub Actions", tier: "starter" }, { name: "GitLab CI/CD", tier: "starter" }, { name: "Bash", tier: "starter" }, { name: "PowerShell", tier: "starter" }, { name: "pytest", tier: "starter" }, { name: "Playwright", tier: "starter" }, { name: "Jenkins", tier: "starter" }, { name: "Kubernetes", tier: "bench" }, { name: "Traefik", tier: "bench" }] },
         { label: "LANGAGES", pos: "MENEUR DE JEU", items: [{ name: "Python", tier: "starter" }, { name: "JavaScript", tier: "starter" }, { name: "TypeScript", tier: "starter" }, { name: "PHP", tier: "starter" }, { name: "Java", tier: "starter" }, { name: "HTML / CSS", tier: "starter" }, { name: "C / C++", tier: "bench" }] },
@@ -108,6 +108,22 @@ export const portfolio: Portfolio = {
         "emptyLink": "Voir directement mon profil"
       }
     },
+    thm: {
+      "title": "Les rooms en direct",
+      "sub": "Statistiques publiques synchronisées automatiquement depuis l’API TryHackMe : rooms complétées, classement, niveau, badges et points.",
+      "labels": {
+        "rooms": "Rooms complétées",
+        "top": "Top",
+        "level": "Niveau",
+        "badges": "Badges",
+        "points": "Points",
+        "updated": "Dernière mise à jour",
+        "profile": "Voir le profil TryHackMe",
+        "statsLabel": "Statistiques TryHackMe",
+        "empty": "Les statistiques TryHackMe ne sont pas disponibles pour le moment.",
+        "emptyLink": "Voir directement mon profil"
+      }
+    },
     off: {
       title: "Hors du clavier",
       sub: "Cinq disciplines qui me façonnent. Cinq écoles de discipline, de jeu et de récit.",
@@ -138,7 +154,7 @@ export const portfolio: Portfolio = {
 
   en: {
     nav: { roster: "Roster", matches: "Season card", career: "Seasons played", drills: "Daily training", htb: "HTB labs", off: "Off the keyboard", languages: "Three languages", contact: "Final whistle" },
-    sectionLabels: { roster: "Profile", matches: "Projects", career: "Experience", drills: "Skills", htb: "Hack The Box", off: "Interests", languages: "Languages", contact: "Contact" },
+    sectionLabels: { roster: "Profile", matches: "Projects", career: "Experience", drills: "Skills", htb: "Hack The Box", thm: "TryHackMe", off: "Interests", languages: "Languages", contact: "Contact" },
     a11y: { navPrimary: "Primary navigation", navMobile: "Mobile navigation", language: "Language", theme: "Toggle theme", menu: "Menu", legend: "Legend" },
     ticker: ["SEEKING WORK-STUDY → 09/2027", "·", "MSc CYBERSECURITY & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUAL FR/EN/TR", "·", "OPEN TO WORK", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
     seoDescription: "Deniz OK — MSc Cybersecurity & Cloud at Epitech Nancy. Currently seeking a work-study placement until 09/2027 (cybersecurity, infrastructure/cloud).",
@@ -192,7 +208,7 @@ export const portfolio: Portfolio = {
       legend: { starter: "STARTER — used on a real project (shipped or ongoing), at work or in a dedicated TryHackMe room", bench: "BENCH — covered in class or a lab without dedicated practice, or several seasons ago" },
       groups: [
         { label: "INFRASTRUCTURE & NETWORK", pos: "KEEPER", items: [{ name: "Proxmox VE", tier: "starter" }, { name: "pfSense", tier: "starter" }, { name: "OpenVPN", tier: "starter" }, { name: "NetBox (IPAM)", tier: "starter" }, { name: "OpenBSD", tier: "starter" }, { name: "FreeBSD", tier: "starter" }, { name: "Debian / Ubuntu", tier: "starter" }, { name: "Kali Linux", tier: "starter" }, { name: "Windows", tier: "starter" }, { name: "Vagrant", tier: "starter" }, { name: "VLANs, routing, switches", tier: "bench" }] },
-        { label: "OFFENSIVE SECURITY", pos: "SWEEPER", items: [{ name: "Linux privilege escalation", tier: "starter" }, { name: "Reverse & bind shells", tier: "starter" }, { name: "Web & subdomain enumeration", tier: "starter" }, { name: "Web vulnerabilities (SSRF)", tier: "starter" }, { name: "John the Ripper", tier: "starter" }, { name: "Gobuster", tier: "starter" }, { name: "Nmap", tier: "starter" }, { name: "Burp Suite", tier: "starter" }, { name: "Metasploit", tier: "starter" }, { name: "Hydra", tier: "starter" }], proofs: [{ label: "TryHackMe profile · {rooms} rooms · Top {top}%", url: "https://tryhackme.com/p/Deniz23Ok" }, { label: "Hack The Box profile", url: "https://app.hackthebox.com/users/4005432" }] },
+        { label: "OFFENSIVE SECURITY", pos: "SWEEPER", items: [{ name: "Linux privilege escalation", tier: "starter" }, { name: "Reverse & bind shells", tier: "starter" }, { name: "Web & subdomain enumeration", tier: "starter" }, { name: "Web vulnerabilities (SSRF)", tier: "starter" }, { name: "John the Ripper", tier: "starter" }, { name: "Gobuster", tier: "starter" }, { name: "Nmap", tier: "starter" }, { name: "Burp Suite", tier: "starter" }, { name: "Metasploit", tier: "starter" }, { name: "Hydra", tier: "starter" }], proofs: [{ label: "TryHackMe profile", url: "https://tryhackme.com/p/Deniz23Ok" }, { label: "Hack The Box profile", url: "https://app.hackthebox.com/users/4005432" }] },
         { label: "DEFENSIVE SECURITY & OBSERVABILITY", pos: "CENTRE-BACK", items: [{ name: "Elasticsearch", tier: "starter" }, { name: "Wazuh (SIEM)", tier: "starter" }, { name: "Splunk", tier: "starter" }, { name: "Sysmon", tier: "starter" }, { name: "Hashing & cryptography", tier: "starter" }, { name: "SOC & SIEM fundamentals", tier: "starter" }, { name: "Wireshark", tier: "bench" }] },
         { label: "AUTOMATION & DEVOPS", pos: "MID-FIELD", items: [{ name: "Docker / Compose", tier: "starter" }, { name: "GitHub Actions", tier: "starter" }, { name: "GitLab CI/CD", tier: "starter" }, { name: "Bash", tier: "starter" }, { name: "PowerShell", tier: "starter" }, { name: "pytest", tier: "starter" }, { name: "Playwright", tier: "starter" }, { name: "Jenkins", tier: "starter" }, { name: "Kubernetes", tier: "bench" }, { name: "Traefik", tier: "bench" }] },
         { label: "LANGUAGES", pos: "PLAYMAKER", items: [{ name: "Python", tier: "starter" }, { name: "JavaScript", tier: "starter" }, { name: "TypeScript", tier: "starter" }, { name: "PHP", tier: "starter" }, { name: "Java", tier: "starter" }, { name: "HTML / CSS", tier: "starter" }, { name: "C / C++", tier: "bench" }] },
@@ -234,6 +250,22 @@ export const portfolio: Portfolio = {
         "emptyLink": "Open my profile directly"
       }
     },
+    thm: {
+      "title": "Rooms, live",
+      "sub": "Public stats synced automatically from the TryHackMe API: completed rooms, ranking, level, badges and points.",
+      "labels": {
+        "rooms": "Rooms completed",
+        "top": "Top",
+        "level": "Level",
+        "badges": "Badges",
+        "points": "Points",
+        "updated": "Last updated",
+        "profile": "View TryHackMe profile",
+        "statsLabel": "TryHackMe stats",
+        "empty": "TryHackMe stats are not available right now.",
+        "emptyLink": "Open my profile directly"
+      }
+    },
     off: {
       title: "Off the keyboard",
       sub: "Five disciplines that shape me. Five schools of discipline, play and story.",
@@ -260,7 +292,7 @@ export const portfolio: Portfolio = {
 
   tr: {
     nav: { roster: "Kadro", matches: "Sezon kartı", career: "Oynanan sezonlar", drills: "Günlük antrenman", htb: "HTB lab'ları", off: "Klavyenin dışında", languages: "Üç dil", contact: "Son düdük" },
-    sectionLabels: { roster: "Profil", matches: "Projeler", career: "Deneyim", drills: "Yetenekler", htb: "Hack The Box", off: "İlgi Alanları", languages: "Diller", contact: "İletişim" },
+    sectionLabels: { roster: "Profil", matches: "Projeler", career: "Deneyim", drills: "Yetenekler", htb: "Hack The Box", thm: "TryHackMe", off: "İlgi Alanları", languages: "Diller", contact: "İletişim" },
     a11y: { navPrimary: "Ana gezinme", navMobile: "Mobil gezinme", language: "Dil", theme: "Temayı değiştir", menu: "Menü", legend: "Açıklama" },
     ticker: ["DÖNÜŞÜMLÜ EĞİTİM ARIYORUM → 09/2027", "·", "MSc SİBER GÜVENLİK & BULUT", "·", "EPITECH NANCY", "·", "ÜÇ DİLLİ FR/EN/TR", "·", "YENİ FIRSATLARA AÇIĞIM", "·", "CANLI", "·", "PORTFOLYO 2026", "·"],
     seoDescription: "Deniz OK — Epitech Nancy'de MSc Siber Güvenlik & Bulut öğrencisi. 09/2027'ye kadar bir dönüşümlü eğitim arıyor (siber güvenlik, altyapı/bulut).",
@@ -314,7 +346,7 @@ export const portfolio: Portfolio = {
       legend: { starter: "İLK 11 — gerçek bir projede (teslim edilmiş ya da devam eden), işte ya da özel bir TryHackMe odasında kullanıldı", bench: "YEDEK — derste ya da laboratuvarda görüldü, özel pratik yok, ya da birkaç sezon önce" },
       groups: [
         { label: "ALTYAPI & AĞ", pos: "KALECİ", items: [{ name: "Proxmox VE", tier: "starter" }, { name: "pfSense", tier: "starter" }, { name: "OpenVPN", tier: "starter" }, { name: "NetBox (IPAM)", tier: "starter" }, { name: "OpenBSD", tier: "starter" }, { name: "FreeBSD", tier: "starter" }, { name: "Debian / Ubuntu", tier: "starter" }, { name: "Kali Linux", tier: "starter" }, { name: "Windows", tier: "starter" }, { name: "Vagrant", tier: "starter" }, { name: "VLAN, yönlendirme, switch", tier: "bench" }] },
-        { label: "OFANSİF GÜVENLİK", pos: "LİBERO", items: [{ name: "Linux yetki yükseltme", tier: "starter" }, { name: "Reverse & bind shell", tier: "starter" }, { name: "Web & alt alan adı keşfi", tier: "starter" }, { name: "Web zafiyetleri (SSRF)", tier: "starter" }, { name: "John the Ripper", tier: "starter" }, { name: "Gobuster", tier: "starter" }, { name: "Nmap", tier: "starter" }, { name: "Burp Suite", tier: "starter" }, { name: "Metasploit", tier: "starter" }, { name: "Hydra", tier: "starter" }], proofs: [{ label: "TryHackMe profili · {rooms} oda · İlk %{top}", url: "https://tryhackme.com/p/Deniz23Ok" }, { label: "Hack The Box profili", url: "https://app.hackthebox.com/users/4005432" }] },
+        { label: "OFANSİF GÜVENLİK", pos: "LİBERO", items: [{ name: "Linux yetki yükseltme", tier: "starter" }, { name: "Reverse & bind shell", tier: "starter" }, { name: "Web & alt alan adı keşfi", tier: "starter" }, { name: "Web zafiyetleri (SSRF)", tier: "starter" }, { name: "John the Ripper", tier: "starter" }, { name: "Gobuster", tier: "starter" }, { name: "Nmap", tier: "starter" }, { name: "Burp Suite", tier: "starter" }, { name: "Metasploit", tier: "starter" }, { name: "Hydra", tier: "starter" }], proofs: [{ label: "TryHackMe profili", url: "https://tryhackme.com/p/Deniz23Ok" }, { label: "Hack The Box profili", url: "https://app.hackthebox.com/users/4005432" }] },
         { label: "DEFANSİF GÜVENLİK & GÖZLEMLENEBİLİRLİK", pos: "STOPER", items: [{ name: "Elasticsearch", tier: "starter" }, { name: "Wazuh (SIEM)", tier: "starter" }, { name: "Splunk", tier: "starter" }, { name: "Sysmon", tier: "starter" }, { name: "Hashing & kriptografi", tier: "starter" }, { name: "SOC & SIEM temelleri", tier: "starter" }, { name: "Wireshark", tier: "bench" }] },
         { label: "OTOMASYON & DEVOPS", pos: "ORTA SAHA", items: [{ name: "Docker / Compose", tier: "starter" }, { name: "GitHub Actions", tier: "starter" }, { name: "GitLab CI/CD", tier: "starter" }, { name: "Bash", tier: "starter" }, { name: "PowerShell", tier: "starter" }, { name: "pytest", tier: "starter" }, { name: "Playwright", tier: "starter" }, { name: "Jenkins", tier: "starter" }, { name: "Kubernetes", tier: "bench" }, { name: "Traefik", tier: "bench" }] },
         { label: "DİLLER", pos: "OYUN KURUCU", items: [{ name: "Python", tier: "starter" }, { name: "JavaScript", tier: "starter" }, { name: "TypeScript", tier: "starter" }, { name: "PHP", tier: "starter" }, { name: "Java", tier: "starter" }, { name: "HTML / CSS", tier: "starter" }, { name: "C / C++", tier: "bench" }] },
@@ -353,6 +385,22 @@ export const portfolio: Portfolio = {
         "profile": "Hack The Box profilini gör",
         "statsLabel": "Hack The Box istatistikleri",
         "empty": "Hack The Box istatistikleri şu anda kullanılamıyor.",
+        "emptyLink": "Profilimi doğrudan aç"
+      }
+    },
+    thm: {
+      "title": "Odalar, canlı",
+      "sub": "TryHackMe API'sinden otomatik senkronize edilen herkese açık istatistikler: tamamlanan odalar, sıralama, seviye, rozetler ve puan.",
+      "labels": {
+        "rooms": "Tamamlanan odalar",
+        "top": "İlk",
+        "level": "Seviye",
+        "badges": "Rozetler",
+        "points": "Puan",
+        "updated": "Son güncelleme",
+        "profile": "TryHackMe profilini gör",
+        "statsLabel": "TryHackMe istatistikleri",
+        "empty": "TryHackMe istatistikleri şu anda kullanılamıyor.",
         "emptyLink": "Profilimi doğrudan aç"
       }
     },

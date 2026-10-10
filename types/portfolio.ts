@@ -18,6 +18,7 @@ export interface SectionLabels {
   career: string
   drills: string
   htb: string
+  thm: string
   off: string
   languages: string
   contact: string
@@ -100,11 +101,7 @@ export interface DrillsGroup {
   label: string
   pos: string
   items: DrillItem[]
-  /**
-   * Optional proof links shown under the list (e.g. TryHackMe, Hack The Box profiles).
-   * A label may contain {rooms} and {top}, filled from public/data/thm.json; without that file the
-   * figures are dropped (everything from the first " · " on).
-   */
+  /** Optional proof links shown under the list (e.g. TryHackMe, Hack The Box profiles). */
   proofs?: { label: string; url: string }[]
 }
 
@@ -142,6 +139,24 @@ export interface HtbContent {
     root: string
     user: string
     noDate: string
+    updated: string
+    profile: string
+    statsLabel: string
+    empty: string
+    emptyLink: string
+  }
+}
+
+/** Texts of the TryHackMe stats block (values come from public/data/thm.json). */
+export interface ThmContent {
+  title: string
+  sub: string
+  labels: {
+    rooms: string
+    top: string
+    level: string
+    badges: string
+    points: string
     updated: string
     profile: string
     statsLabel: string
@@ -213,6 +228,7 @@ export interface LocaleContent {
   exp: ExpItem[]
   drills: DrillsContent
   htb: HtbContent
+  thm: ThmContent
   off: OffContent
   languages: LanguagesContent
   contact: ContactContent
