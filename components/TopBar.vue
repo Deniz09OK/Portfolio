@@ -20,6 +20,20 @@ const links = computed(() => [
   { href: '#contact', label: nav.value.contact, sub: sectionLabels.value.contact },
 ])
 
+// Radiogroup keyboard: arrows move the selection (roving tabindex, wraps around).
+function onLangKey(e: KeyboardEvent, code: LangCode) {
+  const step = ['ArrowRight', 'ArrowDown'].includes(e.key) ? 1 : ['ArrowLeft', 'ArrowUp'].includes(e.key) ? -1 : 0
+  if (!step) return
+  e.preventDefault()
+  const list = supported as readonly string[]
+  const next = list[(list.indexOf(code) + step + list.length) % list.length] as LangCode
+  setLang(next)
+  nextTick(() => {
+    ;(e.currentTarget as HTMLElement | null)?.parentElement
+      ?.querySelector<HTMLElement>('[aria-checked="true"]')?.focus()
+  })
+}
+
 // Sync the live ticker offset to the real bar height (1 or 2 nav lines).
 const bar = ref<HTMLElement | null>(null)
 let ro: ResizeObserver | null = null
@@ -86,9 +100,14 @@ onBeforeUnmount(() => {
         <button
           v-for="code in supported"
           :key="code"
+          type="button"
           class="lang-btn"
           :class="{ 'is-active': lang === code }"
+          role="radio"
+          :aria-checked="lang === code"
+          :tabindex="lang === code ? 0 : -1"
           @click="setLang(code as LangCode)"
+          @keydown="onLangKey($event, code as LangCode)"
         >
           {{ code.toUpperCase() }}
         </button>

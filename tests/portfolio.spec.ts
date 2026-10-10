@@ -213,3 +213,18 @@ test('off-court modal moves focus in, traps Tab and returns focus to its opener'
   await expect(page.locator('.off-modal')).not.toHaveClass(/is-open/)
   await expect(card).toBeFocused()
 })
+
+test('the language switcher is a radiogroup that follows the active language', async ({ page, isMobile }) => {
+  await openSite(page)
+  const group = page.getByRole('radiogroup')
+  const radios = group.getByRole('radio')
+  await expect(radios).toHaveCount(3)
+  await expect(radios.nth(0)).toHaveAttribute('aria-checked', 'true')
+  await expect(radios.nth(1)).toHaveAttribute('aria-checked', 'false')
+  if (isMobile) return
+  await radios.nth(0).focus()
+  await page.keyboard.press('ArrowRight')
+  await expect(radios.nth(1)).toHaveAttribute('aria-checked', 'true')
+  await expect(radios.nth(1)).toBeFocused()
+  await expect(radios.nth(0)).toHaveAttribute('aria-checked', 'false')
+})
