@@ -24,6 +24,7 @@ app: {
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: "Deniz OK — MSc Cybersécurité & Cloud à Epitech Nancy, alternant chez Qualitest. En recherche d'une nouvelle alternance." },
         { name: 'author', content: 'Deniz OK' },
+        { name: 'referrer', content: 'strict-origin-when-cross-origin' },
         { name: 'theme-color', content: '#0c0c10' },
         { property: 'og:title', content: 'Deniz OK — Portfolio' },
         { property: 'og:description', content: "Deniz OK — MSc Cybersécurité & Cloud à Epitech Nancy, alternant chez Qualitest. En recherche d'une nouvelle alternance." },
