@@ -14,7 +14,7 @@ const links = computed(() => [
   { href: '#matches', label: nav.value.matches, sub: sectionLabels.value.matches },
   { href: '#career', label: nav.value.career, sub: sectionLabels.value.career },
   { href: '#drills', label: nav.value.drills, sub: sectionLabels.value.drills },
-  { href: '#htb', label: nav.value.htb, sub: sectionLabels.value.htb },
+  { href: '#htb', label: nav.value.htb, sub: nav.value.htbSub },
   { href: '#off', label: nav.value.off, sub: sectionLabels.value.off },
   { href: '#languages', label: nav.value.languages, sub: sectionLabels.value.languages },
   { href: '#contact', label: nav.value.contact, sub: sectionLabels.value.contact },

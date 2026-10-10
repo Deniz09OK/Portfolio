@@ -6,6 +6,8 @@ export interface NavContent {
   career: string
   drills: string
   htb: string
+  /** Grey subtitle of the "htb" nav entry, which covers Hack The Box and TryHackMe (the section labels stay untouched). */
+  htbSub: string
   off: string
   languages: string
   contact: string
