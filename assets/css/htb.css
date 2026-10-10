@@ -33,7 +33,7 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
-.htb-tile-k { font-size: 10px; color: var(--muted); }
+.htb-tile-k { font-size: 12px; color: var(--muted); }
 .htb-tile-v {
   font-family: var(--display);
   font-size: clamp(34px, 4vw, 48px);
@@ -41,7 +41,7 @@
   color: var(--ink);
   overflow-wrap: anywhere;
 }
-.htb-tile-sub { font-size: 10px; color: var(--muted); }
+.htb-tile-sub { font-size: 12px; color: var(--muted); }
 
 /* Season card + boxes list */
 .htb-grid {
@@ -60,7 +60,7 @@
   padding: 24px;
 }
 .htb-box-title {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   color: var(--muted);
   margin: 0;
@@ -76,7 +76,7 @@
 }
 .htb-league {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -104,7 +104,7 @@
   margin: 0 0 18px;
 }
 .htb-season-stats div { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
-.htb-season-stats dt { font-size: 10px; color: var(--muted); }
+.htb-season-stats dt { font-size: 12px; color: var(--muted); }
 .htb-season-stats dd { margin: 0; font-weight: 600; color: var(--ink); text-align: right; }
 .htb-meter {
   height: 6px;
@@ -124,10 +124,10 @@
   border-bottom: 1px solid var(--line);
   font-size: 15px;
 }
-.htb-row--head { font-size: 10px; color: var(--muted); padding: 8px 0; border-bottom: 1px solid var(--line-strong); }
+.htb-row--head { font-size: 12px; color: var(--muted); padding: 8px 0; border-bottom: 1px solid var(--line-strong); }
 .htb-name { font-family: var(--display); font-size: 24px; letter-spacing: 0.02em; color: var(--ink); overflow-wrap: anywhere; }
 .htb-date { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
-.htb-diff, .htb-flag { font-size: 11px; display: inline-flex; align-items: center; gap: 8px; }
+.htb-diff, .htb-flag { font-size: 12px; display: inline-flex; align-items: center; gap: 8px; }
 .htb-diff::before {
   content: "";
   width: 8px;
@@ -152,7 +152,7 @@
     display: block;
     margin-bottom: 2px;
     font-family: var(--mono);
-    font-size: 9px;
+    font-size: 12px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--muted);
@@ -166,7 +166,7 @@
   align-items: center;
   gap: 8px 16px;
   margin-top: 20px;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted);
 }
 .htb-link { margin: 0; min-height: 44px; }
