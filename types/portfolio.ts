@@ -18,6 +18,7 @@ export interface SectionLabels {
   career: string
   drills: string
   htb: string
+  thm: string
   off: string
   languages: string
   contact: string
@@ -150,6 +151,24 @@ export interface HtbContent {
   }
 }
 
+/** Texts of the TryHackMe stats block (values come from public/data/thm.json). */
+export interface ThmContent {
+  title: string
+  sub: string
+  labels: {
+    rooms: string
+    top: string
+    level: string
+    badges: string
+    points: string
+    updated: string
+    profile: string
+    statsLabel: string
+    empty: string
+    emptyLink: string
+  }
+}
+
 export interface OffItem {
   id: string
   kanji: string
@@ -213,6 +232,7 @@ export interface LocaleContent {
   exp: ExpItem[]
   drills: DrillsContent
   htb: HtbContent
+  thm: ThmContent
   off: OffContent
   languages: LanguagesContent
   contact: ContactContent

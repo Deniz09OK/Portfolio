@@ -35,6 +35,7 @@ useHead(() => ({
       <CareerSection />
       <DrillsSection />
       <HtbStats />
+      <ThmStats />
       <OffCourtSection />
       <LanguagesSection />
       <ContactSection />
