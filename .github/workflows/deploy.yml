@@ -75,3 +75,102 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
+
+  # Crée un tag semver sur le commit déployé. Ne pousse QUE le tag : aucun commit, car htb-sync.yml
+  # commite sur main toutes les 6 h et un commit de ce job provoquerait des conflits.
+  tag:
+    needs: deploy
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    # Seul ce job peut écrire dans le dépôt (pour pousser le tag).
+    permissions:
+      contents: write
+    # Groupe dédié, sans annulation : deux runs ne calculent pas ni ne poussent un tag en même temps.
+    concurrency:
+      group: tag-${{ github.repository }}
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Tag the deployed commit
+        env:
+          DEPLOY_SHA: ${{ github.sha }}
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+        run: |
+          set -euo pipefail
+
+          semver_re='^v[0-9]+\.[0-9]+\.[0-9]+$'
+          breaking_re='^[a-z]+(\([^)]+\))?!:'
+          feat_re='^feat(\([^)]+\))?:'
+          patch_re='^(fix|perf)(\([^)]+\))?:'
+
+          # Seuls les tags vMAJEUR.MINEUR.PATCH comptent : tout autre tag est ignoré.
+          last_tag=$(git tag --list 'v*' --merged "$DEPLOY_SHA" --sort=-v:refname | { grep -E "$semver_re" || true; } | head -n 1)
+          latest_tag=$(git tag --list 'v*' --sort=-v:refname | { grep -E "$semver_re" || true; } | head -n 1)
+
+          if [ "$last_tag" != "$latest_tag" ]; then
+            echo "Le dernier tag semver (${latest_tag:-aucun}) n'est pas dans l'historique de ${DEPLOY_SHA}. Aucun tag créé."
+            exit 0
+          fi
+
+          if [ -z "$last_tag" ]; then
+            new_tag="v0.1.0"
+            echo "Aucun tag semver existant : premier tag ${new_tag}."
+          else
+            # 0 = aucun bump, 1 = patch, 2 = mineur, 3 = majeur
+            level=0
+            while IFS= read -r commit; do
+              subject=$(git log -1 --format=%s "$commit")
+              body=$(git log -1 --format=%b "$commit")
+
+              # Les commits automatiques de htb-sync ne déclenchent jamais de tag.
+              case "$subject" in
+                'chore(htb):'*) continue ;;
+              esac
+
+              if [[ "$subject" =~ $breaking_re ]] || printf '%s\n' "$body" | grep -Eq '^BREAKING[ -]CHANGE'; then
+                commit_level=3
+              elif [[ "$subject" =~ $feat_re ]]; then
+                commit_level=2
+              elif [[ "$subject" =~ $patch_re ]]; then
+                commit_level=1
+              else
+                commit_level=0
+              fi
+
+              if [ "$commit_level" -gt "$level" ]; then
+                level=$commit_level
+              fi
+            done < <(git rev-list "${last_tag}..${DEPLOY_SHA}")
+
+            if [ "$level" -eq 0 ]; then
+              echo "Aucun commit feat/fix/perf/breaking depuis ${last_tag} : aucun tag créé."
+              exit 0
+            fi
+
+            IFS=. read -r major minor patch <<< "${last_tag#v}"
+            case "$level" in
+              3) major=$((major + 1)); minor=0; patch=0 ;;
+              2) minor=$((minor + 1)); patch=0 ;;
+              1) patch=$((patch + 1)) ;;
+            esac
+            new_tag="v${major}.${minor}.${patch}"
+            echo "Dernier tag ${last_tag}, nouveau tag ${new_tag}."
+          fi
+
+          # Un tag existant n'est jamais déplacé ni supprimé.
+          if git rev-parse -q --verify "refs/tags/${new_tag}" > /dev/null \
+            || git ls-remote --exit-code --tags origin "refs/tags/${new_tag}" > /dev/null 2>&1; then
+            echo "Le tag ${new_tag} existe déjà : création ignorée."
+            exit 0
+          fi
+
+          git tag -a "$new_tag" -m "Version ${new_tag#v}" "$DEPLOY_SHA"
+          git push origin "refs/tags/${new_tag}"
+          echo "Tag ${new_tag} poussé sur ${DEPLOY_SHA}."
