@@ -20,10 +20,14 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  position: relative;
   min-width: 44px;
   min-height: 44px;
 }
 .bar-num {
+  position: relative;
+  background: none;
+  cursor: pointer;
   font-family: var(--display);
   font-size: 28px;
   color: var(--accent);
@@ -32,6 +36,9 @@
   padding: 3px 8px;
   border: 1px solid var(--accent);
 }
+.bar-num::before { content: ""; position: absolute; inset: -7px -4px; }
+.bar-num:focus-visible,
+.hero-number-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .bar-name { display: flex; flex-direction: column; line-height: 1.1; }
 .bar-name span {
   font-family: var(--mono);
@@ -40,13 +47,6 @@
   font-weight: 700;
 }
 
-.bar-name .bar-note {
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  font-weight: 500;
-  color: var(--ink);
-  opacity: 0.75;
-}
 
 .bar-nav {
   display: flex;
@@ -170,14 +170,32 @@ html.light .theme-moon { opacity: 0; transform: rotate(-30deg); }
   .mobile-nav.is-open { display: flex; }
 }
 
+/* Purely decorative "back to top" mark, only shown where the DENIZ.OK text is hidden (<= 400px). */
+.bar-name .bar-top {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  min-height: 44px;
+  font-size: 18px;
+  letter-spacing: 0;
+  color: var(--accent);
+}
+
 /* Compact top bar so brand + lang pill + theme + burger fit on 320px screens.
-   Les cibles gardent 44x44 : seul le nom texte est masque, le badge "23" reste le lien d'accueil. */
+   Les cibles gardent 44x44 : le nom texte est masque et remplace par une fleche decorative (lien d'accueil), le badge "23" ouvre la bulle. */
 @media (max-width: 400px) {
   .bar { padding: 12px 14px; }
   .bar-brand { gap: 8px; }
-  .bar-name { display: none; }
+  .bar-name-text { display: none; }
+  .bar-name .bar-top { display: flex; }
   .bar-tools { gap: 6px; }
   .lang-btn { padding: 0 6px; }
+}
+
+/* No room left for the mark next to the brand badge, lang pill, theme and burger (320px phones). */
+@media (max-width: 345px) {
+  .bar-name .bar-top { display: none; }
 }
 
 /* Lock background scroll while the mobile nav (or off-court modal) is open. */

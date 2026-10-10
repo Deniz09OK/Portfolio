@@ -37,6 +37,9 @@ export interface HeroContent {
   numberNote: string
   /** Caption shown next to the 23 in the top bar. */
   luckyNote: string
+  /** Accessible names of the buttons that reveal the two captions. */
+  numberLabel: string
+  luckyLabel: string
   name1: string
   name2: string
   position: string

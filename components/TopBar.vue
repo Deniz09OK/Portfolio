@@ -5,6 +5,8 @@ const content = usePortfolio()
 const { lang, setLang, supported } = useLang()
 const { isLight, toggle } = useTheme()
 
+const { root: brandRoot, open: noteOpen, toggle: toggleNote } = useBubble()
+
 const nav = computed(() => content.value.nav)
 const a11y = computed(() => content.value.a11y)
 const sectionLabels = computed(() => content.value.sectionLabels)
@@ -81,13 +83,27 @@ onBeforeUnmount(() => {
 
 <template>
   <header ref="bar" class="bar">
-    <a href="#top" class="bar-brand" aria-label="Deniz OK">
-      <span class="bar-num" aria-hidden="true">23</span>
-      <span class="bar-name">
-        <span>DENIZ.OK</span>
-        <span class="bar-note">{{ content.hero.luckyNote }}</span>
-      </span>
-    </a>
+    <div ref="brandRoot" class="bar-brand">
+      <button
+        type="button"
+        class="bar-num"
+        :aria-label="content.hero.luckyLabel"
+        :aria-expanded="noteOpen"
+        aria-controls="barNote"
+        @click="toggleNote"
+      >
+        23
+      </button>
+      <a href="#top" class="bar-name" aria-label="Deniz OK">
+        <span class="bar-name-text">DENIZ.OK</span>
+        <span class="bar-top" aria-hidden="true">↑</span>
+      </a>
+      <div class="bubble-live" aria-live="polite">
+        <Transition name="bubble">
+          <p v-if="noteOpen" id="barNote" class="bubble bar-note">{{ content.hero.luckyNote }}</p>
+        </Transition>
+      </div>
+    </div>
 
     <nav class="bar-nav" :aria-label="a11y.navPrimary">
       <a v-for="l in links" :key="l.href" :href="l.href" class="bar-nav-link">
