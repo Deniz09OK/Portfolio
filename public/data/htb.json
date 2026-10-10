@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-09T22:40:28.049Z",
+  "updatedAt": "2026-10-10T05:55:18.717Z",
   "profile": {
     "id": 4005432,
     "name": "Sorouto",
@@ -7,7 +7,7 @@
     "nextRank": "Script Kiddie",
     "rankProgress": 80.4,
     "points": 2,
-    "globalRanking": 1009,
+    "globalRanking": 1012,
     "systemOwns": 6,
     "userOwns": 7,
     "bloods": 0,
@@ -72,8 +72,8 @@
     "name": "Season 12",
     "endsAt": "2026-11-28T19:00:01.000Z",
     "league": "Silver",
-    "rank": 2539,
-    "totalPlayers": 4955,
+    "rank": 2573,
+    "totalPlayers": 5032,
     "points": 75,
     "nextLeague": "Ruby",
     "flags": {
