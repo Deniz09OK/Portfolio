@@ -101,11 +101,7 @@ export interface DrillsGroup {
   label: string
   pos: string
   items: DrillItem[]
-  /**
-   * Optional proof links shown under the list (e.g. TryHackMe, Hack The Box profiles).
-   * A label may contain {rooms} and {top}, filled from public/data/thm.json; without that file the
-   * figures are dropped (everything from the first " · " on).
-   */
+  /** Optional proof links shown under the list (e.g. TryHackMe, Hack The Box profiles). */
   proofs?: { label: string; url: string }[]
 }
 
