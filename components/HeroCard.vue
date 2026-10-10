@@ -3,6 +3,7 @@ const content = usePortfolio()
 const { lang } = useLang()
 
 const hero = computed(() => content.value.hero)
+const { root: numberRoot, open: noteOpen, toggle: toggleNote } = useBubble()
 
 // Drop your photo at /public/portrait.jpg (or .png/.webp) and it shows here.
 // If the file is missing the dashed placeholder is shown instead.
@@ -20,10 +21,23 @@ const cvUrl = computed(() => CV_URLS[lang.value])
     <div class="hero-inner">
       <div class="hero-stage">
         <!-- BIG JERSEY NUMBER -->
-        <div class="hero-number">
-          <span class="hero-number-glyph" aria-hidden="true">{{ hero.number }}</span>
+        <div ref="numberRoot" class="hero-number">
+          <button
+            type="button"
+            class="hero-number-btn"
+            :aria-label="hero.numberLabel"
+            :aria-expanded="noteOpen"
+            aria-controls="heroNumberNote"
+            @click="toggleNote"
+          >
+            <span class="hero-number-glyph" aria-hidden="true">{{ hero.number }}</span>
+          </button>
           <span class="hero-kanji-overlay" aria-hidden="true">{{ hero.kanji }}</span>
-          <p class="hero-number-note">{{ hero.numberNote }}</p>
+          <div class="bubble-live" aria-live="polite">
+            <Transition name="bubble">
+              <p v-if="noteOpen" id="heroNumberNote" class="bubble hero-number-note">{{ hero.numberNote }}</p>
+            </Transition>
+          </div>
         </div>
 
         <!-- NAME + POSITION -->

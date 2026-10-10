@@ -8,6 +8,30 @@
 }
 .js-ready .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
+/* Small click-to-reveal bubble (see composables/useBubble.ts). */
+.bubble-live { position: absolute; left: 0; top: 100%; width: 0; height: 0; }
+.bubble {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  z-index: 60;
+  margin: 0;
+  width: max-content;
+  max-width: min(40ch, calc(100vw - 32px));
+  padding: 10px 14px;
+  background: var(--bg-panel);
+  border: 1px solid var(--accent);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: none;
+}
+.bubble-enter-active, .bubble-leave-active { transition: opacity 220ms ease, transform 220ms ease; }
+.bubble-enter-from, .bubble-leave-to { opacity: 0; transform: translateY(-6px); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }

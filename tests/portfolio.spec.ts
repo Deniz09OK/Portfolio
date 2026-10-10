@@ -228,3 +228,56 @@ test('the language switcher is a radiogroup that follows the active language', a
   await expect(radios.nth(1)).toBeFocused()
   await expect(radios.nth(0)).toHaveAttribute('aria-checked', 'false')
 })
+
+for (const [name, btn, note] of [
+  ['619', '.hero-number-btn', '#heroNumberNote'],
+  ['23', '.bar-num', '#barNote'],
+] as const) {
+  test(`the ${name} caption is hidden until its button is activated`, async ({ page, isMobile }) => {
+    await openSite(page)
+    const button = page.locator(btn)
+    await expect(button).toHaveAttribute('aria-expanded', 'false')
+    await expect(page.locator(note)).toHaveCount(0)
+
+    await button.click()
+    await expect(button).toHaveAttribute('aria-expanded', 'true')
+    await expect(page.locator(note)).toBeVisible()
+
+    await button.click()
+    await expect(page.locator(note)).toHaveCount(0)
+
+    await button.click()
+    await expect(page.locator(note)).toBeVisible()
+    await page.locator('.hero-position').click({ force: true })
+    await expect(page.locator(note)).toHaveCount(0)
+
+    if (isMobile) return
+    await button.focus()
+    await page.keyboard.press('Enter')
+    await expect(page.locator(note)).toBeVisible()
+    await page.keyboard.press('Escape')
+    await expect(page.locator(note)).toHaveCount(0)
+    await expect(button).toHaveAttribute('aria-expanded', 'false')
+    await page.keyboard.press('Space')
+    await expect(page.locator(note)).toBeVisible()
+  })
+}
+
+test('the brand name still links to the top and no button sits inside a link', async ({ page }) => {
+  await openSite(page)
+  await expect(page.locator('a.bar-name')).toHaveAttribute('href', '#top')
+  await expect(page.locator('a button, a [role="button"]')).toHaveCount(0)
+})
+
+test('the top bar nav stays on one line at 1400px and 1440px', async ({ page, isMobile }) => {
+  test.skip(!!isMobile, 'desktop widths only')
+  for (const width of [1400, 1440]) {
+    await page.setViewportSize({ width, height: 900 })
+    await openSite(page)
+    await page.locator('.bar-num').click()
+    const bar = await page.locator('.bar').boundingBox()
+    expect(bar!.height, `bar height at ${width}`).toBeLessThan(90)
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
+    expect(overflow, `overflow at ${width}`).toBeLessThanOrEqual(0)
+  }
+})
