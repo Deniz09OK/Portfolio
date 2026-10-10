@@ -142,6 +142,26 @@ test('the theme toggle is remembered after a reload', async ({ page }) => {
   await expect(html).toHaveClass(/(^|\s)light(\s|$)/)
 })
 
+test('the CSP is set and blocks nothing on the page', async ({ page }) => {
+  await page.addInitScript(() => {
+    const w = window as Window & { cspViolations?: string[] }
+    w.cspViolations = []
+    document.addEventListener('securitypolicyviolation', (e) => w.cspViolations!.push(`${e.violatedDirective} ${e.blockedURI}`))
+  })
+  const errors = await openSite(page)
+  const csp = await page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute('content')
+  expect(csp).toMatch(/script-src 'self' 'sha256-/)
+  expect(csp).not.toMatch(/unsafe-eval|fonts\.g/)
+
+  // Content shown later: the blocks revealed on scroll and an off-court modal.
+  await page.locator('#contact').scrollIntoViewIfNeeded()
+  await page.locator('.off-card').first().click()
+  await expect(page.locator('.off-modal')).toHaveClass(/is-open/)
+
+  expect(await page.evaluate(() => (window as Window & { cspViolations?: string[] }).cspViolations)).toEqual([])
+  expect(errors).toEqual([])
+})
+
 test('every kanji has a self-hosted Noto Serif JP subset', async ({ page }) => {
   await openSite(page)
   // unicode-range of the Noto Serif JP @font-face rules (assets/css/fonts.css), as [first, last] code points.
