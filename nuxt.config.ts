@@ -6,8 +6,8 @@ export default defineNuxtConfig({
 
   modules: ['@nuxt/image'],
 
-app: {
-    baseURL: '/',    
+  app: {
+    baseURL: '/',
     head: {
       title: 'Deniz OK — Portfolio',
       htmlAttrs: { lang: 'fr' },

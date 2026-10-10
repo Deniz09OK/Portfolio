@@ -192,3 +192,39 @@ test('unknown URLs get a real 404 page', async ({ page, request }) => {
   await expect(page.locator('h1')).toHaveText('404')
   await expect(page.locator('a[href="/"]')).toBeVisible()
 })
+
+test('off-court modal moves focus in, traps Tab and returns focus to its opener', async ({ page, isMobile }) => {
+  test.skip(!!isMobile, 'keyboard focus is a desktop concern')
+  await openSite(page)
+  const card = page.locator('.off-card').first()
+  await card.focus()
+  await page.keyboard.press('Enter')
+  await expect(page.locator('.off-modal')).toHaveClass(/is-open/)
+  await expect(page.locator('.off-modal-card')).toBeFocused()
+
+  await page.keyboard.press('Tab')
+  await expect(page.locator('.off-modal-close')).toBeFocused()
+  await page.keyboard.press('Tab')
+  await expect(page.locator('.off-modal-close')).toBeFocused()
+  await page.keyboard.press('Shift+Tab')
+  await expect(page.locator('.off-modal-close')).toBeFocused()
+
+  await page.keyboard.press('Escape')
+  await expect(page.locator('.off-modal')).not.toHaveClass(/is-open/)
+  await expect(card).toBeFocused()
+})
+
+test('the language switcher is a radiogroup that follows the active language', async ({ page, isMobile }) => {
+  await openSite(page)
+  const group = page.getByRole('radiogroup')
+  const radios = group.getByRole('radio')
+  await expect(radios).toHaveCount(3)
+  await expect(radios.nth(0)).toHaveAttribute('aria-checked', 'true')
+  await expect(radios.nth(1)).toHaveAttribute('aria-checked', 'false')
+  if (isMobile) return
+  await radios.nth(0).focus()
+  await page.keyboard.press('ArrowRight')
+  await expect(radios.nth(1)).toHaveAttribute('aria-checked', 'true')
+  await expect(radios.nth(1)).toBeFocused()
+  await expect(radios.nth(0)).toHaveAttribute('aria-checked', 'false')
+})

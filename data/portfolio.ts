@@ -1,8 +1,8 @@
 import type { Portfolio } from '~/types/portfolio'
 
-
 export const portfolio: Portfolio = {
-  fr: {    nav: { roster: "Fiche", matches: "Card de la saison", career: "Saisons jouées", drills: "Entraînement quotidien", htb: "Labs cyber", htbSub: "HTB & TryHackMe", off: "Hors du clavier", languages: "Trois langues", contact: "Sifflet final" },
+  fr: {
+    nav: { roster: "Fiche", matches: "Card de la saison", career: "Saisons jouées", drills: "Entraînement quotidien", htb: "Labs cyber", htbSub: "HTB & TryHackMe", off: "Hors du clavier", languages: "Trois langues", contact: "Sifflet final" },
     sectionLabels: { roster: "Profil", matches: "Projets", career: "Parcours", drills: "Compétences", htb: "Hack The Box", thm: "TryHackMe", off: "Centres d'intérêt", languages: "Langues", contact: "Contact" },
     a11y: { navPrimary: "Navigation principale", navMobile: "Navigation mobile", language: "Langue", theme: "Changer de thème", menu: "Menu", legend: "Légende" },
     ticker: ["RECHERCHE ALTERNANCE → 09/2027", "·", "MSc CYBERSÉCURITÉ & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUE FR/EN/TR", "·", "OUVERT AUX OPPORTUNITÉS", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
@@ -10,6 +10,8 @@ export const portfolio: Portfolio = {
 
     hero: {
       number: "619",
+      numberNote: "Clin d’œil au 619, la prise de finish de Rey Mysterio et de Dominik Mysterio.",
+      luckyNote: "Mon chiffre porte-bonheur : 23",
       name1: "DENIZ",
       name2: "OK",
       position: "CYBERSÉCURITÉ & CLOUD",
@@ -57,7 +59,7 @@ export const portfolio: Portfolio = {
     exp: [
       { year: "02/2025 — aujourd’hui", company: "QUALITEST · NANCY", title: "Assistant informatique (alternance)", desc: "Pipelines de données Python en production pour des clients (intégration d’enquêtes Sphinx vers Odoo) · Administration Windows Server, outils internes PHP/JS et automatisation (PowerShell, Bash) · Questionnaires et reporting (Sphinx iQ 3, Dataviv’), bases de données et analyse · Rédaction de procédures internes (traitement des bases e-mails clients)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING · VANDŒUVRE-LÈS-NANCY", title: "Équipier polyvalent", desc: "Service salle & drive · Relation client" },
-      { year: "03/2023 — 12/2023", company: "1ER RSMV · MONTIGNY-LÈS-METZ", title: "Volontaire stagiaire", desc: "Discipline & cohésion · SST · Médaille du mérite" },
+      { year: "03/2023 — 12/2023", company: "1ER RSMV · MONTIGNY-LÈS-METZ", title: "Volontaire stagiaire", desc: "Régiment du Service Militaire Volontaire basé à Montigny-lès-Metz · Discipline & cohésion · SST · Médaille du mérite" },
       { year: "01/2019 — 06/2021", company: "LYCÉE HENRI LORITZ · SCIENCES PO NANCY · CFA CHARLES DE FOUCAULD", title: "Stages IT (Bac Pro puis BTS)", desc: "Maintenance et déploiement de postes · Support personnel & étudiants · Adressage IP" }
     ],
     drills: {
@@ -160,6 +162,8 @@ export const portfolio: Portfolio = {
     seoDescription: "Deniz OK — MSc Cybersecurity & Cloud at Epitech Nancy. Currently seeking a work-study placement until 09/2027 (cybersecurity, infrastructure/cloud).",
     hero: {
       number: "619",
+      numberNote: "A nod to the 619, the finishing move of Rey Mysterio and Dominik Mysterio.",
+      luckyNote: "My lucky number: 23",
       name1: "DENIZ",
       name2: "OK",
       position: "CYBERSECURITY & CLOUD",
@@ -199,7 +203,7 @@ export const portfolio: Portfolio = {
     exp: [
       { year: "02/2025 — now", company: "QUALITEST · NANCY", title: "IT Assistant (work-study)", desc: "Production Python data pipelines for clients (Sphinx survey data into Odoo) · Windows Server administration, internal PHP/JS tools and automation (PowerShell, Bash) · Surveys & reporting (Sphinx iQ 3, Dataviv’), databases and data analysis · Internal procedures (client email database processing)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING · VANDŒUVRE-LÈS-NANCY", title: "Versatile crew member", desc: "Front of house & drive · Customer service" },
-      { year: "03/2023 — 12/2023", company: "1ST RSMV · MONTIGNY-LÈS-METZ", title: "Volunteer trainee", desc: "Discipline & teamwork · First-aid (SST) · Merit medal" },
+      { year: "03/2023 — 12/2023", company: "1ST RSMV · MONTIGNY-LÈS-METZ", title: "Volunteer trainee", desc: "Voluntary Military Service (SMV) regiment based in Montigny-lès-Metz · Discipline & teamwork · First-aid (SST) · Merit medal" },
       { year: "01/2019 — 06/2021", company: "LYCÉE HENRI LORITZ · SCIENCES PO NANCY · CFA CHARLES DE FOUCAULD", title: "IT internships (vocational bac, then BTS)", desc: "Workstation maintenance & rollout · Staff & student support · IP addressing" }
     ],
     drills: {
@@ -298,6 +302,8 @@ export const portfolio: Portfolio = {
     seoDescription: "Deniz OK — Epitech Nancy'de MSc Siber Güvenlik & Bulut öğrencisi. 09/2027'ye kadar bir dönüşümlü eğitim arıyor (siber güvenlik, altyapı/bulut).",
     hero: {
       number: "619",
+      numberNote: "Rey Mysterio ve Dominik Mysterio’nun bitiriş hamlesi 619’a bir selam.",
+      luckyNote: "Şans sayım: 23",
       name1: "DENIZ",
       name2: "OK",
       position: "SİBER GÜVENLİK & BULUT",
@@ -337,7 +343,7 @@ export const portfolio: Portfolio = {
     exp: [
       { year: "02/2025 — şimdi", company: "QUALITEST · NANCY", title: "BT Asistanı (dönüşümlü eğitim)", desc: "Müşteriler için üretimde çalışan Python veri hatları (Sphinx anket verilerinin Odoo'ya aktarımı) · Windows Server yönetimi, PHP/JS iç araçlar ve otomasyon (PowerShell, Bash) · Anket ve raporlama (Sphinx iQ 3, Dataviv’), veritabanları ve veri analizi · İç prosedürlerin yazımı (müşteri e-posta veritabanlarının işlenmesi)", current: true },
       { year: "01/2024 — 03/2024", company: "BURGER KING · VANDŒUVRE-LÈS-NANCY", title: "Çok yönlü ekip üyesi", desc: "Salon & drive · Müşteri ilişkileri" },
-      { year: "03/2023 — 12/2023", company: "1. RSMV · MONTIGNY-LÈS-METZ", title: "Gönüllü stajyer", desc: "Disiplin & takım çalışması · SST · Liyakat madalyası" },
+      { year: "03/2023 — 12/2023", company: "1. RSMV · MONTIGNY-LÈS-METZ", title: "Gönüllü stajyer", desc: "Montigny-lès-Metz'te bulunan Gönüllü Askerlik Hizmeti (SMV) alayı · Disiplin & takım çalışması · SST · Liyakat madalyası" },
       { year: "01/2019 — 06/2021", company: "LYCÉE HENRI LORITZ · SCIENCES PO NANCY · CFA CHARLES DE FOUCAULD", title: "BT stajları (Mesleki Lise, ardından BTS)", desc: "İş istasyonu bakımı ve kurulumu · Personel & öğrenci desteği · IP adresleme" }
     ],
     drills: {

@@ -56,14 +56,54 @@ const eyebrowText = computed(() => {
   return `${pad(props.index + 1)} / ${pad(props.total)} · ${props.eyebrow}`
 })
 
-// Lock body scroll + close on Escape while open.
-watch(open, (isOpen) => {
+const card = ref<HTMLElement | null>(null)
+let opener: HTMLElement | null = null
+
+// Lock body scroll, move focus into the dialog and give it back to the opener on close.
+watch(open, async (isOpen) => {
   if (!import.meta.client) return
   document.documentElement.classList.toggle('modal-lock', isOpen)
+  if (isOpen) {
+    opener = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    await nextTick()
+    card.value?.focus({ preventScroll: true })
+  } else {
+    if (opener?.isConnected) opener.focus()
+    opener = null
+  }
 })
 
+function focusables(): HTMLElement[] {
+  if (!card.value) return []
+  return Array.from(
+    card.value.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+  )
+}
+
+// Close on Escape and keep Tab / Shift+Tab inside the dialog while open.
 function onKey(e: KeyboardEvent) {
-  if (e.key === 'Escape' && open.value) emit('close')
+  if (!open.value) return
+  if (e.key === 'Escape') {
+    emit('close')
+    return
+  }
+  if (e.key !== 'Tab') return
+  const items = focusables()
+  if (!items.length) {
+    e.preventDefault()
+    card.value?.focus()
+    return
+  }
+  const first = items[0]
+  const last = items[items.length - 1]
+  const active = document.activeElement
+  if (e.shiftKey && (active === first || active === card.value || !card.value?.contains(active))) {
+    e.preventDefault()
+    last.focus()
+  } else if (!e.shiftKey && (active === last || !card.value?.contains(active))) {
+    e.preventDefault()
+    first.focus()
+  }
 }
 
 onMounted(() => document.addEventListener('keydown', onKey))
@@ -93,7 +133,7 @@ const modalStyle = computed(() => {
       aria-labelledby="offModalTitle"
     >
       <div class="off-modal-backdrop" @click="emit('close')"></div>
-      <article v-if="item" class="off-modal-card" role="document">
+      <article v-if="item" ref="card" class="off-modal-card" role="document" tabindex="-1">
         <span class="off-modal-stripe" aria-hidden="true"></span>
         <button type="button" class="off-modal-close" :aria-label="closeLabel" @click="emit('close')">
           <span aria-hidden="true">×</span>

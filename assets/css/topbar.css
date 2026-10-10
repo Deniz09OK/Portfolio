@@ -40,6 +40,14 @@
   font-weight: 700;
 }
 
+.bar-name .bar-note {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  color: var(--ink);
+  opacity: 0.75;
+}
+
 .bar-nav {
   display: flex;
   gap: 12px;

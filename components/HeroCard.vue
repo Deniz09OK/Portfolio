@@ -20,9 +20,10 @@ const cvUrl = computed(() => CV_URLS[lang.value])
     <div class="hero-inner">
       <div class="hero-stage">
         <!-- BIG JERSEY NUMBER -->
-        <div class="hero-number" aria-hidden="true">
-          <span class="hero-number-glyph">{{ hero.number }}</span>
-          <span class="hero-kanji-overlay">{{ hero.kanji }}</span>
+        <div class="hero-number">
+          <span class="hero-number-glyph" aria-hidden="true">{{ hero.number }}</span>
+          <span class="hero-kanji-overlay" aria-hidden="true">{{ hero.kanji }}</span>
+          <p class="hero-number-note">{{ hero.numberNote }}</p>
         </div>
 
         <!-- NAME + POSITION -->
