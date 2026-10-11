@@ -2,7 +2,12 @@
 //
 //   node scripts/fetch-thm.mjs
 //
-// L'API publique ne demande aucun secret. En cas d'échec, l'ancien thm.json est conservé tel quel.
+// L'API publique de TryHackMe renvoie 429 aux runners GitHub Actions : l'appel passe par un relais
+// Cloudflare Worker qui interroge TryHackMe (le nom d'utilisateur est fixé côté Worker).
+// Variables d'environnement requises (leurs valeurs ne sont jamais affichées) :
+//   THM_PROXY_URL    URL du Worker
+//   THM_PROXY_TOKEN  jeton envoyé dans l'en-tête X-Sync-Token
+// En cas d'échec, l'ancien thm.json est conservé tel quel.
 // Seuls les champs réellement affichés sont gardés : ni avatar (l'URL contient un hachage de l'e-mail),
 // ni identifiant interne, ni donnée personnelle.
 import { readFileSync, writeFileSync, renameSync, mkdirSync, existsSync } from 'node:fs'
@@ -11,14 +16,31 @@ import { fileURLToPath } from 'node:url'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const OUT = join(ROOT, 'public', 'data', 'thm.json')
-const USERNAME = 'Deniz23Ok'
-const URL_API = `https://tryhackme.com/api/v2/public-profile?username=${encodeURIComponent(USERNAME)}`
 const TIMEOUT_MS = 10000
 const MAX_BYTES = 1_000_000
 const MAX_ATTEMPTS = 3
 const BASE_DELAY_MS = 5000
 const JITTER_MS = 1000
 const UA = 'portfolio-deniz.me thm-sync (+https://portfolio-deniz.me)'
+
+/** Lit THM_PROXY_URL / THM_PROXY_TOKEN ; les messages d'erreur ne contiennent jamais leur valeur. */
+function readConfig() {
+  const url = process.env.THM_PROXY_URL
+  const token = process.env.THM_PROXY_TOKEN
+  const missing = [!url && 'THM_PROXY_URL', !token && 'THM_PROXY_TOKEN'].filter(Boolean)
+  if (missing.length) throw new ThmError(`variable d'environnement manquante : ${missing.join(', ')}`, false)
+  let parsed
+  try {
+    parsed = new URL(url)
+  } catch {
+    throw new ThmError("THM_PROXY_URL n'est pas une URL valide", false)
+  }
+  const local = ['127.0.0.1', 'localhost'].includes(parsed.hostname)
+  if (parsed.protocol !== 'https:' && !(local && parsed.protocol === 'http:')) {
+    throw new ThmError('THM_PROXY_URL doit utiliser https', false)
+  }
+  return { url, token }
+}
 
 class ThmError extends Error {
   /** transient : panne passagère (réseau, filtrage, 5xx) ; sinon réponse inattendue à corriger. */
@@ -28,12 +50,12 @@ class ThmError extends Error {
   }
 }
 
-async function fetchProfile() {
+async function fetchProfile({ url, token }) {
   const ctrl = new AbortController()
   const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS)
   let res, text
   try {
-    res = await fetch(URL_API, { headers: { Accept: 'application/json', 'User-Agent': UA }, signal: ctrl.signal })
+    res = await fetch(url, { headers: { Accept: 'application/json', 'User-Agent': UA, 'X-Sync-Token': token }, signal: ctrl.signal })
     text = await res.text()
   } catch (e) {
     throw new ThmError(e.name === 'AbortError' ? `timeout après ${TIMEOUT_MS / 1000}s` : 'erreur réseau', true)
@@ -55,10 +77,10 @@ async function fetchProfile() {
 }
 
 /** Retente fetchProfile() avec un backoff exponentiel + gigue, uniquement sur les erreurs transientes. */
-async function fetchProfileWithRetry() {
+async function fetchProfileWithRetry(config) {
   for (let attempt = 1; ; attempt++) {
     try {
-      return await fetchProfile()
+      return await fetchProfile(config)
     } catch (e) {
       if (!e.transient || attempt >= MAX_ATTEMPTS) throw e
       const delay = BASE_DELAY_MS * 2 ** (attempt - 1) + Math.random() * JITTER_MS
@@ -100,7 +122,7 @@ function readPrevious() {
 }
 
 async function sync() {
-  const next = parse(await fetchProfileWithRetry())
+  const next = parse(await fetchProfileWithRetry(readConfig()))
   const previous = readPrevious()
 
   // updatedAt ne bouge que si les données ont changé : pas de commit inutile côté CI.
