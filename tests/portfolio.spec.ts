@@ -282,16 +282,19 @@ test('the top bar nav stays on one line at 1400px and 1440px', async ({ page, is
   }
 })
 
-test('under 400px the back-to-top link keeps a visible, clickable mark', async ({ page, isMobile }) => {
-  test.skip(!!isMobile, 'sets its own narrow viewport')
-  await page.setViewportSize({ width: 390, height: 700 })
+test('the back-to-top button appears after scrolling and brings the page back to the top', async ({ page }) => {
   await openSite(page)
-  await page.evaluate(() => window.scrollTo(0, 600))
-  const link = page.locator('a.bar-name')
-  const box = await link.boundingBox()
-  expect(box!.width).toBeGreaterThan(20)
+  const button = page.locator('.back-to-top')
+  await expect(button).toBeHidden()
+
+  await page.evaluate(() => window.scrollTo(0, window.innerHeight * 2))
+  await expect(button).toBeVisible()
+  await expect(button).toHaveAttribute('aria-label', portfolio.fr.a11y.backToTop)
+  const box = await button.boundingBox()
+  expect(box!.width).toBeGreaterThanOrEqual(44)
   expect(box!.height).toBeGreaterThanOrEqual(44)
-  await expect(page.locator('.bar-top')).toHaveAttribute('aria-hidden', 'true')
-  await link.click()
-  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(10)
+
+  await button.click()
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
+  await expect(button).toBeHidden()
 })
