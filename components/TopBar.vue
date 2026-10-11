@@ -95,8 +95,7 @@ onBeforeUnmount(() => {
         23
       </button>
       <a href="#top" class="bar-name" aria-label="Deniz OK">
-        <span class="bar-name-text">DENIZ.OK</span>
-        <span class="bar-top" aria-hidden="true">↑</span>
+        <span>DENIZ.OK</span>
       </a>
       <div class="bubble-live" aria-live="polite">
         <Transition name="bubble">

@@ -220,6 +220,7 @@ export interface A11yContent {
   theme: string
   menu: string
   legend: string
+  backToTop: string
 }
 
 export interface LocaleContent {

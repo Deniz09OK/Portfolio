@@ -8,6 +8,37 @@
 }
 .js-ready .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
+/* Floating "back to top" button (components/BackToTop.vue). Hidden state also drops it from the tab order. */
+.back-to-top {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--bg-panel);
+  color: var(--accent);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 220ms ease, transform 220ms ease, visibility 0s linear 220ms, border-color 200ms;
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 220ms ease, transform 220ms ease, visibility 0s, border-color 200ms;
+}
+#top:focus { outline: none; }
+.back-to-top:hover { border-color: var(--accent); }
+.back-to-top:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
 /* Small click-to-reveal bubble (see composables/useBubble.ts). */
 .bubble-live { position: absolute; left: 0; top: 100%; width: 0; height: 0; }
 .bubble {

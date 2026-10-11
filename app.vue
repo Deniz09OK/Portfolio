@@ -40,5 +40,6 @@ useHead(() => ({
       <LanguagesSection />
       <ContactSection />
     </main>
+    <BackToTop />
   </div>
 </template>
