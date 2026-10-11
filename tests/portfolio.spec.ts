@@ -313,3 +313,17 @@ test('the back-to-top button hands the keyboard focus to the page content', asyn
   await expect(page.locator('main#top')).not.toBeFocused()
   await expect(page.locator('main#top')).not.toHaveAttribute('tabindex', /.*/)
 })
+
+test('the CIA and NSA project cards link to their architecture diagram', async ({ page, request }) => {
+  await openSite(page)
+  for (const [idx, file] of [['01', 'cia'], ['04', 'nsa']] as const) {
+    const link = page.locator(`#match-${idx} .match-link`, { hasText: 'SCHÉMA' })
+    await expect(link).toHaveAttribute('href', `/diagrams/${file}-architecture.svg`)
+    await expect(link).toHaveAttribute('target', '_blank')
+    await expect(link).toHaveAttribute('rel', /noopener/)
+    const res = await request.get(`/diagrams/${file}-architecture.svg`)
+    expect(res.ok()).toBe(true)
+    expect(res.headers()['content-type']).toContain('svg')
+  }
+  await expect(page.locator('.match-link', { hasText: 'SCHÉMA' })).toHaveCount(2)
+})

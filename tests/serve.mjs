@@ -17,6 +17,7 @@ const TYPES = {
   '.jpg': 'image/jpeg',
   '.webp': 'image/webp',
   '.png': 'image/png',
+  '.svg': 'image/svg+xml',
   '.pdf': 'application/pdf',
   '.woff2': 'font/woff2',
 }

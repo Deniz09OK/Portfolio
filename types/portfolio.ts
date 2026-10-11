@@ -72,6 +72,8 @@ export interface Project {
   link: string | null
   /** Optional live demo URL shown next to the GitHub link. */
   demo?: string
+  /** Optional architecture diagram (SVG under /public/diagrams) shown as a link next to the code and demo links. */
+  schema?: string
   /** In development and not public yet: shows an "in development" badge instead of "confidential". */
   wip?: boolean
   /** Older project, hidden behind the "earlier projects" button until the visitor asks for it. */
