@@ -37,6 +37,7 @@ const labels = computed(() => {
     wip: l === 'tr' ? 'GELİŞTİRİLİYOR' : l === 'en' ? 'IN DEVELOPMENT' : 'EN DÉVELOPPEMENT',
     round: l === 'tr' ? 'RAUND' : 'ROUND',
     demo: l === 'tr' ? 'DEMOYU GÖR' : l === 'en' ? 'VIEW DEMO' : 'VOIR LA DÉMO',
+    schema: l === 'tr' ? 'ŞEMAYI GÖR' : l === 'en' ? 'VIEW DIAGRAM' : 'VOIR LE SCHÉMA',
     type: l === 'tr' ? 'TÜR' : 'TYPE',
     stack: l === 'tr' ? 'TEKNOLOJİLER' : 'STACK',
     challenger: l === 'tr' ? 'MEYDAN OKUYAN' : 'CHALLENGER',
@@ -126,6 +127,15 @@ const labels = computed(() => {
                 rel="noopener"
               >
                 {{ labels.demo }} <span>↗</span>
+              </a>
+              <a
+                v-if="p.schema"
+                class="match-link"
+                :href="p.schema"
+                target="_blank"
+                rel="noopener"
+              >
+                {{ labels.schema }} <span>↗</span>
               </a>
             </div>
           </div>

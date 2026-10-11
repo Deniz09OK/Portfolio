@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 680" role="img" aria-label="Architecture hybride CIA : deux sites Proxmox reliés par un tunnel VPN site-à-site, chacun protégé par un pare-feu pfSense avec coupure d'urgence, un bastion pour l'accès externe au site distant, et NetBox/Elasticsearch partagés pour l'IPAM et les logs centralisés.">
+  <rect width="1040" height="680" fill="#0c0c10"/>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c8c4b8"/>
+    </marker>
+    <marker id="arrowAccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e63946"/>
+    </marker>
+  </defs>
+
+  <text x="520" y="36" text-anchor="middle" fill="#f1ede2" font-family="Space Grotesk, sans-serif" font-size="20" font-weight="700">CIA — Infrastructure hybride Proxmox</text>
+  <text x="520" y="58" text-anchor="middle" fill="#868893" font-family="Space Grotesk, sans-serif" font-size="12">Schéma d'architecture anonymisé — aucune IP, nom d'hôte ni identifiant réels</text>
+
+  <!-- Site boxes -->
+  <rect x="40" y="90" width="420" height="520" rx="10" fill="#14141b" stroke="#353846" stroke-width="1.5"/>
+  <text x="60" y="118" fill="#f4c542" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="700">SITE 1 — ON-PREM</text>
+
+  <rect x="580" y="90" width="420" height="520" rx="10" fill="#14141b" stroke="#353846" stroke-width="1.5"/>
+  <text x="600" y="118" fill="#f4c542" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="700">SITE 2 — DISTANT</text>
+
+  <!-- WAN icons -->
+  <rect x="200" y="140" width="100" height="36" rx="6" fill="#1a1a23" stroke="#868893"/>
+  <text x="250" y="163" text-anchor="middle" fill="#c8c4b8" font-family="JetBrains Mono, monospace" font-size="11">INTERNET</text>
+
+  <rect x="740" y="140" width="100" height="36" rx="6" fill="#1a1a23" stroke="#868893"/>
+  <text x="790" y="163" text-anchor="middle" fill="#c8c4b8" font-family="JetBrains Mono, monospace" font-size="11">INTERNET</text>
+
+  <!-- Firewalls -->
+  <rect x="180" y="210" width="140" height="54" rx="8" fill="#2a1118" stroke="#e63946" stroke-width="1.5"/>
+  <text x="250" y="232" text-anchor="middle" fill="#f1ede2" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700">pfSense</text>
+  <text x="250" y="248" text-anchor="middle" fill="#e63946" font-family="JetBrains Mono, monospace" font-size="9.5">coupure d'urgence</text>
+
+  <rect x="720" y="210" width="140" height="54" rx="8" fill="#2a1118" stroke="#e63946" stroke-width="1.5"/>
+  <text x="790" y="232" text-anchor="middle" fill="#f1ede2" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700">pfSense</text>
+  <text x="790" y="248" text-anchor="middle" fill="#e63946" font-family="JetBrains Mono, monospace" font-size="9.5">coupure d'urgence</text>
+
+  <line x1="250" y1="176" x2="250" y2="210" stroke="#868893" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="790" y1="176" x2="790" y2="210" stroke="#868893" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Bastion (remote only) -->
+  <rect x="720" y="288" width="140" height="48" rx="8" fill="#1a1a23" stroke="#1ea662" stroke-width="1.5"/>
+  <text x="790" y="308" text-anchor="middle" fill="#f1ede2" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700">Bastion</text>
+  <text x="790" y="323" text-anchor="middle" fill="#1ea662" font-family="JetBrains Mono, monospace" font-size="9.5">accès externe</text>
+  <line x1="790" y1="264" x2="790" y2="288" stroke="#1ea662" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Proxmox clusters -->
+  <rect x="100" y="288" width="300" height="80" rx="8" fill="#1a1a23" stroke="#353846" stroke-width="1.5"/>
+  <text x="250" y="312" text-anchor="middle" fill="#f1ede2" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700">Proxmox VE — cluster S1</text>
+  <text x="250" y="330" text-anchor="middle" fill="#868893" font-family="JetBrains Mono, monospace" font-size="10">3 VLAN : admin / services / LAN</text>
+  <line x1="250" y1="264" x2="250" y2="288" stroke="#868893" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="620" y="288" width="100" height="80" rx="8" fill="#1a1a23" stroke="#353846" stroke-width="1.5"/>
+  <text x="670" y="315" text-anchor="middle" fill="#f1ede2" font-family="Space Grotesk, sans-serif" font-size="11.5" font-weight="700">Proxmox</text>
+  <text x="670" y="330" text-anchor="middle" fill="#f1ede2" font-family="Space Grotesk, sans-serif" font-size="11.5" font-weight="700">VE S2</text>
+  <line x1="700" y1="264" x2="680" y2="288" stroke="#868893" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Internal website -->
+  <rect x="100" y="400" width="140" height="48" rx="8" fill="#1a1a23" stroke="#353846" stroke-width="1.5"/>
+  <text x="170" y="420" text-anchor="middle" fill="#f1ede2" font-family="Space Grotesk, sans-serif" font-size="11.5" font-weight="700">Site web</text>
+  <text x="170" y="435" text-anchor="middle" fill="#868893" font-family="JetBrains Mono, monospace" font-size="9">interne seulement</text>
+  <line x1="200" y1="368" x2="170" y2="400" stroke="#868893" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- VPN tunnel between firewalls -->
+  <line x1="320" y1="237" x2="720" y2="237" stroke="#e63946" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#arrowAccent)" marker-start="url(#arrowAccent)"/>
+  <text x="520" y="222" text-anchor="middle" fill="#e63946" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">VPN site-à-site (OpenVPN, chiffré)</text>
+
+  <!-- DNS forwarding -->
+  <line x1="400" y1="384" x2="620" y2="384" stroke="#c8c4b8" stroke-width="1.5" stroke-dasharray="3 4" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <text x="510" y="378" text-anchor="middle" fill="#868893" font-family="JetBrains Mono, monospace" font-size="10">DNS forwarding entre sites</text>
+
+  <!-- Shared services : NetBox + Elasticsearch -->
+  <rect x="320" y="500" width="400" height="90" rx="10" fill="#14141b" stroke="#f4c542" stroke-width="1.5"/>
+  <text x="520" y="524" text-anchor="middle" fill="#f4c542" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="700">Plan de gestion partagé</text>
+
+  <rect x="340" y="538" width="160" height="40" rx="6" fill="#1a1a23" stroke="#353846"/>
+  <text x="420" y="563" text-anchor="middle" fill="#f1ede2" font-family="JetBrains Mono, monospace" font-size="11">NetBox (IPAM)</text>
+
+  <rect x="540" y="538" width="160" height="40" rx="6" fill="#1a1a23" stroke="#353846"/>
+  <text x="620" y="563" text-anchor="middle" fill="#f1ede2" font-family="JetBrains Mono, monospace" font-size="11">Elasticsearch</text>
+
+  <line x1="250" y1="368" x2="420" y2="500" stroke="#f4c542" stroke-width="1.5" stroke-dasharray="3 4" marker-end="url(#arrow)"/>
+  <line x1="670" y1="368" x2="620" y2="500" stroke="#f4c542" stroke-width="1.5" stroke-dasharray="3 4" marker-end="url(#arrow)"/>
+  <text x="340" y="455" fill="#f4c542" font-family="JetBrains Mono, monospace" font-size="9.5">IP à jour</text>
+  <text x="700" y="455" fill="#f4c542" font-family="JetBrains Mono, monospace" font-size="9.5">logs centralisés</text>
+
+  <text x="520" y="650" text-anchor="middle" fill="#868893" font-family="Space Grotesk, sans-serif" font-size="11">Déploiement IaC · runbooks et plan de reprise d'activité · architecture prête pour un 3ᵉ site</text>
+</svg>
