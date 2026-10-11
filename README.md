@@ -190,10 +190,17 @@ La section « Hack The Box » lit `public/data/htb.json`, généré par `scripts
 
 ### Statistiques TryHackMe
 
-La section « TryHackMe » lit `public/data/thm.json`, généré par `scripts/fetch-thm.mjs` à partir de l'API publique de TryHackMe, via un relais Cloudflare Worker (tryhackme.com renvoie 429 aux runners GitHub Actions) : rooms complétées, Top %, rang, niveau, badges et points. La série, la ligue et l'avatar ne sont jamais conservés. Le même workflow `htb-sync.yml` l'exécute (toutes les 6 h et à la demande), commite le JSON s'il a changé (`chore(thm): ...`) puis relance `deploy.yml`.
+La section « TryHackMe » lit `public/data/thm.json`, généré par `scripts/fetch-thm.mjs` à partir de l'API publique de TryHackMe : rooms complétées, Top %, rang, niveau, badges et points. La série, la ligue et l'avatar ne sont jamais conservés.
 
-- `node scripts/fetch-thm.mjs` met à jour le JSON. Il exige `THM_PROXY_URL` (URL du Worker) et `THM_PROXY_TOKEN` (jeton envoyé dans l'en-tête `X-Sync-Token`), fournis en secrets GitHub Actions ; en local : `node --env-file=.env scripts/fetch-thm.mjs`. Leurs valeurs ne sont jamais affichées.
-- La réponse est validée (types et bornes) avant écriture. Panne passagère (réseau, 403, 429, 5xx) : l'ancien JSON est conservé et l'étape ne casse pas la synchro. Réponse invalide : l'ancien JSON est conservé et l'étape échoue.
+**La mise à jour est manuelle** : tryhackme.com bloque (HTTP 429) les requêtes automatisées serveur-à-serveur, depuis GitHub Actions comme via un relais Cloudflare Worker (probable détection d'une empreinte non-navigateur). Le workflow `htb-sync.yml` ne synchronise donc plus que Hack The Box. De temps en temps, depuis ton poste :
+
+```bash
+node scripts/fetch-thm.mjs
+git add public/data/thm.json && git commit -m "chore(thm): mise à jour des stats TryHackMe"
+```
+
+- Aucun secret ni variable d'environnement requis.
+- La réponse est validée (types et bornes) avant écriture. Panne passagère (réseau, 403, 429, 5xx) : jusqu'à 3 tentatives avec backoff, puis l'ancien JSON est conservé. Réponse invalide : l'ancien JSON est conservé et le script échoue.
 
 ---
 
