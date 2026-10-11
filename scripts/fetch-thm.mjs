@@ -15,6 +15,9 @@ const USERNAME = 'Deniz23Ok'
 const URL_API = `https://tryhackme.com/api/v2/public-profile?username=${encodeURIComponent(USERNAME)}`
 const TIMEOUT_MS = 10000
 const MAX_BYTES = 1_000_000
+const MAX_ATTEMPTS = 3
+const BASE_DELAY_MS = 5000
+const JITTER_MS = 1000
 const UA = 'portfolio-deniz.me thm-sync (+https://portfolio-deniz.me)'
 
 class ThmError extends Error {
@@ -51,6 +54,20 @@ async function fetchProfile() {
   }
 }
 
+/** Retente fetchProfile() avec un backoff exponentiel + gigue, uniquement sur les erreurs transientes. */
+async function fetchProfileWithRetry() {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await fetchProfile()
+    } catch (e) {
+      if (!e.transient || attempt >= MAX_ATTEMPTS) throw e
+      const delay = BASE_DELAY_MS * 2 ** (attempt - 1) + Math.random() * JITTER_MS
+      console.error(`[thm] tentative ${attempt}/${MAX_ATTEMPTS} échouée (${e.message}), nouvel essai dans ${Math.round(delay / 1000)}s`)
+      await new Promise((resolve) => setTimeout(resolve, delay))
+    }
+  }
+}
+
 const isCount = (v) => Number.isInteger(v) && v >= 0 && v <= 1_000_000_000
 
 /** Valide la forme et les bornes, puis ne retient que les champs affichés. */
@@ -83,7 +100,7 @@ function readPrevious() {
 }
 
 async function sync() {
-  const next = parse(await fetchProfile())
+  const next = parse(await fetchProfileWithRetry())
   const previous = readPrevious()
 
   // updatedAt ne bouge que si les données ont changé : pas de commit inutile côté CI.
