@@ -1,7 +1,8 @@
 name: htb-sync
 
-# Met à jour public/data/htb.json (API Hack The Box) et public/data/thm.json (API publique TryHackMe via un
-# relais Cloudflare Worker), puis relance le déploiement existant.
+# Met à jour public/data/htb.json (API Hack The Box), puis relance le déploiement existant.
+# TryHackMe n'est plus synchronisé ici : tryhackme.com bloque (429) les requêtes automatisées, public/data/thm.json
+# se met à jour à la main (node scripts/fetch-thm.mjs, voir le README).
 on:
   schedule:
     - cron: '17 */6 * * *'
@@ -9,10 +10,9 @@ on:
   push:
     branches:
       - main
-    # Les commits automatiques ne touchent que ces fichiers : ils ne relancent donc pas ce workflow en boucle.
+    # Les commits automatiques ne touchent que ce fichier : ils ne relancent donc pas ce workflow en boucle.
     paths-ignore:
       - public/data/htb.json
-      - public/data/thm.json
 
 permissions:
   contents: write
@@ -41,17 +41,7 @@ jobs:
         env:
           API_TOKEN: ${{ secrets.API_TOKEN }}
 
-      # tryhackme.com renvoie 429 aux runners GitHub Actions : l'appel passe par le relais Cloudflare Worker.
-      # Étape indépendante de HTB : elle tourne même si l'étape précédente a échoué.
-      - name: Fetch TryHackMe stats
-        if: ${{ !cancelled() }}
-        run: node scripts/fetch-thm.mjs
-        env:
-          THM_PROXY_URL: ${{ secrets.THM_PROXY_URL }}
-          THM_PROXY_TOKEN: ${{ secrets.THM_PROXY_TOKEN }}
-
-      # Un commit par source, avec des messages distincts : le job tag de deploy.yml ignore chore(htb), et
-      # chore(thm) n'est de toute façon jamais un bump (type chore).
+      # Le job tag de deploy.yml ignore chore(htb).
       - name: Commit the JSON if it changed
         id: commit
         if: ${{ !cancelled() }}
@@ -69,7 +59,6 @@ jobs:
             changed=true
           }
           commit_if_changed public/data/htb.json "chore(htb): mise à jour des stats Hack The Box [skip ci]"
-          commit_if_changed public/data/thm.json "chore(thm): mise à jour des stats TryHackMe [skip ci]"
           if [ "$changed" = false ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
