@@ -30,8 +30,9 @@ function isThmData(v: unknown): v is ThmData {
 }
 
 /**
- * TryHackMe stats written by scripts/fetch-thm.mjs (see .github/workflows/htb-sync.yml). Read from disk while the
- * page is prerendered (an HTTP self-request deadlocks the dev server), fetched in the browser otherwise.
+ * TryHackMe stats written by running `node scripts/fetch-thm.mjs` by hand (no longer automated, see the README).
+ * Read from disk while the page is prerendered (an HTTP self-request deadlocks the dev server), fetched in the
+ * browser otherwise.
  * A missing or malformed file gives null, which renders the fallback state without figures.
  */
 export async function useThm() {

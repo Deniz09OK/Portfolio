@@ -6,7 +6,7 @@ const { lang } = useLang()
 const thm = computed(() => content.value.thm)
 const t = computed(() => thm.value.labels)
 
-// Written by scripts/fetch-thm.mjs (see .github/workflows/htb-sync.yml); read like HtbStats reads htb.json.
+// Written by running `node scripts/fetch-thm.mjs` by hand (not automated, see the README); read like HtbStats reads htb.json.
 // A missing or invalid file gives null, which renders the fallback state.
 const data = await useThm()
 const PROFILE_URL = 'https://tryhackme.com/p/Deniz23Ok'
