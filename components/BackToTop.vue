@@ -12,6 +12,17 @@ function update() {
 function toTop() {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   window.scrollTo({ top: 0, behavior: reduce ? 'instant' : 'smooth' })
+  focusPageStart()
+}
+
+// The button hides once the page is back at the top: hand the focus to the start of the content so keyboard
+// users do not lose it. <main> is not focusable by default, so it gets a temporary tabindex="-1".
+function focusPageStart() {
+  const main = document.getElementById('top')
+  if (!main) return
+  main.setAttribute('tabindex', '-1')
+  main.addEventListener('blur', () => main.removeAttribute('tabindex'), { once: true })
+  main.focus({ preventScroll: true })
 }
 
 onMounted(() => {

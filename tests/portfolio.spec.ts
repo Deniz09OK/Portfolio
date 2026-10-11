@@ -298,3 +298,18 @@ test('the back-to-top button appears after scrolling and brings the page back to
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
   await expect(button).toBeHidden()
 })
+
+test('the back-to-top button hands the keyboard focus to the page content', async ({ page, isMobile }) => {
+  test.skip(!!isMobile, 'keyboard focus is a desktop concern')
+  await openSite(page)
+  await page.evaluate(() => window.scrollTo(0, window.innerHeight * 2))
+  const button = page.locator('.back-to-top')
+  await expect(button).toBeVisible()
+  await button.focus()
+  await page.keyboard.press('Enter')
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
+  await expect(page.locator('main#top')).toBeFocused()
+  await page.keyboard.press('Tab')
+  await expect(page.locator('main#top')).not.toBeFocused()
+  await expect(page.locator('main#top')).not.toHaveAttribute('tabindex', /.*/)
+})
