@@ -58,14 +58,16 @@ export default defineNuxtConfig({
   // empty SPA shell, so render /404 (error.vue, server-side) and write it to 404.html instead.
   nitro: {
     prerender: { routes: ['/404'] },
-    hooks: {
-      'prerender:generate'(route) {
+  },
+  hooks: {
+    'nitro:init'(nitro) {
+      nitro.hooks.hook('prerender:generate', (route: { route: string; skip?: boolean; error?: unknown; fileName?: string }) => {
         if (route.route === '/404.html') route.skip = true
         if (route.route === '/404') {
           route.error = undefined
           route.fileName = '404.html'
         }
-      },
+      })
     },
   },
 
