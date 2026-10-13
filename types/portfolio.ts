@@ -112,8 +112,6 @@ export interface DrillsGroup {
   label: string
   pos: string
   items: DrillItem[]
-  /** Optional proof links shown under the list (e.g. TryHackMe, Hack The Box profiles). */
-  proofs?: { label: string; url: string }[]
 }
 
 export interface DrillsContent {

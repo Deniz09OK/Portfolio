@@ -25,9 +25,6 @@ const drills = computed(() => content.value.drills)
               <span class="drill-name">{{ s.name }}</span>
             </li>
           </ul>
-          <a v-for="p in g.proofs" :key="p.url" class="drill-proof" :href="p.url" target="_blank" rel="noopener">
-            {{ p.label }} <span>↗</span>
-          </a>
         </div>
       </div>
     </div>
