@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T22:23:02.183Z",
+  "updatedAt": "2026-10-20T04:53:32.718Z",
   "profile": {
     "id": 4005432,
     "name": "Sorouto",
@@ -7,7 +7,7 @@
     "nextRank": "Hacker",
     "rankProgress": 13.5,
     "points": 5,
-    "globalRanking": 976,
+    "globalRanking": 990,
     "systemOwns": 8,
     "userOwns": 9,
     "bloods": 0,
@@ -86,8 +86,8 @@
     "name": "Season 12",
     "endsAt": "2026-11-28T19:00:01.000Z",
     "league": "Silver",
-    "rank": 3360,
-    "totalPlayers": 5623,
+    "rank": 3362,
+    "totalPlayers": 5624,
     "points": 75,
     "nextLeague": "Ruby",
     "flags": {
