@@ -263,6 +263,42 @@ for (const [name, btn, note] of [
   })
 }
 
+test('the brand name never covers the language buttons, whatever the width', async ({ page }) => {
+  await openSite(page, 'en')
+  for (const width of [320, 360, 390, 400, 401, 412, 414, 430, 431, 432, 436, 460, 461, 480, 768]) {
+    await page.setViewportSize({ width, height: 800 })
+
+    // Every control of the bar must receive the click aimed at its centre and at both of its edges.
+    const covered = await page.evaluate(() =>
+      [...document.querySelectorAll<HTMLElement>('.bar-num, .lang-btn, .theme-btn, .nav-toggle')].flatMap((el) => {
+        const r = el.getBoundingClientRect()
+        const y = r.top + r.height / 2
+        return [r.left + 3, r.left + r.width / 2, r.right - 3]
+          .filter((x) => {
+            const hit = document.elementFromPoint(x, y)
+            return !(hit && (hit === el || el.contains(hit)))
+          })
+          .map(() => el.className)
+      }),
+    )
+    expect(covered, `controls covered by another element at ${width}px`).toEqual([])
+
+    // A visible name must fit in the brand block without being clipped.
+    const name = page.locator('.bar-name span')
+    if (await name.isVisible()) {
+      const clipped = await name.evaluate((el) => el.scrollWidth > el.clientWidth)
+      expect(clipped, `brand name clipped at ${width}px`).toBe(false)
+    }
+
+    // Real click, like a user would do it: FR must switch the language back from EN.
+    await page.locator('.lang-btn', { hasText: /^en$/i }).click({ timeout: 2000 })
+    await page.locator('.lang-btn', { hasText: /^fr$/i }).click({ timeout: 2000 })
+    await expect(page.locator('html'), `FR click ignored at ${width}px`).toHaveAttribute('lang', 'fr')
+    await page.locator('.lang-btn', { hasText: /^en$/i }).click({ timeout: 2000 })
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en')
+  }
+})
+
 test('the brand name still links to the top and no button sits inside a link', async ({ page }) => {
   await openSite(page)
   await expect(page.locator('a.bar-name')).toHaveAttribute('href', '#top')
