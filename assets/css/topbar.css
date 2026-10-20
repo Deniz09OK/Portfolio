@@ -26,6 +26,7 @@
 }
 .bar-num {
   position: relative;
+  flex-shrink: 0;
   background: none;
   cursor: pointer;
   font-family: var(--display);
@@ -39,12 +40,17 @@
 .bar-num::before { content: ""; position: absolute; inset: -7px -4px; }
 .bar-num:focus-visible,
 .hero-number-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-.bar-name { display: flex; flex-direction: column; line-height: 1.1; }
+/* min-width: 0 + overflow: hidden keep the name inside .bar-brand when the bar gets tight: it is clipped
+   there instead of spilling over the language buttons (the brand is positioned, so it paints above them). */
+.bar-name { display: flex; flex-direction: column; line-height: 1.1; min-width: 0; overflow: hidden; }
 .bar-name span {
   font-family: var(--mono);
   font-size: 13px;
   letter-spacing: 0.16em;
   font-weight: 700;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 
@@ -81,7 +87,7 @@
 @media (pointer: coarse) { .bar-nav-link { padding: 11px 0; } }
 @media (max-width: 1399px) { .bar-nav { display: none; } }
 
-.bar-tools { display: flex; align-items: center; gap: 12px; }
+.bar-tools { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 .lang-pill {
   display: flex;
   border: 1px solid var(--line-strong);
@@ -168,6 +174,14 @@ html.light .theme-moon { opacity: 0; transform: rotate(-30deg); }
 @media (max-width: 1399px) {
   .nav-toggle { display: flex; }
   .mobile-nav.is-open { display: flex; }
+}
+
+/* Between 401px and 460px the full-size bar (28px sides, 12px gaps) is wider than the screen once the name is
+   shown, so tighten the spacing there. The name only disappears at 400px and below (rule that follows). */
+@media (max-width: 460px) {
+  .bar { padding-left: 14px; padding-right: 14px; gap: 8px; }
+  .bar-brand { gap: 8px; }
+  .bar-tools { gap: 6px; }
 }
 
 /* Compact top bar so brand + lang pill + theme + burger fit on 320px screens.
