@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T04:51:29.609Z",
+  "updatedAt": "2026-10-21T11:52:10.813Z",
   "profile": {
     "id": 4005432,
     "name": "Sorouto",
@@ -8,8 +8,8 @@
     "rankProgress": 13.5,
     "points": 5,
     "globalRanking": 994,
-    "systemOwns": 8,
-    "userOwns": 9,
+    "systemOwns": 9,
+    "userOwns": 10,
     "bloods": 0,
     "respects": 0,
     "country": "FR",
@@ -17,6 +17,13 @@
     "url": "https://app.hackthebox.com/users/4005432"
   },
   "boxes": [
+    {
+      "name": "DevHub",
+      "difficulty": "Medium",
+      "os": "Linux",
+      "solved": "root",
+      "solvedAt": "2026-10-21T08:36:51.000Z"
+    },
     {
       "name": "Cohort",
       "difficulty": "Easy",
@@ -86,8 +93,8 @@
     "name": "Season 12",
     "endsAt": "2026-11-28T19:00:01.000Z",
     "league": "Silver",
-    "rank": 3387,
-    "totalPlayers": 5636,
+    "rank": 3395,
+    "totalPlayers": 5640,
     "points": 75,
     "nextLeague": "Ruby",
     "flags": {
