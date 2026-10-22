@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-22T17:12:56.816Z",
+  "updatedAt": "2026-10-22T21:37:54.195Z",
   "profile": {
     "id": 4005432,
     "name": "Sorouto",
@@ -93,8 +93,8 @@
     "name": "Season 12",
     "endsAt": "2026-11-28T19:00:01.000Z",
     "league": "Silver",
-    "rank": 3416,
-    "totalPlayers": 5653,
+    "rank": 3426,
+    "totalPlayers": 5656,
     "points": 75,
     "nextLeague": "Ruby",
     "flags": {
