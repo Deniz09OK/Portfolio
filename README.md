@@ -139,6 +139,7 @@ Portfolio/
 │   └── fetch-thm.mjs           # Récupère les stats TryHackMe et écrit public/data/thm.json
 ├── tests/                      # Tests de bout en bout
 │   ├── portfolio.spec.ts       # Suite Playwright
+│   ├── htb.spec.ts             # Pagination, filtres et swipe de la section Hack The Box
 │   └── serve.mjs               # Serveur statique reproduisant GitHub Pages (404.html)
 ├── public/                     # Ressources statiques
 │   ├── data/                   # Données synchronisées automatiquement
@@ -187,6 +188,7 @@ La section « Hack The Box » lit `public/data/htb.json`, généré par `scripts
 - `API_TOKEN` reste un secret de CI : seul `scripts/fetch-htb.mjs` le lit, jamais l'application Nuxt. Ne jamais le déclarer dans `runtimeConfig`, ni le préfixer `NUXT_PUBLIC_` ou `VITE_` (ces valeurs sont copiées dans le JavaScript public `_nuxt/*.js`), ni le passer à l'étape `npm run generate` de `deploy.yml`. Le navigateur ne reçoit que `htb.json`, déjà formaté.
 - `node scripts/fetch-htb.mjs` met à jour le JSON ; `node scripts/fetch-htb.mjs --probe` teste les endpoints (statuts et clés uniquement, jamais le jeton).
 - En cas d'erreur API (401, 403, 429, timeout), l'ancien JSON est conservé.
+- Affichage (`components/HtbStats.vue`) : une bande de stats (machines root, répartition difficulté et système, dernière machine, saison), les boxes non rootées dans « En cours », puis les boxes rootées paginées par 5 (flèches, indicateur « 1–5 / N », swipe sur mobile) avec deux filtres combinables (système, niveau). Les puces de filtre et les barres de répartition sont calculées depuis `htb.json` : une nouvelle difficulté ou un nouveau système apparaît sans modifier le code.
 
 ### Statistiques TryHackMe
 
