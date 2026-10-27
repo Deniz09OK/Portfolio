@@ -138,12 +138,11 @@ export interface HtbContent {
     seasonFlags: string
     nextLeague: string
     latest: string
-    systemsSub: string
     boxesTitle: string
+    inProgress: string
     colBox: string
     colDifficulty: string
     colOs: string
-    colFlag: string
     colDate: string
     root: string
     user: string

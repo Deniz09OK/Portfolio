@@ -70,41 +70,54 @@ function fmt(iso: string | null, withTime = false) {
   }).format(new Date(iso))
 }
 const num = (n: number) => new Intl.NumberFormat(LOCALES[lang.value]).format(n)
-// Short day + month ("7 oct.") for the latest-machine tile, in the same fixed UTC time zone as fmt().
+// Short day + month ("7 oct.") for the table rows and the latest-machine cell, in the same fixed UTC time zone as fmt().
 const dayMonth = (iso: string) =>
   new Intl.DateTimeFormat(LOCALES[lang.value], { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(iso))
 
-const solvedCount = computed(() => data.value?.boxes.filter((b) => b.solved === 'root').length ?? 0)
-// Rank, points and global ranking are left out on purpose: the tiles show practice, not a beginner score.
-const tiles = computed(() => {
-  const d = data.value
-  if (!d) return []
-  const p = d.profile
-  // Root machines per OS, most first; ties sorted by name so the prerendered HTML and the browser agree.
-  const perOs = new Map<string, number>()
-  for (const b of d.boxes) if (b.solved === 'root') perOs.set(b.os, (perOs.get(b.os) ?? 0) + 1)
-  const systems = [...perOs].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-  // Most recently solved machine, root or user (boxes without a date are skipped).
-  // OS and machine names are English proper nouns: lang="en" keeps them out of Turkish uppercasing (i → İ).
-  const latest = d.boxes
+// Rank, points and global ranking are left out on purpose: the band shows practice, not a beginner score.
+// Machines rooted, most recent first (boxes without a date last); the ones only owned at user level are "in progress".
+const rooted = computed(() =>
+  (data.value?.boxes ?? [])
+    .filter((b) => b.solved === 'root')
+    .sort((a, b) => (b.solvedAt ?? '').localeCompare(a.solvedAt ?? '') || a.name.localeCompare(b.name)),
+)
+const pending = computed(() => (data.value?.boxes ?? []).filter((b) => b.solved !== 'root'))
+
+const DIFFICULTIES = ['easy', 'medium', 'hard', 'insane']
+const diffRank = (d: string) => {
+  const i = DIFFICULTIES.indexOf(d.toLowerCase())
+  return i === -1 ? DIFFICULTIES.length : i
+}
+const diffClass = (d: string) => `htb-diff--${d.toLowerCase().replace(/[^a-z]/g, '')}`
+
+/** Counts the values of one box field, ordered by `cmp`; ties are sorted by name so the prerendered HTML and the browser agree. */
+function tally(values: string[], cmp: (a: [string, number], b: [string, number]) => number) {
+  const counts = new Map<string, number>()
+  for (const v of values) counts.set(v, (counts.get(v) ?? 0) + 1)
+  return [...counts].sort((a, b) => cmp(a, b) || a[0].localeCompare(b[0])).map(([label, count]) => ({ label, count }))
+}
+// Repartition of the rooted machines, drawn as a small bar: difficulties from easiest to hardest, systems most first.
+const diffSplit = computed(() =>
+  tally(rooted.value.map((b) => b.difficulty), (a, b) => diffRank(a[0]) - diffRank(b[0])).map((s) => ({ ...s, cls: diffClass(s.label) })),
+)
+const osSplit = computed(() =>
+  tally(rooted.value.map((b) => b.os), (a, b) => b[1] - a[1]).map((s, i) => ({ ...s, cls: `htb-os--${Math.min(i, 2)}` })),
+)
+const splitLabel = (title: string, split: { label: string; count: number }[]) =>
+  `${title} : ${split.map((s) => `${s.label} ${s.count}`).join(', ')}`
+
+// Most recently solved machine, root or user (boxes without a date are skipped).
+const latest = computed(() =>
+  (data.value?.boxes ?? [])
     .filter((b): b is HtbBox & { solvedAt: string } => !!b.solvedAt)
-    .sort((a, b) => b.solvedAt.localeCompare(a.solvedAt))[0]
-  return [
-    { k: t.value.boxes, v: String(solvedCount.value), sub: `USER ${p.userOwns} · ROOT ${p.systemOwns}` },
-    ...(systems.length
-      ? [{ k: systems.map(([os]) => os).join(' / '), kLang: 'en', v: systems.map(([, n]) => n).join(' / '), sub: t.value.systemsSub }]
-      : []),
-    ...(latest ? [{ k: t.value.latest, v: dayMonth(latest.solvedAt), sub: latest.name, subLang: 'en' }] : []),
-    ...(p.bloods > 0 ? [{ k: t.value.bloods, v: String(p.bloods), sub: '' }] : []),
-  ]
-})
+    .sort((a, b) => b.solvedAt.localeCompare(a.solvedAt))[0],
+)
 
 const season = computed(() => data.value?.season ?? null)
 const seasonPct = computed(() => {
   const f = season.value?.flags
   return f && f.total ? Math.round((f.obtained / f.total) * 100) : 0
 })
-const diffClass = (d: string) => `htb-diff--${d.toLowerCase().replace(/[^a-z]/g, '')}`
 </script>
 
 <template>
@@ -115,35 +128,47 @@ const diffClass = (d: string) => `htb-diff--${d.toLowerCase().replace(/[^a-z]/g,
       <p class="display-sub htb-sub">{{ htb.sub }}</p>
 
       <template v-if="data">
-        <ul class="htb-tiles" :aria-label="t.statsLabel">
-          <li v-for="tile in tiles" :key="tile.k" v-reveal class="htb-tile">
-            <span class="htb-tile-k" :lang="tile.kLang">{{ tile.k }}</span>
-            <span class="htb-tile-v">{{ tile.v }}</span>
-            <span v-if="tile.sub" class="htb-tile-sub" :lang="tile.subLang">{{ tile.sub }}</span>
+        <ul v-reveal class="htb-band" :aria-label="t.statsLabel">
+          <li class="htb-band-cell">
+            <span class="htb-band-k">{{ t.boxes }}</span>
+            <span class="htb-band-v">{{ rooted.length }}</span>
+            <span class="htb-band-sub">
+              USER {{ data.profile.userOwns }} · ROOT {{ data.profile.systemOwns }}<template v-if="data.profile.bloods > 0"> · {{ t.bloods }} {{ data.profile.bloods }}</template>
+            </span>
           </li>
-        </ul>
-
-        <div class="htb-grid">
-          <article v-if="season" v-reveal class="htb-season" aria-labelledby="htbSeasonTitle">
-            <header class="htb-season-head">
-              <span id="htbSeasonTitle" class="htb-box-title">{{ t.season }} · {{ season.name }}</span>
+          <li v-if="diffSplit.length" class="htb-band-cell">
+            <span class="htb-band-k">{{ t.colDifficulty }}</span>
+            <span class="htb-bar" role="img" :aria-label="splitLabel(t.colDifficulty, diffSplit)">
+              <span v-for="s in diffSplit" :key="s.label" class="htb-bar-seg" :class="s.cls" :style="{ flexGrow: s.count }"></span>
+            </span>
+            <span class="htb-legend" aria-hidden="true">
+              <span v-for="s in diffSplit" :key="s.label" class="htb-legend-item" :class="s.cls" lang="en">{{ s.label }} <b>{{ s.count }}</b></span>
+            </span>
+          </li>
+          <li v-if="osSplit.length" class="htb-band-cell">
+            <span class="htb-band-k">{{ t.colOs }}</span>
+            <span class="htb-bar" role="img" :aria-label="splitLabel(t.colOs, osSplit)">
+              <span v-for="s in osSplit" :key="s.label" class="htb-bar-seg" :class="s.cls" :style="{ flexGrow: s.count }"></span>
+            </span>
+            <span class="htb-legend" aria-hidden="true">
+              <span v-for="s in osSplit" :key="s.label" class="htb-legend-item" :class="s.cls" lang="en">{{ s.label }} <b>{{ s.count }}</b></span>
+            </span>
+          </li>
+          <li v-if="latest" class="htb-band-cell">
+            <span class="htb-band-k">{{ t.latest }}</span>
+            <span class="htb-band-v">{{ dayMonth(latest.solvedAt) }}</span>
+            <span class="htb-band-sub" lang="en">{{ latest.name }}</span>
+          </li>
+          <li v-if="season" class="htb-band-cell htb-band-season">
+            <span class="htb-band-k">
+              {{ t.season }} · {{ season.name }}
               <span class="htb-league">{{ season.league }}</span>
-            </header>
-            <p class="htb-season-flags">
+            </span>
+            <span class="htb-season-flags">
               <span class="htb-season-flags-v">{{ season.flags.obtained }}</span>
               <span class="htb-season-flags-of">/ {{ season.flags.total }} {{ t.seasonFlags }}</span>
-            </p>
-            <dl class="htb-season-stats">
-              <div>
-                <dt>{{ t.seasonPoints }}</dt>
-                <dd>{{ num(season.points) }}</dd>
-              </div>
-              <div v-if="season.nextLeague">
-                <dt>{{ t.nextLeague }}</dt>
-                <dd>{{ season.nextLeague }}</dd>
-              </div>
-            </dl>
-            <div
+            </span>
+            <span
               class="htb-meter"
               role="progressbar"
               :aria-label="t.seasonFlags"
@@ -152,36 +177,46 @@ const diffClass = (d: string) => `htb-diff--${d.toLowerCase().replace(/[^a-z]/g,
               :aria-valuenow="season.flags.obtained"
             >
               <span class="htb-meter-fill" :style="{ width: `${seasonPct}%` }"></span>
-            </div>
-          </article>
+            </span>
+            <span class="htb-band-sub">
+              {{ t.points }} {{ num(season.points) }}<template v-if="season.nextLeague"> · {{ t.nextLeague }} {{ season.nextLeague }}</template>
+            </span>
+          </li>
+        </ul>
 
-          <section v-reveal class="htb-boxes" aria-labelledby="htbBoxesTitle">
-            <h3 id="htbBoxesTitle" class="htb-box-title">{{ t.boxesTitle }} · {{ data.boxes.length }}</h3>
-            <ul class="htb-list">
-              <li class="htb-row htb-row--head" aria-hidden="true">
-                <span>{{ t.colBox }}</span>
-                <span>{{ t.colDifficulty }}</span>
-                <span>{{ t.colOs }}</span>
-                <span>{{ t.colFlag }}</span>
-                <span>{{ t.colDate }}</span>
-              </li>
-              <li v-for="b in data.boxes" :key="b.name" class="htb-row">
-                <span class="htb-name">{{ b.name }}</span>
-                <span class="htb-cell" :data-label="t.colDifficulty">
-                  <span class="htb-diff" :class="diffClass(b.difficulty)">{{ b.difficulty }}</span>
-                </span>
-                <span class="htb-cell" :data-label="t.colOs">{{ b.os }}</span>
-                <span class="htb-cell" :data-label="t.colFlag">
-                  <span class="htb-flag" :class="`htb-flag--${b.solved}`">{{ b.solved === 'root' ? t.root : t.user }}</span>
-                </span>
-                <span class="htb-cell htb-date" :data-label="t.colDate">
-                  <time v-if="b.solvedAt" :datetime="b.solvedAt">{{ fmt(b.solvedAt) }}</time>
-                  <template v-else>{{ t.noDate }}</template>
-                </span>
+        <section v-reveal class="htb-boxes" aria-labelledby="htbBoxesTitle">
+          <h3 id="htbBoxesTitle" class="htb-box-title">{{ t.boxesTitle }} · {{ rooted.length }}</h3>
+
+          <div v-if="pending.length" class="htb-wip">
+            <h4 class="htb-box-title">{{ t.inProgress }}</h4>
+            <ul class="htb-wip-list">
+              <li v-for="b in pending" :key="b.name" class="htb-wip-item">
+                <span class="htb-name" lang="en">{{ b.name }}</span>
+                <span class="htb-diff" :class="diffClass(b.difficulty)" lang="en">{{ b.difficulty }}</span>
+                <span class="htb-os" lang="en">{{ b.os }}</span>
+                <span class="htb-flag htb-flag--user">{{ t.user }}</span>
               </li>
             </ul>
-          </section>
-        </div>
+          </div>
+
+          <ul class="htb-list">
+            <li class="htb-row htb-row--head" aria-hidden="true">
+              <span>{{ t.colBox }}</span>
+              <span>{{ t.colDifficulty }}</span>
+              <span>{{ t.colOs }}</span>
+              <span>{{ t.colDate }}</span>
+            </li>
+            <li v-for="b in rooted" :key="b.name" class="htb-row">
+              <span class="htb-name" lang="en">{{ b.name }}</span>
+              <span class="htb-diff" :class="diffClass(b.difficulty)" lang="en">{{ b.difficulty }}</span>
+              <span class="htb-os" lang="en">{{ b.os }}</span>
+              <span class="htb-date">
+                <time v-if="b.solvedAt" :datetime="b.solvedAt" :title="fmt(b.solvedAt)">{{ dayMonth(b.solvedAt) }}</time>
+                <template v-else>{{ t.noDate }}</template>
+              </span>
+            </li>
+          </ul>
+        </section>
 
         <p class="htb-foot">
           <span>{{ t.updated }} : <time :datetime="data.updatedAt">{{ fmt(data.updatedAt, true) }}</time></span>
