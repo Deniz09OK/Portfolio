@@ -123,3 +123,29 @@ test.describe('HTB boxes filters', () => {
     await expect(page.locator('#htb [aria-labelledby="htbFilterLevel"] .htb-chip', { hasText: /^Tous$/ })).toHaveAttribute('aria-pressed', 'false')
   })
 })
+
+test.describe('HTB boxes on small screens', () => {
+  test.skip(({ isMobile }) => !isMobile, 'mobile projects only')
+
+  test('shows compact cards and changes page with a horizontal swipe', async ({ page }) => {
+    test.skip(rooted.length <= PAGE_SIZE, 'needs more than one page of boxes')
+    await openHtb(page)
+    await expect(page.locator('#htb .htb-row--head')).toBeHidden()
+    await expect(rows(page)).toHaveCount(PAGE_SIZE)
+
+    const swipe = (fromX: number, toX: number) =>
+      page.locator('#htb .htb-viewport').evaluate(
+        (el, [a, b]) => {
+          const touch = (x: number) => new Touch({ identifier: 1, target: el, clientX: x, clientY: 200 })
+          el.dispatchEvent(new TouchEvent('touchstart', { bubbles: true, changedTouches: [touch(a)] }))
+          el.dispatchEvent(new TouchEvent('touchend', { bubbles: true, changedTouches: [touch(b)] }))
+        },
+        [fromX, toX],
+      )
+
+    await swipe(300, 100)
+    await expect(range(page)).toHaveText(new RegExp(`^${PAGE_SIZE + 1}`))
+    await swipe(100, 300)
+    await expect(range(page)).toHaveText(new RegExp('^1'))
+  })
+})

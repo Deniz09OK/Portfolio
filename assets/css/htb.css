@@ -140,8 +140,9 @@
 .htb-wip-item { display: flex; align-items: center; gap: 12px; font-size: 14px; }
 .htb-wip-item .htb-name { font-size: 20px; }
 
-/* Filters: two groups of toggle chips (system, difficulty) and a reset button whose room is always reserved */
-.htb-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 28px; margin-top: 16px; }
+/* Filters: two groups of toggle chips (system, difficulty); the reset button sits in the card header, its room always reserved */
+.htb-boxes-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 36px; }
+.htb-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 28px; margin-top: 12px; }
 .htb-filter-group { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .htb-filter-k,
 .htb-chip,
@@ -190,7 +191,10 @@
 /* Boxes list: a 4-column grid with fixed-height rows. The viewport always holds a full page of rows,
    so filtering or reaching a short last page never moves the content below it. */
 .htb-table { margin-top: 12px; }
-.htb-viewport { min-height: calc(var(--htb-row-h) * var(--htb-page, 5)); }
+.htb-viewport {
+  min-height: calc((var(--htb-row-h) + var(--htb-row-gap, 0px)) * var(--htb-page, 5) - var(--htb-row-gap, 0px));
+  touch-action: pan-y;
+}
 .htb-list { list-style: none; }
 .htb-page-enter-active, .htb-page-leave-active { transition: opacity 160ms ease, transform 160ms ease; }
 .htb-page-enter-from, .htb-page-leave-to { opacity: 0; transform: translateY(6px); }
@@ -257,142 +261,29 @@
 .htb-diff--insane { --seg: var(--ink); }
 .htb-flag { padding: 2px 8px; border: 1px solid var(--line-strong); color: var(--ink-soft); }
 
+/* Small screens: the table becomes compact cards (name + difficulty, then system + date) of a fixed height */
 @media (max-width: 720px) {
-  .htb-boxes { padding: 16px; }
+  .htb-boxes { --htb-row-h: 64px; --htb-row-gap: 8px; padding: 16px; }
   .htb-row--head { display: none; }
-  .htb-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4px 12px; height: auto; padding: 10px 0; }
-  .htb-name { grid-column: 1 / -1; }
-}
-
-.htb-foot {
-  font-family: var(--mono);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.htb-tile-k { font-size: 12px; color: var(--muted); }
-.htb-tile-v {
-  font-family: var(--display);
-  font-size: clamp(34px, 4vw, 48px);
-  line-height: 1;
-  color: var(--ink);
-  overflow-wrap: anywhere;
-}
-.htb-tile-sub { font-size: 12px; color: var(--muted); }
-
-/* Season card + boxes list */
-.htb-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-  gap: 16px;
-  margin-top: 16px;
-  align-items: start;
-}
-@media (max-width: 920px) { .htb-grid { grid-template-columns: minmax(0, 1fr); } }
-
-.htb-season,
-.htb-boxes {
-  background: var(--bg-panel);
-  border: 1px solid var(--line);
-  padding: 24px;
-}
-.htb-box-title {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--muted);
-  margin: 0;
-}
-.htb-season-head {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px dashed var(--line-strong);
-}
-.htb-league {
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #fff;
-  background: var(--accent);
-  padding: 4px 10px;
-}
-.htb-season-flags {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 4px 10px;
-  margin: 18px 0 14px;
-}
-.htb-season-flags-v {
-  font-family: var(--display);
-  font-size: clamp(44px, 6vw, 64px);
-  line-height: 1;
-  color: var(--ink);
-}
-.htb-season-flags-of { font-family: var(--mono); font-size: 13px; color: var(--muted); }
-.htb-season-stats {
-  display: grid;
-  gap: 10px;
-  margin: 0 0 18px;
-}
-.htb-season-stats div { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
-.htb-season-stats dt { font-size: 12px; color: var(--muted); }
-.htb-season-stats dd { margin: 0; font-weight: 600; color: var(--ink); text-align: right; }
-.htb-meter {
-  height: 6px;
-  background: var(--line);
-  overflow: hidden;
-}
-.htb-meter-fill { display: block; height: 100%; background: var(--accent); }
-
-/* Boxes list: a 5-column grid on desktop, stacked cards on small screens */
-.htb-list { list-style: none; margin-top: 12px; }
-.htb-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: 12px;
-  align-items: center;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--line);
-  font-size: 15px;
-}
-.htb-row--head { font-size: 12px; color: var(--muted); padding: 8px 0; border-bottom: 1px solid var(--line-strong); }
-.htb-name { font-family: var(--display); font-size: 24px; letter-spacing: 0.02em; color: var(--ink); overflow-wrap: anywhere; }
-.htb-date { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
-.htb-diff, .htb-flag { font-size: 12px; display: inline-flex; align-items: center; gap: 8px; }
-.htb-diff::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  background: var(--muted);
-  transform: rotate(45deg);
-}
-.htb-diff--easy::before { background: var(--green); }
-.htb-diff--medium::before { background: var(--gold); }
-.htb-diff--hard::before { background: var(--accent); }
-.htb-diff--insane::before { background: var(--ink); }
-.htb-flag { padding: 3px 8px; border: 1px solid var(--line-strong); color: var(--ink-soft); }
-.htb-flag--root { border-color: var(--accent); color: var(--accent); }
-
-@media (max-width: 720px) {
-  .htb-season, .htb-boxes { padding: 18px; }
-  .htb-row--head { display: none; }
-  .htb-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 12px; }
-  .htb-name { grid-column: 1 / -1; }
-  .htb-cell::before {
-    content: attr(data-label);
-    display: block;
-    margin-bottom: 2px;
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
+  .htb-list { display: grid; gap: var(--htb-row-gap); }
+  .htb-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "name diff" "os date";
+    gap: 2px 12px;
+    padding: 8px 12px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
   }
+  .htb-row .htb-name { grid-area: name; font-size: 20px; }
+  .htb-row .htb-diff { grid-area: diff; justify-self: end; }
+  .htb-row .htb-os { grid-area: os; font-size: 14px; color: var(--ink-soft); }
+  .htb-row .htb-date { grid-area: date; justify-self: end; font-size: 14px; }
+  .htb-wip-item { flex-wrap: wrap; gap: 4px 12px; }
+  .htb-filters { flex-direction: column; align-items: stretch; gap: 12px; }
+  .htb-filter-k { flex: 0 0 100%; }
+  .htb-chip { min-height: 44px; }
+  .htb-reset { min-height: 44px; }
+  .htb-pager { justify-content: space-between; }
 }
 
 .htb-foot {

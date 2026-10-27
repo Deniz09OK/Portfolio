@@ -148,6 +148,21 @@ const goTo = (n: number) => {
   page.value = Math.min(Math.max(n, 0), pageCount.value - 1)
 }
 
+// Horizontal swipe on touch screens does the same as the arrows (next on a left swipe).
+let touchStart: { x: number; y: number } | null = null
+const onTouchStart = (e: TouchEvent) => {
+  const t = e.changedTouches[0]
+  touchStart = { x: t.clientX, y: t.clientY }
+}
+const onTouchEnd = (e: TouchEvent) => {
+  if (!touchStart) return
+  const t = e.changedTouches[0]
+  const dx = t.clientX - touchStart.x
+  const dy = t.clientY - touchStart.y
+  touchStart = null
+  if (Math.abs(dx) >= 50 && Math.abs(dx) > Math.abs(dy) * 1.5) goTo(currentPage.value + (dx < 0 ? 1 : -1))
+}
+
 const season = computed(() => data.value?.season ?? null)
 const seasonPct = computed(() => {
   const f = season.value?.flags
@@ -220,7 +235,10 @@ const seasonPct = computed(() => {
         </ul>
 
         <section v-reveal class="htb-boxes" aria-labelledby="htbBoxesTitle" :style="{ '--htb-page': PAGE_SIZE }">
-          <h3 id="htbBoxesTitle" class="htb-box-title">{{ t.boxesTitle }} · {{ rooted.length }}</h3>
+          <div class="htb-boxes-head">
+            <h3 id="htbBoxesTitle" class="htb-box-title">{{ t.boxesTitle }} · {{ rooted.length }}</h3>
+            <button type="button" class="htb-reset" :class="{ 'is-visible': filtersActive }" @click="resetFilters">{{ t.filterReset }}</button>
+          </div>
 
           <div v-if="pending.length" class="htb-wip">
             <h4 class="htb-box-title">{{ t.inProgress }}</h4>
@@ -263,7 +281,6 @@ const seasonPct = computed(() => {
                 @click="setLevel(d.label)"
               >{{ d.label }}</button>
             </div>
-            <button type="button" class="htb-reset" :class="{ 'is-visible': filtersActive }" @click="resetFilters">{{ t.filterReset }}</button>
           </div>
 
           <div class="htb-table">
@@ -273,7 +290,7 @@ const seasonPct = computed(() => {
               <span>{{ t.colOs }}</span>
               <span>{{ t.colDate }}</span>
             </div>
-            <div class="htb-viewport">
+            <div class="htb-viewport" @touchstart.passive="onTouchStart" @touchend.passive="onTouchEnd">
               <Transition name="htb-page" mode="out-in">
                 <ul v-if="filtered.length" :key="`${osFilter}|${levelFilter}|${currentPage}`" class="htb-list">
                   <li v-for="b in pageItems" :key="b.name" class="htb-row">
