@@ -133,12 +133,17 @@ test.describe('HTB boxes on small screens', () => {
     await expect(page.locator('#htb .htb-row--head')).toBeHidden()
     await expect(rows(page)).toHaveCount(PAGE_SIZE)
 
+    // Plain events carrying `changedTouches`: WebKit has no public Touch constructor.
     const swipe = (fromX: number, toX: number) =>
       page.locator('#htb .htb-viewport').evaluate(
         (el, [a, b]) => {
-          const touch = (x: number) => new Touch({ identifier: 1, target: el, clientX: x, clientY: 200 })
-          el.dispatchEvent(new TouchEvent('touchstart', { bubbles: true, changedTouches: [touch(a)] }))
-          el.dispatchEvent(new TouchEvent('touchend', { bubbles: true, changedTouches: [touch(b)] }))
+          const fire = (type: string, x: number) => {
+            const e = new Event(type, { bubbles: true })
+            Object.defineProperty(e, 'changedTouches', { value: [{ clientX: x, clientY: 200 }] })
+            el.dispatchEvent(e)
+          }
+          fire('touchstart', a)
+          fire('touchend', b)
         },
         [fromX, toX],
       )
