@@ -54,7 +54,8 @@ test.describe('HTB boxes pagination', () => {
     const first = (await viewport.boundingBox())!.height
     await page.locator('#htb .htb-arrow').last().click()
     await expect(range(page)).toHaveText(new RegExp(`^${PAGE_SIZE + 1}`))
-    expect((await viewport.boundingBox())!.height).toBe(first)
+    // Within half a pixel: boundingBox() returns fractional heights (219.99997 vs 220), the layout itself does not move.
+    expect((await viewport.boundingBox())!.height).toBeCloseTo(first, 0)
   })
 })
 
