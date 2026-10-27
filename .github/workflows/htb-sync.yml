@@ -1,11 +1,14 @@
 name: htb-sync
 
 # Met à jour public/data/htb.json (API Hack The Box), puis relance le déploiement existant.
+# Le fichier n'est réécrit, commité et redéployé que si une donnée affichée par le site a changé (nouvelle box,
+# flags, points ou ligue de saison, bloods...). Les champs volatils non affichés (classements, nombre de joueurs...)
+# sont ignorés : voir scripts/htb-compare.mjs.
 # TryHackMe n'est plus synchronisé ici : tryhackme.com bloque (429) les requêtes automatisées, public/data/thm.json
 # se met à jour à la main (node scripts/fetch-thm.mjs, voir le README).
 on:
   schedule:
-    - cron: '17 */6 * * *'
+    - cron: '17 */12 * * *'
   workflow_dispatch:
   push:
     branches:

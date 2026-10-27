@@ -34,6 +34,9 @@ jobs:
       - name: Type check
         run: npm run typecheck
 
+      - name: Unit tests
+        run: npm run test:unit
+
       # No secrets in this job: the HTB token only lives in htb-sync.yml. A NUXT_PUBLIC_* variable
       # passed here would be written into the public JS bundle.
       - name: Generate static site
@@ -77,7 +80,7 @@ jobs:
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
 
   # Crée un tag semver sur le commit déployé. Ne pousse QUE le tag : aucun commit, car htb-sync.yml
-  # commite sur main toutes les 6 h et un commit de ce job provoquerait des conflits.
+  # commite sur main dès que les stats Hack The Box changent et un commit de ce job provoquerait des conflits.
   tag:
     needs: deploy
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'

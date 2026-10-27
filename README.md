@@ -65,6 +65,7 @@ Le design adopte le style **Arena**, un concept d'éditorial premium inspiré de
 - `npm run preview` : Prévisualise localement le site généré.
 - `npm run typecheck` : Vérifie les types avec `vue-tsc` (lance d'abord `nuxt prepare`).
 - `npm run test` : Lance les tests Playwright sur le site généré (lancer `npm run generate` avant).
+- `npm run test:unit` : Lance les tests unitaires de `scripts/htb-compare.mjs` (`node --test`, sans navigateur ni génération).
 
 ## 🧪 Tests
 
@@ -91,7 +92,7 @@ npm test
 Portfolio/
 ├── .github/workflows/          # Workflows d'automatisation
 │   ├── deploy.yml              # CI/CD : typecheck, génération, tests Playwright, déploiement sur GitHub Pages, puis tag de version
-│   └── htb-sync.yml            # Synchro des stats Hack The Box et TryHackMe (public/data/*.json), toutes les 6 h
+│   └── htb-sync.yml            # Synchro des stats Hack The Box (public/data/htb.json), toutes les 12 h, uniquement si une donnée affichée change
 ├── assets/css/                 # Design System & Stylesheets par composants
 │   ├── arena.css               # Point d'entrée important toutes les feuilles de style
 │   ├── fonts.css               # Polices auto-hébergées (@font-face vers public/fonts/)
@@ -136,10 +137,12 @@ Portfolio/
 │   └── csp.ts                  # Content-Security-Policy en balise <meta> (hachage SHA-256 des scripts inline)
 ├── scripts/                    # Scripts Node lancés par la CI
 │   ├── fetch-htb.mjs           # Récupère les stats Hack The Box et écrit public/data/htb.json
+│   ├── htb-compare.mjs         # Décide si la synchro mérite d'être écrite (ignore les champs volatils non affichés)
 │   └── fetch-thm.mjs           # Récupère les stats TryHackMe et écrit public/data/thm.json
 ├── tests/                      # Tests de bout en bout
 │   ├── portfolio.spec.ts       # Suite Playwright
 │   ├── htb.spec.ts             # Pagination, filtres et swipe de la section Hack The Box
+│   ├── htb-compare.unit.mjs    # Tests unitaires de la comparaison de la synchro HTB (node:test, sans navigateur)
 │   └── serve.mjs               # Serveur statique reproduisant GitHub Pages (404.html)
 ├── public/                     # Ressources statiques
 │   ├── data/                   # Données synchronisées automatiquement
@@ -182,12 +185,13 @@ La page 404 est générée à partir de `error.vue` : Nuxt produit toujours `/40
 
 ### Statistiques Hack The Box
 
-La section « Hack The Box » lit `public/data/htb.json`, généré par `scripts/fetch-htb.mjs` (données publiques uniquement : rang, points, boxes résolues, saison en cours). Le workflow `.github/workflows/htb-sync.yml` l'exécute toutes les 6 h, à la demande, et à chaque push sur `main`, commite le JSON s'il a changé puis relance `deploy.yml`.
+La section « Hack The Box » lit `public/data/htb.json`, généré par `scripts/fetch-htb.mjs` (données publiques uniquement : rang, points, boxes résolues, saison en cours). Le workflow `.github/workflows/htb-sync.yml` l'exécute toutes les 12 h, à la demande, et à chaque push sur `main`, commite le JSON s'il a changé puis relance `deploy.yml`.
 
 - Secret requis : `API_TOKEN` (Settings → Secrets and variables → Actions). En local, la même variable peut être mise dans un `.env` (ignoré par git).
 - `API_TOKEN` reste un secret de CI : seul `scripts/fetch-htb.mjs` le lit, jamais l'application Nuxt. Ne jamais le déclarer dans `runtimeConfig`, ni le préfixer `NUXT_PUBLIC_` ou `VITE_` (ces valeurs sont copiées dans le JavaScript public `_nuxt/*.js`), ni le passer à l'étape `npm run generate` de `deploy.yml`. Le navigateur ne reçoit que `htb.json`, déjà formaté.
 - `node scripts/fetch-htb.mjs` met à jour le JSON ; `node scripts/fetch-htb.mjs --probe` teste les endpoints (statuts et clés uniquement, jamais le jeton).
 - En cas d'erreur API (401, 403, 429, timeout), l'ancien JSON est conservé.
+- Le JSON n'est réécrit (et donc commité, puis redéployé) que si une donnée **affichée** change : nouvelle box, flags, points ou ligue de saison, bloods, machines root/user. Les champs volatils non affichés (`season.rank`, `season.totalPlayers`, `profile.globalRanking`, `profile.rankProgress`, `profile.points`, `profile.respects`) sont ignorés par la comparaison (`scripts/htb-compare.mjs`) : s'ils sont seuls à changer, le fichier est conservé tel quel, `updatedAt` compris (« aucune modification significative »). Quand le fichier est réécrit, tous les champs sont à jour. Si le composant `HtbStats.vue` affiche un jour l'un de ces champs, le retirer de `VOLATILE_FIELDS`.
 - Affichage (`components/HtbStats.vue`) : une bande de stats (machines root, répartition difficulté et système, dernière machine, saison), les boxes non rootées dans « En cours », puis les boxes rootées paginées par 5 (flèches, indicateur « 1–5 / N », swipe sur mobile) avec deux filtres combinables (système, niveau). Les puces de filtre et les barres de répartition sont calculées depuis `htb.json` : une nouvelle difficulté ou un nouveau système apparaît sans modifier le code.
 
 ### Statistiques TryHackMe

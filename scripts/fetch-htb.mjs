@@ -7,6 +7,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { hasMeaningfulChange } from './htb-compare.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const OUT = join(ROOT, 'public', 'data', 'htb.json')
@@ -206,10 +207,10 @@ async function sync() {
   const serialized = JSON.stringify(next)
   if (TOKEN && serialized.includes(TOKEN)) throw new HtbError('le jeton apparaît dans les données, écriture annulée', 0)
 
-  // updatedAt ne bouge que si les données ont changé : pas de commit inutile côté CI.
-  const { updatedAt: _old, ...before } = previous ?? {}
-  if (previous && JSON.stringify(before) === serialized) {
-    console.log('[htb] aucune modification, fichier conservé')
+  // Le fichier n'est réécrit (updatedAt compris) que si une donnée affichée par le site a changé : les champs
+  // volatils (classements...) sont ignorés par la comparaison, ce qui évite un commit et un déploiement inutiles.
+  if (!hasMeaningfulChange(previous, next)) {
+    console.log('[htb] aucune modification significative, fichier conservé')
     return
   }
   mkdirSync(dirname(OUT), { recursive: true })
