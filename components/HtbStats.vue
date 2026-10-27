@@ -113,6 +113,18 @@ const latest = computed(() =>
     .sort((a, b) => b.solvedAt.localeCompare(a.solvedAt))[0],
 )
 
+// Pagination: 5 boxes per page. The page is clamped when read, so a shorter list never leaves it out of range.
+const PAGE_SIZE = 5
+const page = ref(0)
+const pageCount = computed(() => Math.max(1, Math.ceil(rooted.value.length / PAGE_SIZE)))
+const currentPage = computed(() => Math.min(page.value, pageCount.value - 1))
+const pageItems = computed(() => rooted.value.slice(currentPage.value * PAGE_SIZE, (currentPage.value + 1) * PAGE_SIZE))
+const rangeFrom = computed(() => (rooted.value.length ? currentPage.value * PAGE_SIZE + 1 : 0))
+const rangeTo = computed(() => Math.min(rooted.value.length, (currentPage.value + 1) * PAGE_SIZE))
+const goTo = (n: number) => {
+  page.value = Math.min(Math.max(n, 0), pageCount.value - 1)
+}
+
 const season = computed(() => data.value?.season ?? null)
 const seasonPct = computed(() => {
   const f = season.value?.flags
@@ -184,7 +196,7 @@ const seasonPct = computed(() => {
           </li>
         </ul>
 
-        <section v-reveal class="htb-boxes" aria-labelledby="htbBoxesTitle">
+        <section v-reveal class="htb-boxes" aria-labelledby="htbBoxesTitle" :style="{ '--htb-page': PAGE_SIZE }">
           <h3 id="htbBoxesTitle" class="htb-box-title">{{ t.boxesTitle }} · {{ rooted.length }}</h3>
 
           <div v-if="pending.length" class="htb-wip">
@@ -199,23 +211,57 @@ const seasonPct = computed(() => {
             </ul>
           </div>
 
-          <ul class="htb-list">
-            <li class="htb-row htb-row--head" aria-hidden="true">
+          <div class="htb-table">
+            <div class="htb-row htb-row--head" aria-hidden="true">
               <span>{{ t.colBox }}</span>
               <span>{{ t.colDifficulty }}</span>
               <span>{{ t.colOs }}</span>
               <span>{{ t.colDate }}</span>
-            </li>
-            <li v-for="b in rooted" :key="b.name" class="htb-row">
-              <span class="htb-name" lang="en">{{ b.name }}</span>
-              <span class="htb-diff" :class="diffClass(b.difficulty)" lang="en">{{ b.difficulty }}</span>
-              <span class="htb-os" lang="en">{{ b.os }}</span>
-              <span class="htb-date">
-                <time v-if="b.solvedAt" :datetime="b.solvedAt" :title="fmt(b.solvedAt)">{{ dayMonth(b.solvedAt) }}</time>
-                <template v-else>{{ t.noDate }}</template>
-              </span>
-            </li>
-          </ul>
+            </div>
+            <div class="htb-viewport">
+              <Transition name="htb-page" mode="out-in">
+                <ul :key="currentPage" class="htb-list">
+                  <li v-for="b in pageItems" :key="b.name" class="htb-row">
+                    <span class="htb-name" lang="en">{{ b.name }}</span>
+                    <span class="htb-diff" :class="diffClass(b.difficulty)" lang="en">{{ b.difficulty }}</span>
+                    <span class="htb-os" lang="en">{{ b.os }}</span>
+                    <span class="htb-date">
+                      <time v-if="b.solvedAt" :datetime="b.solvedAt" :title="fmt(b.solvedAt)">{{ dayMonth(b.solvedAt) }}</time>
+                      <template v-else>{{ t.noDate }}</template>
+                    </span>
+                  </li>
+                </ul>
+              </Transition>
+            </div>
+          </div>
+
+          <div class="htb-pager">
+            <template v-if="rooted.length">
+              <button
+                v-if="pageCount > 1"
+                type="button"
+                class="htb-arrow"
+                :class="{ 'is-disabled': currentPage === 0 }"
+                :aria-label="t.prevPage"
+                :aria-disabled="currentPage === 0"
+                @click="goTo(currentPage - 1)"
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" /></svg>
+              </button>
+              <span class="htb-range" aria-live="polite">{{ num(rangeFrom) }}–{{ num(rangeTo) }} / {{ num(rooted.length) }}</span>
+              <button
+                v-if="pageCount > 1"
+                type="button"
+                class="htb-arrow"
+                :class="{ 'is-disabled': currentPage === pageCount - 1 }"
+                :aria-label="t.nextPage"
+                :aria-disabled="currentPage === pageCount - 1"
+                @click="goTo(currentPage + 1)"
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" /></svg>
+              </button>
+            </template>
+          </div>
         </section>
 
         <p class="htb-foot">

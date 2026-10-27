@@ -140,6 +140,8 @@ export interface HtbContent {
     latest: string
     boxesTitle: string
     inProgress: string
+    prevPage: string
+    nextPage: string
     colBox: string
     colDifficulty: string
     colOs: string

@@ -140,8 +140,49 @@
 .htb-wip-item { display: flex; align-items: center; gap: 12px; font-size: 14px; }
 .htb-wip-item .htb-name { font-size: 20px; }
 
-/* Boxes list: a 4-column grid with fixed-height rows */
-.htb-list { list-style: none; margin-top: 12px; }
+/* Boxes list: a 4-column grid with fixed-height rows. The viewport always holds a full page of rows,
+   so filtering or reaching a short last page never moves the content below it. */
+.htb-table { margin-top: 12px; }
+.htb-viewport { min-height: calc(var(--htb-row-h) * var(--htb-page, 5)); }
+.htb-list { list-style: none; }
+.htb-page-enter-active, .htb-page-leave-active { transition: opacity 160ms ease, transform 160ms ease; }
+.htb-page-enter-from, .htb-page-leave-to { opacity: 0; transform: translateY(6px); }
+@media (prefers-reduced-motion: reduce) {
+  .htb-page-enter-active, .htb-page-leave-active { transition: none; }
+}
+
+/* Pager: previous / "1–5 / 10" / next */
+.htb-pager {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 8px;
+}
+.htb-range {
+  min-width: 9ch;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.htb-arrow {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 200ms, color 200ms, opacity 200ms;
+}
+.htb-arrow:hover { border-color: var(--accent); color: var(--accent); }
+.htb-arrow.is-disabled { opacity: 0.35; cursor: default; }
+.htb-arrow.is-disabled:hover { border-color: var(--line-strong); color: var(--ink); }
 .htb-row {
   display: grid;
   grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.9fr);
