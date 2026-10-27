@@ -113,14 +113,37 @@ const latest = computed(() =>
     .sort((a, b) => b.solvedAt.localeCompare(a.solvedAt))[0],
 )
 
+// Filters: one value per group (null = all), combined. The chips come from the data, so a new system or
+// difficulty adds its own chip; any change goes back to the first page.
+const page = ref(0)
+const osFilter = ref<string | null>(null)
+const levelFilter = ref<string | null>(null)
+const filtersActive = computed(() => osFilter.value !== null || levelFilter.value !== null)
+const showFilters = computed(() => osSplit.value.length > 1 || diffSplit.value.length > 1)
+const filtered = computed(() =>
+  rooted.value.filter((b) => (osFilter.value === null || b.os === osFilter.value) && (levelFilter.value === null || b.difficulty === levelFilter.value)),
+)
+const setOs = (v: string | null) => {
+  osFilter.value = v
+  page.value = 0
+}
+const setLevel = (v: string | null) => {
+  levelFilter.value = v
+  page.value = 0
+}
+const resetFilters = () => {
+  osFilter.value = null
+  levelFilter.value = null
+  page.value = 0
+}
+
 // Pagination: 5 boxes per page. The page is clamped when read, so a shorter list never leaves it out of range.
 const PAGE_SIZE = 5
-const page = ref(0)
-const pageCount = computed(() => Math.max(1, Math.ceil(rooted.value.length / PAGE_SIZE)))
+const pageCount = computed(() => Math.max(1, Math.ceil(filtered.value.length / PAGE_SIZE)))
 const currentPage = computed(() => Math.min(page.value, pageCount.value - 1))
-const pageItems = computed(() => rooted.value.slice(currentPage.value * PAGE_SIZE, (currentPage.value + 1) * PAGE_SIZE))
-const rangeFrom = computed(() => (rooted.value.length ? currentPage.value * PAGE_SIZE + 1 : 0))
-const rangeTo = computed(() => Math.min(rooted.value.length, (currentPage.value + 1) * PAGE_SIZE))
+const pageItems = computed(() => filtered.value.slice(currentPage.value * PAGE_SIZE, (currentPage.value + 1) * PAGE_SIZE))
+const rangeFrom = computed(() => (filtered.value.length ? currentPage.value * PAGE_SIZE + 1 : 0))
+const rangeTo = computed(() => Math.min(filtered.value.length, (currentPage.value + 1) * PAGE_SIZE))
 const goTo = (n: number) => {
   page.value = Math.min(Math.max(n, 0), pageCount.value - 1)
 }
@@ -211,6 +234,38 @@ const seasonPct = computed(() => {
             </ul>
           </div>
 
+          <div v-if="showFilters" class="htb-filters">
+            <div v-if="osSplit.length > 1" class="htb-filter-group" role="group" aria-labelledby="htbFilterOs">
+              <span id="htbFilterOs" class="htb-filter-k">{{ t.filterOs }}</span>
+              <button type="button" class="htb-chip" :class="{ 'is-active': osFilter === null }" :aria-pressed="osFilter === null" @click="setOs(null)">{{ t.filterAll }}</button>
+              <button
+                v-for="o in osSplit"
+                :key="o.label"
+                type="button"
+                class="htb-chip"
+                :class="{ 'is-active': osFilter === o.label }"
+                :aria-pressed="osFilter === o.label"
+                lang="en"
+                @click="setOs(o.label)"
+              >{{ o.label }}</button>
+            </div>
+            <div v-if="diffSplit.length > 1" class="htb-filter-group" role="group" aria-labelledby="htbFilterLevel">
+              <span id="htbFilterLevel" class="htb-filter-k">{{ t.filterLevel }}</span>
+              <button type="button" class="htb-chip" :class="{ 'is-active': levelFilter === null }" :aria-pressed="levelFilter === null" @click="setLevel(null)">{{ t.filterAll }}</button>
+              <button
+                v-for="d in diffSplit"
+                :key="d.label"
+                type="button"
+                class="htb-chip htb-chip--diff"
+                :class="[d.cls, { 'is-active': levelFilter === d.label }]"
+                :aria-pressed="levelFilter === d.label"
+                lang="en"
+                @click="setLevel(d.label)"
+              >{{ d.label }}</button>
+            </div>
+            <button type="button" class="htb-reset" :class="{ 'is-visible': filtersActive }" @click="resetFilters">{{ t.filterReset }}</button>
+          </div>
+
           <div class="htb-table">
             <div class="htb-row htb-row--head" aria-hidden="true">
               <span>{{ t.colBox }}</span>
@@ -220,7 +275,7 @@ const seasonPct = computed(() => {
             </div>
             <div class="htb-viewport">
               <Transition name="htb-page" mode="out-in">
-                <ul :key="currentPage" class="htb-list">
+                <ul v-if="filtered.length" :key="`${osFilter}|${levelFilter}|${currentPage}`" class="htb-list">
                   <li v-for="b in pageItems" :key="b.name" class="htb-row">
                     <span class="htb-name" lang="en">{{ b.name }}</span>
                     <span class="htb-diff" :class="diffClass(b.difficulty)" lang="en">{{ b.difficulty }}</span>
@@ -231,12 +286,13 @@ const seasonPct = computed(() => {
                     </span>
                   </li>
                 </ul>
+                <p v-else key="empty" class="htb-no-result" role="status">{{ t.noResult }}</p>
               </Transition>
             </div>
           </div>
 
           <div class="htb-pager">
-            <template v-if="rooted.length">
+            <template v-if="filtered.length">
               <button
                 v-if="pageCount > 1"
                 type="button"
@@ -248,7 +304,7 @@ const seasonPct = computed(() => {
               >
                 <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" /></svg>
               </button>
-              <span class="htb-range" aria-live="polite">{{ num(rangeFrom) }}–{{ num(rangeTo) }} / {{ num(rooted.length) }}</span>
+              <span class="htb-range" aria-live="polite">{{ num(rangeFrom) }}–{{ num(rangeTo) }} / {{ num(filtered.length) }}</span>
               <button
                 v-if="pageCount > 1"
                 type="button"

@@ -140,6 +140,53 @@
 .htb-wip-item { display: flex; align-items: center; gap: 12px; font-size: 14px; }
 .htb-wip-item .htb-name { font-size: 20px; }
 
+/* Filters: two groups of toggle chips (system, difficulty) and a reset button whose room is always reserved */
+.htb-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 28px; margin-top: 16px; }
+.htb-filter-group { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.htb-filter-k,
+.htb-chip,
+.htb-reset,
+.htb-no-result {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.htb-filter-k { color: var(--muted); margin-right: 2px; }
+.htb-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 14px;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color 200ms, color 200ms, background-color 200ms;
+}
+.htb-chip:hover { border-color: var(--accent); color: var(--ink); }
+.htb-chip.is-active { border-color: var(--accent); background: var(--accent-soft); color: var(--ink); }
+.htb-chip--diff::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--seg, var(--muted));
+  transform: rotate(45deg);
+}
+.htb-reset {
+  min-height: 36px;
+  padding: 0 4px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  color: var(--accent);
+  cursor: pointer;
+  visibility: hidden;
+}
+.htb-reset.is-visible { visibility: visible; }
+.htb-no-result { padding: 28px 0; color: var(--muted); }
+
 /* Boxes list: a 4-column grid with fixed-height rows. The viewport always holds a full page of rows,
    so filtering or reaching a short last page never moves the content below it. */
 .htb-table { margin-top: 12px; }

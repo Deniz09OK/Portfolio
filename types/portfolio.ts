@@ -142,6 +142,12 @@ export interface HtbContent {
     inProgress: string
     prevPage: string
     nextPage: string
+    filtersLabel: string
+    filterOs: string
+    filterLevel: string
+    filterAll: string
+    filterReset: string
+    noResult: string
     colBox: string
     colDifficulty: string
     colOs: string
