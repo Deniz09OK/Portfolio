@@ -1,0 +1,39 @@
+# Mises à jour hebdomadaires des dépendances npm et des actions GitHub.
+# Les actions restent épinglées par SHA : Dependabot met à jour le SHA et le commentaire de version.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      timezone: Europe/Paris
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore(deps)
+    groups:
+      # Nuxt, Vue et leurs modules évoluent ensemble : une seule PR pour éviter les versions incompatibles.
+      nuxt-vue:
+        patterns:
+          - nuxt
+          - '@nuxt/*'
+          - vue
+          - vue-router
+          - vue-tsc
+      playwright:
+        patterns:
+          - playwright
+          - '@playwright/test'
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      timezone: Europe/Paris
+    commit-message:
+      prefix: chore(ci)
+    groups:
+      actions:
+        patterns:
+          - '*'
