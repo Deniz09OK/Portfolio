@@ -20,6 +20,18 @@ updates:
         update-types:
           - minor
           - patch
+    ignore:
+      # vue-router doit rester en v4 tant que le site est en Nuxt 3 : Nuxt 3 exige vue-router ^4.
+      # Une v5 au premier niveau installe une seconde copie que le site n'utilise pas (cf. PR #32).
+      # Les mises à jour minor et patch de la v4 restent proposées. À retirer lors du passage à Nuxt 4.
+      - dependency-name: vue-router
+        update-types:
+          - version-update:semver-major
+      # @types/node doit suivre la version de Node utilisée en CI (Node 22 dans deploy.yml et htb-sync.yml),
+      # sinon les types décrivent des API absentes du runtime (cf. PR #27). Mettre à jour en même temps que Node.
+      - dependency-name: '@types/node'
+        update-types:
+          - version-update:semver-major
 
   - package-ecosystem: github-actions
     directory: /
