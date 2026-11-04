@@ -1,15 +1,17 @@
 export type LangCode = 'fr' | 'en' | 'tr'
 
+/**
+ * Top bar entries. The clear label of each entry comes from SectionLabels; these are the themed subtitles,
+ * except for the labs entry, whose section labels name Hack The Box and TryHackMe separately.
+ */
 export interface NavContent {
-  roster: string
   matches: string
   career: string
   drills: string
-  htb: string
-  /** Grey subtitle of the "htb" nav entry, which covers Hack The Box and TryHackMe (the section labels stay untouched). */
-  htbSub: string
-  off: string
-  languages: string
+  /** Clear label of the entry that leads to the Hack The Box and TryHackMe sections. */
+  labs: string
+  /** Subtitle of the labs entry. */
+  labsSub: string
   contact: string
 }
 
