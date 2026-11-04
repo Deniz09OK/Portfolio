@@ -91,6 +91,46 @@ for (const lang of LANGS) {
   })
 }
 
+test('MediSync stays an honest, in-development case study in every language', () => {
+  for (const lang of LANGS) {
+    const p = portfolio[lang].projects.find((x) => x.name === 'MediSync')
+    expect(p, `${lang}: MediSync`).toBeTruthy()
+    // Not in production: in development, no demo, no screenshot or diagram, no public code.
+    expect(p!.wip).toBe(true)
+    expect(p!.link).toBeNull()
+    expect(p!.demo).toBeUndefined()
+    expect(p!.schema).toBeUndefined()
+    expect(p!.caseStudy, `${lang}: case study`).toHaveLength(4)
+    const text = [p!.type, p!.stack, p!.desc, ...p!.caseStudy!.flatMap((c) => [c.label, c.text])].join(' ')
+    // Never claim a certification or compliance the project cannot have yet. The texts may say there is *no* claim of
+    // compliance ("conformité", "compliance", "uyumluluk"), but never that the project *is* compliant or certified.
+    expect(text).not.toMatch(/certifi|sertifik|conforme|compliant|\buyumlu(dur)?\b/i)
+    // Backend is FastAPI (Python), not Fastify / Node.js.
+    expect(p!.stack).toContain('FASTAPI')
+    expect(text).not.toMatch(/fastify|node\.?js/i)
+    // Role: Scrum Master only.
+    expect(p!.caseStudy![0]!.text).toMatch(/^Scrum Master\./)
+  }
+})
+
+test('no CTO or Backend Lead role anywhere in the content', () => {
+  expect(JSON.stringify(portfolio)).not.toMatch(/\bCTO\b|backend[ -]?lead|lead backend/i)
+})
+
+test('the MediSync card shows its case study sections', async ({ page }) => {
+  await openSite(page)
+  const p = portfolio.fr.projects.find((x) => x.name === 'MediSync')!
+  const card = page.locator(`#match-${p.idx}`)
+  const rows = card.locator('.match-case-row')
+  await expect(rows).toHaveCount(p.caseStudy!.length)
+  for (const [i, c] of p.caseStudy!.entries()) {
+    await expect(rows.nth(i).locator('.match-case-label')).toHaveText(c.label)
+    await expect(rows.nth(i).locator('.match-case-text')).toHaveText(c.text)
+  }
+  // Only MediSync has a case study: the other cards are unchanged.
+  await expect(page.locator('.match-case')).toHaveCount(1)
+})
+
 test('every project card shows exactly one status', async ({ page }) => {
   await openSite(page)
   const cards = page.locator('article.match')

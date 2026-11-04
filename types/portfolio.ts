@@ -78,6 +78,13 @@ export interface Project {
   wip?: boolean
   /** Older project, hidden behind the "earlier projects" button until the visitor asks for it. */
   archived?: boolean
+  /** Optional case study shown under the description: short titled sections (role, stack, security, takeaway...). */
+  caseStudy?: CaseStudySection[]
+}
+
+export interface CaseStudySection {
+  label: string
+  text: string
 }
 
 export interface CareerContent {
