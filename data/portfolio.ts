@@ -2,15 +2,13 @@ import type { Portfolio } from '~/types/portfolio'
 
 export const portfolio: Portfolio = {
   fr: {
-    nav: { matches: "Card de la saison", career: "Saisons jouées", drills: "Entraînement quotidien", labs: "Labs", labsSub: "HTB & TryHackMe", contact: "Sifflet final" },
+    nav: { roster: "Fiche", matches: "Card de la saison", career: "Saisons jouées", drills: "Entraînement quotidien", htb: "Labs cyber", htbSub: "HTB & TryHackMe", off: "Hors du clavier", languages: "Trois langues", contact: "Sifflet final" },
     sectionLabels: { roster: "Profil", matches: "Projets", career: "Parcours", drills: "Compétences", htb: "Hack The Box", thm: "TryHackMe", off: "Centres d'intérêt", languages: "Langues", contact: "Contact" },
     a11y: { navPrimary: "Navigation principale", navMobile: "Navigation mobile", language: "Langue", theme: "Thème clair", menu: "Menu", legend: "Légende", backToTop: "Remonter en haut de page" },
     ticker: ["ALTERNANCE CYBER & DEV WEB", "·", "DISPONIBLE IMMÉDIATEMENT", "·", "GRAND EST & LUXEMBOURG", "·", "MSc CYBERSÉCURITÉ & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUE FR/EN/TR", "·", "OUVERT AUX OPPORTUNITÉS", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
     seoDescription: "Deniz OK — alternant en cybersécurité & développement web, MSc à Epitech Nancy. Disponible dès maintenant jusqu'en 09/2027, Grand Est & Luxembourg.",
 
     hero: {
-      tagline: "Alternant en cybersécurité & développement web",
-      taglineSub: "Je sécurise des infrastructures et je développe les outils web qui vont avec",
       number: "619",
       numberNote: "Clin d’œil au 619, la prise de finish de Rey Mysterio et de Dominik Mysterio.",
       luckyNote: "Mon chiffre porte-bonheur : 23",
@@ -167,14 +165,12 @@ export const portfolio: Portfolio = {
   },
 
   en: {
-    nav: { matches: "Season card", career: "Seasons played", drills: "Daily training", labs: "Labs", labsSub: "HTB & TryHackMe", contact: "Final whistle" },
+    nav: { roster: "Roster", matches: "Season card", career: "Seasons played", drills: "Daily training", htb: "Cyber labs", htbSub: "HTB & TryHackMe", off: "Off the keyboard", languages: "Three languages", contact: "Final whistle" },
     sectionLabels: { roster: "Profile", matches: "Projects", career: "Experience", drills: "Skills", htb: "Hack The Box", thm: "TryHackMe", off: "Interests", languages: "Languages", contact: "Contact" },
     a11y: { navPrimary: "Primary navigation", navMobile: "Mobile navigation", language: "Language", theme: "Light theme", menu: "Menu", legend: "Legend", backToTop: "Back to top" },
     ticker: ["CYBER & WEB DEV APPRENTICESHIP", "·", "AVAILABLE NOW", "·", "GRAND EST & LUXEMBOURG", "·", "MSc CYBERSECURITY & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUAL FR/EN/TR", "·", "OPEN TO WORK", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
     seoDescription: "Deniz OK — cybersecurity & web development apprentice, MSc at Epitech Nancy. Available now until 09/2027, Grand Est & Luxembourg.",
     hero: {
-      tagline: "Cybersecurity & web development apprentice",
-      taglineSub: "I secure infrastructure and build the web tools that go with it",
       number: "619",
       numberNote: "A nod to the 619, the finishing move of Rey Mysterio and Dominik Mysterio.",
       luckyNote: "My lucky number: 23",
@@ -318,14 +314,12 @@ export const portfolio: Portfolio = {
   },
 
   tr: {
-    nav: { matches: "Sezon kartı", career: "Oynanan sezonlar", drills: "Günlük antrenman", labs: "Lab'lar", labsSub: "HTB & TryHackMe", contact: "Son düdük" },
+    nav: { roster: "Kadro", matches: "Sezon kartı", career: "Oynanan sezonlar", drills: "Günlük antrenman", htb: "Siber lab'lar", htbSub: "HTB & TryHackMe", off: "Klavyenin dışında", languages: "Üç dil", contact: "Son düdük" },
     sectionLabels: { roster: "Profil", matches: "Projeler", career: "Deneyim", drills: "Yetenekler", htb: "Hack The Box", thm: "TryHackMe", off: "İlgi Alanları", languages: "Diller", contact: "İletişim" },
     a11y: { navPrimary: "Ana gezinme", navMobile: "Mobil gezinme", language: "Dil", theme: "Açık tema", menu: "Menü", legend: "Açıklama", backToTop: "Sayfanın başına dön" },
     ticker: ["SİBER & WEB GELİŞTİRME DÖNÜŞÜMLÜ EĞİTİM", "·", "HEMEN MÜSAİT", "·", "GRAND EST & LÜKSEMBURG", "·", "MSc SİBER GÜVENLİK & BULUT", "·", "EPITECH NANCY", "·", "ÜÇ DİLLİ FR/EN/TR", "·", "YENİ FIRSATLARA AÇIĞIM", "·", "CANLI", "·", "PORTFOLYO 2026", "·"],
     seoDescription: "Deniz OK — siber güvenlik & web geliştirme alanında dönüşümlü eğitim öğrencisi (MSc, Epitech Nancy). Hemen müsait, 09/2027'ye kadar, Grand Est & Lüksemburg.",
     hero: {
-      tagline: "Siber güvenlik & web geliştirme · dönüşümlü eğitim öğrencisi",
-      taglineSub: "Altyapıları güvence altına alıyor, bunlar için web araçları geliştiriyorum.",
       number: "619",
       numberNote: "Rey Mysterio ve Dominik Mysterio’nun bitiriş hamlesi 619’a bir selam.",
       luckyNote: "Şans sayım: 23",

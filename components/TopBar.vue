@@ -11,13 +11,15 @@ const nav = computed(() => content.value.nav)
 const a11y = computed(() => content.value.a11y)
 const sectionLabels = computed(() => content.value.sectionLabels)
 
-// Five entries: the clear label first, the themed name as a subtitle.
 const links = computed(() => [
-  { href: '#matches', label: sectionLabels.value.matches, sub: nav.value.matches },
-  { href: '#career', label: sectionLabels.value.career, sub: nav.value.career },
-  { href: '#drills', label: sectionLabels.value.drills, sub: nav.value.drills },
-  { href: '#htb', label: nav.value.labs, sub: nav.value.labsSub },
-  { href: '#contact', label: sectionLabels.value.contact, sub: nav.value.contact },
+  { href: '#roster', label: nav.value.roster, sub: sectionLabels.value.roster },
+  { href: '#matches', label: nav.value.matches, sub: sectionLabels.value.matches },
+  { href: '#career', label: nav.value.career, sub: sectionLabels.value.career },
+  { href: '#drills', label: nav.value.drills, sub: sectionLabels.value.drills },
+  { href: '#htb', label: nav.value.htb, sub: nav.value.htbSub },
+  { href: '#off', label: nav.value.off, sub: sectionLabels.value.off },
+  { href: '#languages', label: nav.value.languages, sub: sectionLabels.value.languages },
+  { href: '#contact', label: nav.value.contact, sub: sectionLabels.value.contact },
 ])
 
 // Radiogroup keyboard: arrows move the selection (roving tabindex, wraps around).
@@ -43,7 +45,7 @@ function syncBarHeight() {
   document.documentElement.style.setProperty('--bar-h', `${bar.value.offsetHeight}px`)
 }
 
-// Mobile nav (burger) — shown when the desktop .bar-nav is hidden (<= 1023px).
+// Mobile nav (burger) — shown when the desktop .bar-nav is hidden (<= 1399px).
 const mobileOpen = ref(false)
 
 function toggleMobileNav() {
@@ -60,7 +62,7 @@ watch(mobileOpen, (open) => {
 
 function onResize() {
   syncBarHeight()
-  if (window.innerWidth > 1023) closeMobileNav()
+  if (window.innerWidth > 1399) closeMobileNav()
 }
 
 onMounted(() => {

@@ -20,22 +20,7 @@ const cvUrl = computed(() => CV_URLS[lang.value])
   <section class="hero" id="roster">
     <div class="hero-inner">
       <div class="hero-stage">
-        <!-- TAGLINE + NAME + POSITION -->
-        <div class="hero-id">
-          <div class="hero-tagline-block">
-            <p class="hero-tagline">{{ hero.tagline }}</p>
-            <p class="hero-tagline-sub">{{ hero.taglineSub }}</p>
-          </div>
-          <h1 class="hero-name">
-            <span>{{ hero.name1 }}</span>
-            <span class="hero-name-stroke">{{ hero.name2 }}</span>
-          </h1>
-          <div class="hero-position">{{ hero.position }}</div>
-          <div class="hero-team">{{ hero.team }}</div>
-          <div class="hero-bio">{{ hero.bio }}</div>
-        </div>
-
-        <!-- JERSEY NUMBER: secondary easter egg, after the bio -->
+        <!-- BIG JERSEY NUMBER -->
         <div ref="numberRoot" class="hero-number">
           <button
             type="button"
@@ -53,6 +38,17 @@ const cvUrl = computed(() => CV_URLS[lang.value])
               <p v-if="noteOpen" id="heroNumberNote" class="bubble hero-number-note">{{ hero.numberNote }}</p>
             </Transition>
           </div>
+        </div>
+
+        <!-- NAME + POSITION -->
+        <div class="hero-id">
+          <h1 class="hero-name">
+            <span>{{ hero.name1 }}</span>
+            <span class="hero-name-stroke">{{ hero.name2 }}</span>
+          </h1>
+          <div class="hero-position">{{ hero.position }}</div>
+          <div class="hero-team">{{ hero.team }}</div>
+          <div class="hero-bio">{{ hero.bio }}</div>
         </div>
 
         <!-- PORTRAIT -->
