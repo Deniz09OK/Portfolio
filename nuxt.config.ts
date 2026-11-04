@@ -22,18 +22,18 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: "Deniz OK — MSc Cybersécurité & Cloud à Epitech Nancy, alternant chez Qualitest. En recherche d'une nouvelle alternance." },
+        { name: 'description', content: "Deniz OK — alternant en cybersécurité & développement web, MSc à Epitech Nancy. Disponible dès maintenant jusqu'en 09/2027, Grand Est & Luxembourg." },
         { name: 'author', content: 'Deniz OK' },
         { name: 'referrer', content: 'strict-origin-when-cross-origin' },
         { name: 'theme-color', content: '#0c0c10' },
         { property: 'og:title', content: 'Deniz OK — Portfolio' },
-        { property: 'og:description', content: "Deniz OK — MSc Cybersécurité & Cloud à Epitech Nancy, alternant chez Qualitest. En recherche d'une nouvelle alternance." },
+        { property: 'og:description', content: "Deniz OK — alternant en cybersécurité & développement web, MSc à Epitech Nancy. Disponible dès maintenant jusqu'en 09/2027, Grand Est & Luxembourg." },
         { property: 'og:type', content: 'website' },
         { property: 'og:image', content: 'https://portfolio-deniz.me/portrait.jpg' },
         { property: 'og:url', content: 'https://portfolio-deniz.me/' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'Deniz OK — Portfolio' },
-        { name: 'twitter:description', content: "Deniz OK — MSc Cybersécurité & Cloud à Epitech Nancy, alternant chez Qualitest. En recherche d'une nouvelle alternance." },
+        { name: 'twitter:description', content: "Deniz OK — alternant en cybersécurité & développement web, MSc à Epitech Nancy. Disponible dès maintenant jusqu'en 09/2027, Grand Est & Luxembourg." },
         { name: 'twitter:image', content: 'https://portfolio-deniz.me/portrait.jpg' }
       ],
       link: [

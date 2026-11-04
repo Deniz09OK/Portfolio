@@ -6,7 +6,7 @@ export const portfolio: Portfolio = {
     sectionLabels: { roster: "Profil", matches: "Projets", career: "Parcours", drills: "Compétences", htb: "Hack The Box", thm: "TryHackMe", off: "Centres d'intérêt", languages: "Langues", contact: "Contact" },
     a11y: { navPrimary: "Navigation principale", navMobile: "Navigation mobile", language: "Langue", theme: "Thème clair", menu: "Menu", legend: "Légende", backToTop: "Remonter en haut de page" },
     ticker: ["ALTERNANCE CYBER & DEV WEB", "·", "DISPONIBLE IMMÉDIATEMENT", "·", "GRAND EST & LUXEMBOURG", "·", "MSc CYBERSÉCURITÉ & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUE FR/EN/TR", "·", "OUVERT AUX OPPORTUNITÉS", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
-    seoDescription: "Deniz OK — MSc Cybersécurité & Cloud à Epitech Nancy. En recherche d'une alternance jusqu'en 09/2027 (cybersécurité, infrastructure/cloud).",
+    seoDescription: "Deniz OK — alternant en cybersécurité & développement web, MSc à Epitech Nancy. Disponible dès maintenant jusqu'en 09/2027, Grand Est & Luxembourg.",
 
     hero: {
       tagline: "Alternant en cybersécurité & développement web",
@@ -20,7 +20,7 @@ export const portfolio: Portfolio = {
       name2: "OK",
       position: "CYBERSÉCURITÉ & CLOUD",
       team: "EN RECHERCHE D’ALTERNANCE · EPITECH NANCY",
-      bio: "Étudiant en MSc Cybersécurité & Cloud à Epitech Nancy, je recherche une nouvelle alternance jusqu’en septembre 2027, en cybersécurité, infrastructure/cloud ou développement. Depuis février 2025 chez Qualitest, je développe des pipelines de données Python pour des clients, j’administre des serveurs Windows et j’automatise les traitements (Python, PowerShell, PHP, Bash).",
+      bio: "Étudiant en MSc Cybersécurité & Cloud à Epitech Nancy, je recherche une alternance en cybersécurité ou en développement web, disponible dès maintenant et jusqu’en septembre 2027. Depuis février 2025 chez Qualitest, je développe des pipelines de données Python pour des clients, j’administre des serveurs Windows et j’automatise les traitements (Python, PowerShell, PHP, Bash).",
       kanji: "戦",
       tale: [
         { k: "BASE", v: "Jarville-la-Malgrange (Nancy) · train/bus, déménagement possible" },
@@ -171,7 +171,7 @@ export const portfolio: Portfolio = {
     sectionLabels: { roster: "Profile", matches: "Projects", career: "Experience", drills: "Skills", htb: "Hack The Box", thm: "TryHackMe", off: "Interests", languages: "Languages", contact: "Contact" },
     a11y: { navPrimary: "Primary navigation", navMobile: "Mobile navigation", language: "Language", theme: "Light theme", menu: "Menu", legend: "Legend", backToTop: "Back to top" },
     ticker: ["CYBER & WEB DEV APPRENTICESHIP", "·", "AVAILABLE NOW", "·", "GRAND EST & LUXEMBOURG", "·", "MSc CYBERSECURITY & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUAL FR/EN/TR", "·", "OPEN TO WORK", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
-    seoDescription: "Deniz OK — MSc Cybersecurity & Cloud at Epitech Nancy. Currently seeking a work-study placement until 09/2027 (cybersecurity, infrastructure/cloud).",
+    seoDescription: "Deniz OK — cybersecurity & web development apprentice, MSc at Epitech Nancy. Available now until 09/2027, Grand Est & Luxembourg.",
     hero: {
       tagline: "Cybersecurity & web development apprentice",
       taglineSub: "I secure infrastructure and build the web tools that go with it",
@@ -184,7 +184,7 @@ export const portfolio: Portfolio = {
       name2: "OK",
       position: "CYBERSECURITY & CLOUD",
       team: "SEEKING WORK-STUDY · EPITECH NANCY",
-      bio: "MSc Cybersecurity & Cloud student at Epitech Nancy, looking for a new work-study position until September 2027, in cybersecurity, infrastructure/cloud or development. At Qualitest since February 2025, I build Python data pipelines for clients, administer Windows servers and automate data processing (Python, PowerShell, PHP, Bash).",
+      bio: "MSc Cybersecurity & Cloud student at Epitech Nancy, looking for an apprenticeship in cybersecurity or web development, starting now and running until September 2027. At Qualitest since February 2025, I build Python data pipelines for clients, administer Windows servers and automate data processing (Python, PowerShell, PHP, Bash).",
       kanji: "戦",
       tale: [
         { k: "BASE", v: "Jarville-la-Malgrange (Nancy) · train/bus, open to relocating" },
@@ -322,7 +322,7 @@ export const portfolio: Portfolio = {
     sectionLabels: { roster: "Profil", matches: "Projeler", career: "Deneyim", drills: "Yetenekler", htb: "Hack The Box", thm: "TryHackMe", off: "İlgi Alanları", languages: "Diller", contact: "İletişim" },
     a11y: { navPrimary: "Ana gezinme", navMobile: "Mobil gezinme", language: "Dil", theme: "Açık tema", menu: "Menü", legend: "Açıklama", backToTop: "Sayfanın başına dön" },
     ticker: ["SİBER & WEB GELİŞTİRME DÖNÜŞÜMLÜ EĞİTİM", "·", "HEMEN MÜSAİT", "·", "GRAND EST & LÜKSEMBURG", "·", "MSc SİBER GÜVENLİK & BULUT", "·", "EPITECH NANCY", "·", "ÜÇ DİLLİ FR/EN/TR", "·", "YENİ FIRSATLARA AÇIĞIM", "·", "CANLI", "·", "PORTFOLYO 2026", "·"],
-    seoDescription: "Deniz OK — Epitech Nancy'de MSc Siber Güvenlik & Bulut öğrencisi. 09/2027'ye kadar bir dönüşümlü eğitim arıyor (siber güvenlik, altyapı/bulut).",
+    seoDescription: "Deniz OK — siber güvenlik & web geliştirme alanında dönüşümlü eğitim öğrencisi (MSc, Epitech Nancy). Hemen müsait, 09/2027'ye kadar, Grand Est & Lüksemburg.",
     hero: {
       tagline: "Siber güvenlik & web geliştirme · dönüşümlü eğitim öğrencisi",
       taglineSub: "Altyapıları güvence altına alıyor, bunlar için web araçları geliştiriyorum.",
@@ -335,7 +335,7 @@ export const portfolio: Portfolio = {
       name2: "OK",
       position: "SİBER GÜVENLİK & BULUT",
       team: "DÖNÜŞÜMLÜ EĞİTİM ARIYOR · EPITECH NANCY",
-      bio: "Epitech Nancy'de MSc Siber Güvenlik & Bulut öğrencisiyim; Eylül 2027'ye kadar siber güvenlik, altyapı/bulut veya yazılım geliştirme alanında yeni bir dönüşümlü eğitim arıyorum. Şubat 2025'ten beri Qualitest'te müşteriler için Python veri hatları geliştiriyor, Windows sunucularını yönetiyor ve süreçleri otomatikleştiriyorum (Python, PowerShell, PHP, Bash).",
+      bio: "Epitech Nancy'de MSc Siber Güvenlik & Bulut öğrencisiyim; siber güvenlik veya web geliştirme alanında, hemen başlayıp Eylül 2027'ye kadar sürecek bir dönüşümlü eğitim arıyorum. Şubat 2025'ten beri Qualitest'te müşteriler için Python veri hatları geliştiriyor, Windows sunucularını yönetiyor ve süreçleri otomatikleştiriyorum (Python, PowerShell, PHP, Bash).",
       kanji: "戦",
       tale: [
         { k: "ÜS", v: "Jarville-la-Malgrange (Nancy) · tren/otobüs, taşınmaya açık" },
