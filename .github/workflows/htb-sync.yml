@@ -6,6 +6,10 @@ name: htb-sync
 # sont ignorés : voir scripts/htb-compare.mjs.
 # TryHackMe n'est plus synchronisé ici : tryhackme.com bloque (429) les requêtes automatisées, public/data/thm.json
 # se met à jour à la main (node scripts/fetch-thm.mjs, voir le README).
+#
+# Deux jobs, pour que le jeton Hack The Box et le droit d'écrire dans le dépôt ne se croisent jamais :
+#   fetch   : lit le jeton HTB_API_TOKEN, lecture seule sur le dépôt, aucun identifiant Git conservé sur le disque.
+#   publish : sans le jeton, commite le JSON transmis par artifact, le pousse sur main et relance deploy.yml.
 on:
   schedule:
     - cron: '17 */12 * * *'
@@ -17,22 +21,27 @@ on:
     paths-ignore:
       - public/data/htb.json
 
-permissions:
-  contents: write
-  actions: write
+# Aucune permission par défaut : chaque job déclare le strict nécessaire.
+permissions: {}
 
 concurrency:
   group: htb-sync
   cancel-in-progress: false
 
 jobs:
-  sync:
+  fetch:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      changed: ${{ steps.diff.outputs.changed }}
     steps:
       - name: Checkout
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           ref: main
+          # Ce job ne pousse rien : le jeton GitHub n'est pas écrit dans .git/config.
+          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
@@ -42,37 +51,66 @@ jobs:
       - name: Fetch Hack The Box stats
         run: node scripts/fetch-htb.mjs
         env:
-          API_TOKEN: ${{ secrets.API_TOKEN }}
+          # Le script lit API_TOKEN (même nom que dans le .env local).
+          API_TOKEN: ${{ secrets.HTB_API_TOKEN }}
+
+      - name: Detect a change
+        id: diff
+        run: |
+          if git diff --quiet -- public/data/htb.json && [ -z "$(git ls-files --others --exclude-standard public/data/htb.json)" ]; then
+            echo "public/data/htb.json inchangé, rien à publier."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Upload the JSON
+        if: steps.diff.outputs.changed == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: htb-json
+          path: public/data/htb.json
+          retention-days: 1
+          if-no-files-found: error
+
+  publish:
+    needs: fetch
+    if: needs.fetch.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    # Pousser le commit sur main, puis lancer deploy.yml. Pas de secret Hack The Box dans ce job.
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: main
+
+      - name: Download the JSON
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: htb-json
+          path: public/data
 
       # Le job tag de deploy.yml ignore chore(htb).
-      - name: Commit the JSON if it changed
-        id: commit
-        if: ${{ !cancelled() }}
+      - name: Commit and push the JSON
         run: |
           git config user.name "Deniz OK"
           git config user.email "deniz.ok@epitech.eu"
-          changed=false
-          commit_if_changed() {
-            if git diff --quiet -- "$1" && [ -z "$(git ls-files --others --exclude-standard "$1")" ]; then
-              echo "$1 inchangé, rien à commiter."
-              return 0
-            fi
-            git add "$1"
-            git commit -m "$2"
-            changed=true
-          }
-          commit_if_changed public/data/htb.json "chore(htb): mise à jour des stats Hack The Box [skip ci]"
-          if [ "$changed" = false ]; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
+          if git diff --quiet -- public/data/htb.json && [ -z "$(git ls-files --others --exclude-standard public/data/htb.json)" ]; then
+            echo "public/data/htb.json déjà à jour sur main, rien à commiter."
             exit 0
           fi
+          git add public/data/htb.json
+          git commit -m "chore(htb): mise à jour des stats Hack The Box [skip ci]"
           git pull --rebase origin main
           git push origin HEAD:main
-          echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "PUSHED=true" >> "$GITHUB_ENV"
 
       # Un push fait avec GITHUB_TOKEN ne déclenche aucun autre workflow : on lance donc le déploiement explicitement.
       - name: Trigger the deployment
-        if: ${{ !cancelled() && steps.commit.outputs.changed == 'true' }}
+        if: env.PUSHED == 'true'
         run: gh workflow run deploy.yml --ref main
         env:
           GH_TOKEN: ${{ github.token }}
