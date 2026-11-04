@@ -5,7 +5,7 @@ export const portfolio: Portfolio = {
     nav: { roster: "Fiche", matches: "Card de la saison", career: "Saisons jouées", drills: "Entraînement quotidien", htb: "Labs cyber", htbSub: "HTB & TryHackMe", off: "Hors du clavier", languages: "Trois langues", contact: "Sifflet final" },
     sectionLabels: { roster: "Profil", matches: "Projets", career: "Parcours", drills: "Compétences", htb: "Hack The Box", thm: "TryHackMe", off: "Centres d'intérêt", languages: "Langues", contact: "Contact" },
     a11y: { navPrimary: "Navigation principale", navMobile: "Navigation mobile", language: "Langue", theme: "Changer de thème", menu: "Menu", legend: "Légende", backToTop: "Remonter en haut de page" },
-    ticker: ["RECHERCHE ALTERNANCE → 09/2027", "·", "MSc CYBERSÉCURITÉ & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUE FR/EN/TR", "·", "OUVERT AUX OPPORTUNITÉS", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
+    ticker: ["ALTERNANCE CYBER & DEV WEB", "·", "DISPONIBLE IMMÉDIATEMENT", "·", "GRAND EST & LUXEMBOURG", "·", "MSc CYBERSÉCURITÉ & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUE FR/EN/TR", "·", "OUVERT AUX OPPORTUNITÉS", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
     seoDescription: "Deniz OK — MSc Cybersécurité & Cloud à Epitech Nancy. En recherche d'une alternance jusqu'en 09/2027 (cybersécurité, infrastructure/cloud).",
 
     hero: {
@@ -24,7 +24,7 @@ export const portfolio: Portfolio = {
         { k: "BASE", v: "Jarville-la-Malgrange (Nancy) · train/bus, déménagement possible" },
         { k: "DRAFT", v: "Epitech Nancy · Promo 2027" },
         { k: "CONTRAT", v: "Alternance (apprentissage ou pro) · 4 j entreprise / 1 j école · jusqu'en 09/2027" },
-        { k: "STATUT", v: "EN RECHERCHE D'ALTERNANCE · DISPONIBLE IMMÉDIATEMENT" }
+        { k: "STATUT", v: "Alternance cyber & dev web · Disponible immédiatement · Grand Est & Luxembourg" }
       ],
       cta1: "Voir les matchs",
       cta2: "Télécharger CV",
@@ -121,7 +121,7 @@ export const portfolio: Portfolio = {
     },
     thm: {
       "title": "Les rooms en direct",
-      "sub": "Statistiques publiques synchronisées automatiquement depuis l’API TryHackMe : rooms complétées, classement, niveau, badges et points.",
+      "sub": "Statistiques publiques TryHackMe, en mise à jour manuelle : rooms complétées, classement, niveau, badges et points.",
       "labels": {
         "rooms": "Rooms complétées",
         "top": "Top",
@@ -159,6 +159,7 @@ export const portfolio: Portfolio = {
     contact: {
       title: "Sifflet final.",
       lead: "Parler cyber, projet ou juste dire bonjour ? Les vestiaires sont ouverts.",
+      availability: "Je recherche une alternance en cybersécurité ou développement web, disponible dès maintenant et jusqu’à septembre 2027. Basé à Nancy, mobile dans tout le Grand Est et au Luxembourg. Rythme : 4 jours en entreprise, 1 jour en formation.",
       email: "deniz16ok@gmail.com"
     }
   },
@@ -167,7 +168,7 @@ export const portfolio: Portfolio = {
     nav: { roster: "Roster", matches: "Season card", career: "Seasons played", drills: "Daily training", htb: "Cyber labs", htbSub: "HTB & TryHackMe", off: "Off the keyboard", languages: "Three languages", contact: "Final whistle" },
     sectionLabels: { roster: "Profile", matches: "Projects", career: "Experience", drills: "Skills", htb: "Hack The Box", thm: "TryHackMe", off: "Interests", languages: "Languages", contact: "Contact" },
     a11y: { navPrimary: "Primary navigation", navMobile: "Mobile navigation", language: "Language", theme: "Toggle theme", menu: "Menu", legend: "Legend", backToTop: "Back to top" },
-    ticker: ["SEEKING WORK-STUDY → 09/2027", "·", "MSc CYBERSECURITY & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUAL FR/EN/TR", "·", "OPEN TO WORK", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
+    ticker: ["CYBER & WEB DEV APPRENTICESHIP", "·", "AVAILABLE NOW", "·", "GRAND EST & LUXEMBOURG", "·", "MSc CYBERSECURITY & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUAL FR/EN/TR", "·", "OPEN TO WORK", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
     seoDescription: "Deniz OK — MSc Cybersecurity & Cloud at Epitech Nancy. Currently seeking a work-study placement until 09/2027 (cybersecurity, infrastructure/cloud).",
     hero: {
       number: "619",
@@ -185,7 +186,7 @@ export const portfolio: Portfolio = {
         { k: "BASE", v: "Jarville-la-Malgrange (Nancy) · train/bus, open to relocating" },
         { k: "DRAFT", v: "Epitech Nancy · Class of 2027" },
         { k: "CONTRACT", v: "Work-study (apprenticeship or professionalisation contract) · 4 days company / 1 day school · until 09/2027" },
-        { k: "STATUS", v: "SEEKING WORK-STUDY · AVAILABLE IMMEDIATELY" }
+        { k: "STATUS", v: "Cyber & web dev apprenticeship · Available now · Grand Est & Luxembourg" }
       ],
       cta1: "See the card",
       cta2: "Download CV",
@@ -274,7 +275,7 @@ export const portfolio: Portfolio = {
     },
     thm: {
       "title": "Rooms, live",
-      "sub": "Public stats synced automatically from the TryHackMe API: completed rooms, ranking, level, badges and points.",
+      "sub": "Public TryHackMe stats, updated manually: completed rooms, ranking, level, badges and points.",
       "labels": {
         "rooms": "Rooms completed",
         "top": "Top",
@@ -309,14 +310,14 @@ export const portfolio: Portfolio = {
         { code: "EN", flag: "EN", label: "English", level: "TOEIC 790 / 990" }
       ]
     },
-    contact: { title: "Final whistle.", lead: "Want to talk cyber, a project, or just say hi? The locker room is open.", email: "deniz16ok@gmail.com" }
+    contact: { title: "Final whistle.", lead: "Want to talk cyber, a project, or just say hi? The locker room is open.", availability: "I am looking for an apprenticeship in cybersecurity or web development, starting now and running until September 2027. Based in Nancy, I can work anywhere in the Grand Est region and in Luxembourg. Schedule: 4 days a week at the company, 1 day in training.", email: "deniz16ok@gmail.com" }
   },
 
   tr: {
     nav: { roster: "Kadro", matches: "Sezon kartı", career: "Oynanan sezonlar", drills: "Günlük antrenman", htb: "Siber lab'lar", htbSub: "HTB & TryHackMe", off: "Klavyenin dışında", languages: "Üç dil", contact: "Son düdük" },
     sectionLabels: { roster: "Profil", matches: "Projeler", career: "Deneyim", drills: "Yetenekler", htb: "Hack The Box", thm: "TryHackMe", off: "İlgi Alanları", languages: "Diller", contact: "İletişim" },
     a11y: { navPrimary: "Ana gezinme", navMobile: "Mobil gezinme", language: "Dil", theme: "Temayı değiştir", menu: "Menü", legend: "Açıklama", backToTop: "Sayfanın başına dön" },
-    ticker: ["DÖNÜŞÜMLÜ EĞİTİM ARIYORUM → 09/2027", "·", "MSc SİBER GÜVENLİK & BULUT", "·", "EPITECH NANCY", "·", "ÜÇ DİLLİ FR/EN/TR", "·", "YENİ FIRSATLARA AÇIĞIM", "·", "CANLI", "·", "PORTFOLYO 2026", "·"],
+    ticker: ["SİBER & WEB GELİŞTİRME DÖNÜŞÜMLÜ EĞİTİM", "·", "HEMEN MÜSAİT", "·", "GRAND EST & LÜKSEMBURG", "·", "MSc SİBER GÜVENLİK & BULUT", "·", "EPITECH NANCY", "·", "ÜÇ DİLLİ FR/EN/TR", "·", "YENİ FIRSATLARA AÇIĞIM", "·", "CANLI", "·", "PORTFOLYO 2026", "·"],
     seoDescription: "Deniz OK — Epitech Nancy'de MSc Siber Güvenlik & Bulut öğrencisi. 09/2027'ye kadar bir dönüşümlü eğitim arıyor (siber güvenlik, altyapı/bulut).",
     hero: {
       number: "619",
@@ -334,7 +335,7 @@ export const portfolio: Portfolio = {
         { k: "ÜS", v: "Jarville-la-Malgrange (Nancy) · tren/otobüs, taşınmaya açık" },
         { k: "DRAFT", v: "Epitech Nancy · 2027 mezunu" },
         { k: "SÖZLEŞME", v: "Dönüşümlü eğitim (çıraklık veya profesyonelleşme sözleşmesi) · 4 gün şirket / 1 gün okul · 09/2027'ye kadar" },
-        { k: "DURUM", v: "DÖNÜŞÜMLÜ EĞİTİM ARIYORUM · HEMEN MÜSAİT" }
+        { k: "DURUM", v: "Siber güvenlik & web geliştirme alanında dönüşümlü eğitim · Hemen müsait · Grand Est & Lüksemburg" }
       ],
       cta1: "Kartı gör",
       cta2: "CV indir",
@@ -423,7 +424,7 @@ export const portfolio: Portfolio = {
     },
     thm: {
       "title": "Odalar, canlı",
-      "sub": "TryHackMe API'sinden otomatik senkronize edilen herkese açık istatistikler: tamamlanan odalar, sıralama, seviye, rozetler ve puan.",
+      "sub": "Elle güncellenen herkese açık TryHackMe istatistikleri: tamamlanan odalar, sıralama, seviye, rozetler ve puan.",
       "labels": {
         "rooms": "Tamamlanan odalar",
         "top": "İlk",
@@ -458,6 +459,6 @@ export const portfolio: Portfolio = {
         { code: "EN", flag: "EN", label: "English", level: "TOEIC 790 / 990" }
       ]
     },
-    contact: { title: "Son düdük.", lead: "Siber güvenlik ya da bir proje hakkında konuşmak, ya da sadece merhaba demek mi istersin? Soyunma odası açık.", email: "deniz16ok@gmail.com" }
+    contact: { title: "Son düdük.", lead: "Siber güvenlik ya da bir proje hakkında konuşmak, ya da sadece merhaba demek mi istersin? Soyunma odası açık.", availability: "Siber güvenlik veya web geliştirme alanında dönüşümlü eğitim (alternance) arıyorum; hemen başlayabilirim ve Eylül 2027'ye kadar devam edebilirim. Nancy'de yaşıyorum; tüm Grand Est bölgesinde ve Lüksemburg'da çalışabilirim. Tempo: haftada 4 gün şirkette, 1 gün eğitimde.", email: "deniz16ok@gmail.com" }
   }
 }

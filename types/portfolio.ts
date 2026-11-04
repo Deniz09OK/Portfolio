@@ -216,6 +216,8 @@ export interface LanguagesContent {
 export interface ContactContent {
   title: string
   lead: string
+  /** What I am looking for, where and on which schedule: shown under the lead. */
+  availability: string
   email: string
 }
 

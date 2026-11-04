@@ -11,6 +11,7 @@ const cvUrl = computed(() => CV_URLS[lang.value])
       <span class="section-label">{{ content.sectionLabels.contact }}</span>
       <h2 class="contact-title">{{ contact.title }}</h2>
       <p class="contact-lead">{{ contact.lead }}</p>
+      <p class="contact-availability">{{ contact.availability }}</p>
       <a class="contact-email" :href="`mailto:${contact.email}`">
         <span class="contact-email-text">{{ contact.email }}</span>
         <span class="cta-arr">→</span>

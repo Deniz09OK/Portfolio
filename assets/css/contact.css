@@ -20,6 +20,13 @@
   max-width: 56ch;
   margin-inline: auto;
 }
+.contact-availability {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 62ch;
+  margin: 0 auto clamp(24px, 3vh, 48px);
+}
 .contact-email {
   display: inline-flex;
   align-items: center;
