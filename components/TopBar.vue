@@ -126,9 +126,9 @@ onBeforeUnmount(() => {
           {{ code.toUpperCase() }}
         </button>
       </div>
-      <button class="theme-btn" :aria-label="a11y.theme" @click="toggle">
-        <span class="theme-sun">☀</span>
-        <span class="theme-moon">☾</span>
+      <button type="button" class="theme-btn" :aria-label="a11y.theme" :aria-pressed="isLight" @click="toggle">
+        <span class="theme-sun" aria-hidden="true">☀</span>
+        <span class="theme-moon" aria-hidden="true">☾</span>
       </button>
       <button
         class="nav-toggle"

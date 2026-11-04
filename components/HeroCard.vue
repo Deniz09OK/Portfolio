@@ -47,7 +47,7 @@ const cvUrl = computed(() => CV_URLS[lang.value])
           >
             <span class="hero-number-glyph" aria-hidden="true">{{ hero.number }}</span>
           </button>
-          <span class="hero-kanji-overlay" aria-hidden="true">{{ hero.kanji }}</span>
+          <span class="hero-kanji-overlay" lang="ja" aria-hidden="true">{{ hero.kanji }}</span>
           <div class="bubble-live" aria-live="polite">
             <Transition name="bubble">
               <p v-if="noteOpen" id="heroNumberNote" class="bubble hero-number-note">{{ hero.numberNote }}</p>
@@ -87,13 +87,13 @@ const cvUrl = computed(() => CV_URLS[lang.value])
       <!-- CTAs -->
       <div class="hero-cta">
         <a class="cta cta-primary" href="#matches">
-          <span>{{ hero.cta1 }}</span> <span class="cta-arr">→</span>
+          <span>{{ hero.cta1 }}</span> <span class="cta-arr" aria-hidden="true">→</span>
         </a>
         <a class="cta cta-ghost" :href="cvUrl" target="_blank" rel="noopener">
-          <span>{{ hero.cta2 }}</span> <span class="cta-arr">↓</span>
+          <span>{{ hero.cta2 }}</span> <span class="cta-arr" aria-hidden="true">↓</span>
         </a>
         <a class="cta cta-ghost" href="#contact">
-          <span>{{ hero.cta3 }}</span> <span class="cta-arr">↗</span>
+          <span>{{ hero.cta3 }}</span> <span class="cta-arr" aria-hidden="true">↗</span>
         </a>
       </div>
     </div>

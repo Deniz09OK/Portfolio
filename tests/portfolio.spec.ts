@@ -144,6 +144,39 @@ test('the theme toggle is remembered after a reload', async ({ page }) => {
   await expect(html).toHaveClass(/(^|\s)light(\s|$)/)
 })
 
+test('the theme button is a toggle that reports the light theme state', async ({ page }) => {
+  await openSite(page)
+  const btn = page.locator('.theme-btn')
+  await expect(btn).toHaveAttribute('type', 'button')
+  await expect(btn).toHaveAttribute('aria-pressed', 'false')
+  await btn.click()
+  await expect(btn).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.locator('html')).toHaveClass(/light/)
+})
+
+test('kanji carry lang="ja" and decorative glyphs are hidden from screen readers', async ({ page }) => {
+  await openSite(page)
+  for (const sel of ['.match-kanji', '.hero-kanji-overlay']) {
+    for (const el of await page.locator(sel).all()) {
+      await expect(el).toHaveAttribute('lang', 'ja')
+      await expect(el).toHaveAttribute('aria-hidden', 'true')
+    }
+  }
+  for (const el of await page.locator('.off-kanji').all()) await expect(el).toHaveAttribute('lang', 'ja')
+
+  // Every emoji or arrow glyph sits inside an aria-hidden element.
+  const exposed = await page.evaluate(() => {
+    const glyph = /[\u{1F300}-\u{1FAFF}\u2600-\u27BF\u2190-\u21FF]/u
+    const walker = document.createTreeWalker(document.querySelector('main')!, NodeFilter.SHOW_TEXT)
+    const out: string[] = []
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      if (glyph.test(n.textContent ?? '') && !n.parentElement?.closest('[aria-hidden="true"]')) out.push(n.textContent!.trim())
+    }
+    return out
+  })
+  expect(exposed).toEqual([])
+})
+
 test('the CSP is set and blocks nothing on the page', async ({ page }) => {
   await page.addInitScript(() => {
     const w = window as Window & { cspViolations?: string[] }

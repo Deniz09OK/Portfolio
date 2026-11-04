@@ -20,7 +20,7 @@ useHead(() => ({
     <div class="container">
       <h1 class="contact-title">404</h1>
       <p class="contact-lead">{{ t.title }} — {{ t.lead }}</p>
-      <a class="contact-email" href="/"><span>{{ t.cta }}</span><span class="cta-arr">→</span></a>
+      <a class="contact-email" href="/"><span>{{ t.cta }}</span><span class="cta-arr" aria-hidden="true">→</span></a>
     </div>
   </main>
 </template>

@@ -14,15 +14,15 @@ const cvUrl = computed(() => CV_URLS[lang.value])
       <p class="contact-availability">{{ contact.availability }}</p>
       <a class="contact-email" :href="`mailto:${contact.email}`">
         <span class="contact-email-text">{{ contact.email }}</span>
-        <span class="cta-arr">→</span>
+        <span class="cta-arr" aria-hidden="true">→</span>
       </a>
       <div class="contact-socials">
-        <a :href="cvUrl" target="_blank" rel="noopener">CV PDF ↗</a>
-        <a href="https://github.com/Deniz09OK" target="_blank" rel="noopener">GITHUB ↗</a>
-        <a href="https://www.linkedin.com/in/deniz-ok/" target="_blank" rel="noopener">LINKEDIN ↗</a>
-        <a href="https://tryhackme.com/p/Deniz23Ok" target="_blank" rel="noopener">TRYHACKME ↗</a>
-        <a href="https://app.hackthebox.com/users/4005432" target="_blank" rel="noopener">HACKTHEBOX ↗</a>
-        <a :href="`mailto:${contact.email}`">EMAIL ↗</a>
+        <a :href="cvUrl" target="_blank" rel="noopener">CV PDF <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/Deniz09OK" target="_blank" rel="noopener">GITHUB <span aria-hidden="true">↗</span></a>
+        <a href="https://www.linkedin.com/in/deniz-ok/" target="_blank" rel="noopener">LINKEDIN <span aria-hidden="true">↗</span></a>
+        <a href="https://tryhackme.com/p/Deniz23Ok" target="_blank" rel="noopener">TRYHACKME <span aria-hidden="true">↗</span></a>
+        <a href="https://app.hackthebox.com/users/4005432" target="_blank" rel="noopener">HACKTHEBOX <span aria-hidden="true">↗</span></a>
+        <a :href="`mailto:${contact.email}`">EMAIL <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </section>

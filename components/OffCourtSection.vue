@@ -34,7 +34,7 @@ function close() {
           aria-haspopup="dialog"
           @click="open(i)"
         >
-          <span class="off-kanji">{{ it.kanji }}</span>
+          <span class="off-kanji" lang="ja">{{ it.kanji }}</span>
           <div class="off-roman">{{ it.roman }}</div>
           <div class="off-label">{{ it.label }}</div>
           <div class="off-role">{{ it.role }}</div>
