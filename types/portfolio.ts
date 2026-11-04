@@ -34,10 +34,6 @@ export interface HeroTale {
 }
 
 export interface HeroContent {
-  /** Main hook shown above the name: who I am and what I look for, readable in a few seconds. */
-  tagline: string
-  /** One-line follow-up under the tagline: what I actually do. */
-  taglineSub: string
   number: string
   /** Caption shown under the big number (the 619 wink). */
   numberNote: string
