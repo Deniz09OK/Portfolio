@@ -46,22 +46,38 @@
 }
 .drills-sub { margin-bottom: 18px; }
 
-/* Legend: same mono/uppercase voice as the position labels */
+/* Legend: three levels, each with its themed label, the clear label under it (as in the nav) and what it means */
 .drills-legend {
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 28px;
-  margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 14px 28px;
+  margin-bottom: 28px;
+}
+.drills-legend-item { display: flex; align-items: flex-start; gap: 12px; }
+.drills-legend-item .drill-dot { margin-top: 4px; }
+.drills-legend-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.drills-legend-label {
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: var(--ink);
+}
+.drills-legend-clear {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
   color: var(--muted);
 }
-.drills-legend li { display: flex; align-items: center; gap: 10px; }
+.drills-legend-desc {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
 
-/* Tier marker: filled accent square = starter, hollow square = bench */
+/* Level marker: filled diamond = pro, accent outline = project, grey outline = lab */
 .drill-dot {
   flex: none;
   width: 8px;
@@ -69,8 +85,9 @@
   border: 1.5px solid var(--accent);
   transform: rotate(45deg);
 }
-.drill-dot--starter { background: var(--accent); }
-.drill-dot--bench { background: transparent; border-color: var(--line-strong); }
+.drill-dot--pro { background: var(--accent); }
+.drill-dot--project { background: transparent; }
+.drill-dot--lab { background: transparent; border-color: var(--muted); }
 
 .drill-list { list-style: none; }
 .drill-item {
@@ -79,10 +96,21 @@
   font-size: 16px;
   padding: 6px 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
 }
-.drill-item--bench .drill-name { color: var(--muted); font-weight: 400; }
+/* Aligns the diamond with the first line of the name. */
+.drill-item .drill-dot { margin-top: 7px; }
+.drill-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+/* Proof: small, grey and mono, discreet under the name. */
+.drill-evidence {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  color: var(--muted);
+}
 
 /* Proof link: a ghost pill in the accent colour, same voice as the hero CTAs */
 .drill-proof {

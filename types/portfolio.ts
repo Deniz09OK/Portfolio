@@ -102,11 +102,23 @@ export interface ExpItem {
   current?: boolean
 }
 
-/** starter = used on a delivered project or at work · bench = practised in class, lab or long ago */
-export type DrillTier = 'starter' | 'bench'
+/**
+ * Where a skill was actually used:
+ * pro = at work (apprenticeship at Qualitest) · project = a real project (Epitech or personal) ·
+ * lab = practised on Hack The Box, TryHackMe or in class.
+ */
+export type DrillTier = 'pro' | 'project' | 'lab'
 export interface DrillItem {
   name: string
   tier: DrillTier
+  /** Short proof shown under the name: where the skill was used (company, project, platform). */
+  evidence: string
+}
+/** One level of the legend: themed label, clear label shown under it, and what the level means. */
+export interface DrillLevel {
+  label: string
+  clear: string
+  text: string
 }
 export interface DrillsGroup {
   label: string
@@ -117,7 +129,7 @@ export interface DrillsGroup {
 export interface DrillsContent {
   title: string
   sub: string
-  legend: { starter: string; bench: string }
+  legend: Record<DrillTier, DrillLevel>
   groups: DrillsGroup[]
 }
 

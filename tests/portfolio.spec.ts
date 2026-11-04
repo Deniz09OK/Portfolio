@@ -40,6 +40,57 @@ for (const lang of LANGS) {
   })
 }
 
+const TIERS = ['pro', 'project', 'lab'] as const
+
+test('skills data: same skills, levels and proofs in every language', () => {
+  const shape = (lang: Lang) => portfolio[lang].drills.groups.map((g) => g.items.map((s) => s.tier))
+  for (const lang of LANGS) {
+    const { drills } = portfolio[lang]
+    expect(drills.groups, `${lang}: 8 categories`).toHaveLength(8)
+    const items = drills.groups.flatMap((g) => g.items)
+    expect(items, `${lang}: 31 skills`).toHaveLength(31)
+    for (const s of items) {
+      expect(TIERS, `${lang}: level of ${s.name}`).toContain(s.tier)
+      expect(s.evidence.trim(), `${lang}: proof of ${s.name}`).not.toBe('')
+    }
+    for (const tier of TIERS) {
+      const level = drills.legend[tier]
+      expect([level.label, level.clear, level.text].every((t) => t.trim()), `${lang}: legend ${tier}`).toBe(true)
+    }
+    expect(shape(lang), `${lang}: same levels as FR, in the same order`).toEqual(shape('fr'))
+  }
+})
+
+for (const lang of LANGS) {
+  test(`the ${lang.toUpperCase()} skills section shows three levels and a proof under each skill`, async ({ page }) => {
+    await openSite(page, lang)
+    const { drills } = portfolio[lang]
+
+    // Legend: themed label, clear label under it and meaning, in the pro > project > lab order.
+    const legend = page.locator('.drills-legend-item')
+    await expect(legend).toHaveCount(3)
+    for (const [i, tier] of TIERS.entries()) {
+      await expect(legend.nth(i).locator('.drills-legend-label')).toHaveText(drills.legend[tier].label)
+      await expect(legend.nth(i).locator('.drills-legend-clear')).toHaveText(drills.legend[tier].clear)
+      await expect(legend.nth(i).locator('.drills-legend-desc')).toHaveText(drills.legend[tier].text)
+    }
+
+    // Every skill: its name, its level marker and its proof, in the data order.
+    const items = page.locator('#drills .drill-item')
+    const expected = drills.groups.flatMap((g) => g.items)
+    await expect(items).toHaveCount(expected.length)
+    for (const [i, s] of expected.entries()) {
+      const item = items.nth(i)
+      await expect(item).toHaveAttribute('data-tier', s.tier)
+      await expect(item.locator('.drill-name')).toHaveText(s.name)
+      await expect(item.locator('.drill-evidence')).toHaveText(s.evidence)
+      await expect(item.locator(`.drill-dot--${s.tier}`)).toHaveCount(1)
+      // The diamond is decorative: the level must also be readable as text by screen readers.
+      await expect(item.locator('.visually-hidden')).toContainText(drills.legend[s.tier].clear)
+    }
+  })
+}
+
 test('every project card shows exactly one status', async ({ page }) => {
   await openSite(page)
   const cards = page.locator('article.match')
