@@ -86,11 +86,12 @@
 /* Tablettes tactiles au-dessus de 1023px : zone de tap de 44px sans changer le rendu desktop. */
 @media (pointer: coarse) { .bar-nav-link { padding: 11px 0; } }
 @media (max-width: 1023px) { .bar-nav { display: none; } }
-/* 1024-1199px: the five entries fit next to the brand and the tools once the spacing is tightened. */
+/* 1024-1199px: the five entries fit next to the brand and the tools once the spacing is tightened
+   (about 11px of free space in FR at 1024px, the tightest case, on top of the 12px gap). */
 @media (min-width: 1024px) and (max-width: 1199px) {
-  .bar { padding-left: 20px; padding-right: 20px; gap: 16px; }
+  .bar { padding-left: 20px; padding-right: 20px; gap: 12px; }
   .bar-brand { gap: 10px; }
-  .bar-nav { gap: 10px; letter-spacing: 0.02em; }
+  .bar-nav { gap: 8px; letter-spacing: 0.02em; }
   .bar-nav-sub { letter-spacing: 0; }
   .bar-tools { gap: 8px; }
 }
@@ -188,8 +189,11 @@ html.light .theme-moon { opacity: 0; transform: rotate(-30deg); }
    shown, so tighten the spacing there. The name only disappears at 400px and below (rule that follows). */
 @media (max-width: 460px) {
   .bar { padding-left: 14px; padding-right: 14px; gap: 8px; }
-  .bar-brand { gap: 8px; }
+  .bar-brand { gap: 6px; }
   .bar-tools { gap: 6px; }
+  /* At 401px the name used to leave about 1px to spare, so a font that renders a hair wider squeezed and clipped
+     it. A tighter letter-spacing and brand gap free about 10px: the name keeps a safety margin whatever the font rendering. */
+  .bar-name span { letter-spacing: 0.08em; }
 }
 
 /* Compact top bar so brand + lang pill + theme + burger fit on 320px screens.
