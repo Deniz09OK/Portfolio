@@ -8,6 +8,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { hasMeaningfulChange } from './htb-compare.mjs'
+import { tokenShapeError } from './htb-token.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const OUT = join(ROOT, 'public', 'data', 'htb.json')
@@ -30,11 +31,15 @@ function loadToken() {
 const TOKEN = loadToken()
 
 class HtbError extends Error {
-  /** status : code HTTP (0 = réseau ou timeout). html : la réponse était une page HTML, pas du JSON. */
-  constructor(message, status, { html = false } = {}) {
+  /**
+   * status : code HTTP (0 = réseau ou timeout). html : la réponse était une page HTML, pas du JSON.
+   * config : problème de configuration (jeton absent ou mal formé), détecté avant tout appel.
+   */
+  constructor(message, status, { html = false, config = false } = {}) {
     super(message)
     this.status = status
     this.html = html
+    this.config = config
   }
 }
 
@@ -241,7 +246,9 @@ async function sync() {
 }
 
 async function main() {
-  if (!TOKEN) throw new HtbError("API_TOKEN absent (variable d'environnement ou .env)", 401)
+  // Forme du jeton vérifiée avant tout appel : un jeton mal formé ne part jamais vers l'API.
+  const tokenError = tokenShapeError(TOKEN)
+  if (tokenError) throw new HtbError(tokenError, 0, { config: true })
   if (process.argv.includes('--probe')) return probe()
   return sync()
 }
@@ -251,6 +258,6 @@ main().catch((e) => {
   console.error(`[htb] échec : ${e.message} (${kept})`)
   // Authentification refusée ou page HTML à la place du JSON : à corriger, donc visible (exit 1).
   // Panne passagère (429, timeout, 5xx) : on ne casse rien.
-  process.exitCode = e.status === 401 || e.status === 403 || e.html ? 1 : 0
+  process.exitCode = e.config || e.status === 401 || e.status === 403 || e.html ? 1 : 0
   if (process.exitCode === 0) console.error('::warning::HTB sync ignorée, données précédentes conservées')
 })
