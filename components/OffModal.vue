@@ -142,7 +142,7 @@ const modalStyle = computed(() => {
           <span class="off-modal-eyebrow">{{ eyebrowText }}</span>
         </div>
         <div class="off-modal-head">
-          <span class="off-modal-kanji">{{ item.kanji }}</span>
+          <span class="off-modal-kanji" lang="ja">{{ item.kanji }}</span>
           <div class="off-modal-roman">{{ item.roman }}</div>
           <h3 class="off-modal-title" id="offModalTitle">{{ item.label }}</h3>
           <div class="off-modal-role">{{ item.role }}</div>

@@ -72,7 +72,7 @@ const labels = computed(() => {
               <span>{{ p.year }}</span>
             </div>
             <div class="match-idx-big">{{ p.idx }}</div>
-            <div class="match-kanji">{{ p.kanji }}</div>
+            <div class="match-kanji" lang="ja" aria-hidden="true">{{ p.kanji }}</div>
             <div class="match-tape">
               <div>
                 <div class="match-tape-k">{{ labels.type }}</div>
@@ -115,10 +115,10 @@ const labels = computed(() => {
                 target="_blank"
                 rel="noopener"
               >
-                {{ linkLabel(p.link) }} <span>↗</span>
+                {{ linkLabel(p.link) }} <span aria-hidden="true">↗</span>
               </a>
-              <span v-else-if="p.wip" class="match-link-locked">🛠 {{ labels.wip }}</span>
-              <span v-else class="match-link-locked">🔒 {{ labels.locked }}</span>
+              <span v-else-if="p.wip" class="match-link-locked"><span aria-hidden="true">🛠</span> {{ labels.wip }}</span>
+              <span v-else class="match-link-locked"><span aria-hidden="true">🔒</span> {{ labels.locked }}</span>
               <a
                 v-if="p.demo"
                 class="match-link"
@@ -126,7 +126,7 @@ const labels = computed(() => {
                 target="_blank"
                 rel="noopener"
               >
-                {{ labels.demo }} <span>↗</span>
+                {{ labels.demo }} <span aria-hidden="true">↗</span>
               </a>
               <a
                 v-if="p.schema"
@@ -135,7 +135,7 @@ const labels = computed(() => {
                 target="_blank"
                 rel="noopener"
               >
-                {{ labels.schema }} <span>↗</span>
+                {{ labels.schema }} <span aria-hidden="true">↗</span>
               </a>
             </div>
           </div>
@@ -145,7 +145,7 @@ const labels = computed(() => {
 
     <div v-if="!showArchived && projects.some((p) => p.archived)" class="match-more">
       <button type="button" class="cta cta-ghost" aria-controls="matches" :aria-expanded="showArchived" @click="showMore">
-        <span>{{ matches.more }}</span> <span class="cta-arr">↓</span>
+        <span>{{ matches.more }}</span> <span class="cta-arr" aria-hidden="true">↓</span>
       </button>
     </div>
   </section>

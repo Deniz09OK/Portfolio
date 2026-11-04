@@ -5,6 +5,8 @@ const LANGS = ['fr', 'en', 'tr'] as const
 type Lang = (typeof LANGS)[number]
 
 const SECTIONS = ['roster', 'matches', 'career', 'drills', 'htb', 'off', 'languages', 'contact']
+// The top bar only links the five sections a recruiter looks for.
+const NAV_SECTIONS = ['matches', 'career', 'drills', 'htb', 'contact']
 const OPPONENT_LABEL: Record<Lang, string> = { fr: 'ADVERSAIRE', en: 'OPPONENT', tr: 'RAKİP' }
 const HOST_LABEL: Record<string, string> = { 'github.com': 'GITHUB', 'gitlab.com': 'GITLAB' }
 
@@ -65,13 +67,13 @@ test('every project card shows exactly one status', async ({ page }) => {
   }
 })
 
-test('the menu reaches every section', async ({ page }) => {
+test('the menu reaches every nav section', async ({ page }) => {
   // One menu round-trip per section: WebKit mobile needs about 5s each.
   test.setTimeout(90_000)
   await openSite(page)
   const burger = page.locator('.nav-toggle')
 
-  for (const id of SECTIONS) {
+  for (const id of NAV_SECTIONS) {
     if (await burger.isVisible()) {
       await burger.click()
       await page.locator(`.mobile-nav a[href="#${id}"]`).click()
@@ -140,6 +142,39 @@ test('the theme toggle is remembered after a reload', async ({ page }) => {
   await expect(html).toHaveClass(/(^|\s)light(\s|$)/)
   await page.reload()
   await expect(html).toHaveClass(/(^|\s)light(\s|$)/)
+})
+
+test('the theme button is a toggle that reports the light theme state', async ({ page }) => {
+  await openSite(page)
+  const btn = page.locator('.theme-btn')
+  await expect(btn).toHaveAttribute('type', 'button')
+  await expect(btn).toHaveAttribute('aria-pressed', 'false')
+  await btn.click()
+  await expect(btn).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.locator('html')).toHaveClass(/light/)
+})
+
+test('kanji carry lang="ja" and decorative glyphs are hidden from screen readers', async ({ page }) => {
+  await openSite(page)
+  for (const sel of ['.match-kanji', '.hero-kanji-overlay']) {
+    for (const el of await page.locator(sel).all()) {
+      await expect(el).toHaveAttribute('lang', 'ja')
+      await expect(el).toHaveAttribute('aria-hidden', 'true')
+    }
+  }
+  for (const el of await page.locator('.off-kanji').all()) await expect(el).toHaveAttribute('lang', 'ja')
+
+  // Every emoji or arrow glyph sits inside an aria-hidden element.
+  const exposed = await page.evaluate(() => {
+    const glyph = /[\u{1F300}-\u{1FAFF}\u2600-\u27BF\u2190-\u21FF]/u
+    const walker = document.createTreeWalker(document.querySelector('main')!, NodeFilter.SHOW_TEXT)
+    const out: string[] = []
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      if (glyph.test(n.textContent ?? '') && !n.parentElement?.closest('[aria-hidden="true"]')) out.push(n.textContent!.trim())
+    }
+    return out
+  })
+  expect(exposed).toEqual([])
 })
 
 test('the CSP is set and blocks nothing on the page', async ({ page }) => {
@@ -305,9 +340,41 @@ test('the brand name still links to the top and no button sits inside a link', a
   await expect(page.locator('a button, a [role="button"]')).toHaveCount(0)
 })
 
-test('the top bar nav stays on one line at 1400px and 1440px', async ({ page, isMobile }) => {
+test('the menu has five entries, clear label first and themed name as subtitle', async ({ page }) => {
+  await openSite(page)
+  const { nav, sectionLabels } = portfolio.fr
+  const expected = [
+    [sectionLabels.matches, nav.matches],
+    [sectionLabels.career, nav.career],
+    [sectionLabels.drills, nav.drills],
+    [nav.labs, nav.labsSub],
+    [sectionLabels.contact, nav.contact],
+  ]
+  for (const list of ['.bar-nav', '.mobile-nav']) {
+    const links = page.locator(`${list} a`)
+    await expect(links).toHaveCount(NAV_SECTIONS.length)
+    for (const [i, [label, sub]] of expected.entries()) {
+      await expect(links.nth(i)).toHaveAttribute('href', `#${NAV_SECTIONS[i]}`)
+      await expect(links.nth(i).locator('[class$="-label"]')).toHaveText(label)
+      await expect(links.nth(i).locator('[class$="-sub"]')).toHaveText(sub)
+    }
+  }
+})
+
+test('the desktop nav replaces the burger from 1024px', async ({ page, isMobile }) => {
   test.skip(!!isMobile, 'desktop widths only')
-  for (const width of [1400, 1440]) {
+  await openSite(page)
+  await page.setViewportSize({ width: 1023, height: 800 })
+  await expect(page.locator('.bar-nav')).toBeHidden()
+  await expect(page.locator('.nav-toggle')).toBeVisible()
+  await page.setViewportSize({ width: 1024, height: 800 })
+  await expect(page.locator('.bar-nav')).toBeVisible()
+  await expect(page.locator('.nav-toggle')).toBeHidden()
+})
+
+test('the top bar nav stays on one line from 1024px to 1440px', async ({ page, isMobile }) => {
+  test.skip(!!isMobile, 'desktop widths only')
+  for (const width of [1024, 1100, 1280, 1400, 1440]) {
     await page.setViewportSize({ width, height: 900 })
     await openSite(page)
     await page.locator('.bar-num').click()

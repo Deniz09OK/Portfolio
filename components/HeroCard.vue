@@ -20,7 +20,22 @@ const cvUrl = computed(() => CV_URLS[lang.value])
   <section class="hero" id="roster">
     <div class="hero-inner">
       <div class="hero-stage">
-        <!-- BIG JERSEY NUMBER -->
+        <!-- TAGLINE + NAME + POSITION -->
+        <div class="hero-id">
+          <div class="hero-tagline-block">
+            <p class="hero-tagline">{{ hero.tagline }}</p>
+            <p class="hero-tagline-sub">{{ hero.taglineSub }}</p>
+          </div>
+          <h1 class="hero-name">
+            <span>{{ hero.name1 }}</span>
+            <span class="hero-name-stroke">{{ hero.name2 }}</span>
+          </h1>
+          <div class="hero-position">{{ hero.position }}</div>
+          <div class="hero-team">{{ hero.team }}</div>
+          <div class="hero-bio">{{ hero.bio }}</div>
+        </div>
+
+        <!-- JERSEY NUMBER: secondary easter egg, after the bio -->
         <div ref="numberRoot" class="hero-number">
           <button
             type="button"
@@ -32,23 +47,12 @@ const cvUrl = computed(() => CV_URLS[lang.value])
           >
             <span class="hero-number-glyph" aria-hidden="true">{{ hero.number }}</span>
           </button>
-          <span class="hero-kanji-overlay" aria-hidden="true">{{ hero.kanji }}</span>
+          <span class="hero-kanji-overlay" lang="ja" aria-hidden="true">{{ hero.kanji }}</span>
           <div class="bubble-live" aria-live="polite">
             <Transition name="bubble">
               <p v-if="noteOpen" id="heroNumberNote" class="bubble hero-number-note">{{ hero.numberNote }}</p>
             </Transition>
           </div>
-        </div>
-
-        <!-- NAME + POSITION -->
-        <div class="hero-id">
-          <h1 class="hero-name">
-            <span>{{ hero.name1 }}</span>
-            <span class="hero-name-stroke">{{ hero.name2 }}</span>
-          </h1>
-          <div class="hero-position">{{ hero.position }}</div>
-          <div class="hero-team">{{ hero.team }}</div>
-          <div class="hero-bio">{{ hero.bio }}</div>
         </div>
 
         <!-- PORTRAIT -->
@@ -83,13 +87,13 @@ const cvUrl = computed(() => CV_URLS[lang.value])
       <!-- CTAs -->
       <div class="hero-cta">
         <a class="cta cta-primary" href="#matches">
-          <span>{{ hero.cta1 }}</span> <span class="cta-arr">→</span>
+          <span>{{ hero.cta1 }}</span> <span class="cta-arr" aria-hidden="true">→</span>
         </a>
         <a class="cta cta-ghost" :href="cvUrl" target="_blank" rel="noopener">
-          <span>{{ hero.cta2 }}</span> <span class="cta-arr">↓</span>
+          <span>{{ hero.cta2 }}</span> <span class="cta-arr" aria-hidden="true">↓</span>
         </a>
         <a class="cta cta-ghost" href="#contact">
-          <span>{{ hero.cta3 }}</span> <span class="cta-arr">↗</span>
+          <span>{{ hero.cta3 }}</span> <span class="cta-arr" aria-hidden="true">↗</span>
         </a>
       </div>
     </div>
