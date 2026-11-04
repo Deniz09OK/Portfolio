@@ -187,11 +187,26 @@
   color: var(--muted);
 }
 .dot { width: 6px; height: 6px; border-radius: 999px; display: inline-block; }
-.dot-live { background: var(--green); box-shadow: 0 0 0 0 rgba(30,166,98,0.6); animation: pulse 1.8s ease-out infinite; }
+/* Halo qui pulse autour du point "LIVE". Il était animé en box-shadow, ce qui forçait un repaint du thread principal
+   à chaque image tant que le hero était à l'écran. Même rendu ici avec un pseudo-élément animé en transform et
+   opacity, deux propriétés gérées par le compositeur : 6px agrandis 11/3 fois = l'anneau de 8px d'origine.
+   Avec prefers-reduced-motion, la règle globale de utils.css (*::after { animation: none }) coupe l'animation :
+   le halo reste alors invisible (opacity: 0), comme l'ombre d'origine sans animation. */
+.dot-live { position: relative; background: var(--green); }
+.dot-live::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgb(30, 166, 98);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: pulse 1.8s ease-out infinite;
+}
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(30,166,98,0.6); }
-  70% { box-shadow: 0 0 0 8px rgba(30,166,98,0); }
-  100% { box-shadow: 0 0 0 0 rgba(30,166,98,0); }
+  0% { transform: scale(1); opacity: 0.6; }
+  70% { transform: scale(3.667); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
 }
 
 /* tale of the tape */
