@@ -8,6 +8,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { hasMeaningfulChange } from './htb-compare.mjs'
+import { tokenShapeError } from './htb-token.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const OUT = join(ROOT, 'public', 'data', 'htb.json')
@@ -30,11 +31,28 @@ function loadToken() {
 const TOKEN = loadToken()
 
 class HtbError extends Error {
-  constructor(message, status) {
+  /**
+   * status : code HTTP (0 = réseau ou timeout). html : la réponse était une page HTML, pas du JSON.
+   * config : problème de configuration (jeton absent ou mal formé), détecté avant tout appel.
+   */
+  constructor(message, status, { html = false, config = false } = {}) {
     super(message)
     this.status = status
+    this.html = html
+    this.config = config
   }
 }
+
+/** Titre d'une page HTML, nettoyé et tronqué, pour l'afficher dans un message d'erreur. */
+function htmlTitle(text) {
+  const m = /<title[^>]*>([\s\S]*?)<\/title>/i.exec(text)
+  if (!m) return null
+  const title = m[1].replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim()
+  return title ? title.slice(0, 120) : null
+}
+
+/** Un message ne doit jamais contenir le jeton, même s'il était renvoyé dans une réponse. */
+const redact = (msg) => (TOKEN ? msg.split(TOKEN).join('***') : msg)
 
 async function api(path) {
   const ctrl = new AbortController()
@@ -47,7 +65,8 @@ async function api(path) {
     const text = await res.text()
     let body = null
     try { body = JSON.parse(text) } catch { /* corps non JSON */ }
-    return { status: res.status, body }
+    const isHtml = body === null && /^\s*(<!doctype html|<html)/i.test(text)
+    return { status: res.status, body, isHtml, title: isHtml ? htmlTitle(text) : null }
   } catch (e) {
     throw new HtbError(e.name === 'AbortError' ? `timeout après ${TIMEOUT_MS / 1000}s sur ${path}` : `erreur réseau sur ${path}`, 0)
   } finally {
@@ -55,13 +74,21 @@ async function api(path) {
   }
 }
 
-/** Appel qui lève une erreur claire sur 401/403/429/5xx. */
+/**
+ * Appel qui lève une erreur lisible : chemin appelé, code HTTP, et nature de la réponse quand ce n'est pas du JSON.
+ * Une page HTML (page de connexion, défi anti-robot, route déplacée...) est signalée avec son titre.
+ */
 async function get(path) {
-  const { status, body } = await api(path)
-  if (status === 401) throw new HtbError('401 : jeton API_TOKEN invalide ou expiré', status)
-  if (status === 403) throw new HtbError(`403 : accès refusé sur ${path} (jeton ou User-Agent bloqué ?)`, status)
-  if (status === 429) throw new HtbError('429 : limite de requêtes atteinte, réessayer plus tard', status)
-  if (status >= 400) throw new HtbError(`HTTP ${status} sur ${path}`, status)
+  const { status, body, isHtml, title } = await api(path)
+  const where = `HTTP ${status} sur ${path}`
+  if (isHtml) {
+    throw new HtbError(redact(`${where} : réponse HTML au lieu de JSON${title ? ` (titre : « ${title} »)` : ''}. Page de connexion, protection anti-robot ou route déplacée ?`), status, { html: true })
+  }
+  if (status === 401) throw new HtbError(`${where} : authentification refusée. Vérifier le jeton (App Token valide, non expiré) et que cette route l'accepte toujours.`, status)
+  if (status === 403) throw new HtbError(`${where} : accès refusé (droits du jeton, User-Agent ou filtrage côté Hack The Box ?)`, status)
+  if (status === 429) throw new HtbError(`${where} : limite de requêtes atteinte, réessayer plus tard`, status)
+  if (status >= 400) throw new HtbError(`${where}${body?.message ? ` : ${redact(String(body.message)).slice(0, 200)}` : ''}`, status)
+  if (body === null) throw new HtbError(`${where} : réponse vide ou non JSON`, status)
   return body
 }
 
@@ -151,7 +178,7 @@ async function fetchMachines() {
       const { info } = await get(`/machine/profile/${encodeURIComponent(m.name)}`)
       if (info?.machinePwnedDate) solvedAt = new Date(info.machinePwnedDate.replace(' ', 'T') + 'Z').toISOString()
     } catch (e) {
-      if (ERRORS_FATAL.has(e.status)) throw e
+      if (ERRORS_FATAL.has(e.status) || e.html) throw e
     }
     boxes.push({
       name: m.name,
@@ -198,7 +225,7 @@ async function sync() {
     try {
       next[key] = await fn()
     } catch (e) {
-      if (ERRORS_FATAL.has(e.status)) throw e
+      if (ERRORS_FATAL.has(e.status) || e.html) throw e
       console.warn(`[htb] section "${key}" ignorée : ${e.message}`)
       next[key] = previous?.[key] ?? (key === 'boxes' ? [] : null)
     }
@@ -219,7 +246,9 @@ async function sync() {
 }
 
 async function main() {
-  if (!TOKEN) throw new HtbError("API_TOKEN absent (variable d'environnement ou .env)", 401)
+  // Forme du jeton vérifiée avant tout appel : un jeton mal formé ne part jamais vers l'API.
+  const tokenError = tokenShapeError(TOKEN)
+  if (tokenError) throw new HtbError(tokenError, 0, { config: true })
   if (process.argv.includes('--probe')) return probe()
   return sync()
 }
@@ -227,7 +256,8 @@ async function main() {
 main().catch((e) => {
   const kept = existsSync(OUT) ? 'ancien public/data/htb.json conservé' : 'aucun JSON existant'
   console.error(`[htb] échec : ${e.message} (${kept})`)
-  // Erreur d'authentification : à corriger, donc visible (exit 1). Panne passagère (429, timeout, 5xx) : on ne casse rien.
-  process.exitCode = e.status === 401 || e.status === 403 ? 1 : 0
+  // Authentification refusée ou page HTML à la place du JSON : à corriger, donc visible (exit 1).
+  // Panne passagère (429, timeout, 5xx) : on ne casse rien.
+  process.exitCode = e.config || e.status === 401 || e.status === 403 || e.html ? 1 : 0
   if (process.exitCode === 0) console.error('::warning::HTB sync ignorée, données précédentes conservées')
 })
