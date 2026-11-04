@@ -12,18 +12,14 @@ updates:
     commit-message:
       prefix: chore(deps)
     groups:
-      # Nuxt, Vue et leurs modules évoluent ensemble : une seule PR pour éviter les versions incompatibles.
-      nuxt-vue:
+      # Toutes les mises à jour minor et patch dans une seule PR par semaine.
+      # Les majeures n'entrent dans aucun groupe : chacune garde sa propre PR, pour être relue à part.
+      npm-minor-patch:
         patterns:
-          - nuxt
-          - '@nuxt/*'
-          - vue
-          - vue-router
-          - vue-tsc
-      playwright:
-        patterns:
-          - playwright
-          - '@playwright/test'
+          - '*'
+        update-types:
+          - minor
+          - patch
 
   - package-ecosystem: github-actions
     directory: /
@@ -34,6 +30,7 @@ updates:
     commit-message:
       prefix: chore(ci)
     groups:
+      # Une seule PR pour toutes les actions, majeures comprises.
       actions:
         patterns:
           - '*'
