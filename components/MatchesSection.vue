@@ -119,7 +119,7 @@ const labels = computed(() => {
                 class="match-link"
                 :href="p.link"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
               >
                 {{ linkLabel(p.link) }} <span aria-hidden="true">↗</span>
               </a>
@@ -131,7 +131,7 @@ const labels = computed(() => {
                 class="match-link"
                 :href="p.demo"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
               >
                 {{ labels.demo }} <span aria-hidden="true">↗</span>
               </a>
@@ -140,7 +140,7 @@ const labels = computed(() => {
                 class="match-link"
                 :href="p.schema"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
               >
                 {{ labels.schema }} <span aria-hidden="true">↗</span>
               </a>

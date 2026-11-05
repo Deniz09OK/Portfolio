@@ -339,13 +339,13 @@ const seasonPct = computed(() => {
 
         <p class="htb-foot">
           <span>{{ t.updated }} : <time :datetime="data.updatedAt">{{ fmt(data.updatedAt, true) }}</time></span>
-          <a class="drill-proof htb-link" :href="profileUrl" target="_blank" rel="noopener">{{ t.profile }} <span aria-hidden="true">↗</span></a>
+          <a class="drill-proof htb-link" :href="profileUrl" target="_blank" rel="noopener noreferrer">{{ t.profile }} <span aria-hidden="true">↗</span></a>
         </p>
       </template>
 
       <div v-else class="htb-empty" role="status">
         <p>{{ t.empty }}</p>
-        <a class="drill-proof htb-link" :href="profileUrl" target="_blank" rel="noopener">{{ t.emptyLink }} <span aria-hidden="true">↗</span></a>
+        <a class="drill-proof htb-link" :href="profileUrl" target="_blank" rel="noopener noreferrer">{{ t.emptyLink }} <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </section>
