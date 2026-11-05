@@ -260,6 +260,8 @@ export interface LocaleContent {
   ticker: string[]
   /** Explicit page title (browser tab, search results, social previews). */
   seoTitle: string
+  /** Job title in the JSON-LD Person data of the page. */
+  seoJobTitle: string
   /** Short, dedicated SEO summary (<=160 chars) — used for meta/OG/Twitter description instead of truncating the bio. */
   seoDescription: string
   hero: HeroContent

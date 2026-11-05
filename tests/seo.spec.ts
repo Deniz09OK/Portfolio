@@ -119,3 +119,22 @@ test('the 404 page is noindex and claims no canonical URL', async ({ request }) 
   expect(html).toMatch(/<meta name="robots" content="noindex"/)
   expect(tags(html, 'link', { rel: 'canonical' })).toEqual([])
 })
+
+for (const { lang, path } of PAGES) {
+  test(`${path} has valid JSON-LD Person data in its language`, async ({ request }) => {
+    const html = await (await request.get(path)).text()
+    const blocks = [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map((m) => m[1]!)
+    expect(blocks).toHaveLength(1)
+    const person = JSON.parse(blocks[0]!)
+    expect(person['@context']).toBe('https://schema.org')
+    expect(person['@type']).toBe('Person')
+    expect(person.name).toBe('Deniz OK')
+    expect(person.jobTitle).toBe(portfolio[lang].seoJobTitle)
+    expect(person.description).toBe(portfolio[lang].seoDescription)
+    expect(person.url).toBe(SITE + path)
+    expect(person.affiliation).toEqual({ '@type': 'EducationalOrganization', name: 'Epitech Nancy' })
+    expect(person.sameAs).toEqual(['https://github.com/Deniz09OK', 'https://www.linkedin.com/in/deniz-ok/'])
+    // Nothing more than what was agreed: no e-mail, address or employer in the structured data.
+    expect(Object.keys(person).sort()).toEqual(['@context', '@type', 'affiliation', 'description', 'image', 'jobTitle', 'knowsLanguage', 'name', 'sameAs', 'url'])
+  })
+}

@@ -11,6 +11,23 @@ if (!isKnownPagePath(path)) {
   throw createError({ statusCode: 404, statusMessage: 'Page Not Found', fatal: true })
 }
 
+// Structured data (schema.org Person), in the language of the page. A JSON block is data, not a script:
+// the CSP needs no hash for it (server/plugins/csp.ts only hashes executable scripts).
+function personJsonLd(url: string) {
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Deniz OK',
+    jobTitle: content.value.seoJobTitle,
+    description: content.value.seoDescription,
+    affiliation: { '@type': 'EducationalOrganization', name: 'Epitech Nancy' },
+    url,
+    image: `${SITE_URL}/portrait.jpg`,
+    sameAs: ['https://github.com/Deniz09OK', 'https://www.linkedin.com/in/deniz-ok/'],
+    knowsLanguage: ['fr', 'en', 'tr'],
+  })
+}
+
 // SEO / document head, reactive to the active language: each language page (/, /en/, /tr/) points to itself as
 // canonical and lists the two others as alternates (hreflang), with x-default on the root.
 useHead(() => {
@@ -19,6 +36,7 @@ useHead(() => {
   return {
     htmlAttrs: { lang: lang.value },
     title: content.value.seoTitle,
+    script: [{ type: 'application/ld+json', key: 'ld-person', innerHTML: personJsonLd(url) }],
     link: [
       { rel: 'canonical', href: url, key: 'canonical' },
       ...SITE_LANGS.map((l) => ({ rel: 'alternate', hreflang: l, href: SITE_URL + LANG_PATHS[l], key: `alternate-${l}` })),
