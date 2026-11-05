@@ -32,7 +32,7 @@ for (const lang of LANGS) {
     const errors = await openSite(page, lang)
     const content = portfolio[lang]
 
-    await expect(page).toHaveTitle('Deniz OK — Portfolio')
+    await expect(page).toHaveTitle(content.seoTitle)
     for (const id of SECTIONS) await expect(page.locator(`#${id}`)).toHaveCount(1)
     await expect(page.locator('.match-vs-side-opp .micro').first()).toHaveText(OPPONENT_LABEL[lang])
     await expect(page.locator('.ticker-track span').nth(2)).toHaveText(content.ticker[2])

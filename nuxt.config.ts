@@ -1,3 +1,17 @@
+import { execSync } from 'node:child_process'
+
+/**
+ * Date of the last commit (ISO 8601), for the sitemap lastmod. Works with the shallow checkout of GitHub Actions
+ * (the HEAD commit is always there); falls back to the build date when git or the history is unavailable.
+ */
+function lastCommitDate(): string {
+  try {
+    const date = execSync('git log -1 --format=%cI', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim()
+    if (date && !Number.isNaN(Date.parse(date))) return date
+  } catch { /* no git: build date below */ }
+  return new Date().toISOString()
+}
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // Configured for GitHub Pages deployment
 export default defineNuxtConfig({
@@ -22,19 +36,10 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: "Deniz OK — alternant en cybersécurité & développement web, MSc à Epitech Nancy. Disponible dès maintenant jusqu'en 09/2027, Grand Est & Luxembourg." },
         { name: 'author', content: 'Deniz OK' },
         { name: 'referrer', content: 'strict-origin-when-cross-origin' },
         { name: 'theme-color', content: '#0c0c10' },
-        { property: 'og:title', content: 'Deniz OK — Portfolio' },
-        { property: 'og:description', content: "Deniz OK — alternant en cybersécurité & développement web, MSc à Epitech Nancy. Disponible dès maintenant jusqu'en 09/2027, Grand Est & Luxembourg." },
-        { property: 'og:type', content: 'website' },
-        { property: 'og:image', content: 'https://portfolio-deniz.me/portrait.jpg' },
-        { property: 'og:url', content: 'https://portfolio-deniz.me/' },
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: 'Deniz OK — Portfolio' },
-        { name: 'twitter:description', content: "Deniz OK — alternant en cybersécurité & développement web, MSc à Epitech Nancy. Disponible dès maintenant jusqu'en 09/2027, Grand Est & Luxembourg." },
-        { name: 'twitter:image', content: 'https://portfolio-deniz.me/portrait.jpg' }
+        // Title, description, canonical, hreflang and Open Graph tags (text and image) are set per language page in app.vue.
       ],
       link: [
         {
@@ -42,9 +47,13 @@ export default defineNuxtConfig({
           type: 'image/svg+xml',
           href: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%230c0c10%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-family=%22Arial,Helvetica,sans-serif%22 font-weight=%22700%22 font-size=%2215%22 fill=%22%23fff%22 text-anchor=%22middle%22%3E23%3C/text%3E%3C/svg%3E',
         },
-        { rel: 'canonical', href: 'https://portfolio-deniz.me/' },
       ],
     },
+  },
+
+  // Server-only (not "public"): never sent to the browser. Read by server/routes/sitemap.xml.ts at prerender time.
+  runtimeConfig: {
+    sitemapLastmod: lastCommitDate(),
   },
 
   // Global stylesheet (the original arena design system).
@@ -57,7 +66,8 @@ export default defineNuxtConfig({
   // GitHub Pages serves 404.html for unknown URLs. Nuxt always prerenders /404.html as an
   // empty SPA shell, so render /404 (error.vue, server-side) and write it to 404.html instead.
   nitro: {
-    prerender: { routes: ['/404'] },
+    // /en/ and /tr/: the same page, prerendered in English and Turkish (the language comes from the URL).
+    prerender: { routes: ['/404', '/en/', '/tr/', '/sitemap.xml'] },
   },
   hooks: {
     'nitro:init'(nitro) {
