@@ -188,6 +188,30 @@ html.light .match::before { color: var(--accent-soft); opacity: 0.7; }
   max-width: 56ch;
   margin-bottom: 28px;
 }
+/* Case study: titled sections under the description, in the same mono voice as the meta labels. */
+.match-case {
+  max-width: 62ch;
+  margin: -8px 0 28px;
+  border-top: 1px dashed var(--line-strong);
+}
+.match-case-row {
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--line-strong);
+}
+.match-case-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.match-case-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
 .match-links { display: flex; flex-wrap: wrap; gap: 12px; }
 .match-link {
   display: inline-flex;

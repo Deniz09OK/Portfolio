@@ -106,6 +106,12 @@ const labels = computed(() => {
 
             <div class="match-verdict">{{ labels.verdict }} — {{ p.verdict }}</div>
             <p class="match-desc">{{ p.desc }}</p>
+            <dl v-if="p.caseStudy?.length" class="match-case">
+              <div v-for="(c, k) in p.caseStudy" :key="k" class="match-case-row">
+                <dt class="match-case-label">{{ c.label }}</dt>
+                <dd class="match-case-text">{{ c.text }}</dd>
+              </div>
+            </dl>
 
             <div class="match-links">
               <a
