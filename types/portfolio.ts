@@ -154,15 +154,10 @@ export interface HtbContent {
   sub: string
   /** Labels of the stat tiles, the season card and the boxes list. */
   labels: {
-    rank: string
     points: string
-    ranking: string
     boxes: string
     bloods: string
-    nextRank: string
     season: string
-    seasonRank: string
-    seasonPoints: string
     seasonFlags: string
     nextLeague: string
     latest: string
@@ -170,7 +165,6 @@ export interface HtbContent {
     inProgress: string
     prevPage: string
     nextPage: string
-    filtersLabel: string
     filterOs: string
     filterLevel: string
     filterAll: string
@@ -180,7 +174,6 @@ export interface HtbContent {
     colDifficulty: string
     colOs: string
     colDate: string
-    root: string
     user: string
     noDate: string
     updated: string
