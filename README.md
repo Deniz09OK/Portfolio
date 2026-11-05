@@ -140,7 +140,8 @@ Portfolio/
 │   ├── fetch-htb.mjs           # Récupère les stats Hack The Box et écrit public/data/htb.json
 │   ├── htb-compare.mjs         # Décide si la synchro mérite d'être écrite (ignore les champs volatils non affichés)
 │   ├── fetch-thm.mjs           # Récupère les stats TryHackMe et écrit public/data/thm.json
-│   └── kanji-font.py           # Régénère public/fonts/noto-serif-jp-kanji.woff2 (kanji du site), lancé à la main
+│   ├── kanji-font.py           # Régénère public/fonts/noto-serif-jp-kanji.woff2 (kanji du site), lancé à la main
+│   └── clean-cv.py             # Nettoie les métadonnées des CV PDF, à lancer après chaque nouvel export
 ├── tests/                      # Tests de bout en bout
 │   ├── portfolio.spec.ts       # Suite Playwright
 │   ├── htb.spec.ts             # Pagination, filtres et swipe de la section Hack The Box
