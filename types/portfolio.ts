@@ -262,6 +262,8 @@ export interface LocaleContent {
   seoTitle: string
   /** Job title in the JSON-LD Person data of the page. */
   seoJobTitle: string
+  /** Text alternative of the Open Graph image of the page (public/og/og-<lang>.png). */
+  ogImageAlt: string
   /** Short, dedicated SEO summary (<=160 chars) — used for meta/OG/Twitter description instead of truncating the bio. */
   seoDescription: string
   hero: HeroContent

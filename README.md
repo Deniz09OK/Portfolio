@@ -183,6 +183,10 @@ Après chaque déploiement réussi sur `main`, le job `tag` de `deploy.yml` cré
 
 La page 404 est générée à partir de `error.vue` : Nuxt produit toujours `/404.html` comme une coquille vide remplie en JavaScript, la route `/404` est donc rendue côté serveur puis écrite dans `404.html` via le hook Nitro `prerender:generate` (voir `nuxt.config.ts`).
 
+### Images Open Graph
+
+Chaque langue a son image de partage 1200×630 : `public/og/og-fr.png`, `og-en.png` et `og-tr.png`, référencées en URL absolue par les balises `og:image` et `twitter:image` de sa page. Elles sont commitées et générées par `scripts/og-images.mjs` (Playwright, couleurs du site et polices auto-hébergées, aucune image tierce) : relancer `node scripts/og-images.mjs` après un changement d'intitulé (`CHROMIUM_PATH=/chemin/vers/chrome` pour utiliser un autre Chromium). Le script refuse une image de plus de 300 Ko.
+
 ### Statistiques Hack The Box
 
 La section « Hack The Box » lit `public/data/htb.json`, généré par `scripts/fetch-htb.mjs` (données publiques uniquement : rang, points, boxes résolues, saison en cours). Le workflow `.github/workflows/htb-sync.yml` l'exécute toutes les 12 h, à la demande, et à chaque push sur `main`, commite le JSON s'il a changé puis relance `deploy.yml`.

@@ -138,3 +138,29 @@ for (const { lang, path } of PAGES) {
     expect(Object.keys(person).sort()).toEqual(['@context', '@type', 'affiliation', 'description', 'image', 'jobTitle', 'knowsLanguage', 'name', 'sameAs', 'url'])
   })
 }
+
+/** Width and height read from the IHDR chunk of a PNG file. */
+function pngSize(buf: Buffer) {
+  expect(buf.subarray(1, 4).toString('latin1')).toBe('PNG')
+  return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) }
+}
+
+for (const { lang, path } of PAGES) {
+  test(`${path} shares its own 1200×630 Open Graph image, under 300 KB`, async ({ request }) => {
+    const html = await (await request.get(path)).text()
+    const image = `${SITE}/og/og-${lang}.png`
+    expect(tags(html, 'meta', { property: 'og:image' }).map((t) => t.content)).toEqual([image])
+    expect(tags(html, 'meta', { name: 'twitter:image' }).map((t) => t.content)).toEqual([image])
+    expect(tags(html, 'meta', { property: 'og:image:width' })[0]!.content).toBe('1200')
+    expect(tags(html, 'meta', { property: 'og:image:height' })[0]!.content).toBe('630')
+    expect(decode(tags(html, 'meta', { property: 'og:image:alt' })[0]!.content!)).toBe(portfolio[lang].ogImageAlt)
+
+    // The image itself is published next to the page (same path on the local server).
+    const res = await request.get(`/og/og-${lang}.png`)
+    expect(res.status()).toBe(200)
+    expect(res.headers()['content-type']).toBe('image/png')
+    const body = await res.body()
+    expect(pngSize(body)).toEqual({ width: 1200, height: 630 })
+    expect(body.length).toBeLessThan(300 * 1024)
+  })
+}

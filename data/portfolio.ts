@@ -8,6 +8,7 @@ export const portfolio: Portfolio = {
     ticker: ["ALTERNANCE CYBER & DEV WEB", "·", "DISPONIBLE IMMÉDIATEMENT", "·", "GRAND EST & LUXEMBOURG", "·", "MSc CYBERSÉCURITÉ & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUE FR/EN/TR", "·", "OUVERT AUX OPPORTUNITÉS", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
     seoTitle: "Deniz OK — Alternant Cybersécurité & Dev web · Epitech Nancy",
     seoJobTitle: "Alternant en cybersécurité et développement web",
+    ogImageAlt: "Deniz OK, alternant cybersécurité et dev web, Epitech Nancy",
     seoDescription: "Deniz OK — alternant en cybersécurité & développement web, MSc à Epitech Nancy. Disponible dès maintenant jusqu'en 09/2027, Grand Est & Luxembourg.",
 
     hero: {
@@ -173,6 +174,7 @@ export const portfolio: Portfolio = {
     ticker: ["CYBER & WEB DEV APPRENTICESHIP", "·", "AVAILABLE NOW", "·", "GRAND EST & LUXEMBOURG", "·", "MSc CYBERSECURITY & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUAL FR/EN/TR", "·", "OPEN TO WORK", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
     seoTitle: "Deniz OK — Cybersecurity & Web Dev Apprentice · Epitech Nancy",
     seoJobTitle: "Cybersecurity and web development apprentice",
+    ogImageAlt: "Deniz OK, cybersecurity and web dev apprentice, Epitech Nancy",
     seoDescription: "Deniz OK — cybersecurity & web development apprentice, MSc at Epitech Nancy. Available now until 09/2027, Grand Est & Luxembourg.",
     hero: {
       number: "619",
@@ -324,6 +326,7 @@ export const portfolio: Portfolio = {
     ticker: ["SİBER & WEB GELİŞTİRME DÖNÜŞÜMLÜ EĞİTİM", "·", "HEMEN MÜSAİT", "·", "GRAND EST & LÜKSEMBURG", "·", "MSc SİBER GÜVENLİK & BULUT", "·", "EPITECH NANCY", "·", "ÜÇ DİLLİ FR/EN/TR", "·", "YENİ FIRSATLARA AÇIĞIM", "·", "CANLI", "·", "PORTFOLYO 2026", "·"],
     seoTitle: "Deniz OK — Siber Güvenlik & Web Geliştirme · Dönüşümlü Eğitim · Epitech Nancy",
     seoJobTitle: "Siber güvenlik ve web geliştirme alanında dönüşümlü eğitim öğrencisi",
+    ogImageAlt: "Deniz OK, siber güvenlik ve web geliştirme dönüşümlü eğitim öğrencisi, Epitech Nancy",
     seoDescription: "Deniz OK — siber güvenlik & web geliştirme alanında dönüşümlü eğitim öğrencisi (MSc, Epitech Nancy). Hemen müsait, 09/2027'ye kadar, Grand Est & Lüksemburg.",
     hero: {
       number: "619",

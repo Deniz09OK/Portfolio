@@ -25,9 +25,7 @@ export default defineNuxtConfig({
         { name: 'author', content: 'Deniz OK' },
         { name: 'referrer', content: 'strict-origin-when-cross-origin' },
         { name: 'theme-color', content: '#0c0c10' },
-        // Title, description, canonical, hreflang and Open Graph text are set per language page in app.vue.
-        { property: 'og:image', content: 'https://portfolio-deniz.me/portrait.jpg' },
-        { name: 'twitter:image', content: 'https://portfolio-deniz.me/portrait.jpg' },
+        // Title, description, canonical, hreflang and Open Graph tags (text and image) are set per language page in app.vue.
       ],
       link: [
         {

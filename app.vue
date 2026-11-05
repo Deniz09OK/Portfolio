@@ -32,6 +32,8 @@ function personJsonLd(url: string) {
 // canonical and lists the two others as alternates (hreflang), with x-default on the root.
 useHead(() => {
   const url = SITE_URL + LANG_PATHS[lang.value]
+  // One Open Graph image per language (scripts/og-images.mjs), as an absolute URL.
+  const image = `${SITE_URL}/og/og-${lang.value}.png`
   const others = SITE_LANGS.filter((l) => l !== lang.value)
   return {
     htmlAttrs: { lang: lang.value },
@@ -51,7 +53,14 @@ useHead(() => {
       { property: 'og:description', content: content.value.seoDescription },
       { property: 'og:locale', content: OG_LOCALES[lang.value] },
       ...others.map((l) => ({ property: 'og:locale:alternate', content: OG_LOCALES[l], key: `og:locale:alternate-${l}` })),
+      { property: 'og:image', content: image },
+      { property: 'og:image:type', content: 'image/png' },
+      { property: 'og:image:width', content: '1200' },
+      { property: 'og:image:height', content: '630' },
+      { property: 'og:image:alt', content: content.value.ogImageAlt },
       { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:image', content: image },
+      { name: 'twitter:image:alt', content: content.value.ogImageAlt },
       { name: 'twitter:title', content: content.value.seoTitle },
       { name: 'twitter:description', content: content.value.seoDescription },
     ],
