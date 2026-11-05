@@ -148,6 +148,7 @@ Portfolio/
 ├── tests/                      # Tests de bout en bout
 │   ├── portfolio.spec.ts       # Suite Playwright
 │   ├── htb.spec.ts             # Pagination, filtres et swipe de la section Hack The Box
+│   ├── htb-notes.spec.ts       # Notes HTB : cartes, modale (clavier, fermeture), affichage à 360 px, contenu sans flag ni IP
 │   ├── htb-compare.unit.mjs    # Tests unitaires de la comparaison de la synchro HTB (node:test, sans navigateur)
 │   ├── woff2-cmap.ts           # Lecture des caractères d'un woff2 (test de couverture des kanji)
 │   ├── links.unit.mjs          # Tests unitaires : liens target="_blank" avec rel="noopener noreferrer"
