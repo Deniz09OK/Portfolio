@@ -258,6 +258,8 @@ export interface LocaleContent {
   sectionLabels: SectionLabels
   a11y: A11yContent
   ticker: string[]
+  /** Explicit page title (browser tab, search results, social previews). */
+  seoTitle: string
   /** Short, dedicated SEO summary (<=160 chars) — used for meta/OG/Twitter description instead of truncating the bio. */
   seoDescription: string
   hero: HeroContent

@@ -1,6 +1,9 @@
 import { test, expect, type Page } from '@playwright/test'
 import { portfolio } from '../data/portfolio'
 
+const SITE = 'https://portfolio-deniz.me'
+const OG_LOCALE = { fr: 'fr_FR', en: 'en_GB', tr: 'tr_TR' } as const
+
 // One page per language: French at the root, English and Turkish in their own prerendered folder.
 const PAGES = [
   { lang: 'fr', path: '/' },
@@ -80,4 +83,39 @@ test('unknown paths, including under /en/ and /tr/, still get the noindex 404 pa
     expect(res.status(), path).toBe(404)
     expect(await res.text(), path).toMatch(/<meta name="robots" content="noindex"/)
   }
+})
+
+/** Attribute values of the tags matching `tag` (e.g. 'link', 'meta') whose attributes contain all of `where`. */
+function tags(html: string, tag: string, where: Record<string, string>) {
+  return [...html.matchAll(new RegExp(`<${tag}\\b[^>]*>`, 'g'))]
+    .map((m) => Object.fromEntries([...m[0].matchAll(/([\w:-]+)="([^"]*)"/g)].map((a) => [a[1], a[2]])))
+    .filter((attrs) => Object.entries(where).every(([k, v]) => attrs[k] === v))
+}
+const decode = (s: string) => s.replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"')
+
+for (const { lang, path } of PAGES) {
+  test(`${path} has its own title, canonical, hreflang alternates and og:locale`, async ({ request }) => {
+    const html = await (await request.get(path)).text()
+    const content = portfolio[lang]
+
+    expect(decode(/<title>([^<]*)<\/title>/.exec(html)![1]!)).toBe(content.seoTitle)
+    expect(tags(html, 'link', { rel: 'canonical' }).map((t) => t.href)).toEqual([SITE + path])
+    expect(tags(html, 'meta', { property: 'og:url' }).map((t) => t.content)).toEqual([SITE + path])
+    expect(decode(tags(html, 'meta', { property: 'og:title' })[0]!.content!)).toBe(content.seoTitle)
+    expect(decode(tags(html, 'meta', { name: 'description' })[0]!.content!)).toBe(content.seoDescription)
+
+    // Every page lists all three versions and x-default (the root), with absolute URLs.
+    const alternates = Object.fromEntries(tags(html, 'link', { rel: 'alternate' }).map((t) => [t.hreflang, t.href]))
+    expect(alternates).toEqual({ fr: `${SITE}/`, en: `${SITE}/en/`, tr: `${SITE}/tr/`, 'x-default': `${SITE}/` })
+
+    expect(tags(html, 'meta', { property: 'og:locale' }).map((t) => t.content)).toEqual([OG_LOCALE[lang]])
+    const others = PAGES.filter((p) => p.lang !== lang).map((p) => OG_LOCALE[p.lang]).sort()
+    expect(tags(html, 'meta', { property: 'og:locale:alternate' }).map((t) => t.content).sort()).toEqual(others)
+  })
+}
+
+test('the 404 page is noindex and claims no canonical URL', async ({ request }) => {
+  const html = await (await request.get('/nope')).text()
+  expect(html).toMatch(/<meta name="robots" content="noindex"/)
+  expect(tags(html, 'link', { rel: 'canonical' })).toEqual([])
 })
