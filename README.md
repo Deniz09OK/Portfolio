@@ -114,6 +114,7 @@ Portfolio/
 │   ├── LiveTicker.vue          # Bandeau de défilement dynamique (style bandeau sportif)
 │   ├── HeroCard.vue            # Fiche joueur de présentation principale
 │   ├── MatchesSection.vue      # Section projets ("Card de la saison")
+│   ├── CaseStudy.vue           # Étude de cas (rubriques en texte ou en liste), projets et notes HTB
 │   ├── CareerSection.vue       # Expériences et Études ("Saisons jouées" sous forme de timeline)
 │   ├── DrillsSection.vue       # Compétences techniques ("Entraînement quotidien")
 │   ├── HtbStats.vue            # Statistiques Hack The Box (lit public/data/htb.json)

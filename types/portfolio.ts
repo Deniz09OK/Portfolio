@@ -89,6 +89,13 @@ export interface CaseStudySection {
   text: string
 }
 
+/** Case study section made of a list (HTB notes), numbered when `ordered` (steps of a sequence). */
+export interface CaseStudyListSection {
+  label: string
+  items: string[]
+  ordered?: boolean
+}
+
 export interface CareerContent {
   title: string
   eduLabel: string

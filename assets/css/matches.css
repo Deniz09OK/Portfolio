@@ -212,6 +212,19 @@ html.light .match::before { color: var(--accent-soft); opacity: 0.7; }
   line-height: 1.6;
   color: var(--ink-soft);
 }
+.match-case-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.match-case-list li { position: relative; padding-left: 22px; }
+.match-case-list li::before { content: "—"; position: absolute; left: 0; color: var(--muted); }
+.match-case-list--ordered { counter-reset: match-case-step; }
+.match-case-list--ordered li { counter-increment: match-case-step; padding-left: 34px; }
+.match-case-list--ordered li::before {
+  content: counter(match-case-step, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  line-height: 1.6rem;
+  color: var(--accent);
+}
 .match-links { display: flex; flex-wrap: wrap; gap: 12px; }
 .match-link {
   display: inline-flex;
