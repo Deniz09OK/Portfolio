@@ -532,6 +532,20 @@ test('the back-to-top button hands the keyboard focus to the page content', asyn
   await expect(page.locator('main#top')).not.toHaveAttribute('tabindex', /.*/)
 })
 
+test('every link opening a new tab has rel="noopener noreferrer"', async ({ page }) => {
+  for (const path of ['/', '/en/', '/tr/']) {
+    await page.goto(path)
+    // Archived project cards stay in the DOM (v-show): their links are checked too.
+    const links = await page.locator('a[target]:not([target="_self"])').evaluateAll((els) =>
+      els.map((a) => ({ href: a.getAttribute('href'), rel: (a.getAttribute('rel') ?? '').split(/\s+/) })),
+    )
+    expect(links.length, path).toBeGreaterThan(5)
+    for (const { href, rel } of links) {
+      expect(rel, `${path} ${href}`).toEqual(expect.arrayContaining(['noopener', 'noreferrer']))
+    }
+  }
+})
+
 test('the CIA and NSA project cards link to their architecture diagram', async ({ page, request }) => {
   await openSite(page)
   for (const [idx, file] of [['01', 'cia'], ['04', 'nsa']] as const) {
