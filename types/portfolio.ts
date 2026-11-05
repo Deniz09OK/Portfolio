@@ -189,6 +189,45 @@ export interface HtbContent {
     empty: string
     emptyLink: string
   }
+  /** HTB notes under the stats: cards opening a modal. */
+  notes: HtbNotesContent
+}
+
+/** Section of notes on retired HTB machines, shown under the HTB stats. */
+export interface HtbNotesContent {
+  /** Short label above the section (« Notes HTB »). */
+  label: string
+  /** Sentence introducing the notes. */
+  title: string
+  /** Muted line under the title (help from community walkthroughs). */
+  credit: string
+  /** Call to action of a card. */
+  cta: string
+  /** Eyebrow of the modal (« 01 / 03 · Note HTB »). */
+  eyebrow: string
+  closeLabel: string
+  /** Titles of the sections of a note. */
+  rubrics: { chain: string; flaws: string; pitfalls: string; defense: string; takeaway: string }
+  notes: HtbNote[]
+}
+
+/** One retired HTB machine replayed. Box name, OS and difficulty stay in English (as on Hack The Box). */
+export interface HtbNote {
+  /** Stable key, the same in every language. */
+  id: string
+  box: string
+  os: string
+  /** HTB difficulty ('Easy', 'Medium'...); empty while not confirmed: then not shown. */
+  difficulty: string
+  /** 2 or 3 keywords. */
+  keywords: string[]
+  /** Steps of the attack chain, in order. */
+  chain: string[]
+  flaws: string[]
+  /** Pitfalls met on my own setup; the section is left out when empty. */
+  pitfalls: string[]
+  defense: string[]
+  takeaway: string
 }
 
 /** Texts of the TryHackMe stats block (values come from public/data/thm.json). */

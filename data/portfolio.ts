@@ -120,6 +120,135 @@ export const portfolio: Portfolio = {
         "statsLabel": "Statistiques Hack The Box",
         "empty": "Les statistiques Hack The Box ne sont pas disponibles pour le moment.",
         "emptyLink": "Voir directement mon profil"
+      },
+      "notes": {
+        "label": "Notes HTB",
+        "title": "Ma façon de rejouer des machines HTB retirées : la méthode, les pièges rencontrés sur mon environnement (Kali sous WSL), et comment se protéger.",
+        "credit": "Réalisées avec l’appui de walkthroughs de la communauté.",
+        "cta": "Lire la note",
+        "eyebrow": "Note HTB",
+        "closeLabel": "Fermer",
+        "rubrics": {
+          "chain": "Chaîne d’attaque",
+          "flaws": "Failles",
+          "pitfalls": "Pièges rencontrés",
+          "defense": "Se protéger",
+          "takeaway": "Ce que j’en retiens"
+        },
+        "notes": [
+          {
+            "id": "support",
+            "box": "Support",
+            "os": "Windows",
+            "difficulty": "Easy",
+            "keywords": [
+              "AD",
+              "LDAP",
+              "RBCD"
+            ],
+            "chain": [
+              "Partage SMB anonyme",
+              "Binaire .NET dont le mot de passe est protégé par un simple XOR",
+              "Compte LDAP",
+              "Mot de passe stocké dans l’attribut « info »",
+              "Accès WinRM",
+              "Droit GenericAll sur le contrôleur de domaine",
+              "RBCD",
+              "Compte Administrateur"
+            ],
+            "flaws": [
+              "Secret en dur dans un binaire",
+              "Mot de passe dans un attribut d’annuaire lisible par tout utilisateur authentifié",
+              "Droits ACL trop larges",
+              "MachineAccountQuota laissé par défaut"
+            ],
+            "pitfalls": [
+              "L’horloge de WSL qui dérive et casse Kerberos : resynchronisation sur le contrôleur de domaine avec ntpdate (hwclock absent)",
+              "/etc/hosts réécrit au redémarrage",
+              "CrackMapExec remplacé par NetExec",
+              "MD4 désactivé sous OpenSSL 3"
+            ],
+            "defense": [
+              "Aucun secret dans un binaire ou un annuaire",
+              "Audit régulier des ACL (BloodHound)",
+              "MachineAccountQuota à 0"
+            ],
+            "takeaway": "Un secret rangé dans un annuaire ou un binaire n’est jamais caché, tout utilisateur authentifié peut le lire. Et un droit ACL qui semble anodin (GenericAll) suffit à prendre un domaine : auditer les droits compte autant que les mots de passe."
+          },
+          {
+            "id": "fireflow",
+            "box": "Fireflow",
+            "os": "Linux",
+            "difficulty": "Medium",
+            "keywords": [
+              "Kubernetes",
+              "JWT",
+              "RCE"
+            ],
+            "chain": [
+              "Exécution de code non authentifiée dans Langflow",
+              "JWT « alg:none » accepté par le MCP Registry",
+              "Exécution de code",
+              "Vol du token du Service Account",
+              "Exécution dans un pod via le kubelet",
+              "Pod avec accès au système de fichiers de l’hôte",
+              "Root"
+            ],
+            "flaws": [
+              "Algorithme du JWT non vérifié",
+              "Service Account aux droits trop larges",
+              "Pod avec accès à l’hôte"
+            ],
+            "pitfalls": [
+              "Un composant personnalisé Langflow qui échoue avec une erreur de validation tant qu’on laisse deux méthodes de journalisation (notées dans mon writeup)"
+            ],
+            "defense": [
+              "Mettre à jour Langflow",
+              "Refuser « alg:none »",
+              "Moindre privilège pour les Service Accounts",
+              "Interdire les montages hostPath",
+              "NetworkPolicies"
+            ],
+            "takeaway": "Dans Kubernetes, chaque couche fait confiance à la précédente : un jeton volé dans un pod devient un accès au cluster si les droits du Service Account sont larges. Le moindre privilège et la validation stricte des JWT sont des défenses simples et efficaces."
+          },
+          {
+            "id": "reactor",
+            "box": "Reactor",
+            "os": "Linux",
+            "difficulty": "",
+            "keywords": [
+              "Next.js",
+              "CVE",
+              "Node Inspector"
+            ],
+            "chain": [
+              "Application Next.js avec React en version candidate",
+              "CVE React2Shell (exécution de code avant authentification)",
+              "Shell",
+              "Hash MD5 d’un utilisateur cassé",
+              "SSH",
+              "Node Inspector actif sur un process root",
+              "Root"
+            ],
+            "flaws": [
+              "Version RC en production",
+              "Désérialisation vulnérable",
+              "Option --inspect active sur un process root",
+              "MD5 pour des mots de passe"
+            ],
+            "pitfalls": [
+              "Un reverse shell direct dans execSync échouait à cause de l’échappement du JSON : remplacé par un script servi en HTTP puis exécuté par curl",
+              "Les PoC Python automatiques se sont avérés instables, d’où une exploitation manuelle avec Burp Repeater"
+            ],
+            "defense": [
+              "Jamais de version RC en production",
+              "Jamais --inspect en production",
+              "Un hash moderne pour les mots de passe (bcrypt ou argon2)",
+              "Un process de monitoring sans droits root"
+            ],
+            "takeaway": "Un outil de débogage laissé actif sur un process root est une porte ouverte, même limitée à 127.0.0.1. Et une version candidate d’un framework ne va pas en production."
+          }
+        ]
       }
     },
     thm: {
@@ -277,6 +406,135 @@ export const portfolio: Portfolio = {
         "statsLabel": "Hack The Box stats",
         "empty": "Hack The Box stats are not available right now.",
         "emptyLink": "Open my profile directly"
+      },
+      "notes": {
+        "label": "HTB notes",
+        "title": "How I replay retired HTB machines: the method, the pitfalls I ran into on my setup (Kali on WSL), and how to defend against them.",
+        "credit": "Done with the help of community walkthroughs.",
+        "cta": "Read the note",
+        "eyebrow": "HTB note",
+        "closeLabel": "Close",
+        "rubrics": {
+          "chain": "Attack chain",
+          "flaws": "Flaws",
+          "pitfalls": "Pitfalls I ran into",
+          "defense": "How to defend",
+          "takeaway": "What I take away"
+        },
+        "notes": [
+          {
+            "id": "support",
+            "box": "Support",
+            "os": "Windows",
+            "difficulty": "Easy",
+            "keywords": [
+              "AD",
+              "LDAP",
+              "RBCD"
+            ],
+            "chain": [
+              "Anonymous SMB share",
+              ".NET binary whose password is protected by a simple XOR",
+              "LDAP account",
+              "Password stored in the “info” attribute",
+              "WinRM access",
+              "GenericAll right over the domain controller",
+              "RBCD",
+              "Administrator account"
+            ],
+            "flaws": [
+              "Secret hard-coded in a binary",
+              "Password in a directory attribute readable by any authenticated user",
+              "Overly broad ACL rights",
+              "MachineAccountQuota left at its default"
+            ],
+            "pitfalls": [
+              "The WSL clock drifting and breaking Kerberos: resynced against the domain controller with ntpdate (no hwclock)",
+              "/etc/hosts rewritten on restart",
+              "CrackMapExec replaced by NetExec",
+              "MD4 disabled in OpenSSL 3"
+            ],
+            "defense": [
+              "No secrets in a binary or a directory",
+              "Regular ACL audits (BloodHound)",
+              "MachineAccountQuota set to 0"
+            ],
+            "takeaway": "A secret stored in a directory or a binary is never hidden: any authenticated user can read it. And an ACL right that looks harmless (GenericAll) is enough to take over a domain: auditing rights matters as much as passwords."
+          },
+          {
+            "id": "fireflow",
+            "box": "Fireflow",
+            "os": "Linux",
+            "difficulty": "Medium",
+            "keywords": [
+              "Kubernetes",
+              "JWT",
+              "RCE"
+            ],
+            "chain": [
+              "Unauthenticated code execution in Langflow",
+              "JWT with “alg:none” accepted by the MCP Registry",
+              "Code execution",
+              "Theft of the Service Account token",
+              "Execution in a pod through the kubelet",
+              "Pod with access to the host file system",
+              "Root"
+            ],
+            "flaws": [
+              "JWT algorithm not checked",
+              "Service Account with overly broad rights",
+              "Pod with access to the host"
+            ],
+            "pitfalls": [
+              "A custom Langflow component failing with a validation error as long as two logging methods are left in (noted in my writeup)"
+            ],
+            "defense": [
+              "Update Langflow",
+              "Reject “alg:none”",
+              "Least privilege for Service Accounts",
+              "Forbid hostPath mounts",
+              "NetworkPolicies"
+            ],
+            "takeaway": "In Kubernetes, each layer trusts the previous one: a token stolen in a pod becomes access to the cluster if the Service Account has broad rights. Least privilege and strict JWT validation are simple and effective defences."
+          },
+          {
+            "id": "reactor",
+            "box": "Reactor",
+            "os": "Linux",
+            "difficulty": "",
+            "keywords": [
+              "Next.js",
+              "CVE",
+              "Node Inspector"
+            ],
+            "chain": [
+              "Next.js application running a release candidate of React",
+              "React2Shell CVE (pre-authentication code execution)",
+              "Shell",
+              "A user’s MD5 hash cracked",
+              "SSH",
+              "Node Inspector enabled on a root process",
+              "Root"
+            ],
+            "flaws": [
+              "Release candidate in production",
+              "Vulnerable deserialisation",
+              "--inspect option enabled on a root process",
+              "MD5 for passwords"
+            ],
+            "pitfalls": [
+              "A direct reverse shell in execSync failed because of JSON escaping: replaced by a script served over HTTP and run with curl",
+              "The automated Python PoCs proved unstable, hence a manual exploitation with Burp Repeater"
+            ],
+            "defense": [
+              "Never a release candidate in production",
+              "Never --inspect in production",
+              "A modern hash for passwords (bcrypt or argon2)",
+              "A monitoring process without root rights"
+            ],
+            "takeaway": "A debugging tool left enabled on a root process is an open door, even when limited to 127.0.0.1. And a release candidate of a framework does not go to production."
+          }
+        ]
       }
     },
     thm: {
@@ -429,6 +687,135 @@ export const portfolio: Portfolio = {
         "statsLabel": "Hack The Box istatistikleri",
         "empty": "Hack The Box istatistikleri şu anda kullanılamıyor.",
         "emptyLink": "Profilimi doğrudan aç"
+      },
+      "notes": {
+        "label": "HTB notları",
+        "title": "Emekliye ayrılmış HTB makinelerini nasıl yeniden çözdüğüm: yöntem, kendi ortamımda (WSL üzerinde Kali) karşılaştığım tuzaklar ve nasıl korunulacağı.",
+        "credit": "Topluluğun walkthrough’larından yardım alınarak hazırlandı.",
+        "cta": "Notu oku",
+        "eyebrow": "HTB notu",
+        "closeLabel": "Kapat",
+        "rubrics": {
+          "chain": "Saldırı zinciri",
+          "flaws": "Açıklar",
+          "pitfalls": "Karşılaştığım tuzaklar",
+          "defense": "Korunma",
+          "takeaway": "Çıkardığım ders"
+        },
+        "notes": [
+          {
+            "id": "support",
+            "box": "Support",
+            "os": "Windows",
+            "difficulty": "Easy",
+            "keywords": [
+              "AD",
+              "LDAP",
+              "RBCD"
+            ],
+            "chain": [
+              "Anonim SMB paylaşımı",
+              "Parolası basit bir XOR ile korunan .NET ikili dosyası",
+              "LDAP hesabı",
+              "“info” özniteliğinde saklanan parola",
+              "WinRM erişimi",
+              "Etki alanı denetleyicisi üzerinde GenericAll hakkı",
+              "RBCD",
+              "Administrator hesabı"
+            ],
+            "flaws": [
+              "İkili dosyaya gömülü sır",
+              "Kimliği doğrulanmış her kullanıcının okuyabildiği bir dizin özniteliğinde parola",
+              "Fazla geniş ACL hakları",
+              "Varsayılan değerinde bırakılmış MachineAccountQuota"
+            ],
+            "pitfalls": [
+              "WSL saatinin kayması ve Kerberos’u bozması: ntpdate ile etki alanı denetleyicisine göre yeniden eşitleme (hwclock yok)",
+              "Yeniden başlatmada üzerine yazılan /etc/hosts",
+              "CrackMapExec’in yerini NetExec’in alması",
+              "OpenSSL 3’te devre dışı bırakılmış MD4"
+            ],
+            "defense": [
+              "İkili dosyada ya da dizinde hiçbir sır bulunmaması",
+              "ACL’lerin düzenli denetimi (BloodHound)",
+              "MachineAccountQuota’nın 0’a ayarlanması"
+            ],
+            "takeaway": "Bir dizine ya da ikili dosyaya konan sır asla gizli değildir: kimliği doğrulanmış her kullanıcı onu okuyabilir. Zararsız görünen bir ACL hakkı (GenericAll) bir etki alanını ele geçirmeye yeter: hakları denetlemek, parolaları denetlemek kadar önemlidir."
+          },
+          {
+            "id": "fireflow",
+            "box": "Fireflow",
+            "os": "Linux",
+            "difficulty": "Medium",
+            "keywords": [
+              "Kubernetes",
+              "JWT",
+              "RCE"
+            ],
+            "chain": [
+              "Langflow’da kimlik doğrulaması gerektirmeyen kod çalıştırma",
+              "MCP Registry’nin kabul ettiği “alg:none” JWT",
+              "Kod çalıştırma",
+              "Service Account token’ının çalınması",
+              "kubelet üzerinden bir pod içinde komut çalıştırma",
+              "Ana makinenin dosya sistemine erişimi olan pod",
+              "Root"
+            ],
+            "flaws": [
+              "JWT algoritmasının doğrulanmaması",
+              "Fazla geniş haklara sahip Service Account",
+              "Ana makineye erişimi olan pod"
+            ],
+            "pitfalls": [
+              "İki günlükleme yöntemi bırakıldığı sürece doğrulama hatasıyla başarısız olan özel bir Langflow bileşeni (writeup’ımda not ettim)"
+            ],
+            "defense": [
+              "Langflow’u güncellemek",
+              "“alg:none” değerini reddetmek",
+              "Service Account’lar için en az yetki",
+              "hostPath bağlamalarını yasaklamak",
+              "NetworkPolicy’ler"
+            ],
+            "takeaway": "Kubernetes’te her katman bir öncekine güvenir: bir pod’da çalınan token, Service Account’un hakları genişse kümeye erişime dönüşür. En az yetki ilkesi ve JWT’lerin sıkı doğrulanması basit ve etkili savunmalardır."
+          },
+          {
+            "id": "reactor",
+            "box": "Reactor",
+            "os": "Linux",
+            "difficulty": "",
+            "keywords": [
+              "Next.js",
+              "CVE",
+              "Node Inspector"
+            ],
+            "chain": [
+              "React’in sürüm adayını (RC) kullanan Next.js uygulaması",
+              "React2Shell CVE’si (kimlik doğrulamadan önce kod çalıştırma)",
+              "Shell",
+              "Bir kullanıcının kırılan MD5 hash’i",
+              "SSH",
+              "Root olarak çalışan bir süreçte etkin Node Inspector",
+              "Root"
+            ],
+            "flaws": [
+              "Üretimde RC sürümü",
+              "Güvenlik açığı içeren seri durumdan çıkarma (deserialization)",
+              "Root olarak çalışan bir süreçte etkin --inspect seçeneği",
+              "Parolalar için MD5"
+            ],
+            "pitfalls": [
+              "execSync içindeki doğrudan reverse shell, JSON kaçışı yüzünden başarısız oldu: yerine HTTP ile sunulan ve curl ile çalıştırılan bir betik kullandım",
+              "Otomatik Python PoC’leri kararsız çıktı, bu yüzden Burp Repeater ile elle istismar ettim"
+            ],
+            "defense": [
+              "Üretimde asla RC sürümü kullanmamak",
+              "Üretimde asla --inspect kullanmamak",
+              "Parolalar için modern bir hash (bcrypt ya da argon2)",
+              "Root hakları olmayan bir izleme süreci"
+            ],
+            "takeaway": "Root olarak çalışan bir süreçte etkin bırakılan bir hata ayıklama aracı, yalnızca 127.0.0.1 ile sınırlı olsa bile açık bir kapıdır. Bir framework’ün sürüm adayı da üretime çıkmaz."
+          }
+        ]
       }
     },
     thm: {
