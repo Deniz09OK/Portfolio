@@ -148,6 +148,7 @@ Portfolio/
 │   ├── htb-compare.unit.mjs    # Tests unitaires de la comparaison de la synchro HTB (node:test, sans navigateur)
 │   ├── woff2-cmap.ts           # Lecture des caractères d'un woff2 (test de couverture des kanji)
 │   ├── links.unit.mjs          # Tests unitaires : liens target="_blank" avec rel="noopener noreferrer"
+│   ├── cv.unit.mjs             # Tests unitaires : métadonnées des CV PDF publiés
 │   └── serve.mjs               # Serveur statique reproduisant GitHub Pages (404.html)
 ├── public/                     # Ressources statiques
 │   ├── data/                   # Données synchronisées automatiquement
