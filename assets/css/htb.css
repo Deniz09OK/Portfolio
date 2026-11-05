@@ -114,6 +114,7 @@
 /* Solved boxes */
 .htb-boxes {
   --htb-row-h: 44px;
+  --htb-head-h: 32px;
   margin-top: 16px;
   background: var(--bg-panel);
   border: 1px solid var(--line);
@@ -188,14 +189,17 @@
 .htb-reset.is-visible { visibility: visible; }
 .htb-no-result { padding: 28px 0; color: var(--muted); }
 
-/* Boxes list: a 4-column grid with fixed-height rows. The viewport always holds a full page of rows,
-   so filtering or reaching a short last page never moves the content below it. */
-.htb-table { margin-top: 12px; }
+/* Boxes list: a <table> laid out as a 4-column grid with fixed-height rows. The viewport holds the header and
+   always a full page of rows, so filtering or reaching a short last page never moves the content below it. */
 .htb-viewport {
-  min-height: calc((var(--htb-row-h) + var(--htb-row-gap, 0px)) * var(--htb-page, 5) - var(--htb-row-gap, 0px));
+  margin-top: 12px;
+  min-height: calc(var(--htb-head-h) + (var(--htb-row-h) + var(--htb-row-gap, 0px)) * var(--htb-page, 5) - var(--htb-row-gap, 0px));
   touch-action: pan-y;
 }
-.htb-list { list-style: none; }
+/* :where() keeps these resets at zero specificity: the grid of .htb-row and, on small screens, of .htb-list wins. */
+:where(.htb-table, .htb-table thead, .htb-table tbody, .htb-table tr, .htb-no-result) { display: block; }
+.htb-table th,
+.htb-table td { font-weight: inherit; text-align: start; }
 .htb-page-enter-active, .htb-page-leave-active { transition: opacity 160ms ease, transform 160ms ease; }
 .htb-page-enter-from, .htb-page-leave-to { opacity: 0; transform: translateY(6px); }
 @media (prefers-reduced-motion: reduce) {
@@ -243,7 +247,7 @@
   border-bottom: 1px solid var(--line);
   font-size: 15px;
 }
-.htb-row--head { height: 32px; font-size: 12px; color: var(--muted); border-bottom-color: var(--line-strong); }
+.htb-row--head { height: var(--htb-head-h); font-size: 12px; color: var(--muted); border-bottom-color: var(--line-strong); }
 .htb-name { font-family: var(--display); font-size: 22px; line-height: 1; letter-spacing: 0.02em; color: var(--ink); overflow-wrap: anywhere; }
 .htb-date { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 .htb-diff, .htb-flag { font-size: 12px; display: inline-flex; align-items: center; gap: 8px; }
@@ -263,7 +267,7 @@
 
 /* Small screens: the table becomes compact cards (name + difficulty, then system + date) of a fixed height */
 @media (max-width: 720px) {
-  .htb-boxes { --htb-row-h: 64px; --htb-row-gap: 8px; padding: 16px; }
+  .htb-boxes { --htb-row-h: 64px; --htb-row-gap: 8px; --htb-head-h: 0px; padding: 16px; }
   .htb-row--head { display: none; }
   .htb-list { display: grid; gap: var(--htb-row-gap); }
   .htb-row {
