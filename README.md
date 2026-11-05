@@ -145,6 +145,7 @@ Portfolio/
 │   ├── portfolio.spec.ts       # Suite Playwright
 │   ├── htb.spec.ts             # Pagination, filtres et swipe de la section Hack The Box
 │   ├── htb-compare.unit.mjs    # Tests unitaires de la comparaison de la synchro HTB (node:test, sans navigateur)
+│   ├── woff2-cmap.ts           # Lecture des caractères d'un woff2 (test de couverture des kanji)
 │   └── serve.mjs               # Serveur statique reproduisant GitHub Pages (404.html)
 ├── public/                     # Ressources statiques
 │   ├── data/                   # Données synchronisées automatiquement

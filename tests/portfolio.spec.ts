@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { test, expect, type Page } from '@playwright/test'
 import { portfolio } from '../data/portfolio'
+import { woff2CodePoints } from './woff2-cmap'
 
 const LANGS = ['fr', 'en', 'tr'] as const
 type Lang = (typeof LANGS)[number]
@@ -315,24 +316,52 @@ test('the CSP is set and blocks nothing on the page', async ({ page }) => {
   expect(errors).toEqual([])
 })
 
-test('every kanji has a self-hosted Noto Serif JP subset', async ({ page }) => {
+// Japanese and CJK scripts, as in scripts/kanji-font.py: punctuation, kana, ideographs, full-width forms.
+const JAPANESE = /[\u3000-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff00-\uffef]/gu
+const KANJI_FONT = 'public/fonts/noto-serif-jp-kanji.woff2'
+
+test('the kanji font covers every Japanese character of the site', async ({ request }) => {
+  // Every Japanese character of the content (all languages) and of the prerendered pages.
+  const chars = new Set(JSON.stringify(portfolio).match(JAPANESE) ?? [])
+  for (const path of ['/', '/en/', '/tr/']) {
+    for (const c of (await (await request.get(path)).text()).match(JAPANESE) ?? []) chars.add(c)
+  }
+  expect(chars.size).toBeGreaterThan(0)
+
+  const inFont = woff2CodePoints(readFileSync(KANJI_FONT))
+  const rule = readFileSync('assets/css/fonts.css', 'utf8').match(/font-family: 'Noto Serif JP';[^}]*?unicode-range: ([^;]*);/)
+  expect(rule, 'the Noto Serif JP @font-face rule of assets/css/fonts.css').not.toBeNull()
+  const inRange = new Set(rule![1]!.split(',').map((r) => parseInt(r.trim().replace(/^U\+/i, ''), 16)))
+
+  for (const char of [' ', ...chars]) {
+    const cp = char.codePointAt(0)!
+    const label = `${char === ' ' ? 'space' : char} (U+${cp.toString(16).toUpperCase()}): run python3 scripts/kanji-font.py`
+    expect(inFont.has(cp), `${label}, missing from ${KANJI_FONT}`).toBe(true)
+    expect(inRange.has(cp), `${label}, missing from the unicode-range`).toBe(true)
+  }
+})
+
+test('kanji render with the self-hosted kanji font at weight 900', async ({ page }) => {
+  const fonts: string[] = []
+  page.on('request', (r) => {
+    if (r.url().includes('/fonts/noto-serif-jp')) fonts.push(new URL(r.url()).pathname)
+  })
   await openSite(page)
-  // unicode-range of the Noto Serif JP @font-face rules (assets/css/fonts.css), as [first, last] code points.
-  const ranges = await page.evaluate(() =>
+  await page.locator('#off').scrollIntoViewIfNeeded()
+  await page.evaluate(() => document.fonts.ready)
+
+  const faces = await page.evaluate(() =>
     [...document.fonts]
       .filter((f) => f.family.replace(/["']/g, '') === 'Noto Serif JP')
-      .flatMap((f) => f.unicodeRange.split(',').map((r) => {
-        const [first = '', last = first] = r.trim().replace(/^U\+/i, '').split('-')
-        return [parseInt(first, 16), parseInt(last, 16)] as const
-      })),
+      .map((f) => ({ weight: f.weight, status: f.status })),
   )
-  for (const lang of LANGS) {
-    const { hero, projects, off } = portfolio[lang]
-    for (const char of [hero.kanji, ...projects.map((p) => p.kanji), ...off.items.map((i) => i.kanji)].join('')) {
-      const cp = char.codePointAt(0)!
-      const label = `${char} (U+${cp.toString(16).toUpperCase()}) needs its Google subset in assets/css/fonts.css`
-      expect(ranges.some(([first, last]) => cp >= first && cp <= last), label).toBe(true)
-    }
+  expect(faces).toEqual([{ weight: '900', status: 'loaded' }])
+  expect([...new Set(fonts)]).toEqual(['/fonts/noto-serif-jp-kanji.woff2'])
+
+  for (const sel of ['.hero-kanji-overlay', '.match-kanji', '.off-kanji']) {
+    const el = page.locator(sel).first()
+    expect(await el.evaluate((e) => getComputedStyle(e).fontWeight), sel).toBe('900')
+    expect(await el.evaluate((e) => getComputedStyle(e).fontFamily), sel).toMatch(/^"?Noto Serif JP"?,/)
   }
 })
 
