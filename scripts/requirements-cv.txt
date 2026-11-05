@@ -1,0 +1,2 @@
+# Dépendance de scripts/clean-cv.py (pip install -r scripts/requirements-cv.txt)
+pikepdf==9.4.2

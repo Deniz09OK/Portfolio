@@ -283,29 +283,38 @@ const seasonPct = computed(() => {
             </div>
           </div>
 
-          <div class="htb-table">
-            <div class="htb-row htb-row--head" aria-hidden="true">
-              <span>{{ t.colBox }}</span>
-              <span>{{ t.colDifficulty }}</span>
-              <span>{{ t.colOs }}</span>
-              <span>{{ t.colDate }}</span>
-            </div>
-            <div class="htb-viewport" @touchstart.passive="onTouchStart" @touchend.passive="onTouchEnd">
+          <!-- Semantic table laid out as a grid (see htb.css): the explicit roles keep the table semantics in
+               browsers that drop them when the display of table elements is changed (Safari). -->
+          <div class="htb-viewport" @touchstart.passive="onTouchStart" @touchend.passive="onTouchEnd">
+            <table class="htb-table" role="table">
+              <caption class="visually-hidden">{{ t.boxesTitle }} · {{ rooted.length }}</caption>
+              <thead role="rowgroup">
+                <tr class="htb-row htb-row--head" role="row">
+                  <th scope="col" role="columnheader">{{ t.colBox }}</th>
+                  <th scope="col" role="columnheader">{{ t.colDifficulty }}</th>
+                  <th scope="col" role="columnheader">{{ t.colOs }}</th>
+                  <th scope="col" role="columnheader">{{ t.colDate }}</th>
+                </tr>
+              </thead>
               <Transition name="htb-page" mode="out-in">
-                <ul v-if="filtered.length" :key="`${osFilter}|${levelFilter}|${currentPage}`" class="htb-list">
-                  <li v-for="b in pageItems" :key="b.name" class="htb-row">
-                    <span class="htb-name" lang="en">{{ b.name }}</span>
-                    <span class="htb-diff" :class="diffClass(b.difficulty)" lang="en">{{ b.difficulty }}</span>
-                    <span class="htb-os" lang="en">{{ b.os }}</span>
-                    <span class="htb-date">
+                <tbody v-if="filtered.length" :key="`${osFilter}|${levelFilter}|${currentPage}`" class="htb-list" role="rowgroup">
+                  <tr v-for="b in pageItems" :key="b.name" class="htb-row" role="row">
+                    <th scope="row" role="rowheader" class="htb-name" lang="en">{{ b.name }}</th>
+                    <td role="cell" class="htb-diff" :class="diffClass(b.difficulty)" lang="en">{{ b.difficulty }}</td>
+                    <td role="cell" class="htb-os" lang="en">{{ b.os }}</td>
+                    <td role="cell" class="htb-date">
                       <time v-if="b.solvedAt" :datetime="b.solvedAt" :title="fmt(b.solvedAt)">{{ dayMonth(b.solvedAt) }}</time>
                       <template v-else>{{ t.noDate }}</template>
-                    </span>
-                  </li>
-                </ul>
-                <p v-else key="empty" class="htb-no-result" role="status">{{ t.noResult }}</p>
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody v-else key="empty" role="rowgroup">
+                  <tr role="row">
+                    <td role="cell" colspan="4" class="htb-no-result"><span role="status">{{ t.noResult }}</span></td>
+                  </tr>
+                </tbody>
               </Transition>
-            </div>
+            </table>
           </div>
 
           <div class="htb-pager">
@@ -339,13 +348,13 @@ const seasonPct = computed(() => {
 
         <p class="htb-foot">
           <span>{{ t.updated }} : <time :datetime="data.updatedAt">{{ fmt(data.updatedAt, true) }}</time></span>
-          <a class="drill-proof htb-link" :href="profileUrl" target="_blank" rel="noopener">{{ t.profile }} <span aria-hidden="true">↗</span></a>
+          <a class="drill-proof htb-link" :href="profileUrl" target="_blank" rel="noopener noreferrer">{{ t.profile }} <span aria-hidden="true">↗</span></a>
         </p>
       </template>
 
       <div v-else class="htb-empty" role="status">
         <p>{{ t.empty }}</p>
-        <a class="drill-proof htb-link" :href="profileUrl" target="_blank" rel="noopener">{{ t.emptyLink }} <span aria-hidden="true">↗</span></a>
+        <a class="drill-proof htb-link" :href="profileUrl" target="_blank" rel="noopener noreferrer">{{ t.emptyLink }} <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </section>

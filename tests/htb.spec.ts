@@ -1,6 +1,7 @@
 import { test, expect, type Page } from '@playwright/test'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { portfolio } from '../data/portfolio'
 
 interface Box {
   name: string
@@ -153,5 +154,62 @@ test.describe('HTB boxes on small screens', () => {
     await expect(range(page)).toHaveText(new RegExp(`^${PAGE_SIZE + 1}`))
     await swipe(100, 300)
     await expect(range(page)).toHaveText(new RegExp('^1'))
+  })
+})
+
+test.describe('HTB boxes table semantics', () => {
+  for (const [path, lang] of [['/', 'fr'], ['/en/', 'en'], ['/tr/', 'tr']] as const) {
+    test(`is a real table with caption and header cells (${lang})`, async ({ page }) => {
+      const t = portfolio[lang].htb.labels
+      await page.goto(path)
+      await page.locator('#htb').scrollIntoViewIfNeeded()
+
+      const table = page.getByRole('table', { name: `${t.boxesTitle} · ${rooted.length}`, exact: true })
+      await expect(table).toHaveCount(1)
+      await expect(table.locator('caption')).toHaveText(`${t.boxesTitle} · ${rooted.length}`)
+
+      // Column headers: hidden on small screens (display: none), still in the markup.
+      const cols = table.locator('thead th[scope="col"]')
+      await expect(cols).toHaveText([t.colBox, t.colDifficulty, t.colOs, t.colDate])
+      await expect(table.getByRole('columnheader', { includeHidden: true })).toHaveCount(4)
+
+      const bodyRows = table.locator('tbody tr')
+      await expect(bodyRows).toHaveCount(Math.min(PAGE_SIZE, rooted.length))
+      for (const [i, box] of rooted.slice(0, PAGE_SIZE).entries()) {
+        const row = bodyRows.nth(i)
+        await expect(row.locator('th[scope="row"]')).toHaveText(box.name)
+        await expect(row.locator('td')).toHaveCount(3)
+      }
+      await expect(table.getByRole('rowheader', { name: rooted[0]!.name, exact: true })).toBeVisible()
+      await expect(table.getByRole('cell', { name: rooted[0]!.difficulty, exact: true }).first()).toBeVisible()
+    })
+  }
+})
+
+test.describe('HTB boxes table at 360 px', () => {
+  test.use({ viewport: { width: 360, height: 740 } })
+
+  test('shows one card per row, inside the block and without horizontal scrolling', async ({ page }) => {
+    await openHtb(page)
+    await expect(page.locator('#htb .htb-row--head')).toBeHidden()
+    await expect(rows(page)).toHaveCount(Math.min(PAGE_SIZE, rooted.length))
+
+    const layout = await page.evaluate(() => {
+      const block = document.querySelector('#htb .htb-boxes')!.getBoundingClientRect()
+      const cards = [...document.querySelectorAll('#htb .htb-list .htb-row')].map((r) => r.getBoundingClientRect())
+      const cells = [...document.querySelectorAll('#htb .htb-list .htb-row > *')]
+      return {
+        pageOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        outside: cards.filter((c) => c.left < block.left || c.right > block.right).length,
+        heights: [...new Set(cards.map((c) => Math.round(c.height)))],
+        gaps: cards.slice(1).map((c, i) => Math.round(c.top - cards[i]!.bottom)),
+        clipped: cells.filter((c) => c.scrollWidth > c.clientWidth + 1).map((c) => c.textContent),
+      }
+    })
+    expect(layout.pageOverflow).toBeLessThanOrEqual(0)
+    expect(layout.outside).toBe(0)
+    expect(layout.heights).toEqual([64])
+    for (const gap of layout.gaps) expect(gap).toBe(8)
+    expect(layout.clipped).toEqual([])
   })
 })

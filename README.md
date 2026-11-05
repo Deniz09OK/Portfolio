@@ -126,6 +126,7 @@ Portfolio/
 │   ├── useLang.ts              # Gestion de l'internationalisation (FR / EN / TR)
 │   ├── useTheme.ts             # Gestionnaire de thème sombre/clair
 │   └── useThm.ts               # Chargement et validation de public/data/thm.json
+├── fonts-src/noto-serif-jp/     # Sous-ensembles Google Fonts de Noto Serif JP (non publiés), source de scripts/kanji-font.py
 ├── data/                       # Données de l'application
 │   └── portfolio.ts            # Données structurées et traduites du portfolio
 ├── types/                      # Définitions TypeScript
@@ -138,11 +139,16 @@ Portfolio/
 ├── scripts/                    # Scripts Node lancés par la CI
 │   ├── fetch-htb.mjs           # Récupère les stats Hack The Box et écrit public/data/htb.json
 │   ├── htb-compare.mjs         # Décide si la synchro mérite d'être écrite (ignore les champs volatils non affichés)
-│   └── fetch-thm.mjs           # Récupère les stats TryHackMe et écrit public/data/thm.json
+│   ├── fetch-thm.mjs           # Récupère les stats TryHackMe et écrit public/data/thm.json
+│   ├── kanji-font.py           # Régénère public/fonts/noto-serif-jp-kanji.woff2 (kanji du site), lancé à la main
+│   └── clean-cv.py             # Nettoie les métadonnées des CV PDF, à lancer après chaque nouvel export
 ├── tests/                      # Tests de bout en bout
 │   ├── portfolio.spec.ts       # Suite Playwright
 │   ├── htb.spec.ts             # Pagination, filtres et swipe de la section Hack The Box
 │   ├── htb-compare.unit.mjs    # Tests unitaires de la comparaison de la synchro HTB (node:test, sans navigateur)
+│   ├── woff2-cmap.ts           # Lecture des caractères d'un woff2 (test de couverture des kanji)
+│   ├── links.unit.mjs          # Tests unitaires : liens target="_blank" avec rel="noopener noreferrer"
+│   ├── cv.unit.mjs             # Tests unitaires : métadonnées des CV PDF publiés
 │   └── serve.mjs               # Serveur statique reproduisant GitHub Pages (404.html)
 ├── public/                     # Ressources statiques
 │   ├── data/                   # Données synchronisées automatiquement

@@ -85,7 +85,7 @@ const cvUrl = computed(() => CV_URLS[lang.value])
         <a class="cta cta-primary" href="#matches">
           <span>{{ hero.cta1 }}</span> <span class="cta-arr" aria-hidden="true">→</span>
         </a>
-        <a class="cta cta-ghost" :href="cvUrl" target="_blank" rel="noopener">
+        <a class="cta cta-ghost" :href="cvUrl" target="_blank" rel="noopener noreferrer">
           <span>{{ hero.cta2 }}</span> <span class="cta-arr" aria-hidden="true">↓</span>
         </a>
         <a class="cta cta-ghost" href="#contact">

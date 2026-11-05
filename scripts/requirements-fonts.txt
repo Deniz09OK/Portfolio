@@ -1,0 +1,3 @@
+# Dépendances de scripts/kanji-font.py (pip install -r scripts/requirements-fonts.txt)
+fonttools==4.55.3
+brotli==1.2.1
