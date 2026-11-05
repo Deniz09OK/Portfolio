@@ -164,3 +164,27 @@ for (const { lang, path } of PAGES) {
     expect(body.length).toBeLessThan(300 * 1024)
   })
 }
+
+test('the sitemap lists the three language pages with a lastmod and their alternates', async ({ request }) => {
+  const res = await request.get('/sitemap.xml')
+  expect(res.status()).toBe(200)
+  expect(res.headers()['content-type']).toContain('xml')
+  const xml = await res.text()
+  expect(xml).toContain('xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"')
+
+  const urls = [...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((m) => m[1]!)
+  expect(urls.map((u) => /<loc>([^<]*)<\/loc>/.exec(u)![1])).toEqual(PAGES.map((p) => SITE + p.path))
+  for (const u of urls) {
+    // lastmod: a full W3C date-time (date of the last commit, or of the build).
+    const lastmod = /<lastmod>([^<]*)<\/lastmod>/.exec(u)![1]!
+    expect(lastmod).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/)
+    expect(Number.isNaN(Date.parse(lastmod))).toBe(false)
+    const alternates = Object.fromEntries([...u.matchAll(/hreflang="([^"]+)" href="([^"]+)"/g)].map((m) => [m[1], m[2]]))
+    expect(alternates).toEqual({ fr: `${SITE}/`, en: `${SITE}/en/`, tr: `${SITE}/tr/`, 'x-default': `${SITE}/` })
+  }
+})
+
+test('robots.txt points to the sitemap', async ({ request }) => {
+  const robots = await (await request.get('/robots.txt')).text()
+  expect(robots).toMatch(/^Sitemap: https:\/\/portfolio-deniz\.me\/sitemap\.xml$/m)
+})

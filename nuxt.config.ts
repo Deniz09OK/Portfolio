@@ -1,3 +1,17 @@
+import { execSync } from 'node:child_process'
+
+/**
+ * Date of the last commit (ISO 8601), for the sitemap lastmod. Works with the shallow checkout of GitHub Actions
+ * (the HEAD commit is always there); falls back to the build date when git or the history is unavailable.
+ */
+function lastCommitDate(): string {
+  try {
+    const date = execSync('git log -1 --format=%cI', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim()
+    if (date && !Number.isNaN(Date.parse(date))) return date
+  } catch { /* no git: build date below */ }
+  return new Date().toISOString()
+}
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // Configured for GitHub Pages deployment
 export default defineNuxtConfig({
@@ -37,6 +51,11 @@ export default defineNuxtConfig({
     },
   },
 
+  // Server-only (not "public"): never sent to the browser. Read by server/routes/sitemap.xml.ts at prerender time.
+  runtimeConfig: {
+    sitemapLastmod: lastCommitDate(),
+  },
+
   // Global stylesheet (the original arena design system).
   css: ['~/assets/css/arena.css'],
 
@@ -48,7 +67,7 @@ export default defineNuxtConfig({
   // empty SPA shell, so render /404 (error.vue, server-side) and write it to 404.html instead.
   nitro: {
     // /en/ and /tr/: the same page, prerendered in English and Turkish (the language comes from the URL).
-    prerender: { routes: ['/404', '/en/', '/tr/'] },
+    prerender: { routes: ['/404', '/en/', '/tr/', '/sitemap.xml'] },
   },
   hooks: {
     'nitro:init'(nitro) {
