@@ -121,6 +121,7 @@ Portfolio/
 │   ├── ThmStats.vue            # Statistiques TryHackMe (lit public/data/thm.json)
 │   ├── OffCourtSection.vue     # Activités annexes ("Hors du clavier")
 │   ├── OffModal.vue            # Composant modale pour le détail des activités annexes
+│   ├── ArenaModal.vue          # Cadre de modale partagé (focus, Tab, Échap, défilement bloqué)
 │   ├── LanguagesSection.vue    # Indicateurs de maîtrise linguistique
 │   └── ContactSection.vue      # Liens de contact ("Sifflet final")
 ├── composables/                # Logique réutilisable
