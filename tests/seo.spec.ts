@@ -188,3 +188,19 @@ test('robots.txt points to the sitemap', async ({ request }) => {
   const robots = await (await request.get('/robots.txt')).text()
   expect(robots).toMatch(/^Sitemap: https:\/\/portfolio-deniz\.me\/sitemap\.xml$/m)
 })
+
+test('security.txt is published with the four RFC 9116 fields', async ({ request }) => {
+  const res = await request.get('/.well-known/security.txt')
+  expect(res.status()).toBe(200)
+  expect(res.headers()['content-type']).toContain('text/plain')
+  const lines = (await res.text()).split(/\r?\n/).filter((l) => l.trim() && !l.startsWith('#'))
+  // Format only ("Field: value" lines); the expiry date is not compared with today (renewal is a manual task).
+  for (const line of lines) expect(line).toMatch(/^[A-Za-z-]+: \S.*$/)
+  const fields = Object.fromEntries(lines.map((l) => [l.slice(0, l.indexOf(':')), l.slice(l.indexOf(':') + 1).trim()]))
+  expect(Object.keys(fields).sort()).toEqual(['Canonical', 'Contact', 'Expires', 'Preferred-Languages'])
+  expect(fields.Contact).toBe('mailto:deniz16ok@gmail.com')
+  expect(fields.Expires).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$/)
+  expect(Number.isNaN(Date.parse(fields.Expires!))).toBe(false)
+  expect(fields['Preferred-Languages']).toBe('fr, en, tr')
+  expect(fields.Canonical).toBe('https://portfolio-deniz.me/.well-known/security.txt')
+})
