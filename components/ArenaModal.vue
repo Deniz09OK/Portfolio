@@ -1,16 +1,18 @@
 <script setup lang="ts">
 // Dialog frame shared by the off-court modal and the HTB notes modal: backdrop, close button, focus moved into the
 // dialog and given back on close, Tab / Shift+Tab kept inside, Escape to close, page scroll locked while open.
-// The content goes in the default slot; the look comes from the .off-modal* classes (offcourt.css).
-const props = defineProps<{
+// The content goes in the default slot. The frame is styled by .arena-modal and the .off-modal-* classes (offcourt.css).
+const props = withDefaults(defineProps<{
   open: boolean
   /** Id of the element of the slot that names the dialog. */
   labelledby: string
   closeLabel: string
+  /** Class naming this dialog (the off-court modal keeps .off-modal), unique on the page. */
+  rootClass?: string
   /** Extra classes and CSS custom properties of the dialog root. */
   modalClass?: Record<string, boolean> | string
   modalStyle?: Record<string, string>
-}>()
+}>(), { rootClass: 'off-modal', modalClass: undefined, modalStyle: undefined })
 
 const emit = defineEmits<{ close: [] }>()
 
@@ -77,8 +79,8 @@ onBeforeUnmount(() => {
 <template>
   <Teleport to="body">
     <div
-      class="off-modal"
-      :class="[{ 'is-open': open }, modalClass]"
+      class="arena-modal"
+      :class="[rootClass, { 'is-open': open }, modalClass]"
       :style="modalStyle"
       role="dialog"
       aria-modal="true"

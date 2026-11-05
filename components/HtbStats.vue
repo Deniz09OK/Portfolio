@@ -356,6 +356,8 @@ const seasonPct = computed(() => {
         <p>{{ t.empty }}</p>
         <a class="drill-proof htb-link" :href="profileUrl" target="_blank" rel="noopener noreferrer">{{ t.emptyLink }} <span aria-hidden="true">↗</span></a>
       </div>
+
+      <HtbNotes />
     </div>
   </section>
 </template>

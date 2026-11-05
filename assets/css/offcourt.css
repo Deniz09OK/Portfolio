@@ -98,7 +98,8 @@
 html.modal-lock,
 html.modal-lock body { overflow: hidden; }
 
-.off-modal {
+/* Frame shared by every modal (ArenaModal): the off-court modal and the HTB notes modal. */
+.arena-modal {
   position: fixed;
   inset: 0;
   z-index: 200;
@@ -110,7 +111,7 @@ html.modal-lock body { overflow: hidden; }
   pointer-events: none;
   transition: opacity 220ms ease;
 }
-.off-modal.is-open {
+.arena-modal.is-open {
   opacity: 1;
   pointer-events: auto;
 }
@@ -134,7 +135,7 @@ html.modal-lock body { overflow: hidden; }
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
 }
 .off-modal-card:focus { outline: none; }
-.off-modal.is-open .off-modal-card {
+.arena-modal.is-open .off-modal-card {
   transform: translateY(0) scale(1);
 }
 .off-modal-stripe {

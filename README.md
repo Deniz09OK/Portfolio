@@ -118,6 +118,7 @@ Portfolio/
 │   ├── CareerSection.vue       # Expériences et Études ("Saisons jouées" sous forme de timeline)
 │   ├── DrillsSection.vue       # Compétences techniques ("Entraînement quotidien")
 │   ├── HtbStats.vue            # Statistiques Hack The Box (lit public/data/htb.json)
+│   ├── HtbNotes.vue            # Notes HTB sous les statistiques : 3 cartes ouvrant une modale (ArenaModal + CaseStudy)
 │   ├── ThmStats.vue            # Statistiques TryHackMe (lit public/data/thm.json)
 │   ├── OffCourtSection.vue     # Activités annexes ("Hors du clavier")
 │   ├── OffModal.vue            # Composant modale pour le détail des activités annexes
