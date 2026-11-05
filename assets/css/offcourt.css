@@ -144,6 +144,9 @@ html.modal-lock body { overflow: hidden; }
   from { transform: translateY(14px) scale(0.985); }
   to { transform: translateY(0) scale(1); }
 }
+/* Promoted to their own layer only while they animate (ArenaModal sets .is-animating, then removes it). */
+.arena-modal.is-animating { will-change: opacity; }
+.arena-modal.is-animating .off-modal-card { will-change: transform; }
 .off-modal-stripe {
   position: absolute;
   inset: 0 0 auto 0;

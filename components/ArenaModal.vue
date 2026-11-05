@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // Dialog frame shared by the off-court modal and the HTB notes modal: backdrop, close button, focus moved into the
-// dialog and given back on close, Tab / Shift+Tab kept inside, Escape to close, page scroll locked while open.
+// dialog and given back on close, Tab / Shift+Tab kept inside, Escape to close, page scroll locked while open,
+// will-change set only while it animates.
 // The content goes in the default slot. The frame is styled by .arena-modal and the .off-modal-* classes (offcourt.css).
 const props = withDefaults(defineProps<{
   open: boolean
@@ -16,8 +17,40 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{ close: [] }>()
 
+const root = ref<HTMLElement | null>(null)
 const card = ref<HTMLElement | null>(null)
 let opener: HTMLElement | null = null
+
+// will-change only while the dialog animates (.is-animating): opacity of the root on open and close, transform of
+// the card on open. The class goes once each expected animation has ended; animationend and transitionend bubble up
+// from the children (buttons, links), so only events whose target is the root or the card count. A timer removes it
+// anyway if an end event never comes. Never set with prefers-reduced-motion (nothing is animated then).
+const animating = ref(false)
+const MOTION_FALLBACK_MS = 350
+let pending = new Set<'root' | 'card'>()
+let fallback: ReturnType<typeof setTimeout> | undefined
+
+function stopAnimating() {
+  clearTimeout(fallback)
+  pending = new Set()
+  animating.value = false
+}
+
+function startAnimating(isOpen: boolean) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return stopAnimating()
+  pending = new Set(isOpen ? ['root', 'card'] : ['root'])
+  animating.value = true
+  clearTimeout(fallback)
+  fallback = setTimeout(stopAnimating, MOTION_FALLBACK_MS)
+}
+
+function onMotionEnd(e: Event) {
+  if (!animating.value) return
+  if (e.target === root.value && e instanceof TransitionEvent && e.propertyName === 'opacity') pending.delete('root')
+  else if (e.target === card.value && e.type === 'animationend') pending.delete('card')
+  else return
+  if (!pending.size) stopAnimating()
+}
 
 // Lock body scroll, move focus into the dialog and give it back to the opener on close.
 watch(
@@ -25,6 +58,7 @@ watch(
   async (isOpen) => {
     if (!import.meta.client) return
     document.documentElement.classList.toggle('modal-lock', isOpen)
+    startAnimating(isOpen)
     if (isOpen) {
       opener = document.activeElement instanceof HTMLElement ? document.activeElement : null
       await nextTick()
@@ -72,6 +106,7 @@ function onKey(e: KeyboardEvent) {
 onMounted(() => document.addEventListener('keydown', onKey))
 onBeforeUnmount(() => {
   document.removeEventListener('keydown', onKey)
+  clearTimeout(fallback)
   if (import.meta.client && props.open) document.documentElement.classList.remove('modal-lock')
 })
 </script>
@@ -79,13 +114,16 @@ onBeforeUnmount(() => {
 <template>
   <Teleport to="body">
     <div
+      ref="root"
       class="arena-modal"
-      :class="[rootClass, { 'is-open': open }, modalClass]"
+      :class="[rootClass, { 'is-open': open, 'is-animating': animating }, modalClass]"
       :style="modalStyle"
       role="dialog"
       aria-modal="true"
       :aria-hidden="!open"
       :aria-labelledby="labelledby"
+      @transitionend="onMotionEnd"
+      @animationend="onMotionEnd"
     >
       <div class="off-modal-backdrop" @click="emit('close')"></div>
       <article v-if="open" ref="card" class="off-modal-card" role="document" tabindex="-1">
