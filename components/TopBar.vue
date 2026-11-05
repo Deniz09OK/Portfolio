@@ -57,7 +57,7 @@ function closeMobileNav() {
 }
 
 watch(mobileOpen, (open) => {
-  if (import.meta.client) document.documentElement.classList.toggle('nav-lock', open)
+  setScrollLock('nav-lock', open)
 })
 
 function onResize() {
@@ -77,7 +77,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   ro?.disconnect()
   window.removeEventListener('resize', onResize)
-  if (import.meta.client) document.documentElement.classList.remove('nav-lock')
+  setScrollLock('nav-lock', false)
 })
 </script>
 

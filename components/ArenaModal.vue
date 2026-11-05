@@ -57,7 +57,7 @@ watch(
   () => props.open,
   async (isOpen) => {
     if (!import.meta.client) return
-    document.documentElement.classList.toggle('modal-lock', isOpen)
+    setScrollLock('modal-lock', isOpen)
     startAnimating(isOpen)
     if (isOpen) {
       opener = document.activeElement instanceof HTMLElement ? document.activeElement : null
@@ -107,7 +107,7 @@ onMounted(() => document.addEventListener('keydown', onKey))
 onBeforeUnmount(() => {
   document.removeEventListener('keydown', onKey)
   clearTimeout(fallback)
-  if (import.meta.client && props.open) document.documentElement.classList.remove('modal-lock')
+  if (props.open) setScrollLock('modal-lock', false)
 })
 </script>
 
