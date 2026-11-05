@@ -76,6 +76,8 @@ export interface Project {
   schema?: string
   /** In development and not public yet: shows an "in development" badge instead of "confidential". */
   wip?: boolean
+  /** Precise status shown instead of "confidential" when there is no public code (e.g. infrastructure taken down). */
+  status?: string
   /** Older project, hidden behind the "earlier projects" button until the visitor asks for it. */
   archived?: boolean
   /** Optional case study shown under the description: short titled sections (role, stack, security, takeaway...). */

@@ -123,6 +123,7 @@ const labels = computed(() => {
               >
                 {{ linkLabel(p.link) }} <span aria-hidden="true">↗</span>
               </a>
+              <span v-else-if="p.status" class="match-link-locked match-link-status">{{ p.status }}</span>
               <span v-else-if="p.wip" class="match-link-locked"><span aria-hidden="true">🛠</span> {{ labels.wip }}</span>
               <span v-else class="match-link-locked"><span aria-hidden="true">🔒</span> {{ labels.locked }}</span>
               <a
