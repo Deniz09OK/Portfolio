@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs'
 import { test, expect, type Page } from '@playwright/test'
 import { portfolio } from '../data/portfolio'
 
@@ -113,6 +114,34 @@ test('MediSync stays an honest, in-development case study in every language', ()
   }
 })
 
+test('CIA is a finished case study whose infrastructure was taken down, in every language', () => {
+  for (const lang of LANGS) {
+    const p = portfolio[lang].projects.find((x) => x.name.startsWith('CIA'))
+    expect(p, `${lang}: CIA`).toBeTruthy()
+    // Finished and taken down: a precise status instead of "confidential", no code, no demo, not in development.
+    expect(p!.status, `${lang}: status`).toBeTruthy()
+    expect(p!.wip).toBeFalsy()
+    expect(p!.link).toBeNull()
+    expect(p!.demo).toBeUndefined()
+    // The anonymised architecture diagram stays.
+    expect(p!.schema).toBe('/diagrams/cia-architecture.svg')
+    expect(p!.caseStudy, `${lang}: case study`).toHaveLength(4)
+    expect(p!.year).toBe('2026')
+    expect(p!.stack).toMatch(/TERRAFORM/)
+  }
+  expect(portfolio.fr.projects.find((x) => x.name.startsWith('CIA'))!.status).toBe('INFRASTRUCTURE DÉMONTÉE EN FIN DE PROJET')
+  expect(portfolio.fr.projects.find((x) => x.name.startsWith('CIA'))!.caseStudy![0]!.text).toMatch(/^Chef de projet/)
+})
+
+test('the published architecture diagrams expose no IP address, domain or e-mail', () => {
+  for (const file of ['cia', 'nsa']) {
+    const svg = readFileSync(`public/diagrams/${file}-architecture.svg`, 'utf8')
+    expect(svg, `${file}: IPv4`).not.toMatch(/\b(\d{1,3}\.){3}\d{1,3}\b/)
+    expect(svg, `${file}: e-mail`).not.toMatch(/[\w.+-]+@[\w-]+\.[\w.]+/)
+    expect(svg, `${file}: domain or host name`).not.toMatch(/\b[\w-]+\.(local|lan|internal|corp|home|fr|com|net|io|eu)\b/i)
+  }
+})
+
 test('no CTO or Backend Lead role anywhere in the content', () => {
   expect(JSON.stringify(portfolio)).not.toMatch(/\bCTO\b|backend[ -]?lead|lead backend/i)
 })
@@ -127,8 +156,8 @@ test('the MediSync card shows its case study sections', async ({ page }) => {
     await expect(rows.nth(i).locator('.match-case-label')).toHaveText(c.label)
     await expect(rows.nth(i).locator('.match-case-text')).toHaveText(c.text)
   }
-  // Only MediSync has a case study: the other cards are unchanged.
-  await expect(page.locator('.match-case')).toHaveCount(1)
+  // Only the projects that have a case study show one: the other cards are unchanged.
+  await expect(page.locator('.match-case')).toHaveCount(portfolio.fr.projects.filter((x) => x.caseStudy?.length).length)
 })
 
 test('every project card shows exactly one status', async ({ page }) => {
@@ -150,7 +179,7 @@ test('every project card shows exactly one status', async ({ page }) => {
       await expect(locked, `${p.name} must not look private`).toHaveCount(0)
     } else {
       await expect(locked).toHaveCount(1)
-      await expect(locked).toContainText(p.wip ? 'EN DÉVELOPPEMENT' : 'CONFIDENTIEL')
+      await expect(locked).toContainText(p.status ?? (p.wip ? 'EN DÉVELOPPEMENT' : 'CONFIDENTIEL'))
       await expect(card.locator('a.match-link[href*="github.com"], a.match-link[href*="gitlab.com"]')).toHaveCount(0)
     }
   }
