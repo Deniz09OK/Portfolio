@@ -115,12 +115,12 @@ html.modal-lock body { overflow: hidden; }
   opacity: 1;
   pointer-events: auto;
 }
+/* Plain semi-transparent veil, no backdrop-filter: a blur of the whole page behind was recomputed on every frame
+   of the fade and made the opening stutter. Slightly denser than the former blurred veil (0.72). */
 .off-modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(8, 8, 12, 0.72);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(8, 8, 12, 0.82);
 }
 .off-modal-card {
   position: relative;
