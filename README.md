@@ -126,6 +126,7 @@ Portfolio/
 │   ├── useLang.ts              # Gestion de l'internationalisation (FR / EN / TR)
 │   ├── useTheme.ts             # Gestionnaire de thème sombre/clair
 │   └── useThm.ts               # Chargement et validation de public/data/thm.json
+├── fonts-src/noto-serif-jp/     # Sous-ensembles Google Fonts de Noto Serif JP (non publiés), source de scripts/kanji-font.py
 ├── data/                       # Données de l'application
 │   └── portfolio.ts            # Données structurées et traduites du portfolio
 ├── types/                      # Définitions TypeScript
@@ -138,7 +139,8 @@ Portfolio/
 ├── scripts/                    # Scripts Node lancés par la CI
 │   ├── fetch-htb.mjs           # Récupère les stats Hack The Box et écrit public/data/htb.json
 │   ├── htb-compare.mjs         # Décide si la synchro mérite d'être écrite (ignore les champs volatils non affichés)
-│   └── fetch-thm.mjs           # Récupère les stats TryHackMe et écrit public/data/thm.json
+│   ├── fetch-thm.mjs           # Récupère les stats TryHackMe et écrit public/data/thm.json
+│   └── kanji-font.py           # Régénère public/fonts/noto-serif-jp-kanji.woff2 (kanji du site), lancé à la main
 ├── tests/                      # Tests de bout en bout
 │   ├── portfolio.spec.ts       # Suite Playwright
 │   ├── htb.spec.ts             # Pagination, filtres et swipe de la section Hack The Box
