@@ -57,7 +57,8 @@ export default defineNuxtConfig({
   // GitHub Pages serves 404.html for unknown URLs. Nuxt always prerenders /404.html as an
   // empty SPA shell, so render /404 (error.vue, server-side) and write it to 404.html instead.
   nitro: {
-    prerender: { routes: ['/404'] },
+    // /en/ and /tr/: the same page, prerendered in English and Turkish (the language comes from the URL).
+    prerender: { routes: ['/404', '/en/', '/tr/'] },
   },
   hooks: {
     'nitro:init'(nitro) {

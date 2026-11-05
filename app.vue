@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { isKnownPagePath } from '~/shared/site'
+
 // Single-page portfolio. All sections are auto-imported components.
 const content = usePortfolio()
 const { lang } = useLang()
 
-// Single page: any other path (GitHub Pages serves 404.html for it) renders error.vue.
+// One page per language (/, /en/, /tr/): any other path (GitHub Pages serves 404.html for it) renders error.vue.
 const path = import.meta.server ? useRequestURL().pathname : window.location.pathname
-if (!['/', '/index.html'].includes(path)) {
+if (!isKnownPagePath(path)) {
   throw createError({ statusCode: 404, statusMessage: 'Page Not Found', fatal: true })
 }
 
