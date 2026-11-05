@@ -114,12 +114,15 @@ Portfolio/
 │   ├── LiveTicker.vue          # Bandeau de défilement dynamique (style bandeau sportif)
 │   ├── HeroCard.vue            # Fiche joueur de présentation principale
 │   ├── MatchesSection.vue      # Section projets ("Card de la saison")
+│   ├── CaseStudy.vue           # Étude de cas (rubriques en texte ou en liste), projets et notes HTB
 │   ├── CareerSection.vue       # Expériences et Études ("Saisons jouées" sous forme de timeline)
 │   ├── DrillsSection.vue       # Compétences techniques ("Entraînement quotidien")
 │   ├── HtbStats.vue            # Statistiques Hack The Box (lit public/data/htb.json)
+│   ├── HtbNotes.vue            # Notes HTB sous les statistiques : 3 cartes ouvrant une modale (ArenaModal + CaseStudy)
 │   ├── ThmStats.vue            # Statistiques TryHackMe (lit public/data/thm.json)
 │   ├── OffCourtSection.vue     # Activités annexes ("Hors du clavier")
 │   ├── OffModal.vue            # Composant modale pour le détail des activités annexes
+│   ├── ArenaModal.vue          # Cadre de modale partagé (focus, Tab, Échap, défilement bloqué)
 │   ├── LanguagesSection.vue    # Indicateurs de maîtrise linguistique
 │   └── ContactSection.vue      # Liens de contact ("Sifflet final")
 ├── composables/                # Logique réutilisable
@@ -145,6 +148,7 @@ Portfolio/
 ├── tests/                      # Tests de bout en bout
 │   ├── portfolio.spec.ts       # Suite Playwright
 │   ├── htb.spec.ts             # Pagination, filtres et swipe de la section Hack The Box
+│   ├── htb-notes.spec.ts       # Notes HTB : cartes, modale (clavier, fermeture), affichage à 360 px, contenu sans flag ni IP
 │   ├── htb-compare.unit.mjs    # Tests unitaires de la comparaison de la synchro HTB (node:test, sans navigateur)
 │   ├── woff2-cmap.ts           # Lecture des caractères d'un woff2 (test de couverture des kanji)
 │   ├── links.unit.mjs          # Tests unitaires : liens target="_blank" avec rel="noopener noreferrer"
