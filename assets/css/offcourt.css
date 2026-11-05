@@ -130,13 +130,19 @@ html.modal-lock body { overflow: hidden; }
   background: var(--bg-panel);
   border: 1px solid var(--line);
   padding: 56px 44px 40px;
-  transform: translateY(14px) scale(0.985);
-  transition: transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
 }
 .off-modal-card:focus { outline: none; }
+/* Entrance of the card: a keyframe animation, played when the card is inserted. A transition could not run: the
+   card is mounted (v-if) in the same render that adds .is-open, so it had no earlier state to start from. Only
+   transform is animated; prefers-reduced-motion cancels it (utils.css). */
 .arena-modal.is-open .off-modal-card {
   transform: translateY(0) scale(1);
+  animation: arena-card-in 280ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes arena-card-in {
+  from { transform: translateY(14px) scale(0.985); }
+  to { transform: translateY(0) scale(1); }
 }
 .off-modal-stripe {
   position: absolute;
