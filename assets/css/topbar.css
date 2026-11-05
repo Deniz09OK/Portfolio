@@ -197,8 +197,18 @@ html.light .theme-moon { opacity: 0; transform: rotate(-30deg); }
   .lang-btn { padding: 0 6px; }
 }
 
-/* Lock background scroll while the mobile nav (or off-court modal) is open. */
+/* Lock background scroll while the mobile nav or a modal is open (setScrollLock, composables/useScrollLock.ts).
+   The room of the removed scrollbar (--lock-gap, measured before locking) is kept on the right of the body and of
+   the fixed elements, so nothing moves when the lock starts or ends. */
 html.modal-lock,
 html.modal-lock body,
 html.nav-lock,
 html.nav-lock body { overflow: hidden; }
+html.modal-lock body,
+html.nav-lock body { padding-right: var(--lock-gap, 0px); }
+html.modal-lock .bar,
+html.nav-lock .bar,
+html.modal-lock .ticker,
+html.nav-lock .ticker { right: var(--lock-gap, 0px); }
+html.modal-lock .back-to-top,
+html.nav-lock .back-to-top { right: calc(max(16px, env(safe-area-inset-right)) + var(--lock-gap, 0px)); }

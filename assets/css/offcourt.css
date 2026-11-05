@@ -115,12 +115,12 @@ html.modal-lock body { overflow: hidden; }
   opacity: 1;
   pointer-events: auto;
 }
+/* Plain semi-transparent veil, no backdrop-filter: a blur of the whole page behind was recomputed on every frame
+   of the fade and made the opening stutter. Slightly denser than the former blurred veil (0.72). */
 .off-modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(8, 8, 12, 0.72);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(8, 8, 12, 0.82);
 }
 .off-modal-card {
   position: relative;
@@ -130,14 +130,23 @@ html.modal-lock body { overflow: hidden; }
   background: var(--bg-panel);
   border: 1px solid var(--line);
   padding: 56px 44px 40px;
-  transform: translateY(14px) scale(0.985);
-  transition: transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
 }
 .off-modal-card:focus { outline: none; }
+/* Entrance of the card: a keyframe animation, played when the card is inserted. A transition could not run: the
+   card is mounted (v-if) in the same render that adds .is-open, so it had no earlier state to start from. Only
+   transform is animated; prefers-reduced-motion cancels it (utils.css). */
 .arena-modal.is-open .off-modal-card {
   transform: translateY(0) scale(1);
+  animation: arena-card-in 280ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
+@keyframes arena-card-in {
+  from { transform: translateY(14px) scale(0.985); }
+  to { transform: translateY(0) scale(1); }
+}
+/* Promoted to their own layer only while they animate (ArenaModal sets .is-animating, then removes it). */
+.arena-modal.is-animating { will-change: opacity; }
+.arena-modal.is-animating .off-modal-card { will-change: transform; }
 .off-modal-stripe {
   position: absolute;
   inset: 0 0 auto 0;
