@@ -44,8 +44,8 @@ for (const [path, lang] of [['/', 'fr'], ['/en/', 'en'], ['/tr/', 'tr']] as cons
 
 test('the French case study of Veille DevSecOps IA keeps the given texts', () => {
   const p = portfolio.fr.projects.find((x) => x.idx === '02')!
-  expect(p.caseStudy![0]!.text).toBe('Projet personnel conçu, développé et maintenu seul : collecte des offres, filtres, scoring par IA, rapports et automatisation.')
-  expect(p.caseStudy![1]!.text).toBe('Python 3.11, Playwright, API France Travail et La Bonne Alternance, Groq et Mistral, ChromaDB, pandas et openpyxl, pytest, GitHub Actions.')
+  expect(p.caseStudy![0]!.text).toBe('Projet personnel, conçu et développé par moi, avec l’aide d’un assistant IA : collecte des offres, filtres, scoring par IA, rapports et automatisation.')
+  expect(p.caseStudy![1]!.text).toBe('Python 3.11, Playwright, API France Travail et La Bonne Alternance, Groq (gpt-oss-120b et Llama 3.3 70B), ChromaDB, pandas et openpyxl, pytest, GitHub Actions.')
   expect(p.caseStudy![2]!.text).toMatch(/^Secrets dans GitHub Secrets, jamais dans le dépôt\..*retirés, pas contournés\.$/)
   expect(p.caseStudy![3]!.text).toMatch(/^Faire se contre-vérifier deux modèles.*sans que personne ne le voie\.$/)
 })
