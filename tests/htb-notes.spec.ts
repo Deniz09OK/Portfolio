@@ -157,6 +157,10 @@ test.describe('HTB notes at 360 px', () => {
   }
 })
 
+// Generic target-side paths the Silentium/TwoMillion chains legitimately name (every HTB box's own root account,
+// never Deniz's local Kali or Windows paths): excluded the same way 127.0.0.1 is excluded from the IP check below.
+const SAFE_TARGET_PATHS = [/^\/root\/\.ssh\/authorized_keys\b/i, /^\/root\/root\.txt\b/i]
+
 test('HTB notes hold no flag, instance address or personal path', () => {
   for (const [, lang] of PAGES) {
     const text = JSON.stringify(portfolio[lang].htb.notes) + JSON.stringify(portfolio[lang].htb.challenge)
@@ -164,6 +168,7 @@ test('HTB notes hold no flag, instance address or personal path', () => {
     expect(text, lang).not.toMatch(/\b[0-9a-f]{32}\b/i)
     const ips = text.match(/\b\d{1,3}(?:\.\d{1,3}){3}\b/g) ?? []
     expect(ips.filter((ip) => ip !== '127.0.0.1'), lang).toEqual([])
-    expect(text, lang).not.toMatch(/\/home\/|\/root\/|[A-Z]:\\\\Users|\/Users\/|\/mnt\/[a-z]\//i)
+    const paths = text.match(/\/home\/\S*|\/root\/\S*|[A-Z]:\\\\Users\S*|\/Users\/\S*|\/mnt\/[a-z]\/\S*/gi) ?? []
+    expect(paths.filter((p) => !SAFE_TARGET_PATHS.some((safe) => safe.test(p))), lang).toEqual([])
   }
 })
