@@ -4,11 +4,14 @@ import { test, expect, chromium, type Browser, type LaunchOptions, type Page } f
 // while animating, nothing animated with prefers-reduced-motion, and nothing moves when the scroll is locked.
 
 const MODALS = [
-  { name: 'HTB notes', at: '#htb-notes', opener: '#htb-notes .htb-note-card', root: '.htb-note-modal' },
+  { name: 'HTB notes', at: '#htb-notes', opener: '#htb-notes > .htb-notes-grid .htb-note-card', root: '.htb-note-modal' },
   { name: 'off-court', at: '#off', opener: '.off-card', root: '.arena-modal.off-modal' },
 ] as const
 
 async function openAt(page: Page, path: string, at: string) {
+  // The HTB notes sit behind an invite-code challenge (tests/htb-challenge.spec.ts covers it): this file is
+  // about modal motion, so the notes are unlocked here to go straight to the note modal, like off-court's.
+  if (at === '#htb-notes') await page.context().addCookies([{ name: 'htb_unlocked', value: 'true', domain: 'localhost', path: '/' }])
   await page.goto(path)
   await page.locator(at).scrollIntoViewIfNeeded()
 }
