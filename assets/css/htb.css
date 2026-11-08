@@ -341,7 +341,158 @@
 .htb-note-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; }
 .htb-note-meta .htb-os { font-size: 14px; color: var(--ink-soft); }
 .htb-note-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.htb-note-modal .off-modal-head { gap: 12px; }
-.htb-note-modal .off-modal-title { overflow-wrap: anywhere; }
+.htb-note-modal .off-modal-head,
+.htb-active-note-modal .off-modal-head { gap: 12px; }
+.htb-note-modal .off-modal-title,
+.htb-active-note-modal .off-modal-title { overflow-wrap: anywhere; }
 .htb-note-case { max-width: none; margin: 28px 0 0; }
+
+/* Invite-code challenge gating the notes: the HTB brand green (#00D9A3) is scoped to this feature only, a
+   darker shade in light mode for contrast, the way --accent/--green already vary between themes. */
+.htb-notes,
+.htb-terminal-modal { --htb-accent: #00d9a3; }
+html.light .htb-notes,
+html.light .htb-terminal-modal { --htb-accent: #0a8a68; }
+
+.htb-pwned-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+  padding: 2px 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #06120f;
+  background: var(--htb-accent);
+}
+.htb-challenge-reset {
+  display: block;
+  margin-top: 8px;
+  padding: 0;
+  min-height: 32px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  color: var(--htb-accent);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 200ms;
+}
+.htb-challenge-reset:hover { opacity: 0.8; }
+.htb-challenge-reset:focus-visible { outline: 2px solid var(--htb-accent); outline-offset: 2px; }
+
+/* Active boxes: skills/concepts only, never gated (nothing here can spoil anything). */
+.htb-active-boxes { margin-top: 40px; }
+.htb-notes-active-title { margin-top: 8px; font: inherit; max-width: 62ch; font-size: 15px; color: var(--ink-soft); }
+
+/* Terminal: locked/granted states of the invite-code challenge (HtbTerminalModal.vue). */
+.htb-terminal { display: flex; flex-direction: column; gap: 16px; }
+.htb-terminal-head {
+  font-family: var(--display);
+  font-size: clamp(22px, 3vw, 28px);
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  margin: 0;
+}
+.htb-terminal-head--granted { color: var(--htb-accent); }
+.htb-terminal-hint { margin: 0; color: var(--ink-soft); font-size: 14px; }
+.htb-terminal-chrono {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 30px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.htb-terminal-chrono--final { font-size: 22px; }
+.htb-terminal-chrono-k {
+  margin-right: 10px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.htb-terminal-form { display: flex; flex-direction: column; gap: 8px; }
+.htb-terminal-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.htb-terminal-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.htb-terminal-input {
+  flex: 1 1 200px;
+  min-height: 44px;
+  padding: 0 12px;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 15px;
+}
+.htb-terminal-input:focus-visible { outline: 2px solid var(--htb-accent); outline-offset: 2px; border-color: var(--htb-accent); }
+.htb-terminal-input.is-invalid { border-color: var(--accent); animation: htb-shake 220ms ease; }
+@keyframes htb-shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .htb-terminal-input.is-invalid { animation: none; }
+}
+.htb-terminal-submit {
+  min-height: 44px;
+  padding: 0 18px;
+  background: var(--htb-accent);
+  color: #06120f;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--htb-accent);
+  cursor: pointer;
+  transition: opacity 200ms;
+}
+.htb-terminal-submit:hover { opacity: 0.85; }
+.htb-terminal-submit:disabled { opacity: 0.5; cursor: default; }
+.htb-terminal-submit:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.htb-terminal-error { min-height: 18px; margin: 0; font-size: 13px; color: var(--accent); }
+.htb-terminal-fast {
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 0;
+  min-height: 32px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  color: var(--muted);
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 200ms;
+}
+.htb-terminal-fast:hover,
+.htb-terminal-fast:focus-visible { color: var(--ink); }
+.htb-terminal-fast:focus-visible { outline: 2px solid var(--htb-accent); outline-offset: 2px; }
+.htb-terminal-saved { margin: 0; font-family: var(--mono); color: var(--htb-accent); }
+
+/* Hall of Fame: Top 10, inside the granted state. */
+.htb-scoreboard-wrap { margin-top: 8px; }
+.htb-scoreboard-offline { margin: 8px 0 0; padding: 12px 0; font-size: 13px; color: var(--muted); }
+.htb-scoreboard { width: 100%; margin-top: 8px; border-collapse: collapse; font-size: 14px; }
+.htb-scoreboard th,
+.htb-scoreboard td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; }
+.htb-scoreboard th {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.htb-scoreboard-time { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--ink); }
 

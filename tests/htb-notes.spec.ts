@@ -7,16 +7,23 @@ const PAGES = [
   ['/tr/', 'tr'],
 ] as const
 
-const cards = (page: Page) => page.locator('#htb-notes .htb-note-card')
+// Direct child of #htb-notes: excludes the active-boxes cards nested one level deeper in .htb-active-boxes.
+const cards = (page: Page) => page.locator('#htb-notes > .htb-notes-grid .htb-note-card')
+const activeCards = (page: Page) => page.locator('.htb-active-boxes .htb-note-card')
 const modal = (page: Page) => page.locator('.htb-note-modal')
 
-/** Opens a page at the HTB notes and fails the test on any console error or page error. */
-async function openNotes(page: Page, path: string) {
+/**
+ * Opens a page at the HTB notes and fails the test on any console error or page error. These notes sit behind
+ * the invite-code challenge (see tests/htb-challenge.spec.ts): unlocked by default here, since this file is
+ * about the notes themselves, not the gate in front of them.
+ */
+async function openNotes(page: Page, path: string, { unlocked = true } = {}) {
   const errors: string[] = []
   page.on('pageerror', (e) => errors.push(e.message))
   page.on('console', (m) => {
     if (m.type() === 'error') errors.push(m.text())
   })
+  if (unlocked) await page.context().addCookies([{ name: 'htb_unlocked', value: 'true', url: 'http://localhost:4173' }])
   await page.goto(path)
   await page.locator('#htb-notes').scrollIntoViewIfNeeded()
   return errors
@@ -25,17 +32,20 @@ async function openNotes(page: Page, path: string) {
 for (const [path, lang] of PAGES) {
   test.describe(`HTB notes (${lang})`, () => {
     const content = portfolio[lang].htb.notes
+    const challenge = portfolio[lang].htb.challenge
 
-    test('shows the label, the title, the credit line and 3 cards', async ({ page }) => {
+    test('shows the label, the title, the credit line, the Pwned badge and 6 cards', async ({ page }) => {
       const errors = await openNotes(page, path)
       const section = page.locator('#htb-notes')
       await expect(section).toBeVisible()
-      await expect(section.locator('.htb-notes-label')).toHaveText(content.label)
+      await expect(section.locator('> .htb-notes-label')).toHaveText(content.label)
       await expect(section.getByRole('heading', { level: 3, name: content.title })).toBeVisible()
-      await expect(section.locator('.htb-notes-credit')).toHaveText(content.credit)
+      // Unlocked by default in this file (see openNotes): the badge and the reset button are showing.
+      await expect(section.locator('.htb-notes-credit')).toHaveText(`${content.credit} ${challenge.pwnedBadge}`)
+      await expect(page.getByRole('button', { name: challenge.resetButton })).toBeVisible()
 
-      expect(content.notes).toHaveLength(3)
-      await expect(cards(page)).toHaveCount(3)
+      expect(content.notes).toHaveLength(6)
+      await expect(cards(page)).toHaveCount(6)
       for (const [i, note] of content.notes.entries()) {
         const card = cards(page).nth(i)
         await expect(card).toHaveJSProperty('tagName', 'BUTTON')
@@ -61,7 +71,7 @@ for (const [path, lang] of PAGES) {
         const dialog = page.getByRole('dialog', { name: note.box, exact: true })
         await expect(dialog).toBeVisible()
         await expect(modal(page)).toHaveClass(/is-open/)
-        await expect(dialog.locator('.off-modal-eyebrow')).toHaveText(`0${i + 1} / 03 · ${content.eyebrow}`)
+        await expect(dialog.locator('.off-modal-eyebrow')).toHaveText(`0${i + 1} / 06 · ${content.eyebrow}`)
 
         const expected = [r.chain, r.flaws, ...(note.pitfalls.length ? [r.pitfalls] : []), r.defense, r.takeaway]
         await expect(dialog.locator('.match-case-label')).toHaveText(expected)
@@ -88,6 +98,28 @@ for (const [path, lang] of PAGES) {
       // Escape with no note open does nothing.
       await page.keyboard.press('Escape')
       await expect(modal(page)).not.toHaveClass(/is-open/)
+      expect(errors).toEqual([])
+    })
+
+    test('active boxes show skills and concepts, never a chain, and are never gated by the challenge', async ({ page }) => {
+      // No unlock cookie: the active grid must stay reachable even while the retired notes are locked.
+      const errors = await openNotes(page, path, { unlocked: false })
+      const activeModal = page.locator('.htb-active-note-modal')
+
+      expect(content.activeNotes.length).toBeGreaterThan(0)
+      await expect(activeCards(page)).toHaveCount(content.activeNotes.length)
+
+      for (const n of content.activeNotes) {
+        const card = activeCards(page).filter({ hasText: n.box })
+        await card.click()
+        const dialog = page.getByRole('dialog', { name: n.box, exact: true })
+        await expect(dialog).toBeVisible()
+        await expect(activeModal).toHaveClass(/is-open/)
+        await expect(dialog.locator('.match-case-label')).toHaveText([content.rubrics.skills, content.rubrics.concepts, content.rubrics.takeaway])
+        await expect(dialog.locator('ol.match-case-list')).toHaveCount(0) // a list, never an ordered chain
+        await page.keyboard.press('Escape')
+        await expect(activeModal).not.toHaveClass(/is-open/)
+      }
       expect(errors).toEqual([])
     })
   })
@@ -125,13 +157,18 @@ test.describe('HTB notes at 360 px', () => {
   }
 })
 
+// Generic target-side paths the Silentium/TwoMillion chains legitimately name (every HTB box's own root account,
+// never Deniz's local Kali or Windows paths): excluded the same way 127.0.0.1 is excluded from the IP check below.
+const SAFE_TARGET_PATHS = [/^\/root\/\.ssh\/authorized_keys\b/i, /^\/root\/root\.txt\b/i]
+
 test('HTB notes hold no flag, instance address or personal path', () => {
   for (const [, lang] of PAGES) {
-    const text = JSON.stringify(portfolio[lang].htb.notes)
+    const text = JSON.stringify(portfolio[lang].htb.notes) + JSON.stringify(portfolio[lang].htb.challenge)
     expect(text, lang).not.toMatch(/HTB\{|flag\{/i)
     expect(text, lang).not.toMatch(/\b[0-9a-f]{32}\b/i)
     const ips = text.match(/\b\d{1,3}(?:\.\d{1,3}){3}\b/g) ?? []
     expect(ips.filter((ip) => ip !== '127.0.0.1'), lang).toEqual([])
-    expect(text, lang).not.toMatch(/\/home\/|\/root\/|[A-Z]:\\\\Users|\/Users\/|\/mnt\/[a-z]\//i)
+    const paths = text.match(/\/home\/\S*|\/root\/\S*|[A-Z]:\\\\Users\S*|\/Users\/\S*|\/mnt\/[a-z]\/\S*/gi) ?? []
+    expect(paths.filter((p) => !SAFE_TARGET_PATHS.some((safe) => safe.test(p))), lang).toEqual([])
   }
 })

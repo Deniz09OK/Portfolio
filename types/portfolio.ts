@@ -184,6 +184,8 @@ export interface HtbContent {
   }
   /** HTB notes under the stats: cards opening a modal. */
   notes: HtbNotesContent
+  /** Texts of the invite-code riddle gating the notes (console easter egg, speedrun timer, scoreboard). */
+  challenge: HtbChallengeContent
 }
 
 /** Section of notes on retired HTB machines, shown under the HTB stats. */
@@ -200,8 +202,13 @@ export interface HtbNotesContent {
   eyebrow: string
   closeLabel: string
   /** Titles of the sections of a note. */
-  rubrics: { chain: string; flaws: string; pitfalls: string; defense: string; takeaway: string }
+  rubrics: { chain: string; flaws: string; pitfalls: string; defense: string; takeaway: string; skills: string; concepts: string }
   notes: HtbNote[]
+  /** Short label above the active-machines grid (« Box actives »). */
+  activeLabel: string
+  /** Sentence introducing the active machines: skills only, never a kill-chain (HTB forbids writeups on live boxes). */
+  activeTitle: string
+  activeNotes: HtbActiveNote[]
 }
 
 /** One retired HTB machine replayed. Box name, OS and difficulty stay in English (as on Hack The Box). */
@@ -221,6 +228,61 @@ export interface HtbNote {
   pitfalls: string[]
   defense: string[]
   takeaway: string
+}
+
+/**
+ * A currently active HTB machine: skills and concepts only, no kill-chain and no flag — Hack The Box forbids
+ * publishing a solution while a machine is live. Kept separate from HtbNote so the shape itself rules out a spoiler.
+ */
+export interface HtbActiveNote {
+  id: string
+  box: string
+  os: string
+  difficulty: string
+  keywords: string[]
+  /** Skills practiced, as a plain list (no order implied, unlike a retired note's chain). */
+  skills: string[]
+  /** Technical concepts involved, without saying how they were exploited. */
+  concepts: string[]
+  takeaway: string
+}
+
+/**
+ * Texts of the invite-code riddle gating the HTB notes (console easter egg in the style of the TwoMillion
+ * machine's own onboarding API, a speedrun timer and a moderated Hall of Fame). See composables/useHtbChallenge.ts,
+ * plugins/htb-console.client.ts and components/HtbTerminalModal.vue.
+ */
+export interface HtbChallengeContent {
+  /** Header shown while locked (« [ACCESS RESTRICTED] »). */
+  restrictedTitle: string
+  /** Hint to open the browser console and call HTB.help(). */
+  hint: string
+  codeLabel: string
+  codePlaceholder: string
+  submit: string
+  invalidCode: string
+  /** Fallback for a recruiter in a hurry: unlocks without recording a score. */
+  fastUnlock: string
+  grantedTitle: string
+  elapsedLabel: string
+  pseudoLabel: string
+  pseudoPlaceholder: string
+  saveScore: string
+  skipSave: string
+  pwnedBadge: string
+  resetButton: string
+  scoreboardTitle: string
+  /** Shown when /api/scoreboard is unreachable (the published site is fully static: see server/api/scoreboard.*.ts). */
+  scoreboardOffline: string
+  colRank: string
+  colPseudo: string
+  colTime: string
+  colDate: string
+  savedLocally: string
+  rejectedShape: string
+  rejectedProfanity: string
+  rejectedSpam: string
+  closeLabel: string
 }
 
 /** Texts of the TryHackMe stats block (values come from public/data/thm.json). */

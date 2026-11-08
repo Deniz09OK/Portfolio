@@ -126,7 +126,9 @@ export const portfolio: Portfolio = {
           "flaws": "Failles",
           "pitfalls": "Pièges rencontrés",
           "defense": "Se protéger",
-          "takeaway": "Ce que j’en retiens"
+          "takeaway": "Ce que j’en retiens",
+          "skills": "Compétences pratiquées",
+          "concepts": "Concepts abordés"
         },
         "notes": [
           {
@@ -240,8 +242,183 @@ export const portfolio: Portfolio = {
               "Un process de monitoring sans droits root"
             ],
             "takeaway": "Un outil de débogage laissé actif sur un process root est une porte ouverte, même limitée à 127.0.0.1. Et une version candidate d’un framework ne va pas en production."
+          },
+          {
+            "id": "twomillion",
+            "box": "TwoMillion",
+            "os": "Linux",
+            "difficulty": "Easy",
+            "keywords": [
+              "API",
+              "IDOR",
+              "OverlayFS"
+            ],
+            "chain": [
+              "Inscription verrouillée par un code d’invitation",
+              "Fonction JavaScript de génération du code reverse-engineerée, un indice en ROT13 orientant vers l’API",
+              "Compte utilisateur créé",
+              "Endpoint d’administration vulnérable à une IDOR/BOLA (champ is_admin accepté depuis le client, sans contrôle d’autorisation)",
+              "Compte promu administrateur",
+              "Injection de commande dans le générateur de VPN admin (paramètre username mal filtré, injecté dans un script bash)",
+              "Shell www-data",
+              "Identifiants de base de données trouvés dans un fichier .env, hash bcrypt d’un administrateur cassé",
+              "Accès SSH",
+              "Faille noyau CVE-2023-0386 (OverlayFS/FUSE, binaire SUID créé par copy-up)",
+              "Root"
+            ],
+            "flaws": [
+              "Code d’invitation généré par une logique entièrement côté client",
+              "Champ is_admin accepté tel quel depuis le client, sans contrôle d’autorisation (IDOR/BOLA)",
+              "Filtrage insuffisant (les caractères spéciaux sont retirés, pas les retours à la ligne) avant injection dans un script shell",
+              "Identifiants de base de données en clair dans un fichier de configuration lisible",
+              "Hash bcrypt cassable avec une liste de mots",
+              "Noyau vulnérable à une faille connue (OverlayFS)"
+            ],
+            "pitfalls": [
+              "Exploit public pour CVE-2023-0386 nécessitant deux sessions concurrentes (fuse et exp) : facile à rater en ne lançant qu’un seul terminal"
+            ],
+            "defense": [
+              "Ne jamais fonder un contrôle d’accès sur une logique uniquement cliente",
+              "Liste blanche des champs acceptés par une API, jamais de champ privilégié modifiable par le client",
+              "Échapper ou valider tout paramètre utilisateur avant un appel système, retours à la ligne inclus",
+              "Secrets hors du dépôt, jamais dans un fichier lisible par l’application",
+              "Garder le noyau à jour face aux CVE publiées"
+            ],
+            "takeaway": "Le clin d’œil du code d’invitation annonce bien le thème de la machine : ce qui ressemble à une simple barrière d’inscription cache souvent une vraie logique à auditer. Et une chaîne de compromission tient rarement à une seule faille : ici il en faut quatre à la suite (IDOR, injection de commande, secret en clair, noyau vulnérable), chacune anodine prise isolément."
+          },
+          {
+            "id": "cap",
+            "box": "Cap",
+            "os": "Linux",
+            "difficulty": "Easy",
+            "keywords": [
+              "IDOR",
+              "Capabilities",
+              "Python"
+            ],
+            "chain": [
+              "Application web affichant des captures réseau (pcap)",
+              "IDOR sur l’identifiant de capture : modification de l’URL pour accéder aux fichiers d’autres utilisateurs",
+              "Identifiants FTP en clair dans une capture",
+              "Accès SSH avec ces identifiants",
+              "Capacité Linux cap_setuid positionnée sur l’interpréteur Python",
+              "Élévation de privilèges via os.setuid(0)",
+              "Root"
+            ],
+            "flaws": [
+              "Contrôle d’accès absent sur une ressource désignée par un simple identifiant (IDOR)",
+              "Identifiants transmis en clair sur le réseau",
+              "Capacité Linux dangereuse laissée sur un binaire généraliste (python3)"
+            ],
+            "pitfalls": [
+              "getcap absent par défaut sur certaines distributions utilisées pour l’énumération : installé depuis le paquet libcap2-bin"
+            ],
+            "defense": [
+              "Vérifier le propriétaire de la ressource à chaque requête, pas seulement l’authentification",
+              "Chiffrer les flux contenant des identifiants (FTPS, SFTP)",
+              "Auditer les capacités Linux (getcap -r /) avec la même rigueur qu’un audit SUID"
+            ],
+            "takeaway": "Une capacité Linux isolée (cap_setuid) a le même impact qu’un setuid root complet dès qu’elle est posée sur un interpréteur généraliste : elle mérite le même audit. Et un contrôle d’accès qui ne vérifie que l’authentification, jamais la propriété de la ressource, est un IDOR en attente."
+          },
+          {
+            "id": "silentium",
+            "box": "Silentium",
+            "os": "Linux",
+            "difficulty": "Easy",
+            "keywords": [
+              "Flowise",
+              "RCE",
+              "Gogs"
+            ],
+            "chain": [
+              "Sous-domaine de staging découvert par fuzzing de vhost, exposant une instance Flowise (plateforme de pipelines IA)",
+              "Fuite du jeton de réinitialisation de mot de passe dans la réponse de l’API (CVE-2025-58434)",
+              "Mot de passe administrateur réinitialisé, session Flowise obtenue",
+              "Exécution de code arbitraire via l’endpoint node-load-method/customMCP (CVE-2025-59528)",
+              "RCE aveugle : exfiltration des variables d’environnement par une connexion sortante (hors bande)",
+              "Conteneur Docker révélé, avec un mot de passe SMTP dans les variables d’environnement",
+              "Mot de passe SMTP réutilisé tel quel comme mot de passe SSH sur l’hôte",
+              "Instance Gogs locale (root, port interne) atteinte par tunnel SSH",
+              "Lien symbolique créé dans un dépôt Git pointant vers /root/.ssh/authorized_keys (CVE-2025-8110)",
+              "Écriture de la clé publique à travers le lien symbolique via l’API PutContents de Gogs",
+              "Root"
+            ],
+            "flaws": [
+              "Réinitialisation de mot de passe qui renvoie le jeton dans la réponse au lieu de l’envoyer par email",
+              "Configuration fournie par l’utilisateur évaluée comme du JavaScript côté serveur, sans isolation",
+              "Secrets en clair dans les variables d’environnement d’un conteneur",
+              "Mot de passe réutilisé entre un service applicatif et l’accès SSH",
+              "Lien symbolique suivi sans vérification par l’API d’écriture de fichiers de Gogs"
+            ],
+            "pitfalls": [
+              "Sous-domaine de staging absent d’une énumération DNS classique : trouvé par fuzzing de vhost (gobuster vhost)",
+              "RCE aveugle, aucune sortie dans la réponse HTTP : exfiltration via une requête sortante vers un listener nc"
+            ],
+            "defense": [
+              "Ne jamais renvoyer un jeton de réinitialisation dans la réponse HTTP",
+              "Interdire toute évaluation dynamique de code à partir d’une configuration fournie par l’utilisateur",
+              "Secrets dans un gestionnaire dédié, jamais dans des variables lisibles par le conteneur",
+              "Un mot de passe par service, jamais de réutilisation",
+              "Mettre à jour Gogs et vérifier la cible réelle d’un lien symbolique avant d’écrire au travers"
+            ],
+            "takeaway": "Un sous-domaine de staging oublié peut exposer toute une chaîne d’outils internes (Flowise, Gogs) : le fuzzing de vhost fait partie de la reconnaissance de base, pas d’une option. Et la réutilisation d’un mot de passe applicatif comme mot de passe système reste l’erreur la plus simple à exploiter de toute la chaîne."
+          }
+        ],
+        "activeLabel": "Box actives",
+        "activeTitle": "Les machines actuellement actives, sans kill-chain ni spoiler : juste les compétences pratiquées et les concepts en jeu, comme l’exige la charte Hack The Box.",
+        "activeNotes": [
+          {
+            "id": "cohort",
+            "box": "Cohort",
+            "os": "Linux",
+            "difficulty": "Easy",
+            "keywords": [
+              "SSRF",
+              "WebSocket",
+              "Linux"
+            ],
+            "skills": [
+              "Repérage d’une fonctionnalité serveur qui va chercher une ressource pour le compte de l’utilisateur, indice classique de SSRF",
+              "Test de plusieurs représentations d’une même adresse pour contourner un filtre naïf",
+              "Audit de sécurité d’un canal temps réel (WebSocket), au même niveau qu’un endpoint HTTP classique",
+              "Vérification des paquets système volontairement figés (held), qui restent vulnérables malgré un correctif disponible"
+            ],
+            "concepts": [
+              "SSRF et contournement de filtre d’adresse",
+              "Authentification sur les canaux WebSocket",
+              "Fenêtre d’exposition d’un paquet figé face à une CVE connue"
+            ],
+            "takeaway": "Les machines actives ne se documentent pas en détail — c’est la règle HTB, et elle a du sens : elle laisse à chacun le plaisir de la découverte. Ce que je peux en dire : une liste noire d’adresses locales se contourne presque toujours par une autre représentation de la même adresse, et un paquet volontairement figé reste une fenêtre d’exposition à auditer, pas à oublier."
           }
         ]
+      },
+      "challenge": {
+        "restrictedTitle": "[ACCÈS RESTREINT]",
+        "hint": "Ouvrez la console du navigateur (F12) et tapez HTB.help() pour commencer.",
+        "codeLabel": "Code d’accès",
+        "codePlaceholder": "HTB-XXXX-XXXX-XXXX",
+        "submit": "Valider",
+        "invalidCode": "Code invalide. Relisez l’indice dans la console.",
+        "fastUnlock": "Accès recruteur pressé : déverrouiller directement",
+        "grantedTitle": "[ACCÈS ACCORDÉ]",
+        "elapsedLabel": "Temps",
+        "pseudoLabel": "Pseudo pour le Hall of Fame",
+        "pseudoPlaceholder": "Pseudo",
+        "saveScore": "Enregistrer mon temps",
+        "skipSave": "Ne pas participer au classement",
+        "pwnedBadge": "Pwned",
+        "resetButton": "↺ Réinitialiser le challenge",
+        "scoreboardTitle": "Hall of Fame",
+        "scoreboardOffline": "Classement indisponible sur ce déploiement statique : lancez le site en local (npm run dev) pour voir le Hall of Fame en direct.",
+        "colRank": "Rang",
+        "colPseudo": "Pseudo",
+        "colTime": "Temps",
+        "colDate": "Date",
+        "savedLocally": "Temps enregistré. Merci d’avoir joué !",
+        "rejectedShape": "Pseudo refusé : 2 à 16 caractères alphanumériques (., _, - autorisés).",
+        "rejectedProfanity": "Pseudo refusé.",
+        "rejectedSpam": "Une seconde : réessayez dans quelques secondes.",
+        "closeLabel": "Fermer"
       }
     },
     thm: {
@@ -405,7 +582,9 @@ export const portfolio: Portfolio = {
           "flaws": "Flaws",
           "pitfalls": "Pitfalls I ran into",
           "defense": "How to defend",
-          "takeaway": "What I take away"
+          "takeaway": "What I take away",
+          "skills": "Skills practiced",
+          "concepts": "Concepts involved"
         },
         "notes": [
           {
@@ -519,8 +698,183 @@ export const portfolio: Portfolio = {
               "A monitoring process without root rights"
             ],
             "takeaway": "A debugging tool left enabled on a root process is an open door, even when limited to 127.0.0.1. And a release candidate of a framework does not go to production."
+          },
+          {
+            "id": "twomillion",
+            "box": "TwoMillion",
+            "os": "Linux",
+            "difficulty": "Easy",
+            "keywords": [
+              "API",
+              "IDOR",
+              "OverlayFS"
+            ],
+            "chain": [
+              "Sign-up locked behind an invite code",
+              "Reverse-engineered the JavaScript that generates the code, a ROT13 hint pointing to the API",
+              "User account created",
+              "Admin endpoint vulnerable to IDOR/BOLA (client-supplied is_admin field accepted with no authorization check)",
+              "Account promoted to administrator",
+              "Command injection in the admin VPN generator (poorly filtered username parameter injected into a bash script)",
+              "www-data shell",
+              "Database credentials found in a .env file, an administrator’s bcrypt hash cracked",
+              "SSH access",
+              "Kernel flaw CVE-2023-0386 (OverlayFS/FUSE, SUID binary created through a copy-up)",
+              "Root"
+            ],
+            "flaws": [
+              "Invite code generated by logic that lives entirely on the client",
+              "is_admin field accepted as-is from the client, with no authorization check (IDOR/BOLA)",
+              "Insufficient filtering (special characters stripped, not newlines) before injection into a shell script",
+              "Database credentials in cleartext in a readable configuration file",
+              "bcrypt hash crackable with a wordlist",
+              "Kernel vulnerable to a known CVE (OverlayFS)"
+            ],
+            "pitfalls": [
+              "The public exploit for CVE-2023-0386 needs two concurrent sessions (fuse and exp): easy to miss by running only one terminal"
+            ],
+            "defense": [
+              "Never base access control on client-only logic",
+              "Allow-list the fields an API accepts, never a client-modifiable privileged field",
+              "Escape or validate any user parameter before a system call, newlines included",
+              "Secrets out of the repo, never in a file readable by the application",
+              "Keep the kernel current against published CVEs"
+            ],
+            "takeaway": "The invite-code wink really does announce the machine’s theme: what looks like a plain sign-up barrier often hides real logic worth auditing. And a compromise chain rarely comes down to a single flaw: here it takes four in a row (IDOR, command injection, a cleartext secret, a vulnerable kernel), each one harmless on its own."
+          },
+          {
+            "id": "cap",
+            "box": "Cap",
+            "os": "Linux",
+            "difficulty": "Easy",
+            "keywords": [
+              "IDOR",
+              "Capabilities",
+              "Python"
+            ],
+            "chain": [
+              "Web app displaying network captures (pcap)",
+              "IDOR on the capture id: editing the URL to reach other users’ files",
+              "Plaintext FTP credentials in a capture",
+              "SSH access with those credentials",
+              "Linux cap_setuid capability set on the Python interpreter",
+              "Privilege escalation via os.setuid(0)",
+              "Root"
+            ],
+            "flaws": [
+              "No access control on a resource addressed by a plain id (IDOR)",
+              "Credentials sent in cleartext over the network",
+              "Dangerous Linux capability left on a general-purpose binary (python3)"
+            ],
+            "pitfalls": [
+              "getcap missing by default on some distros used for enumeration: installed from the libcap2-bin package"
+            ],
+            "defense": [
+              "Check the owner of a resource on every request, not just authentication",
+              "Encrypt flows carrying credentials (FTPS, SFTP)",
+              "Audit Linux capabilities (getcap -r /) with the same rigor as a SUID audit"
+            ],
+            "takeaway": "A single Linux capability (cap_setuid) has the same impact as a full root setuid once it sits on a general-purpose interpreter: it deserves the same audit. And access control that only checks authentication, never resource ownership, is an IDOR waiting to happen."
+          },
+          {
+            "id": "silentium",
+            "box": "Silentium",
+            "os": "Linux",
+            "difficulty": "Easy",
+            "keywords": [
+              "Flowise",
+              "RCE",
+              "Gogs"
+            ],
+            "chain": [
+              "Staging subdomain found through vhost fuzzing, exposing a Flowise instance (an AI pipeline platform)",
+              "Password-reset token leaked in the API response (CVE-2025-58434)",
+              "Admin password reset, Flowise session obtained",
+              "Arbitrary code execution via the node-load-method/customMCP endpoint (CVE-2025-59528)",
+              "Blind RCE: environment variables exfiltrated through an outbound connection (out-of-band)",
+              "Docker container revealed, with an SMTP password in the environment variables",
+              "SMTP password reused as-is as the SSH password on the host",
+              "Local Gogs instance (root, internal port) reached through an SSH tunnel",
+              "Symlink created in a Git repo pointing to /root/.ssh/authorized_keys (CVE-2025-8110)",
+              "Public key written through the symlink via Gogs’ PutContents API",
+              "Root"
+            ],
+            "flaws": [
+              "Password reset that returns the token in the response instead of emailing it",
+              "User-supplied configuration evaluated as server-side JavaScript, with no sandboxing",
+              "Secrets left in cleartext in a container’s environment variables",
+              "Password reused between an application service and SSH access",
+              "Symlink followed with no check by Gogs’ file-write API"
+            ],
+            "pitfalls": [
+              "The staging subdomain never showed up in a plain DNS enumeration: found through vhost fuzzing (gobuster vhost)",
+              "Blind RCE, no output in the HTTP response: exfiltrated through an outbound request to an nc listener"
+            ],
+            "defense": [
+              "Never return a reset token in the HTTP response",
+              "Forbid any dynamic code evaluation from user-supplied configuration",
+              "Secrets in a dedicated manager, never in variables readable by the container",
+              "One password per service, never reused",
+              "Update Gogs and verify a symlink’s real target before writing through it"
+            ],
+            "takeaway": "A forgotten staging subdomain can expose a whole chain of internal tools (Flowise, Gogs); vhost fuzzing is part of basic recon, not an optional step. And reusing an application password as a system password stays the simplest mistake to exploit in the whole chain."
+          }
+        ],
+        "activeLabel": "Active boxes",
+        "activeTitle": "Currently active machines, no kill-chain and no spoiler: just the skills practiced and the concepts involved, as Hack The Box’s rules require.",
+        "activeNotes": [
+          {
+            "id": "cohort",
+            "box": "Cohort",
+            "os": "Linux",
+            "difficulty": "Easy",
+            "keywords": [
+              "SSRF",
+              "WebSocket",
+              "Linux"
+            ],
+            "skills": [
+              "Spotting a server-side feature that fetches a resource on the user’s behalf, a classic SSRF tell",
+              "Trying several representations of the same address to bypass a naive filter",
+              "Auditing the security of a real-time channel (WebSocket) at the same level as a regular HTTP endpoint",
+              "Checking for system packages deliberately held back, which stay vulnerable despite an available patch"
+            ],
+            "concepts": [
+              "SSRF and address-filter bypass",
+              "Authentication on WebSocket channels",
+              "A held package’s exposure window against a known CVE"
+            ],
+            "takeaway": "Active machines don’t get a detailed writeup — that’s HTB’s rule, and it makes sense: it leaves the discovery to everyone else. What I can say: a blacklist of local addresses almost always gets bypassed by another representation of the same address, and a deliberately held-back package stays an exposure window to audit, not forget."
           }
         ]
+      },
+      "challenge": {
+        "restrictedTitle": "[ACCESS RESTRICTED]",
+        "hint": "Open the browser console (F12) and type HTB.help() to start.",
+        "codeLabel": "Access code",
+        "codePlaceholder": "HTB-XXXX-XXXX-XXXX",
+        "submit": "Submit",
+        "invalidCode": "Invalid code. Re-read the hint in the console.",
+        "fastUnlock": "Recruiter in a hurry: unlock directly",
+        "grantedTitle": "[ACCESS GRANTED]",
+        "elapsedLabel": "Time",
+        "pseudoLabel": "Nickname for the Hall of Fame",
+        "pseudoPlaceholder": "Nickname",
+        "saveScore": "Save my time",
+        "skipSave": "Don’t enter the leaderboard",
+        "pwnedBadge": "Pwned",
+        "resetButton": "↺ Reset the challenge",
+        "scoreboardTitle": "Hall of Fame",
+        "scoreboardOffline": "Leaderboard unavailable on this static deployment: run the site locally (npm run dev) to see the live Hall of Fame.",
+        "colRank": "Rank",
+        "colPseudo": "Nickname",
+        "colTime": "Time",
+        "colDate": "Date",
+        "savedLocally": "Time saved. Thanks for playing!",
+        "rejectedShape": "Nickname rejected: 2 to 16 alphanumeric characters (., _, - allowed).",
+        "rejectedProfanity": "Nickname rejected.",
+        "rejectedSpam": "Hold on: try again in a few seconds.",
+        "closeLabel": "Close"
       }
     },
     thm: {
@@ -679,7 +1033,9 @@ export const portfolio: Portfolio = {
           "flaws": "Açıklar",
           "pitfalls": "Karşılaştığım tuzaklar",
           "defense": "Korunma",
-          "takeaway": "Çıkardığım ders"
+          "takeaway": "Çıkardığım ders",
+          "skills": "Pratik edilen yetenekler",
+          "concepts": "İlgili kavramlar"
         },
         "notes": [
           {
@@ -793,8 +1149,183 @@ export const portfolio: Portfolio = {
               "Root hakları olmayan bir izleme süreci"
             ],
             "takeaway": "Root olarak çalışan bir süreçte etkin bırakılan bir hata ayıklama aracı, yalnızca 127.0.0.1 ile sınırlı olsa bile açık bir kapıdır. Bir framework’ün sürüm adayı da üretime çıkmaz."
+          },
+          {
+            "id": "twomillion",
+            "box": "TwoMillion",
+            "os": "Linux",
+            "difficulty": "Easy",
+            "keywords": [
+              "API",
+              "IDOR",
+              "OverlayFS"
+            ],
+            "chain": [
+              "Davet koduyla kilitli kayıt",
+              "Kodu üreten JavaScript’in tersine mühendisliği, API’yi işaret eden ROT13 ipucu",
+              "Oluşturulan kullanıcı hesabı",
+              "IDOR/BOLA’ya açık yönetici uç noktası (istemciden gelen is_admin alanı, yetki denetimi olmadan kabul ediliyor)",
+              "Yönetici olarak yükseltilen hesap",
+              "Yönetici VPN oluşturucuda komut enjeksiyonu (yetersiz filtrelenen username parametresi bir bash betiğine enjekte ediliyor)",
+              "www-data shell",
+              "Bir .env dosyasında bulunan veritabanı kimlik bilgileri, kırılan bir yöneticinin bcrypt hash’i",
+              "SSH erişimi",
+              "Çekirdek açığı CVE-2023-0386 (OverlayFS/FUSE, copy-up ile oluşturulan SUID ikili dosyası)",
+              "Root"
+            ],
+            "flaws": [
+              "Davet kodunun tamamen istemci tarafındaki bir mantıkla üretilmesi",
+              "İstemciden olduğu gibi kabul edilen is_admin alanı, yetki denetimi olmadan (IDOR/BOLA)",
+              "Bir shell betiğine enjekte edilmeden önce yetersiz filtreleme (özel karakterler kaldırılıyor ama satır sonları değil)",
+              "Okunabilir bir yapılandırma dosyasında açık metin veritabanı kimlik bilgileri",
+              "Bir kelime listesiyle kırılabilen bcrypt hash’i",
+              "Bilinen bir CVE’ye açık çekirdek (OverlayFS)"
+            ],
+            "pitfalls": [
+              "CVE-2023-0386 için herkese açık exploit, eşzamanlı iki oturum gerektiriyor (fuse ve exp): tek terminalle çalıştırınca kolayca gözden kaçıyor"
+            ],
+            "defense": [
+              "Erişim denetimini asla yalnızca istemci tarafı mantığa dayandırmamak",
+              "API’nin kabul ettiği alanları beyaz listeye almak, istemci tarafından değiştirilebilir yetkili bir alan asla olmamalı",
+              "Bir sistem çağrısından önce kullanıcı parametresini kaçışlamak veya doğrulamak, satır sonları dahil",
+              "Sırları depodan uzak tutmak, uygulamanın okuyabildiği bir dosyada asla olmamalı",
+              "Çekirdeği yayınlanan CVE’lere karşı güncel tutmak"
+            ],
+            "takeaway": "Davet kodu şakası makinenin temasını gerçekten haber veriyor: basit bir kayıt bariyeri gibi görünen şey, genellikle denetlenmeye değer gerçek bir mantığı gizler. Bir ele geçirme zinciri nadiren tek bir açığa iner: burada art arda dört açık gerekiyor (IDOR, komut enjeksiyonu, açık metin bir sır, zafiyetli bir çekirdek) — her biri tek başına zararsız."
+          },
+          {
+            "id": "cap",
+            "box": "Cap",
+            "os": "Linux",
+            "difficulty": "Easy",
+            "keywords": [
+              "IDOR",
+              "Capabilities",
+              "Python"
+            ],
+            "chain": [
+              "Ağ yakalamalarını (pcap) gösteren web uygulaması",
+              "Yakalama kimliğinde IDOR: diğer kullanıcıların dosyalarına erişmek için URL’yi değiştirme",
+              "Bir yakalamada açık metin FTP kimlik bilgileri",
+              "Bu kimlik bilgileriyle SSH erişimi",
+              "Python yorumlayıcısına atanmış cap_setuid yeteneği",
+              "os.setuid(0) ile yetki yükseltme",
+              "Root"
+            ],
+            "flaws": [
+              "Basit bir kimlikle adreslenen bir kaynakta erişim denetimi yok (IDOR)",
+              "Ağ üzerinden açık metin olarak gönderilen kimlik bilgileri",
+              "Genel amaçlı bir ikili dosyada (python3) bırakılmış tehlikeli bir Linux yeteneği"
+            ],
+            "pitfalls": [
+              "Numaralandırma için kullanılan bazı dağıtımlarda getcap varsayılan olarak yok: libcap2-bin paketinden kurulduğu"
+            ],
+            "defense": [
+              "Her istekte kaynağın sahibini kontrol etmek, sadece kimlik doğrulamayı değil",
+              "Kimlik bilgisi taşıyan akışları şifrelemek (FTPS, SFTP)",
+              "Linux yeteneklerini (getcap -r /) bir SUID denetimiyle aynı titizlikle denetlemek"
+            ],
+            "takeaway": "Tek bir Linux yeteneği (cap_setuid), genel amaçlı bir yorumlayıcıya konduğunda tam bir root setuid ile aynı etkiye sahiptir: aynı denetimi hak eder. Yalnızca kimlik doğrulamayı kontrol eden, kaynağın sahipliğini hiç kontrol etmeyen bir erişim denetimi de beklemede olan bir IDOR’dur."
+          },
+          {
+            "id": "silentium",
+            "box": "Silentium",
+            "os": "Linux",
+            "difficulty": "Easy",
+            "keywords": [
+              "Flowise",
+              "RCE",
+              "Gogs"
+            ],
+            "chain": [
+              "Vhost fuzzing ile bulunan staging alt alan adı, bir Flowise örneğini (bir yapay zeka pipeline platformu) açığa çıkarıyor",
+              "API yanıtında sızan parola sıfırlama jetonu (CVE-2025-58434)",
+              "Sıfırlanan yönetici parolası, elde edilen Flowise oturumu",
+              "node-load-method/customMCP uç noktası üzerinden keyfi kod çalıştırma (CVE-2025-59528)",
+              "Kör RCE: ortam değişkenlerinin giden bir bağlantıyla (bant dışı) sızdırılması",
+              "Ortam değişkenlerinde SMTP parolası bulunan Docker konteyneri ortaya çıkıyor",
+              "SMTP parolasının ana makinede SSH parolası olarak olduğu gibi yeniden kullanılması",
+              "SSH tüneliyle ulaşılan yerel Gogs örneği (root, dahili port)",
+              "Bir Git deposunda /root/.ssh/authorized_keys’e işaret eden sembolik bağlantı oluşturma (CVE-2025-8110)",
+              "Gogs’un PutContents API’si aracılığıyla sembolik bağlantı üzerinden genel anahtarın yazılması",
+              "Root"
+            ],
+            "flaws": [
+              "Jetonu e-posta ile göndermek yerine yanıtta döndüren parola sıfırlama",
+              "Kullanıcı tarafından sağlanan yapılandırmanın sunucu tarafında, hiçbir izolasyon olmadan JavaScript olarak değerlendirilmesi",
+              "Bir konteynerin ortam değişkenlerinde açık metin bırakılan sırlar",
+              "Bir uygulama servisi ile SSH erişimi arasında yeniden kullanılan parola",
+              "Gogs’un dosya yazma API’si tarafından denetlenmeden takip edilen sembolik bağlantı"
+            ],
+            "pitfalls": [
+              "Staging alt alan adı basit bir DNS numaralandırmasında hiç görünmedi: vhost fuzzing ile bulundu (gobuster vhost)",
+              "Kör RCE, HTTP yanıtında çıktı yok: bir nc dinleyicisine giden istekle sızdırıldı"
+            ],
+            "defense": [
+              "Sıfırlama jetonunu asla HTTP yanıtında döndürmemek",
+              "Kullanıcı tarafından sağlanan yapılandırmadan herhangi bir dinamik kod değerlendirmesini yasaklamak",
+              "Sırları özel bir yöneticide tutmak, konteyner tarafından okunabilir değişkenlerde asla değil",
+              "Her servis için ayrı bir parola, asla yeniden kullanmamak",
+              "Gogs’u güncellemek ve üzerinden yazmadan önce bir sembolik bağlantının gerçek hedefini doğrulamak"
+            ],
+            "takeaway": "Unutulmuş bir staging alt alan adı, dahili araçların (Flowise, Gogs) tüm zincirini açığa çıkarabilir; vhost fuzzing temel keşfin bir parçasıdır, isteğe bağlı bir adım değil. Bir uygulama parolasının sistem parolası olarak yeniden kullanılması, tüm zincirin en kolay istismar edilen hatası olmaya devam ediyor."
+          }
+        ],
+        "activeLabel": "Aktif kutular",
+        "activeTitle": "Şu anda aktif olan makineler, zincir ya da spoiler yok: yalnızca pratik edilen yetenekler ve ilgili kavramlar, Hack The Box kurallarının gerektirdiği gibi.",
+        "activeNotes": [
+          {
+            "id": "cohort",
+            "box": "Cohort",
+            "os": "Linux",
+            "difficulty": "Easy",
+            "keywords": [
+              "SSRF",
+              "WebSocket",
+              "Linux"
+            ],
+            "skills": [
+              "Kullanıcı adına bir kaynak getiren sunucu tarafı bir özelliği fark etmek, klasik bir SSRF belirtisi",
+              "Naif bir filtreyi atlatmak için aynı adresin birden çok temsilini denemek",
+              "Gerçek zamanlı bir kanalın (WebSocket) güvenliğini, normal bir HTTP uç noktasıyla aynı düzeyde denetlemek",
+              "Mevcut bir yamaya rağmen zafiyetli kalan, kasıtlı olarak tutulan (held) sistem paketlerini kontrol etmek"
+            ],
+            "concepts": [
+              "SSRF ve adres filtresi atlatma",
+              "WebSocket kanallarında kimlik doğrulama",
+              "Tutulan bir paketin bilinen bir CVE’ye karşı maruziyet penceresi"
+            ],
+            "takeaway": "Aktif makineler ayrıntılı bir writeup almaz — bu HTB’nin kuralı ve mantıklı: keşfi herkese bırakır. Söyleyebileceğim şu: yerel adreslerin kara listesi neredeyse her zaman aynı adresin başka bir temsiliyle atlatılır ve kasıtlı olarak tutulan bir paket, unutulması değil denetlenmesi gereken bir maruziyet penceresi olarak kalır."
           }
         ]
+      },
+      "challenge": {
+        "restrictedTitle": "[ERİŞİM KISITLI]",
+        "hint": "Tarayıcı konsolunu açın (F12) ve başlamak için HTB.help() yazın.",
+        "codeLabel": "Erişim kodu",
+        "codePlaceholder": "HTB-XXXX-XXXX-XXXX",
+        "submit": "Gönder",
+        "invalidCode": "Geçersiz kod. Konsoldaki ipucunu yeniden okuyun.",
+        "fastUnlock": "Acelesi olan işveren: doğrudan kilidi aç",
+        "grantedTitle": "[ERİŞİM VERİLDİ]",
+        "elapsedLabel": "Süre",
+        "pseudoLabel": "Hall of Fame için takma ad",
+        "pseudoPlaceholder": "Takma ad",
+        "saveScore": "Süremi kaydet",
+        "skipSave": "Sıralamaya katılma",
+        "pwnedBadge": "Pwned",
+        "resetButton": "↺ Challenge’ı sıfırla",
+        "scoreboardTitle": "Hall of Fame",
+        "scoreboardOffline": "Bu statik dağıtımda sıralama kullanılamıyor: canlı Hall of Fame’i görmek için siteyi yerelde çalıştırın (npm run dev).",
+        "colRank": "Sıra",
+        "colPseudo": "Takma ad",
+        "colTime": "Süre",
+        "colDate": "Tarih",
+        "savedLocally": "Süre kaydedildi. Oynadığın için teşekkürler!",
+        "rejectedShape": "Takma ad reddedildi: 2-16 alfanümerik karakter (., _, - izinli).",
+        "rejectedProfanity": "Takma ad reddedildi.",
+        "rejectedSpam": "Bir dakika: birkaç saniye sonra tekrar deneyin.",
+        "closeLabel": "Kapat"
       }
     },
     thm: {
