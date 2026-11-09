@@ -257,6 +257,8 @@ export interface HtbChallengeContent {
   restrictedTitle: string
   /** Hint to open the browser console and call HTB.help(). */
   hint: string
+  /** Shown instead of `hint` on mobile/tablet, where the console is unreachable: points to `fastUnlock` instead. */
+  hintMobile: string
   codeLabel: string
   codePlaceholder: string
   submit: string

@@ -125,13 +125,15 @@ test.describe('HTB invite-code challenge (fr)', () => {
 })
 
 for (const [path, lang] of PAGES) {
-  test(`the restricted terminal shows the right hint and fast-unlock text (${lang})`, async ({ page }) => {
+  test(`the restricted terminal shows the right hint and fast-unlock text (${lang})`, async ({ page, isMobile }) => {
     const t = portfolio[lang].htb.challenge
     await openLocked(page, path)
     await firstCard(page).click()
     const dialog = page.getByRole('dialog', { name: t.restrictedTitle, exact: true })
     await expect(dialog).toBeVisible()
-    await expect(dialog.locator('.htb-terminal-hint')).toHaveText(t.hint)
+    // Below the 920px breakpoint (mobile-chromium/mobile-webkit projects), F12 is a dead end: the hint points to
+    // fastUnlock instead (see the mobile/tablet decision in HtbTerminalModal.vue).
+    await expect(dialog.locator('.htb-terminal-hint')).toHaveText(isMobile ? t.hintMobile : t.hint)
     await expect(dialog.getByRole('button', { name: t.fastUnlock })).toBeVisible()
   })
 }

@@ -20,6 +20,23 @@ const t = computed(() => content.value.htb.challenge)
 
 const { unlock } = useHtbUnlock()
 
+// Sous ce seuil, pas de clavier physique fiable pour F12 : l'indice console serait un cul-de-sac, on pointe
+// directement vers le bouton de déverrouillage recruteur à la place (cf. décision mobile/tablette du 2026-11-08).
+const MOBILE_QUERY = '(max-width: 920px)'
+const isMobile = ref(false)
+let mobileQuery: MediaQueryList | undefined
+function syncIsMobile() {
+  isMobile.value = mobileQuery?.matches ?? false
+}
+onMounted(() => {
+  mobileQuery = window.matchMedia(MOBILE_QUERY)
+  syncIsMobile()
+  mobileQuery.addEventListener('change', syncIsMobile)
+})
+onBeforeUnmount(() => mobileQuery?.removeEventListener('change', syncIsMobile))
+
+const hintText = computed(() => (isMobile.value ? t.value.hintMobile : t.value.hint))
+
 const ACCESS_CODE = 'HTB-DENIZ-PWN3D-2027'
 
 type Phase = 'locked' | 'granted'
@@ -160,7 +177,7 @@ function entryDate(iso: string) {
     <div class="htb-terminal">
       <template v-if="phase === 'locked'">
         <h3 id="htbTerminalTitle" class="htb-terminal-head">{{ t.restrictedTitle }}</h3>
-        <p class="htb-terminal-hint">{{ t.hint }}</p>
+        <p class="htb-terminal-hint">{{ hintText }}</p>
         <p v-if="liveElapsed > 0" class="htb-terminal-chrono" role="status">{{ elapsedLabel }}</p>
 
         <form class="htb-terminal-form" @submit.prevent="submitCode">
