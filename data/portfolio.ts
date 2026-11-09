@@ -395,6 +395,7 @@ export const portfolio: Portfolio = {
       "challenge": {
         "restrictedTitle": "[ACCÈS RESTREINT]",
         "hint": "Ouvrez la console du navigateur (F12) et tapez HTB.help() pour commencer.",
+        "hintMobile": "Sur mobile, la console n’est pas accessible : utilisez le bouton ci-dessous pour débloquer l’accès directement.",
         "codeLabel": "Code d’accès",
         "codePlaceholder": "HTB-XXXX-XXXX-XXXX",
         "submit": "Valider",
@@ -851,6 +852,7 @@ export const portfolio: Portfolio = {
       "challenge": {
         "restrictedTitle": "[ACCESS RESTRICTED]",
         "hint": "Open the browser console (F12) and type HTB.help() to start.",
+        "hintMobile": "On mobile, the console isn’t available: use the button below to unlock access directly.",
         "codeLabel": "Access code",
         "codePlaceholder": "HTB-XXXX-XXXX-XXXX",
         "submit": "Submit",
@@ -1302,6 +1304,7 @@ export const portfolio: Portfolio = {
       "challenge": {
         "restrictedTitle": "[ERİŞİM KISITLI]",
         "hint": "Tarayıcı konsolunu açın (F12) ve başlamak için HTB.help() yazın.",
+        "hintMobile": "Mobilde konsola erişilemez: erişimi doğrudan açmak için aşağıdaki düğmeyi kullanın.",
         "codeLabel": "Erişim kodu",
         "codePlaceholder": "HTB-XXXX-XXXX-XXXX",
         "submit": "Gönder",
