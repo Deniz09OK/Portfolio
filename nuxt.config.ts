@@ -65,8 +65,9 @@ export default defineNuxtConfig({
   // Global stylesheet (the original arena design system).
   css: ['~/assets/css/arena.css'],
 
-  // Pure static front-end — no server runtime needed. `nuxt generate`
-  // produces a fully static site for Netlify / Vercel / GitHub Pages.
+  // Published as a static site: `nuxt generate` prerenders every page for GitHub Pages, which runs no server.
+  // The repository still holds server routes (server/api/scoreboard.*, the Hall of Fame of the HTB challenge):
+  // they only exist with a Nitro server (`nuxt dev`, `nuxt build`) and are never deployed (see scoreboardApi above).
   ssr: true,
 
   // GitHub Pages serves 404.html for unknown URLs. Nuxt always prerenders /404.html as an
