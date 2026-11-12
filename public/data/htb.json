@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-11-03T19:33:12.296Z",
+  "updatedAt": "2026-11-12T14:48:04.245Z",
   "profile": {
     "id": 4005432,
     "name": "Sorouto",
     "rank": "Script Kiddie",
     "nextRank": "Hacker",
-    "rankProgress": 53.7,
-    "points": 23,
-    "globalRanking": 992,
-    "systemOwns": 11,
-    "userOwns": 12,
+    "rankProgress": 73.7,
+    "points": 36,
+    "globalRanking": 1000,
+    "systemOwns": 12,
+    "userOwns": 13,
     "bloods": 0,
     "respects": 0,
     "country": "FR",
@@ -17,6 +17,13 @@
     "url": "https://app.hackthebox.com/users/4005432"
   },
   "boxes": [
+    {
+      "name": "Unclaimed",
+      "difficulty": "Medium",
+      "os": "Windows",
+      "solved": "root",
+      "solvedAt": "2026-11-12T10:36:42.000Z"
+    },
     {
       "name": "Takeoff",
       "difficulty": "Hard",
@@ -106,13 +113,13 @@
     "id": 21,
     "name": "Season 12",
     "endsAt": "2026-11-28T19:00:01.000Z",
-    "league": "Silver",
-    "rank": 1993,
-    "totalPlayers": 6135,
-    "points": 225,
-    "nextLeague": "Ruby",
+    "league": "Ruby",
+    "rank": 1793,
+    "totalPlayers": 6486,
+    "points": 290,
+    "nextLeague": "Platinum",
     "flags": {
-      "obtained": 7,
+      "obtained": 9,
       "total": 18
     },
     "bloods": 0
