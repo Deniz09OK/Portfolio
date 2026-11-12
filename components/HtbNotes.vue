@@ -6,7 +6,8 @@ import type { CaseStudyListSection, CaseStudySection } from '~/types/portfolio'
 //
 // The retired notes (the real write-ups, kill-chain included) sit behind the invite-code challenge: see
 // composables/useHtbChallenge.ts, plugins/htb-console.client.ts and HtbTerminalModal.vue. Active machines (below)
-// are never gated: they only ever show skills and concepts, never a chain or a flag, so there is nothing to protect.
+// are never gated and never documented: a plain tile with the name, the difficulty and a status, no modal, no
+// technical detail (HTB rule: a machine only gets a note once it is retired).
 const content = usePortfolio()
 const notes = computed(() => content.value.htb.notes)
 const challenge = computed(() => content.value.htb.challenge)
@@ -38,9 +39,6 @@ function onTerminalClose(granted?: boolean) {
   pendingIndex.value = null
 }
 
-const activeBox = ref<number | null>(null)
-const activeBoxNote = computed(() => (activeBox.value === null ? null : notes.value.activeNotes[activeBox.value] ?? null))
-
 const diffClass = (d: string) => `htb-diff--${d.toLowerCase().replace(/[^a-z]/g, '')}`
 const pad = (n: number) => String(n).padStart(2, '0')
 
@@ -57,17 +55,6 @@ const sections = computed<(CaseStudySection | CaseStudyListSection)[]>(() => {
     { label: r.flaws, items: n.flaws },
     ...(n.pitfalls.length ? [{ label: r.pitfalls, items: n.pitfalls }] : []),
     { label: r.defense, items: n.defense },
-    { label: r.takeaway, text: n.takeaway },
-  ]
-})
-
-const activeBoxSections = computed<(CaseStudyListSection | CaseStudySection)[]>(() => {
-  const n = activeBoxNote.value
-  if (!n) return []
-  const r = notes.value.rubrics
-  return [
-    { label: r.skills, items: n.skills },
-    { label: r.concepts, items: n.concepts },
     { label: r.takeaway, text: n.takeaway },
   ]
 })
@@ -140,46 +127,17 @@ const activeBoxSections = computed<(CaseStudyListSection | CaseStudySection)[]>(
       <h4 id="htbActiveTitle" class="htb-notes-active-title">{{ notes.activeTitle }}</h4>
 
       <ul v-reveal class="htb-notes-grid">
-        <li v-for="(n, i) in notes.activeNotes" :key="n.id">
-          <button type="button" class="htb-tile htb-note-card" aria-haspopup="dialog" @click="activeBox = i">
+        <li v-for="n in notes.activeNotes" :key="n.id">
+          <div class="htb-tile htb-active-card">
             <span class="htb-name htb-note-box" lang="en">{{ n.box }}</span>
             <span class="htb-note-meta">
               <span v-if="n.difficulty" class="htb-diff" :class="diffClass(n.difficulty)" lang="en">{{ n.difficulty }}</span>
-              <span class="htb-os" lang="en">{{ n.os }}</span>
+              <span class="htb-active-status">{{ notes.activeStatus }}</span>
             </span>
-            <span class="htb-note-tags">
-              <span v-for="k in n.keywords" :key="k" class="htb-flag" lang="en">{{ k }}</span>
-            </span>
-            <span class="off-cta">
-              <span class="off-cta-label">{{ notes.cta }}</span>
-              <span class="off-cta-arr" aria-hidden="true">→</span>
-            </span>
-          </button>
+            <span class="htb-active-summary">{{ n.summary }}</span>
+          </div>
         </li>
       </ul>
-
-      <ArenaModal
-        :open="activeBoxNote !== null"
-        labelledby="htbActiveModalTitle"
-        :close-label="notes.closeLabel"
-        root-class="htb-active-note-modal"
-        @close="activeBox = null"
-      >
-        <template v-if="activeBoxNote">
-          <div class="off-modal-head">
-            <h3 id="htbActiveModalTitle" class="off-modal-title" lang="en">{{ activeBoxNote.box }}</h3>
-            <div class="htb-note-meta">
-              <span v-if="activeBoxNote.difficulty" class="htb-diff" :class="diffClass(activeBoxNote.difficulty)" lang="en">{{ activeBoxNote.difficulty }}</span>
-              <span class="htb-os" lang="en">{{ activeBoxNote.os }}</span>
-            </div>
-            <div class="htb-note-tags">
-              <span v-for="k in activeBoxNote.keywords" :key="k" class="htb-flag" lang="en">{{ k }}</span>
-            </div>
-          </div>
-
-          <CaseStudy :sections="activeBoxSections" class="htb-note-case" />
-        </template>
-      </ArenaModal>
     </section>
   </section>
 </template>
