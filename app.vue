@@ -4,6 +4,7 @@ import { LANG_PATHS, OG_LOCALES, SITE_LANGS, SITE_URL, isKnownPagePath } from '~
 // Single-page portfolio. All sections are auto-imported components.
 const content = usePortfolio()
 const { lang } = useLang()
+const { themeColor } = useTheme()
 
 // One page per language (/, /en/, /tr/): any other path (GitHub Pages serves 404.html for it) renders error.vue.
 const path = import.meta.server ? useRequestURL().pathname : window.location.pathname
@@ -51,7 +52,7 @@ useHead(() => {
     ],
     meta: [
       { name: 'description', content: content.value.seoDescription },
-      { name: 'theme-color', content: '#0c0c10' },
+      { name: 'theme-color', content: themeColor.value },
       { property: 'og:type', content: 'website' },
       { property: 'og:url', content: url },
       { property: 'og:title', content: content.value.seoTitle },

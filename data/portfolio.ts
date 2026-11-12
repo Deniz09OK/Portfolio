@@ -894,7 +894,7 @@ export const portfolio: Portfolio = {
     sectionLabels: { roster: "Profil", matches: "Projeler", career: "Deneyim", drills: "Yetenekler", htb: "Hack The Box", thm: "TryHackMe", off: "İlgi Alanları", languages: "Diller", contact: "İletişim" },
     a11y: { navPrimary: "Ana gezinme", navMobile: "Mobil gezinme", language: "Dil", theme: "Açık tema", menu: "Menü", legend: "Açıklama", backToTop: "Sayfanın başına dön", skipToContent: "İçeriğe geç" },
     ticker: ["SİBER & WEB GELİŞTİRME DÖNÜŞÜMLÜ EĞİTİM", "·", "HEMEN MÜSAİT", "·", "GRAND EST & LÜKSEMBURG", "·", "MSc SİBER GÜVENLİK & BULUT", "·", "EPITECH NANCY", "·", "ÜÇ DİLLİ FR/EN/TR", "·", "YENİ FIRSATLARA AÇIĞIM", "·", "CANLI", "·", "PORTFOLYO 2026", "·"],
-    seoTitle: "Deniz OK — Siber Güvenlik & Web Geliştirme · Dönüşümlü Eğitim · Epitech Nancy",
+    seoTitle: "Deniz OK — Siber Güvenlik & Web Geliştirme · Epitech Nancy",
     seoJobTitle: "Siber güvenlik ve web geliştirme alanında dönüşümlü eğitim öğrencisi",
     ogImageAlt: "Deniz OK, siber güvenlik ve web geliştirme dönüşümlü eğitim öğrencisi, Epitech Nancy",
     seoDescription: "Deniz OK — siber güvenlik & web geliştirme alanında dönüşümlü eğitim öğrencisi (MSc, Epitech Nancy). Hemen müsait, 09/2027'ye kadar, Grand Est & Lüksemburg.",

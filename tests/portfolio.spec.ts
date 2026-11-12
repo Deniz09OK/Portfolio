@@ -263,6 +263,36 @@ test('the theme toggle is remembered after a reload', async ({ page }) => {
   await expect(html).toHaveClass(/(^|\s)light(\s|$)/)
 })
 
+test('the browser theme colour follows the theme', async ({ page }) => {
+  await openSite(page)
+  const meta = page.locator('meta[name="theme-color"]')
+  await expect(meta).toHaveCount(1)
+  await expect(meta).toHaveAttribute('content', '#0c0c10')
+  await page.locator('.theme-btn').click()
+  await expect(meta).toHaveAttribute('content', '#f0ede4')
+  // Still right after a language switch (the head is rebuilt) and after a reload on the saved light theme.
+  await switchLang(page, 'en')
+  await expect(meta).toHaveAttribute('content', '#f0ede4')
+  await page.reload()
+  await expect(meta).toHaveAttribute('content', '#f0ede4')
+  await page.locator('.theme-btn').click()
+  await expect(meta).toHaveAttribute('content', '#0c0c10')
+  // Each value is the page background of its theme.
+  const bg = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--bg').trim())
+  expect(bg).toBe('#0c0c10')
+})
+
+test('the portrait declares its real size and every SEO title fits in about 60 characters', async ({ page }) => {
+  await openSite(page)
+  const img = page.locator('img.portrait-img')
+  await expect(img).toHaveAttribute('width', '800')
+  await expect(img).toHaveAttribute('height', '1200')
+  // The declared ratio is the ratio of the file actually served.
+  const ratio = await img.evaluate((el: HTMLImageElement) => el.decode().then(() => el.naturalWidth / el.naturalHeight))
+  expect(ratio).toBeCloseTo(800 / 1200, 2)
+  for (const lang of LANGS) expect(portfolio[lang].seoTitle.length, lang).toBeLessThanOrEqual(62)
+})
+
 test('the theme button is a toggle that reports the light theme state', async ({ page }) => {
   await openSite(page)
   const btn = page.locator('.theme-btn')
