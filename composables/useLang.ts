@@ -5,7 +5,7 @@ import { LANG_PATHS, hasLangInPath, langFromPath, normalizeLangPath } from '~/sh
 const STORAGE_KEY = 'deniz-arena-lang'
 const SUPPORTED: LangCode[] = ['fr', 'en', 'tr']
 
-/** Localised CV files, served statically from /public. Turkish falls back to the English version. */
+/** Localised CV files, served statically from /public. Turkish falls back to the English version: its label says so (« CV indir (EN) »). */
 export const CV_URLS: Record<LangCode, string> = {
   fr: '/cv-deniz-ok-fr.pdf',
   en: '/cv-deniz-ok-en.pdf',

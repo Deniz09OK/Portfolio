@@ -263,6 +263,36 @@ test('the theme toggle is remembered after a reload', async ({ page }) => {
   await expect(html).toHaveClass(/(^|\s)light(\s|$)/)
 })
 
+test('the browser theme colour follows the theme', async ({ page }) => {
+  await openSite(page)
+  const meta = page.locator('meta[name="theme-color"]')
+  await expect(meta).toHaveCount(1)
+  await expect(meta).toHaveAttribute('content', '#0c0c10')
+  await page.locator('.theme-btn').click()
+  await expect(meta).toHaveAttribute('content', '#f0ede4')
+  // Still right after a language switch (the head is rebuilt) and after a reload on the saved light theme.
+  await switchLang(page, 'en')
+  await expect(meta).toHaveAttribute('content', '#f0ede4')
+  await page.reload()
+  await expect(meta).toHaveAttribute('content', '#f0ede4')
+  await page.locator('.theme-btn').click()
+  await expect(meta).toHaveAttribute('content', '#0c0c10')
+  // Each value is the page background of its theme.
+  const bg = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--bg').trim())
+  expect(bg).toBe('#0c0c10')
+})
+
+test('the portrait declares its real size and every SEO title fits in about 60 characters', async ({ page }) => {
+  await openSite(page)
+  const img = page.locator('img.portrait-img')
+  await expect(img).toHaveAttribute('width', '800')
+  await expect(img).toHaveAttribute('height', '1200')
+  // The declared ratio is the ratio of the file actually served.
+  const ratio = await img.evaluate((el: HTMLImageElement) => el.decode().then(() => el.naturalWidth / el.naturalHeight))
+  expect(ratio).toBeCloseTo(800 / 1200, 2)
+  for (const lang of LANGS) expect(portfolio[lang].seoTitle.length, lang).toBeLessThanOrEqual(62)
+})
+
 test('the theme button is a toggle that reports the light theme state', async ({ page }) => {
   await openSite(page)
   const btn = page.locator('.theme-btn')
@@ -373,6 +403,51 @@ test('unknown URLs get a real 404 page', async ({ page, request }) => {
   await page.goto('/cette-page-n-existe-pas')
   await expect(page.locator('h1')).toHaveText('404')
   await expect(page.locator('a[href="/"]')).toBeVisible()
+})
+
+// GitHub Pages serves one 404.html (French) for every unknown URL: the language of the path is applied in the
+// browser, from the first segment only.
+const NOT_FOUND = [
+  { path: '/cette-page-n-existe-pas', lang: 'fr', text: 'Hors du terrain — Cette page n’existe pas.', cta: 'Retour à l’accueil', home: '/' },
+  { path: '/en/unknown-page', lang: 'en', text: 'Out of bounds — This page does not exist.', cta: 'Back to home', home: '/en/' },
+  { path: '/en/deep/unknown/page', lang: 'en', text: 'Out of bounds — This page does not exist.', cta: 'Back to home', home: '/en/' },
+  { path: '/tr/bilinmeyen-sayfa', lang: 'tr', text: 'Saha dışı — Bu sayfa mevcut değil.', cta: 'Ana sayfaya dön', home: '/tr/' },
+  // A first segment that only starts like a language code is not one.
+  { path: '/english', lang: 'fr', text: 'Hors du terrain — Cette page n’existe pas.', cta: 'Retour à l’accueil', home: '/' },
+] as const
+
+for (const { path, lang, text, cta, home } of NOT_FOUND) {
+  test(`the 404 page of ${path} is in ${lang.toUpperCase()} and links back to ${home}`, async ({ page }) => {
+    const errors: string[] = []
+    page.on('pageerror', (e) => errors.push(e.message))
+    const res = await page.goto(path)
+    expect(res!.status()).toBe(404)
+
+    await expect(page.locator('html')).toHaveAttribute('lang', lang)
+    await expect(page.locator('h1')).toHaveText('404')
+    await expect(page.locator('.contact-lead')).toHaveText(text)
+    const back = page.locator('a.contact-email')
+    await expect(back).toContainText(cta)
+    await expect(back).toHaveAttribute('href', home)
+    // The address that was not found stays in the address bar.
+    expect(new URL(page.url()).pathname).toBe(path)
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex')
+    expect(errors).toEqual([])
+
+    await back.click()
+    await expect(page.locator('html')).toHaveAttribute('lang', lang)
+    await expect(page.locator('#roster')).toBeVisible()
+  })
+}
+
+test('the 404 page follows the language chosen on the site when the path names none', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('deniz-arena-lang', 'en'))
+  await page.goto('/cette-page-n-existe-pas')
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en')
+  await expect(page.locator('.contact-lead')).toHaveText('Out of bounds — This page does not exist.')
+  // The path wins over the saved choice.
+  await page.goto('/tr/bilinmeyen-sayfa')
+  await expect(page.locator('html')).toHaveAttribute('lang', 'tr')
 })
 
 test('off-court modal moves focus in, traps Tab and returns focus to its opener', async ({ page, isMobile }) => {
@@ -526,10 +601,85 @@ test('the back-to-top button hands the keyboard focus to the page content', asyn
   await button.focus()
   await page.keyboard.press('Enter')
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
-  await expect(page.locator('main#top')).toBeFocused()
+  await expect(page.locator('main#main')).toBeFocused()
   await page.keyboard.press('Tab')
-  await expect(page.locator('main#top')).not.toBeFocused()
-  await expect(page.locator('main#top')).not.toHaveAttribute('tabindex', /.*/)
+  await expect(page.locator('main#main')).not.toBeFocused()
+})
+
+for (const lang of LANGS) {
+  test(`the skip link is the first tab stop and moves the focus into the main content (${lang})`, async ({ page, isMobile }) => {
+    test.skip(!!isMobile, 'keyboard focus is a desktop concern')
+    const errors = await openSite(page, lang)
+    const skip = page.locator('a.skip-link')
+    const main = page.locator('main#main')
+    await expect(skip).toHaveText(portfolio[lang].a11y.skipToContent)
+    await expect(skip).toHaveAttribute('href', '#main')
+    await expect(main).toHaveAttribute('tabindex', '-1')
+    // Off-screen until focused.
+    await expect(skip).not.toBeInViewport()
+
+    await page.keyboard.press('Tab')
+    await expect(skip).toBeFocused()
+    await expect(skip).toBeInViewport()
+    await page.keyboard.press('Enter')
+
+    // The focus is now in the main content, after the navigation bar: <main> itself, then its first control.
+    await expect(main).toBeFocused()
+    await page.keyboard.press('Tab')
+    const where = await page.evaluate(() => {
+      const el = document.activeElement
+      return { inMain: !!el?.closest('main#main'), inBar: !!el?.closest('header.bar'), isMain: el?.id === 'main' }
+    })
+    expect(where).toEqual({ inMain: true, inBar: false, isMain: false })
+    expect(errors).toEqual([])
+  })
+}
+
+for (const lang of LANGS) {
+  test(`the CV link downloads the PDF of the language (${lang})`, async ({ page, request }) => {
+    await openSite(page, lang)
+    const link = page.locator('a.cta-cv')
+    const href = lang === 'fr' ? '/cv-deniz-ok-fr.pdf' : '/cv-deniz-ok-en.pdf'
+    await expect(link).toHaveAttribute('href', href)
+    await expect(link).toHaveAttribute('download', '')
+    await expect(link).not.toHaveAttribute('target', /.*/)
+    await expect(link).toContainText(portfolio[lang].hero.cta2)
+    // No Turkish CV: the Turkish label announces the English file.
+    if (lang === 'tr') await expect(link).toContainText('(EN)')
+    expect((await request.get(href)).status()).toBe(200)
+  })
+}
+
+test('Escape closes the mobile menu and gives the focus back to the burger', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  const errors = await openSite(page)
+  const burger = page.locator('.nav-toggle')
+  const menu = page.locator('#mobileNav')
+
+  await burger.click()
+  await expect(burger).toHaveAttribute('aria-expanded', 'true')
+  await expect(menu).toHaveClass(/is-open/)
+  await expect(page.locator('html')).toHaveClass(/nav-lock/)
+
+  await page.keyboard.press('Escape')
+  await expect(burger).toHaveAttribute('aria-expanded', 'false')
+  await expect(menu).not.toHaveClass(/is-open/)
+  await expect(page.locator('html')).not.toHaveClass(/nav-lock/)
+  await expect(burger).toBeFocused()
+
+  // Escape with the menu closed does nothing.
+  await page.keyboard.press('Escape')
+  await expect(burger).toHaveAttribute('aria-expanded', 'false')
+  expect(errors).toEqual([])
+})
+
+test.describe('with prefers-reduced-motion', () => {
+  test.use({ reducedMotion: 'reduce' })
+  test('anchor links jump instead of scrolling smoothly', async ({ page }) => {
+    await openSite(page)
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto')
+    expect(await page.evaluate(() => getComputedStyle(document.body).scrollBehavior)).toBe('auto')
+  })
 })
 
 test('every link opening a new tab has rel="noopener noreferrer"', async ({ page }) => {

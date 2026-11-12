@@ -74,7 +74,9 @@ const num = (n: number) => new Intl.NumberFormat(LOCALES[lang.value]).format(n)
 const dayMonth = (iso: string) =>
   new Intl.DateTimeFormat(LOCALES[lang.value], { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(iso))
 
-// Rank, points and global ranking are left out on purpose: the band shows practice, not a beginner score.
+// Rank, points and global ranking are not displayed, on purpose: the band shows practice, not a beginner score.
+// They are not hidden for all that: public/data/htb.json, written by scripts/fetch-htb.mjs, still publishes them
+// (rank, points, globalRanking, country, joinedAt) and anyone can read that file at /data/htb.json.
 // Machines rooted, most recent first (boxes without a date last); the ones only owned at user level are "in progress".
 const rooted = computed(() =>
   (data.value?.boxes ?? [])

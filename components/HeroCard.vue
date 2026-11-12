@@ -9,6 +9,7 @@ const { root: numberRoot, open: noteOpen, toggle: toggleNote } = useBubble()
 // If the file is missing the dashed placeholder is shown instead.
 const portraitSrc = '/portrait.jpg'
 const portraitMissing = ref(false)
+// width / height are the real size of the file (800 x 1200): the browser reserves the box before the image loads.
 // @nuxt/image adds onerror="this.setAttribute('data-error', 1)" to the server-rendered <img>. The CSP
 // (server/plugins/csp.ts) blocks that inline handler and Firefox reports it on every page load, so
 // :onerror="null" drops it. Load errors after hydration still reach @error.
@@ -57,6 +58,8 @@ const cvUrl = computed(() => CV_URLS[lang.value])
             v-if="!portraitMissing"
             class="portrait-img"
             :src="portraitSrc"
+            width="800"
+            height="1200"
             alt="Deniz OK"
             :onerror="null"
             @error="portraitMissing = true"
@@ -85,7 +88,8 @@ const cvUrl = computed(() => CV_URLS[lang.value])
         <a class="cta cta-primary" href="#matches">
           <span>{{ hero.cta1 }}</span> <span class="cta-arr" aria-hidden="true">→</span>
         </a>
-        <a class="cta cta-ghost" :href="cvUrl" target="_blank" rel="noopener noreferrer">
+        <!-- download: the label says « Télécharger », so the PDF is saved instead of opened in a tab. -->
+        <a class="cta cta-ghost cta-cv" :href="cvUrl" download>
           <span>{{ hero.cta2 }}</span> <span class="cta-arr" aria-hidden="true">↓</span>
         </a>
         <a class="cta cta-ghost" href="#contact">

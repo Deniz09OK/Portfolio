@@ -16,13 +16,9 @@ function toTop() {
 }
 
 // The button hides once the page is back at the top: hand the focus to the start of the content so keyboard
-// users do not lose it. <main> is not focusable by default, so it gets a temporary tabindex="-1".
+// users do not lose it. <main> is focusable through its tabindex="-1" (app.vue), also the skip link target.
 function focusPageStart() {
-  const main = document.getElementById('top')
-  if (!main) return
-  main.setAttribute('tabindex', '-1')
-  main.addEventListener('blur', () => main.removeAttribute('tabindex'), { once: true })
-  main.focus({ preventScroll: true })
+  document.getElementById('main')?.focus({ preventScroll: true })
 }
 
 onMounted(() => {

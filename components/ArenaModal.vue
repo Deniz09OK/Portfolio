@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Dialog frame shared by the off-court modal and the HTB notes modal: backdrop, close button, focus moved into the
-// dialog and given back on close, Tab / Shift+Tab kept inside, Escape to close, page scroll locked while open,
+// dialog (on the element of the slot marked data-autofocus when there is one, else on the card) and given back on close, Tab / Shift+Tab kept inside, Escape to close, page scroll locked while open,
 // will-change set only while it animates.
 // The content goes in the default slot. The frame is styled by .arena-modal and the .off-modal-* classes (offcourt.css).
 const props = withDefaults(defineProps<{
@@ -62,7 +62,9 @@ watch(
     if (isOpen) {
       opener = document.activeElement instanceof HTMLElement ? document.activeElement : null
       await nextTick()
-      card.value?.focus({ preventScroll: true })
+      // The content may name its own first focus (a form field, say) with data-autofocus; else the card gets it.
+      const target = card.value?.querySelector<HTMLElement>('[data-autofocus]') ?? card.value
+      target?.focus({ preventScroll: true })
     } else {
       if (opener?.isConnected) opener.focus()
       opener = null
@@ -73,7 +75,9 @@ watch(
 function focusables(): HTMLElement[] {
   if (!card.value) return []
   return Array.from(
-    card.value.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+    card.value.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    ),
   )
 }
 

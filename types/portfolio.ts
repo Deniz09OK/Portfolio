@@ -356,6 +356,8 @@ export interface A11yContent {
   menu: string
   legend: string
   backToTop: string
+  /** Skip link, first focusable element of the page. */
+  skipToContent: string
 }
 
 export interface LocaleContent {

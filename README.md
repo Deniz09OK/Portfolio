@@ -65,7 +65,7 @@ Le design adopte le style **Arena**, un concept d'éditorial premium inspiré de
 - `npm run preview` : Prévisualise localement le site généré.
 - `npm run typecheck` : Vérifie les types avec `vue-tsc` (lance d'abord `nuxt prepare`).
 - `npm run test` : Lance les tests Playwright sur le site généré (lancer `npm run generate` avant).
-- `npm run test:unit` : Lance les tests unitaires de `scripts/htb-compare.mjs` (`node --test`, sans navigateur ni génération).
+- `npm run test:unit` : Lance les tests unitaires (`node --test`, sans navigateur ni génération) : comparaison et jeton HTB (`htb-compare`, `htb-token`), règles du classement (`htb-scoreboard`), liens `target="_blank"` (`links`) et métadonnées des CV (`cv`).
 
 ## 🧪 Tests
 

@@ -70,6 +70,22 @@ test.describe('HTB invite-code challenge (fr)', () => {
     expect(errors).toEqual([])
   })
 
+  test('the code field has the focus when the terminal opens, and Tab stays inside the dialog', async ({ page, isMobile }) => {
+    test.skip(!!isMobile, 'keyboard focus is a desktop concern')
+    await openLocked(page, '/')
+    await firstCard(page).click()
+    const dialog = page.getByRole('dialog', { name: t.restrictedTitle, exact: true })
+    await expect(dialog).toBeVisible()
+    await expect(dialog.locator('#htbCode')).toBeFocused()
+    // Typing right away fills the field: the dialog frame did not take the focus back.
+    await page.keyboard.type('HTB-')
+    await expect(dialog.locator('#htbCode')).toHaveValue('HTB-')
+    for (let k = 0; k < 6; k++) {
+      await page.keyboard.press('Tab')
+      expect(await dialog.locator('.off-modal-card').evaluate((el) => el.contains(document.activeElement))).toBe(true)
+    }
+  })
+
   test('the console riddle leads to the real code, which unlocks every box and opens the one that was clicked', async ({ page }) => {
     const apiCalls = watchScoreboardCalls(page)
     const errors = await openLocked(page, '/')
