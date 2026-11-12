@@ -2,6 +2,8 @@
 import type { LangCode } from '~/types/portfolio'
 import type { ScoreboardEntry } from '~/shared/htb-scoreboard'
 import { pseudoError } from '~/shared/htb-scoreboard'
+// Import explicite : utilisée dans le template, où vue-tsc ne résout pas toujours l'auto-import.
+import { formatElapsed } from '~/composables/useHtbChallenge'
 
 // Terminal d'accès des notes HTB : affiché tant que le challenge n'est pas résolu (voir HtbNotes.vue). Le code
 // se trouve dans la vraie console du navigateur (plugins/htb-console.client.ts) ; cette modale ne fait que
