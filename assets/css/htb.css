@@ -487,6 +487,7 @@ html.light .htb-terminal-modal { --htb-accent: #0a8a68; }
 .htb-terminal-fast:focus-visible { color: var(--ink); }
 .htb-terminal-fast:focus-visible { outline: 2px solid var(--htb-accent); outline-offset: 2px; }
 .htb-terminal-saved { margin: 0; font-family: var(--mono); color: var(--htb-accent); }
+.htb-terminal-continue { align-self: flex-start; }
 
 /* Hall of Fame: Top 10, inside the granted state. */
 .htb-scoreboard-wrap { margin-top: 8px; }

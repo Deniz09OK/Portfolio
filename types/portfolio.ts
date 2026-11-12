@@ -272,8 +272,12 @@ export interface HtbChallengeContent {
   pwnedBadge: string
   resetButton: string
   scoreboardTitle: string
-  /** Shown when /api/scoreboard is unreachable (the published site is fully static: see server/api/scoreboard.*.ts). */
+  /** Shown when the scoreboard API exists but does not answer (server mode only, see scoreboardApi in nuxt.config.ts). */
   scoreboardOffline: string
+  /** Static site (no scoreboard API): message shown with the final time, instead of the pseudo form and the leaderboard. */
+  staticDone: string
+  /** Static site: button closing the terminal and opening the note that was clicked. */
+  continueToNote: string
   colRank: string
   colPseudo: string
   colTime: string
