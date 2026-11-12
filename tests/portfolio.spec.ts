@@ -560,6 +560,21 @@ for (const lang of LANGS) {
   })
 }
 
+for (const lang of LANGS) {
+  test(`the CV link downloads the PDF of the language (${lang})`, async ({ page, request }) => {
+    await openSite(page, lang)
+    const link = page.locator('a.cta-cv')
+    const href = lang === 'fr' ? '/cv-deniz-ok-fr.pdf' : '/cv-deniz-ok-en.pdf'
+    await expect(link).toHaveAttribute('href', href)
+    await expect(link).toHaveAttribute('download', '')
+    await expect(link).not.toHaveAttribute('target', /.*/)
+    await expect(link).toContainText(portfolio[lang].hero.cta2)
+    // No Turkish CV: the Turkish label announces the English file.
+    if (lang === 'tr') await expect(link).toContainText('(EN)')
+    expect((await request.get(href)).status()).toBe(200)
+  })
+}
+
 test('Escape closes the mobile menu and gives the focus back to the burger', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   const errors = await openSite(page)

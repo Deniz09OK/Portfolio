@@ -917,7 +917,7 @@ export const portfolio: Portfolio = {
         { k: "DURUM", v: "Siber güvenlik & web geliştirme alanında dönüşümlü eğitim · Hemen müsait · Grand Est & Lüksemburg" }
       ],
       cta1: "Kartı gör",
-      cta2: "CV indir",
+      cta2: "CV indir (EN)",
       cta3: "İletişim"
     },
     matches: { title: "Sezon kartı", sub: "Altı maç vitrinde, beşi yedekte.", more: "5 eski projeyi göster (2024‑2025)" },

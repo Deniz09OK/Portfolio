@@ -85,7 +85,8 @@ const cvUrl = computed(() => CV_URLS[lang.value])
         <a class="cta cta-primary" href="#matches">
           <span>{{ hero.cta1 }}</span> <span class="cta-arr" aria-hidden="true">→</span>
         </a>
-        <a class="cta cta-ghost" :href="cvUrl" target="_blank" rel="noopener noreferrer">
+        <!-- download: the label says « Télécharger », so the PDF is saved instead of opened in a tab. -->
+        <a class="cta cta-ghost cta-cv" :href="cvUrl" download>
           <span>{{ hero.cta2 }}</span> <span class="cta-arr" aria-hidden="true">↓</span>
         </a>
         <a class="cta cta-ghost" href="#contact">
