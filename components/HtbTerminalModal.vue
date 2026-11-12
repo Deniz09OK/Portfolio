@@ -194,6 +194,7 @@ function entryDate(iso: string) {
             <input
               id="htbCode"
               ref="codeInput"
+              data-autofocus
               v-model="code"
               type="text"
               autocomplete="off"

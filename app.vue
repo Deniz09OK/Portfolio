@@ -11,6 +11,11 @@ if (!isKnownPagePath(path)) {
   throw createError({ statusCode: 404, statusMessage: 'Page Not Found', fatal: true })
 }
 
+// Browsers do not all move the keyboard focus to the target of an in-page link: do it explicitly.
+function focusMain() {
+  document.getElementById('main')?.focus()
+}
+
 // Structured data (schema.org Person), in the language of the page. A JSON block is data, not a script:
 // the CSP needs no hash for it (server/plugins/csp.ts only hashes executable scripts).
 function personJsonLd(url: string) {
@@ -69,11 +74,14 @@ useHead(() => {
 </script>
 
 <template>
-  <div>
+  <div id="top">
+    <!-- Skip link: first focusable element of the page, shown on keyboard focus only. It lands on the main
+         content, after the navigation bar and the ticker (<main> is focusable through tabindex="-1"). -->
+    <a class="skip-link" href="#main" @click="focusMain">{{ content.a11y.skipToContent }}</a>
     <TopBar />
     <LiveTicker />
 
-    <main id="top">
+    <main id="main" tabindex="-1">
       <HeroCard />
       <MatchesSection />
       <CareerSection />

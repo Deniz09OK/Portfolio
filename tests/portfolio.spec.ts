@@ -526,10 +526,70 @@ test('the back-to-top button hands the keyboard focus to the page content', asyn
   await button.focus()
   await page.keyboard.press('Enter')
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
-  await expect(page.locator('main#top')).toBeFocused()
+  await expect(page.locator('main#main')).toBeFocused()
   await page.keyboard.press('Tab')
-  await expect(page.locator('main#top')).not.toBeFocused()
-  await expect(page.locator('main#top')).not.toHaveAttribute('tabindex', /.*/)
+  await expect(page.locator('main#main')).not.toBeFocused()
+})
+
+for (const lang of LANGS) {
+  test(`the skip link is the first tab stop and moves the focus into the main content (${lang})`, async ({ page, isMobile }) => {
+    test.skip(!!isMobile, 'keyboard focus is a desktop concern')
+    const errors = await openSite(page, lang)
+    const skip = page.locator('a.skip-link')
+    const main = page.locator('main#main')
+    await expect(skip).toHaveText(portfolio[lang].a11y.skipToContent)
+    await expect(skip).toHaveAttribute('href', '#main')
+    await expect(main).toHaveAttribute('tabindex', '-1')
+    // Off-screen until focused.
+    await expect(skip).not.toBeInViewport()
+
+    await page.keyboard.press('Tab')
+    await expect(skip).toBeFocused()
+    await expect(skip).toBeInViewport()
+    await page.keyboard.press('Enter')
+
+    // The focus is now in the main content, after the navigation bar: <main> itself, then its first control.
+    await expect(main).toBeFocused()
+    await page.keyboard.press('Tab')
+    const where = await page.evaluate(() => {
+      const el = document.activeElement
+      return { inMain: !!el?.closest('main#main'), inBar: !!el?.closest('header.bar'), isMain: el?.id === 'main' }
+    })
+    expect(where).toEqual({ inMain: true, inBar: false, isMain: false })
+    expect(errors).toEqual([])
+  })
+}
+
+test('Escape closes the mobile menu and gives the focus back to the burger', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  const errors = await openSite(page)
+  const burger = page.locator('.nav-toggle')
+  const menu = page.locator('#mobileNav')
+
+  await burger.click()
+  await expect(burger).toHaveAttribute('aria-expanded', 'true')
+  await expect(menu).toHaveClass(/is-open/)
+  await expect(page.locator('html')).toHaveClass(/nav-lock/)
+
+  await page.keyboard.press('Escape')
+  await expect(burger).toHaveAttribute('aria-expanded', 'false')
+  await expect(menu).not.toHaveClass(/is-open/)
+  await expect(page.locator('html')).not.toHaveClass(/nav-lock/)
+  await expect(burger).toBeFocused()
+
+  // Escape with the menu closed does nothing.
+  await page.keyboard.press('Escape')
+  await expect(burger).toHaveAttribute('aria-expanded', 'false')
+  expect(errors).toEqual([])
+})
+
+test.describe('with prefers-reduced-motion', () => {
+  test.use({ reducedMotion: 'reduce' })
+  test('anchor links jump instead of scrolling smoothly', async ({ page }) => {
+    await openSite(page)
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto')
+    expect(await page.evaluate(() => getComputedStyle(document.body).scrollBehavior)).toBe('auto')
+  })
 })
 
 test('every link opening a new tab has rel="noopener noreferrer"', async ({ page }) => {

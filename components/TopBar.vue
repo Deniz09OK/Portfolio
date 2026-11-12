@@ -56,6 +56,14 @@ function closeMobileNav() {
   mobileOpen.value = false
 }
 
+// Escape closes the open menu and hands the focus back to the burger, like any disclosure.
+const navToggle = ref<HTMLButtonElement | null>(null)
+function onKeydown(e: KeyboardEvent) {
+  if (e.key !== 'Escape' || !mobileOpen.value) return
+  closeMobileNav()
+  navToggle.value?.focus()
+}
+
 watch(mobileOpen, (open) => {
   setScrollLock('nav-lock', open)
 })
@@ -72,11 +80,13 @@ onMounted(() => {
     ro.observe(bar.value!)
   }
   window.addEventListener('resize', onResize)
+  document.addEventListener('keydown', onKeydown)
 })
 
 onBeforeUnmount(() => {
   ro?.disconnect()
   window.removeEventListener('resize', onResize)
+  document.removeEventListener('keydown', onKeydown)
   setScrollLock('nav-lock', false)
 })
 </script>
@@ -133,6 +143,7 @@ onBeforeUnmount(() => {
         <span class="theme-moon" aria-hidden="true">☾</span>
       </button>
       <button
+        ref="navToggle"
         class="nav-toggle"
         :class="{ 'is-open': mobileOpen }"
         type="button"
