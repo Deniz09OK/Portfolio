@@ -375,6 +375,51 @@ test('unknown URLs get a real 404 page', async ({ page, request }) => {
   await expect(page.locator('a[href="/"]')).toBeVisible()
 })
 
+// GitHub Pages serves one 404.html (French) for every unknown URL: the language of the path is applied in the
+// browser, from the first segment only.
+const NOT_FOUND = [
+  { path: '/cette-page-n-existe-pas', lang: 'fr', text: 'Hors du terrain — Cette page n’existe pas.', cta: 'Retour à l’accueil', home: '/' },
+  { path: '/en/unknown-page', lang: 'en', text: 'Out of bounds — This page does not exist.', cta: 'Back to home', home: '/en/' },
+  { path: '/en/deep/unknown/page', lang: 'en', text: 'Out of bounds — This page does not exist.', cta: 'Back to home', home: '/en/' },
+  { path: '/tr/bilinmeyen-sayfa', lang: 'tr', text: 'Saha dışı — Bu sayfa mevcut değil.', cta: 'Ana sayfaya dön', home: '/tr/' },
+  // A first segment that only starts like a language code is not one.
+  { path: '/english', lang: 'fr', text: 'Hors du terrain — Cette page n’existe pas.', cta: 'Retour à l’accueil', home: '/' },
+] as const
+
+for (const { path, lang, text, cta, home } of NOT_FOUND) {
+  test(`the 404 page of ${path} is in ${lang.toUpperCase()} and links back to ${home}`, async ({ page }) => {
+    const errors: string[] = []
+    page.on('pageerror', (e) => errors.push(e.message))
+    const res = await page.goto(path)
+    expect(res!.status()).toBe(404)
+
+    await expect(page.locator('html')).toHaveAttribute('lang', lang)
+    await expect(page.locator('h1')).toHaveText('404')
+    await expect(page.locator('.contact-lead')).toHaveText(text)
+    const back = page.locator('a.contact-email')
+    await expect(back).toContainText(cta)
+    await expect(back).toHaveAttribute('href', home)
+    // The address that was not found stays in the address bar.
+    expect(new URL(page.url()).pathname).toBe(path)
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex')
+    expect(errors).toEqual([])
+
+    await back.click()
+    await expect(page.locator('html')).toHaveAttribute('lang', lang)
+    await expect(page.locator('#roster')).toBeVisible()
+  })
+}
+
+test('the 404 page follows the language chosen on the site when the path names none', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('deniz-arena-lang', 'en'))
+  await page.goto('/cette-page-n-existe-pas')
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en')
+  await expect(page.locator('.contact-lead')).toHaveText('Out of bounds — This page does not exist.')
+  // The path wins over the saved choice.
+  await page.goto('/tr/bilinmeyen-sayfa')
+  await expect(page.locator('html')).toHaveAttribute('lang', 'tr')
+})
+
 test('off-court modal moves focus in, traps Tab and returns focus to its opener', async ({ page, isMobile }) => {
   test.skip(!!isMobile, 'keyboard focus is a desktop concern')
   await openSite(page)

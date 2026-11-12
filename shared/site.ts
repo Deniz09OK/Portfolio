@@ -30,6 +30,15 @@ export function langFromPath(path: string): SiteLang {
   return p === '/en/' ? 'en' : p === '/tr/' ? 'tr' : 'fr'
 }
 
+/**
+ * Language named by the first segment of any path: /en/whatever -> en, /tr/whatever -> tr, null otherwise
+ * (/english is not /en). Used by the 404 page, where the rest of the path is unknown by definition.
+ */
+export function langFromFirstSegment(path: string): SiteLang | null {
+  const first = path.split('/')[1] ?? ''
+  return first === 'en' || first === 'tr' ? first : null
+}
+
 /** Paths the single-page app renders; anything else is a 404. */
 export function isKnownPagePath(path: string): boolean {
   const p = normalizeLangPath(path)
