@@ -9,7 +9,7 @@ const PAGES = [
 
 // Direct child of #htb-notes: excludes the active-boxes cards nested one level deeper in .htb-active-boxes.
 const cards = (page: Page) => page.locator('#htb-notes > .htb-notes-grid .htb-note-card')
-const activeCards = (page: Page) => page.locator('.htb-active-boxes .htb-note-card')
+const activeCards = (page: Page) => page.locator('.htb-active-boxes .htb-active-card')
 const modal = (page: Page) => page.locator('.htb-note-modal')
 
 /**
@@ -101,26 +101,35 @@ for (const [path, lang] of PAGES) {
       expect(errors).toEqual([])
     })
 
-    test('active boxes show skills and concepts, never a chain, and are never gated by the challenge', async ({ page }) => {
-      // No unlock cookie: the active grid must stay reachable even while the retired notes are locked.
+    test('active boxes show a name, a difficulty and a status, and nothing that could be opened', async ({ page }) => {
+      // No unlock cookie: the active grid is never gated, there is nothing to protect.
       const errors = await openNotes(page, path, { unlocked: false })
-      const activeModal = page.locator('.htb-active-note-modal')
 
       expect(content.activeNotes.length).toBeGreaterThan(0)
       await expect(activeCards(page)).toHaveCount(content.activeNotes.length)
+      // HTB rule: a machine is only documented once retired. No button, no tag, no modal on an active one.
+      await expect(page.locator('.htb-active-boxes').getByRole('button')).toHaveCount(0)
+      await expect(page.locator('.htb-active-boxes .htb-flag')).toHaveCount(0)
 
       for (const n of content.activeNotes) {
         const card = activeCards(page).filter({ hasText: n.box })
+        await expect(card.locator('.htb-note-box')).toHaveText(n.box)
+        await expect(card.locator('.htb-diff')).toHaveText(n.difficulty)
+        await expect(card.locator('.htb-active-status')).toHaveText(content.activeStatus)
+        await expect(card.locator('.htb-active-summary')).toHaveText(n.summary)
         await card.click()
-        const dialog = page.getByRole('dialog', { name: n.box, exact: true })
-        await expect(dialog).toBeVisible()
-        await expect(activeModal).toHaveClass(/is-open/)
-        await expect(dialog.locator('.match-case-label')).toHaveText([content.rubrics.skills, content.rubrics.concepts, content.rubrics.takeaway])
-        await expect(dialog.locator('ol.match-case-list')).toHaveCount(0) // a list, never an ordered chain
-        await page.keyboard.press('Escape')
-        await expect(activeModal).not.toHaveClass(/is-open/)
+        await expect(page.getByRole('dialog')).toHaveCount(0)
       }
       expect(errors).toEqual([])
+    })
+
+    test('an active box carries the same fields in every language, and only those', () => {
+      for (const n of content.activeNotes) {
+        expect(Object.keys(n).sort()).toEqual(['box', 'difficulty', 'id', 'summary'])
+      }
+      expect(content.activeNotes.map((n) => [n.id, n.box, n.difficulty])).toEqual(
+        portfolio.fr.htb.notes.activeNotes.map((n) => [n.id, n.box, n.difficulty]),
+      )
     })
   })
 }

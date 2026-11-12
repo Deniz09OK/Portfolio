@@ -202,12 +202,14 @@ export interface HtbNotesContent {
   eyebrow: string
   closeLabel: string
   /** Titles of the sections of a note. */
-  rubrics: { chain: string; flaws: string; pitfalls: string; defense: string; takeaway: string; skills: string; concepts: string }
+  rubrics: { chain: string; flaws: string; pitfalls: string; defense: string; takeaway: string }
   notes: HtbNote[]
   /** Short label above the active-machines grid (« Box actives »). */
   activeLabel: string
-  /** Sentence introducing the active machines: skills only, never a kill-chain (HTB forbids writeups on live boxes). */
+  /** Sentence introducing the active machines: no technical detail at all (HTB forbids writeups on live boxes). */
   activeTitle: string
+  /** Status shown on every active machine (« En cours »). */
+  activeStatus: string
   activeNotes: HtbActiveNote[]
 }
 
@@ -231,20 +233,16 @@ export interface HtbNote {
 }
 
 /**
- * A currently active HTB machine: skills and concepts only, no kill-chain and no flag — Hack The Box forbids
- * publishing a solution while a machine is live. Kept separate from HtbNote so the shape itself rules out a spoiler.
+ * A currently active HTB machine: name, difficulty and one neutral sentence, nothing else — Hack The Box forbids
+ * publishing anything about the solution while a machine is live (no vector, no technique, no keyword). Kept
+ * separate from HtbNote so the shape itself rules out a spoiler: a machine only gets a note once it is retired.
  */
 export interface HtbActiveNote {
   id: string
   box: string
-  os: string
   difficulty: string
-  keywords: string[]
-  /** Skills practiced, as a plain list (no order implied, unlike a retired note's chain). */
-  skills: string[]
-  /** Technical concepts involved, without saying how they were exploited. */
-  concepts: string[]
-  takeaway: string
+  /** One neutral sentence, with no technical detail whatsoever. */
+  summary: string
 }
 
 /**
@@ -274,8 +272,12 @@ export interface HtbChallengeContent {
   pwnedBadge: string
   resetButton: string
   scoreboardTitle: string
-  /** Shown when /api/scoreboard is unreachable (the published site is fully static: see server/api/scoreboard.*.ts). */
+  /** Shown when the scoreboard API exists but does not answer (server mode only, see scoreboardApi in nuxt.config.ts). */
   scoreboardOffline: string
+  /** Static site (no scoreboard API): message shown with the final time, instead of the pseudo form and the leaderboard. */
+  staticDone: string
+  /** Static site: button closing the terminal and opening the note that was clicked. */
+  continueToNote: string
   colRank: string
   colPseudo: string
   colTime: string

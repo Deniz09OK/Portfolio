@@ -341,10 +341,8 @@
 .htb-note-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; }
 .htb-note-meta .htb-os { font-size: 14px; color: var(--ink-soft); }
 .htb-note-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.htb-note-modal .off-modal-head,
-.htb-active-note-modal .off-modal-head { gap: 12px; }
-.htb-note-modal .off-modal-title,
-.htb-active-note-modal .off-modal-title { overflow-wrap: anywhere; }
+.htb-note-modal .off-modal-head { gap: 12px; }
+.htb-note-modal .off-modal-title { overflow-wrap: anywhere; }
 .htb-note-case { max-width: none; margin: 28px 0 0; }
 
 /* Invite-code challenge gating the notes: the HTB brand green (#00D9A3) is scoped to this feature only, a
@@ -385,8 +383,17 @@ html.light .htb-terminal-modal { --htb-accent: #0a8a68; }
 .htb-challenge-reset:hover { opacity: 0.8; }
 .htb-challenge-reset:focus-visible { outline: 2px solid var(--htb-accent); outline-offset: 2px; }
 
-/* Active boxes: skills/concepts only, never gated (nothing here can spoil anything). */
+/* Active boxes: a plain tile (name, difficulty, status), no modal and no technical detail until retirement. */
 .htb-active-boxes { margin-top: 40px; }
+.htb-active-card { width: 100%; gap: 12px; }
+.htb-active-status {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.htb-active-summary { font-size: 14px; color: var(--ink-soft); }
 .htb-notes-active-title { margin-top: 8px; font: inherit; max-width: 62ch; font-size: 15px; color: var(--ink-soft); }
 
 /* Terminal: locked/granted states of the invite-code challenge (HtbTerminalModal.vue). */
@@ -480,6 +487,7 @@ html.light .htb-terminal-modal { --htb-accent: #0a8a68; }
 .htb-terminal-fast:focus-visible { color: var(--ink); }
 .htb-terminal-fast:focus-visible { outline: 2px solid var(--htb-accent); outline-offset: 2px; }
 .htb-terminal-saved { margin: 0; font-family: var(--mono); color: var(--htb-accent); }
+.htb-terminal-continue { align-self: flex-start; }
 
 /* Hall of Fame: Top 10, inside the granted state. */
 .htb-scoreboard-wrap { margin-top: 8px; }

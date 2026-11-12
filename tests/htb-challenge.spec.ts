@@ -3,7 +3,11 @@ import { portfolio } from '../data/portfolio'
 
 // The invite-code riddle gating the HTB notes (see composables/useHtbChallenge.ts, plugins/htb-console.client.ts
 // and HtbTerminalModal.vue). tests/htb-notes.spec.ts covers the notes themselves (always unlocked there); this
-// file covers the gate in front of them: the terminal, the console riddle, the chrono and the Hall of Fame.
+// file covers the gate in front of them: the terminal, the console riddle, the chrono and the end screen.
+//
+// These tests run against the static build (`npm run generate`), where /api/scoreboard does not exist: the Hall
+// of Fame (pseudo form + leaderboard) must not be shown and the route must never be called. The Hall of Fame
+// itself only exists with a Nitro server (`npm run dev`).
 
 const PAGES = [
   ['/', 'fr'],
@@ -33,6 +37,27 @@ async function openLocked(page: Page, path: string) {
   return errors
 }
 
+/** Records every request to the scoreboard API: there must be none on the static site. */
+function watchScoreboardCalls(page: Page) {
+  const calls: string[] = []
+  page.on('request', (r) => {
+    if (new URL(r.url()).pathname.startsWith('/api/')) calls.push(`${r.method()} ${r.url()}`)
+  })
+  return calls
+}
+
+/** Solves the challenge through the terminal with the real code and returns the granted dialog. */
+async function solve(page: Page, lang: (typeof PAGES)[number][1]) {
+  const t = portfolio[lang].htb.challenge
+  await firstCard(page).click()
+  const dialog = page.getByRole('dialog', { name: t.restrictedTitle, exact: true })
+  await dialog.locator('#htbCode').fill('HTB-DENIZ-PWN3D-2027')
+  await dialog.getByRole('button', { name: t.submit }).click()
+  const granted = page.getByRole('dialog', { name: t.grantedTitle, exact: true })
+  await expect(granted).toBeVisible()
+  return granted
+}
+
 test.describe('HTB invite-code challenge (fr)', () => {
   const t = portfolio.fr.htb.challenge
   const note = portfolio.fr.htb.notes.notes[0]!
@@ -46,6 +71,7 @@ test.describe('HTB invite-code challenge (fr)', () => {
   })
 
   test('the console riddle leads to the real code, which unlocks every box and opens the one that was clicked', async ({ page }) => {
+    const apiCalls = watchScoreboardCalls(page)
     const errors = await openLocked(page, '/')
     await firstCard(page).click()
     const dialog = page.getByRole('dialog', { name: t.restrictedTitle, exact: true })
@@ -75,21 +101,26 @@ test.describe('HTB invite-code challenge (fr)', () => {
     const granted = page.getByRole('dialog', { name: t.grantedTitle, exact: true })
     await expect(granted).toBeVisible()
     await expect(granted.locator('.htb-terminal-chrono--final')).toContainText(/\d{2}:\d{2}\.\d{2}/)
-    // No server on this static deployment: the Hall of Fame always falls back to its offline message.
-    await expect(granted.getByText(t.scoreboardOffline)).toBeVisible()
+    // No server on this static deployment: the time and a message for the visitor, no Hall of Fame at all.
+    await expect(granted.getByText(t.staticDone)).toBeVisible()
+    await expect(granted.locator('#htbPseudo')).toHaveCount(0)
+    await expect(granted.locator('.htb-scoreboard-wrap')).toHaveCount(0)
+    await expect(granted.getByText(t.scoreboardTitle)).toHaveCount(0)
+    const next = granted.getByRole('button', { name: t.continueToNote })
+    await expect(next).toBeFocused()
 
-    // Skipping the Hall of Fame closes the terminal, which immediately hands off to the note that was
-    // originally clicked (unlocked by then) — no intermediate state with every dialog closed.
-    await granted.getByRole('button', { name: t.skipSave }).click()
+    // Continuing closes the terminal, which immediately hands off to the note that was originally clicked
+    // (unlocked by then) — no intermediate state with every dialog closed.
+    await next.click()
 
     // Unlocked: the note that was originally clicked opens on its own, and the badge + reset button appear.
     await expect(page.getByRole('dialog', { name: note.box, exact: true })).toBeVisible()
     await page.keyboard.press('Escape')
     await expect(page.locator('.htb-pwned-badge')).toHaveText(t.pwnedBadge)
     await expect(page.getByRole('button', { name: t.resetButton })).toBeVisible()
-    // The one expected console entry: the browser itself logs the failed /api/scoreboard request (404 on this
-    // static deployment) as an error, on top of the graceful offline message already asserted above.
-    expect(errors.filter((e) => !/Failed to load resource.*404/.test(e))).toEqual([])
+    // Nothing in the console, and the scoreboard API (absent here) was never called.
+    expect(apiCalls).toEqual([])
+    expect(errors).toEqual([])
   })
 
   test("the recruiter's fast-unlock button skips the riddle and the Hall of Fame entirely", async ({ page }) => {
@@ -125,6 +156,28 @@ test.describe('HTB invite-code challenge (fr)', () => {
 })
 
 for (const [path, lang] of PAGES) {
+  test(`without a scoreboard API, the granted terminal shows the time and a visitor message only (${lang})`, async ({ page }) => {
+    const t = portfolio[lang].htb.challenge
+    const apiCalls = watchScoreboardCalls(page)
+    const errors = await openLocked(page, path)
+    const granted = await solve(page, lang)
+
+    await expect(granted.locator('.htb-terminal-chrono--final')).toContainText(/\d{2}:\d{2}\.\d{2}/)
+    await expect(granted.getByText(t.staticDone)).toBeVisible()
+    await expect(granted.getByRole('button', { name: t.continueToNote })).toBeVisible()
+    // Neither the pseudo form nor the leaderboard, and nothing addressed to a developer.
+    await expect(granted.locator('form')).toHaveCount(0)
+    await expect(granted.locator('.htb-scoreboard-wrap')).toHaveCount(0)
+    await expect(granted).not.toContainText('npm run dev')
+    await expect(granted).not.toContainText(t.scoreboardTitle)
+
+    // Closing with Escape still counts as granted: the clicked note opens.
+    await page.keyboard.press('Escape')
+    await expect(page.getByRole('dialog', { name: portfolio[lang].htb.notes.notes[0]!.box, exact: true })).toBeVisible()
+    expect(apiCalls).toEqual([])
+    expect(errors).toEqual([])
+  })
+
   test(`the restricted terminal shows the right hint and fast-unlock text (${lang})`, async ({ page, isMobile }) => {
     const t = portfolio[lang].htb.challenge
     await openLocked(page, path)

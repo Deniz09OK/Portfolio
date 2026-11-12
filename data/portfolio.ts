@@ -126,9 +126,7 @@ export const portfolio: Portfolio = {
           "flaws": "Failles",
           "pitfalls": "Pièges rencontrés",
           "defense": "Se protéger",
-          "takeaway": "Ce que j’en retiens",
-          "skills": "Compétences pratiquées",
-          "concepts": "Concepts abordés"
+          "takeaway": "Ce que j’en retiens"
         },
         "notes": [
           {
@@ -210,7 +208,7 @@ export const portfolio: Portfolio = {
             "id": "reactor",
             "box": "Reactor",
             "os": "Linux",
-            "difficulty": "",
+            "difficulty": "Easy",
             "keywords": [
               "Next.js",
               "CVE",
@@ -365,30 +363,15 @@ export const portfolio: Portfolio = {
           }
         ],
         "activeLabel": "Box actives",
-        "activeTitle": "Les machines actuellement actives, sans kill-chain ni spoiler : juste les compétences pratiquées et les concepts en jeu, comme l’exige la charte Hack The Box.",
+        "activeTitle": "Les machines actuellement actives : aucun détail technique tant qu’elles ne sont pas retirées, comme l’exige la charte Hack The Box.",
+        "activeStatus": "En cours",
+        // Ne documenter une machine qu'une fois retirée (règle HTB).
         "activeNotes": [
           {
             "id": "cohort",
             "box": "Cohort",
-            "os": "Linux",
             "difficulty": "Easy",
-            "keywords": [
-              "SSRF",
-              "WebSocket",
-              "Linux"
-            ],
-            "skills": [
-              "Repérage d’une fonctionnalité serveur qui va chercher une ressource pour le compte de l’utilisateur, indice classique de SSRF",
-              "Test de plusieurs représentations d’une même adresse pour contourner un filtre naïf",
-              "Audit de sécurité d’un canal temps réel (WebSocket), au même niveau qu’un endpoint HTTP classique",
-              "Vérification des paquets système volontairement figés (held), qui restent vulnérables malgré un correctif disponible"
-            ],
-            "concepts": [
-              "SSRF et contournement de filtre d’adresse",
-              "Authentification sur les canaux WebSocket",
-              "Fenêtre d’exposition d’un paquet figé face à une CVE connue"
-            ],
-            "takeaway": "Les machines actives ne se documentent pas en détail — c’est la règle HTB, et elle a du sens : elle laisse à chacun le plaisir de la découverte. Ce que je peux en dire : une liste noire d’adresses locales se contourne presque toujours par une autre représentation de la même adresse, et un paquet volontairement figé reste une fenêtre d’exposition à auditer, pas à oublier."
+            "summary": "Note à venir, une fois la machine retirée."
           }
         ]
       },
@@ -410,7 +393,9 @@ export const portfolio: Portfolio = {
         "pwnedBadge": "Pwned",
         "resetButton": "↺ Réinitialiser le challenge",
         "scoreboardTitle": "Hall of Fame",
-        "scoreboardOffline": "Classement indisponible sur ce déploiement statique : lancez le site en local (npm run dev) pour voir le Hall of Fame en direct.",
+        "scoreboardOffline": "Classement momentanément indisponible.",
+        "staticDone": "Bien joué : le code est bon, les notes sont déverrouillées.",
+        "continueToNote": "Lire la note",
         "colRank": "Rang",
         "colPseudo": "Pseudo",
         "colTime": "Temps",
@@ -583,9 +568,7 @@ export const portfolio: Portfolio = {
           "flaws": "Flaws",
           "pitfalls": "Pitfalls I ran into",
           "defense": "How to defend",
-          "takeaway": "What I take away",
-          "skills": "Skills practiced",
-          "concepts": "Concepts involved"
+          "takeaway": "What I take away"
         },
         "notes": [
           {
@@ -667,7 +650,7 @@ export const portfolio: Portfolio = {
             "id": "reactor",
             "box": "Reactor",
             "os": "Linux",
-            "difficulty": "",
+            "difficulty": "Easy",
             "keywords": [
               "Next.js",
               "CVE",
@@ -822,30 +805,15 @@ export const portfolio: Portfolio = {
           }
         ],
         "activeLabel": "Active boxes",
-        "activeTitle": "Currently active machines, no kill-chain and no spoiler: just the skills practiced and the concepts involved, as Hack The Box’s rules require.",
+        "activeTitle": "Currently active machines: no technical detail until they are retired, as Hack The Box’s rules require.",
+        "activeStatus": "In progress",
+        // Ne documenter une machine qu'une fois retirée (règle HTB).
         "activeNotes": [
           {
             "id": "cohort",
             "box": "Cohort",
-            "os": "Linux",
             "difficulty": "Easy",
-            "keywords": [
-              "SSRF",
-              "WebSocket",
-              "Linux"
-            ],
-            "skills": [
-              "Spotting a server-side feature that fetches a resource on the user’s behalf, a classic SSRF tell",
-              "Trying several representations of the same address to bypass a naive filter",
-              "Auditing the security of a real-time channel (WebSocket) at the same level as a regular HTTP endpoint",
-              "Checking for system packages deliberately held back, which stay vulnerable despite an available patch"
-            ],
-            "concepts": [
-              "SSRF and address-filter bypass",
-              "Authentication on WebSocket channels",
-              "A held package’s exposure window against a known CVE"
-            ],
-            "takeaway": "Active machines don’t get a detailed writeup — that’s HTB’s rule, and it makes sense: it leaves the discovery to everyone else. What I can say: a blacklist of local addresses almost always gets bypassed by another representation of the same address, and a deliberately held-back package stays an exposure window to audit, not forget."
+            "summary": "Note to come once the machine is retired."
           }
         ]
       },
@@ -867,7 +835,9 @@ export const portfolio: Portfolio = {
         "pwnedBadge": "Pwned",
         "resetButton": "↺ Reset the challenge",
         "scoreboardTitle": "Hall of Fame",
-        "scoreboardOffline": "Leaderboard unavailable on this static deployment: run the site locally (npm run dev) to see the live Hall of Fame.",
+        "scoreboardOffline": "Leaderboard temporarily unavailable.",
+        "staticDone": "Well played: the code is right, the notes are unlocked.",
+        "continueToNote": "Read the note",
         "colRank": "Rank",
         "colPseudo": "Nickname",
         "colTime": "Time",
@@ -1035,9 +1005,7 @@ export const portfolio: Portfolio = {
           "flaws": "Açıklar",
           "pitfalls": "Karşılaştığım tuzaklar",
           "defense": "Korunma",
-          "takeaway": "Çıkardığım ders",
-          "skills": "Pratik edilen yetenekler",
-          "concepts": "İlgili kavramlar"
+          "takeaway": "Çıkardığım ders"
         },
         "notes": [
           {
@@ -1119,7 +1087,7 @@ export const portfolio: Portfolio = {
             "id": "reactor",
             "box": "Reactor",
             "os": "Linux",
-            "difficulty": "",
+            "difficulty": "Easy",
             "keywords": [
               "Next.js",
               "CVE",
@@ -1274,30 +1242,15 @@ export const portfolio: Portfolio = {
           }
         ],
         "activeLabel": "Aktif kutular",
-        "activeTitle": "Şu anda aktif olan makineler, zincir ya da spoiler yok: yalnızca pratik edilen yetenekler ve ilgili kavramlar, Hack The Box kurallarının gerektirdiği gibi.",
+        "activeTitle": "Şu anda aktif olan makineler: Hack The Box kurallarının gerektirdiği gibi, emekliye ayrılana kadar hiçbir teknik ayrıntı yok.",
+        "activeStatus": "Devam ediyor",
+        // Ne documenter une machine qu'une fois retirée (règle HTB).
         "activeNotes": [
           {
             "id": "cohort",
             "box": "Cohort",
-            "os": "Linux",
             "difficulty": "Easy",
-            "keywords": [
-              "SSRF",
-              "WebSocket",
-              "Linux"
-            ],
-            "skills": [
-              "Kullanıcı adına bir kaynak getiren sunucu tarafı bir özelliği fark etmek, klasik bir SSRF belirtisi",
-              "Naif bir filtreyi atlatmak için aynı adresin birden çok temsilini denemek",
-              "Gerçek zamanlı bir kanalın (WebSocket) güvenliğini, normal bir HTTP uç noktasıyla aynı düzeyde denetlemek",
-              "Mevcut bir yamaya rağmen zafiyetli kalan, kasıtlı olarak tutulan (held) sistem paketlerini kontrol etmek"
-            ],
-            "concepts": [
-              "SSRF ve adres filtresi atlatma",
-              "WebSocket kanallarında kimlik doğrulama",
-              "Tutulan bir paketin bilinen bir CVE’ye karşı maruziyet penceresi"
-            ],
-            "takeaway": "Aktif makineler ayrıntılı bir writeup almaz — bu HTB’nin kuralı ve mantıklı: keşfi herkese bırakır. Söyleyebileceğim şu: yerel adreslerin kara listesi neredeyse her zaman aynı adresin başka bir temsiliyle atlatılır ve kasıtlı olarak tutulan bir paket, unutulması değil denetlenmesi gereken bir maruziyet penceresi olarak kalır."
+            "summary": "Not, makine emekliye ayrıldığında yayımlanacak."
           }
         ]
       },
@@ -1319,7 +1272,9 @@ export const portfolio: Portfolio = {
         "pwnedBadge": "Pwned",
         "resetButton": "↺ Challenge’ı sıfırla",
         "scoreboardTitle": "Hall of Fame",
-        "scoreboardOffline": "Bu statik dağıtımda sıralama kullanılamıyor: canlı Hall of Fame’i görmek için siteyi yerelde çalıştırın (npm run dev).",
+        "scoreboardOffline": "Sıralama şu anda kullanılamıyor.",
+        "staticDone": "Tebrikler: kod doğru, notların kilidi açıldı.",
+        "continueToNote": "Notu oku",
         "colRank": "Sıra",
         "colPseudo": "Takma ad",
         "colTime": "Süre",

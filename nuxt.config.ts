@@ -54,6 +54,12 @@ export default defineNuxtConfig({
   // Server-only (not "public"): never sent to the browser. Read by server/routes/sitemap.xml.ts at prerender time.
   runtimeConfig: {
     sitemapLastmod: lastCommitDate(),
+    public: {
+      // Whether /api/scoreboard exists (the Hall of Fame of the HTB challenge). True with a Nitro server
+      // (`nuxt dev`, `nuxt build`); forced to false by the nitro:config hook below for `nuxt generate`, where no
+      // API is deployed: the terminal then never calls the route and hides the pseudo form and the leaderboard.
+      scoreboardApi: true,
+    },
   },
 
   // Global stylesheet (the original arena design system).
@@ -70,6 +76,10 @@ export default defineNuxtConfig({
     prerender: { routes: ['/404', '/en/', '/tr/', '/sitemap.xml'] },
   },
   hooks: {
+    // `nuxt generate` is `nuxt build` with nitro.static: a static site has no server routes, so no scoreboard API.
+    'nitro:config'(nitroConfig) {
+      if (nitroConfig.static && nitroConfig.runtimeConfig?.public) nitroConfig.runtimeConfig.public.scoreboardApi = false
+    },
     'nitro:init'(nitro) {
       nitro.hooks.hook('prerender:generate', (route: { route: string; skip?: boolean; error?: unknown; fileName?: string }) => {
         if (route.route === '/404.html') route.skip = true
