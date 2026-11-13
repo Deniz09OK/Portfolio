@@ -213,7 +213,7 @@ La section « Hack The Box » lit `public/data/htb.json`, généré par `scripts
 
 ### Statistiques TryHackMe
 
-La section « TryHackMe » lit `public/data/thm.json`, généré par `scripts/fetch-thm.mjs` à partir de l'API publique de TryHackMe : rooms complétées, Top %, rang, niveau, badges et points. La série, la ligue et l'avatar ne sont jamais conservés.
+La section « TryHackMe » lit `public/data/thm.json`, généré par `scripts/fetch-thm.mjs` à partir de l'API publique de TryHackMe : rooms complétées, Top %, niveau, badges et points. Le rang (texte « Top 15% »), la série, la ligue et l'avatar ne sont jamais conservés.
 
 **La mise à jour est manuelle** : tryhackme.com bloque (HTTP 429) les requêtes automatisées serveur-à-serveur, depuis GitHub Actions comme via un relais Cloudflare Worker (probable détection d'une empreinte non-navigateur). Le workflow `htb-sync.yml` ne synchronise donc plus que Hack The Box. De temps en temps, depuis ton poste :
 
