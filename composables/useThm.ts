@@ -2,7 +2,6 @@ export interface ThmData {
   updatedAt: string
   rooms: number
   topPercent: number
-  rank: string
   level: number
   badges: number
   points: number
@@ -22,7 +21,6 @@ function isThmData(v: unknown): v is ThmData {
     typeof d.topPercent === 'number' &&
     d.topPercent >= 0 &&
     d.topPercent <= 100 &&
-    typeof d.rank === 'string' &&
     isCount(d.level) &&
     isCount(d.badges) &&
     isCount(d.points)
