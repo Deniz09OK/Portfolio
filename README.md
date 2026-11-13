@@ -201,7 +201,7 @@ Chaque langue a son image de partage 1200×630 : `public/og/og-fr.png`, `og-en.p
 
 ### Statistiques Hack The Box
 
-La section « Hack The Box » lit `public/data/htb.json`, généré par `scripts/fetch-htb.mjs` (données publiques uniquement : rang, points, boxes résolues, saison en cours). Le workflow `.github/workflows/htb-sync.yml` l'exécute toutes les 12 h, à la demande, et à chaque push sur `main`, commite le JSON s'il a changé puis relance `deploy.yml`.
+La section « Hack The Box » lit `public/data/htb.json`, généré par `scripts/fetch-htb.mjs` (données publiques uniquement, et seulement celles que la page affiche : machines user/root, bloods, boxes résolues, saison en cours ; ni rang, ni points de profil, ni classement global, ni pays, ni date d'inscription). Le workflow `.github/workflows/htb-sync.yml` l'exécute toutes les 12 h, à la demande, et à chaque push sur `main`, commite le JSON s'il a changé puis relance `deploy.yml`.
 
 - Secret requis : `HTB_API_TOKEN` (Settings → Secrets and variables → Actions). Le workflow le transmet au script sous le nom `API_TOKEN` ; en local, mettre `API_TOKEN=...` dans un `.env` (ignoré par git).
 - Le workflow a deux jobs : `fetch` lit le jeton avec un accès en lecture seule au dépôt (`persist-credentials: false`, aucun identifiant Git sur le disque), puis transmet le JSON par artifact à `publish`, qui commite, pousse et relance `deploy.yml` sans jamais voir le jeton. Les permissions sont déclarées par job (`permissions: {}` au niveau du workflow).
