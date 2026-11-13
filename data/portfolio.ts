@@ -21,7 +21,7 @@ export const portfolio: Portfolio = {
       name2: "OK",
       position: "CYBERSÉCURITÉ & CLOUD",
       team: "EN RECHERCHE D’ALTERNANCE · EPITECH NANCY",
-      bio: "Étudiant en MSc Cybersécurité & Cloud à Epitech Nancy, je recherche une alternance en cybersécurité ou en développement web, disponible dès maintenant et jusqu’en septembre 2027. Depuis février 2025 chez Qualitest, je développe des pipelines de données Python pour des clients, j’administre des serveurs Windows et j’automatise les traitements (Python, PowerShell, PHP, Bash).",
+      bio: "Étudiant en MSc Cybersécurité & Cloud à Epitech Nancy, je recherche une nouvelle alternance en cybersécurité ou en développement web, disponible dès maintenant et jusqu’en septembre 2027. Depuis février 2025 chez Qualitest, je développe des pipelines de données Python pour des clients, j’administre des serveurs Windows et j’automatise les traitements (Python, PowerShell, PHP, Bash).",
       kanji: "戦",
       tale: [
         { k: "BASE", v: "Jarville-la-Malgrange (Nancy) · train/bus, déménagement possible" },
@@ -462,7 +462,7 @@ export const portfolio: Portfolio = {
     contact: {
       title: "Sifflet final.",
       lead: "Parler cyber, projet ou juste dire bonjour ? Les vestiaires sont ouverts.",
-      availability: "Je recherche une alternance en cybersécurité ou développement web, disponible dès maintenant et jusqu’à septembre 2027. Basé à Nancy, mobile dans tout le Grand Est et au Luxembourg. Rythme : 4 jours en entreprise, 1 jour en formation.",
+      availability: "Je recherche une nouvelle alternance en cybersécurité ou développement web, disponible dès maintenant et jusqu’à septembre 2027. Basé à Nancy, mobile dans tout le Grand Est et au Luxembourg. Rythme : 4 jours en entreprise, 1 jour en formation.",
       email: "deniz16ok@gmail.com"
     }
   },
@@ -486,7 +486,7 @@ export const portfolio: Portfolio = {
       name2: "OK",
       position: "CYBERSECURITY & CLOUD",
       team: "SEEKING WORK-STUDY · EPITECH NANCY",
-      bio: "MSc Cybersecurity & Cloud student at Epitech Nancy, looking for an apprenticeship in cybersecurity or web development, starting now and running until September 2027. At Qualitest since February 2025, I build Python data pipelines for clients, administer Windows servers and automate data processing (Python, PowerShell, PHP, Bash).",
+      bio: "MSc Cybersecurity & Cloud student at Epitech Nancy, looking for a new apprenticeship in cybersecurity or web development, starting now and running until September 2027. At Qualitest since February 2025, I build Python data pipelines for clients, administer Windows servers and automate data processing (Python, PowerShell, PHP, Bash).",
       kanji: "戦",
       tale: [
         { k: "BASE", v: "Jarville-la-Malgrange (Nancy) · train/bus, open to relocating" },
@@ -917,7 +917,7 @@ export const portfolio: Portfolio = {
         { code: "EN", flag: "EN", label: "English", level: "TOEIC 790 / 990" }
       ]
     },
-    contact: { title: "Final whistle.", lead: "Want to talk cyber, a project, or just say hi? The locker room is open.", availability: "I am looking for an apprenticeship in cybersecurity or web development, starting now and running until September 2027. Based in Nancy, I can work anywhere in the Grand Est region and in Luxembourg. Schedule: 4 days a week at the company, 1 day in training.", email: "deniz16ok@gmail.com" }
+    contact: { title: "Final whistle.", lead: "Want to talk cyber, a project, or just say hi? The locker room is open.", availability: "I am looking for a new apprenticeship in cybersecurity or web development, starting now and running until September 2027. Based in Nancy, I can work anywhere in the Grand Est region and in Luxembourg. Schedule: 4 days a week at the company, 1 day in training.", email: "deniz16ok@gmail.com" }
   },
 
   tr: {
@@ -939,7 +939,7 @@ export const portfolio: Portfolio = {
       name2: "OK",
       position: "SİBER GÜVENLİK & BULUT",
       team: "DÖNÜŞÜMLÜ EĞİTİM ARIYOR · EPITECH NANCY",
-      bio: "Epitech Nancy'de MSc Siber Güvenlik & Bulut öğrencisiyim; siber güvenlik veya web geliştirme alanında, hemen başlayıp Eylül 2027'ye kadar sürecek bir dönüşümlü eğitim arıyorum. Şubat 2025'ten beri Qualitest'te müşteriler için Python veri hatları geliştiriyor, Windows sunucularını yönetiyor ve süreçleri otomatikleştiriyorum (Python, PowerShell, PHP, Bash).",
+      bio: "Epitech Nancy'de MSc Siber Güvenlik & Bulut öğrencisiyim; siber güvenlik veya web geliştirme alanında, hemen başlayıp Eylül 2027'ye kadar sürecek yeni bir dönüşümlü eğitim arıyorum. Şubat 2025'ten beri Qualitest'te müşteriler için Python veri hatları geliştiriyor, Windows sunucularını yönetiyor ve süreçleri otomatikleştiriyorum (Python, PowerShell, PHP, Bash).",
       kanji: "戦",
       tale: [
         { k: "ÜS", v: "Jarville-la-Malgrange (Nancy) · tren/otobüs, taşınmaya açık" },
@@ -1370,6 +1370,6 @@ export const portfolio: Portfolio = {
         { code: "EN", flag: "EN", label: "English", level: "TOEIC 790 / 990" }
       ]
     },
-    contact: { title: "Son düdük.", lead: "Siber güvenlik ya da bir proje hakkında konuşmak, ya da sadece merhaba demek mi istersin? Soyunma odası açık.", availability: "Siber güvenlik veya web geliştirme alanında dönüşümlü eğitim (alternance) arıyorum; hemen başlayabilirim ve Eylül 2027'ye kadar devam edebilirim. Nancy'de yaşıyorum; tüm Grand Est bölgesinde ve Lüksemburg'da çalışabilirim. Tempo: haftada 4 gün şirkette, 1 gün eğitimde.", email: "deniz16ok@gmail.com" }
+    contact: { title: "Son düdük.", lead: "Siber güvenlik ya da bir proje hakkında konuşmak, ya da sadece merhaba demek mi istersin? Soyunma odası açık.", availability: "Siber güvenlik veya web geliştirme alanında yeni bir dönüşümlü eğitim (alternance) arıyorum; hemen başlayabilirim ve Eylül 2027'ye kadar devam edebilirim. Nancy'de yaşıyorum; tüm Grand Est bölgesinde ve Lüksemburg'da çalışabilirim. Tempo: haftada 4 gün şirkette, 1 gün eğitimde.", email: "deniz16ok@gmail.com" }
   }
 }
