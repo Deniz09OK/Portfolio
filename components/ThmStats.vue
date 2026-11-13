@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { LangCode } from '~/types/portfolio'
+import { INTL_LOCALES, THM_PROFILE_URL } from '~/shared/site'
 
 const content = usePortfolio()
 const { lang } = useLang()
@@ -9,12 +9,10 @@ const t = computed(() => thm.value.labels)
 // Written by running `node scripts/fetch-thm.mjs` by hand (not automated, see the README); read like HtbStats reads htb.json.
 // A missing or invalid file gives null, which renders the fallback state.
 const data = await useThm()
-const PROFILE_URL = 'https://tryhackme.com/p/Deniz23Ok'
 
-const LOCALES: Record<LangCode, string> = { fr: 'fr-FR', en: 'en-GB', tr: 'tr-TR' }
 // Fixed UTC time zone: the prerendered HTML and the browser must print the same text.
 function fmt(iso: string) {
-  return new Intl.DateTimeFormat(LOCALES[lang.value], {
+  return new Intl.DateTimeFormat(INTL_LOCALES[lang.value], {
     day: '2-digit',
     month: 'short',
     year: 'numeric',
@@ -24,9 +22,9 @@ function fmt(iso: string) {
     timeZone: 'UTC',
   }).format(new Date(iso))
 }
-const num = (n: number) => new Intl.NumberFormat(LOCALES[lang.value]).format(n)
+const num = (n: number) => new Intl.NumberFormat(INTL_LOCALES[lang.value]).format(n)
 // "15 %" (fr), "15%" (en), "%15" (tr): the percent sign follows each locale, next to the "Top" / "İlk" label.
-const pct = (n: number) => new Intl.NumberFormat(LOCALES[lang.value], { style: 'percent', maximumFractionDigits: 1 }).format(n / 100)
+const pct = (n: number) => new Intl.NumberFormat(INTL_LOCALES[lang.value], { style: 'percent', maximumFractionDigits: 1 }).format(n / 100)
 
 // Only fields of thm.json are shown. The streak, the league and the avatar are never stored nor displayed.
 const tiles = computed(() => {
@@ -59,13 +57,13 @@ const tiles = computed(() => {
 
         <p class="htb-foot">
           <span>{{ t.updated }} : <time :datetime="data.updatedAt">{{ fmt(data.updatedAt) }}</time></span>
-          <a class="drill-proof htb-link" :href="PROFILE_URL" target="_blank" rel="noopener noreferrer">{{ t.profile }} <span aria-hidden="true">↗</span></a>
+          <a class="drill-proof htb-link" :href="THM_PROFILE_URL" target="_blank" rel="noopener noreferrer">{{ t.profile }} <span aria-hidden="true">↗</span></a>
         </p>
       </template>
 
       <div v-else class="htb-empty" role="status">
         <p>{{ t.empty }}</p>
-        <a class="drill-proof htb-link" :href="PROFILE_URL" target="_blank" rel="noopener noreferrer">{{ t.emptyLink }} <span aria-hidden="true">↗</span></a>
+        <a class="drill-proof htb-link" :href="THM_PROFILE_URL" target="_blank" rel="noopener noreferrer">{{ t.emptyLink }} <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </section>

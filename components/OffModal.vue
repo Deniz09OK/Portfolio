@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { OffItem } from '~/types/portfolio'
+import { pad } from '~/shared/format'
 
 const props = defineProps<{
   item: OffItem | null
@@ -52,7 +53,6 @@ const blocks = computed<Block[]>(() => {
 
 const eyebrowText = computed(() => {
   if (props.index === null) return ''
-  const pad = (n: number) => String(n).padStart(2, '0')
   return `${pad(props.index + 1)} / ${pad(props.total)} · ${props.eyebrow}`
 })
 

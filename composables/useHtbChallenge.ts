@@ -1,3 +1,5 @@
+import { pad } from '~/shared/format'
+
 /**
  * État du challenge d'invitation des notes HTB : un cookie pour l'accès débloqué (persistant, lu côté serveur pour
  * éviter tout flash de contenu verrouillé au chargement) et un état partagé pour le chronomètre de speedrun, démarré
@@ -68,6 +70,5 @@ export function formatElapsed(ms: number): string {
   const minutes = Math.floor(totalCentis / 6000)
   const seconds = Math.floor((totalCentis % 6000) / 100)
   const centis = totalCentis % 100
-  const pad = (n: number) => String(n).padStart(2, '0')
   return `${pad(minutes)}:${pad(seconds)}.${pad(centis)}`
 }
