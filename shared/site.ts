@@ -12,6 +12,13 @@ export const LANG_PATHS: Record<SiteLang, string> = { fr: '/', en: '/en/', tr: '
 /** Open Graph locale of each language version. */
 export const OG_LOCALES: Record<SiteLang, string> = { fr: 'fr_FR', en: 'en_GB', tr: 'tr_TR' }
 
+/** `Intl` locale of each language version (dates and numbers). */
+export const INTL_LOCALES: Record<SiteLang, string> = { fr: 'fr-FR', en: 'en-GB', tr: 'tr-TR' }
+
+/** Public profiles shown on the site (contact links and stats bands). */
+export const HTB_PROFILE_URL = 'https://app.hackthebox.com/users/4005432'
+export const THM_PROFILE_URL = 'https://tryhackme.com/p/Deniz23Ok'
+
 /** Normalises a path to one of the language paths when it is one ('/en', '/en/index.html' -> '/en/'), else returns it. */
 export function normalizeLangPath(path: string): string {
   const p = path.replace(/index\.html$/, '')

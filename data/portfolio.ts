@@ -33,10 +33,25 @@ export const portfolio: Portfolio = {
       cta2: "Télécharger CV",
       cta3: "Me contacter"
     },
+    notFound: { title: "Hors du terrain", lead: "Cette page n’existe pas.", cta: "Retour à l’accueil" },
     matches: {
       title: "Card de la saison",
       sub: "Six matchs à l’affiche, cinq autres en réserve.",
-      more: "Voir les 5 projets plus anciens (2024‑2025)"
+      more: "Voir les 5 projets plus anciens (2024‑2025)",
+      labels: {
+        locked: "CONFIDENTIEL",
+        wip: "EN DÉVELOPPEMENT",
+        round: "ROUND",
+        demo: "VOIR LA DÉMO",
+        schema: "VOIR LE SCHÉMA",
+        type: "TYPE",
+        stack: "STACK",
+        challenger: "CHALLENGER",
+        opponent: "ADVERSAIRE",
+        verdict: "VERDICT",
+        viewCode: "VOIR LE CODE",
+        viewOnHost: "VOIR SUR {host}"
+      }
     },
     projects: [
       { idx: "01", name: "CIA — Infrastructure hybride Proxmox", kanji: "要塞", type: "Infrastructure hybride multi-site", stack: "PROXMOX VE · PFSENSE · OPENVPN · NETBOX · ELASTICSEARCH · TERRAFORM · LINUX", year: "2026", opponent: "SITES ISOLÉS ET EXPOSÉS", verdict: "INFRA HYBRIDE SÉCURISÉE", desc: "CIA (Cloud Infrastructure Architects) : conception, déploiement et sécurisation d’une infrastructure hybride sur deux sites Proxmox, reliés par un VPN site à site. Le cahier des charges imposait un maximum de 3 VM par site et une architecture prête à accueillir de nouveaux sites. Projet Epitech, de janvier à juin 2026, équipe de 4 puis 5 personnes. Projet terminé.", link: null, schema: "/diagrams/cia-architecture.svg", status: "INFRASTRUCTURE DÉMONTÉE EN FIN DE PROJET", caseStudy: [{ label: "Mon rôle", text: "Chef de projet, et responsable des pare-feu pfSense et du VPN OpenVPN entre les deux sites. J’ai piloté le projet en Kanban : découpage en tickets, planning, suivi des blocages et des jalons." }, { label: "Stack", text: "Proxmox VE, pfSense, OpenVPN, NetBox (IPAM), Elasticsearch, Terraform, VM Linux." }, { label: "Sécurité", text: "Pare-feu sur chaque site pour limiter l’exposition. Le VPN site à site est chiffré. L’accès externe au site distant passe par un bastion, avec authentification par clé SSH uniquement. L’équipe a aussi mis en place une coupure d’urgence : si une adresse IP inattendue est détectée, la liaison est coupée immédiatement." }, { label: "Ce que j’en retiens", text: "C’était mon premier projet en tant que chef de projet. J’ai appris à découper, planifier et répartir le travail, et c’est sur ce point que je ferais différemment aujourd’hui : un cadrage plus précis dès le départ et un suivi plus régulier." }] },
@@ -483,7 +498,23 @@ export const portfolio: Portfolio = {
       cta2: "Download CV",
       cta3: "Contact"
     },
-    matches: { title: "Season card", sub: "Six featured matches, five more in reserve.", more: "Show 5 earlier projects (2024‑2025)" },
+    notFound: { title: "Out of bounds", lead: "This page does not exist.", cta: "Back to home" },
+    matches: { title: "Season card", sub: "Six featured matches, five more in reserve.", more: "Show 5 earlier projects (2024‑2025)",
+      labels: {
+        locked: "CONFIDENTIAL",
+        wip: "IN DEVELOPMENT",
+        round: "ROUND",
+        demo: "VIEW DEMO",
+        schema: "VIEW DIAGRAM",
+        type: "TYPE",
+        stack: "STACK",
+        challenger: "CHALLENGER",
+        opponent: "OPPONENT",
+        verdict: "VERDICT",
+        viewCode: "VIEW CODE",
+        viewOnHost: "VIEW ON {host}"
+      }
+    },
     projects: [
       { idx: "01", name: "CIA — Proxmox Hybrid Infrastructure", kanji: "要塞", type: "Multi-site hybrid infrastructure", stack: "PROXMOX VE · PFSENSE · OPENVPN · NETBOX · ELASTICSEARCH · TERRAFORM · LINUX", year: "2026", opponent: "ISOLATED, EXPOSED SITES", verdict: "SECURED HYBRID INFRA", desc: "CIA (Cloud Infrastructure Architects): design, deployment and hardening of a hybrid infrastructure across two Proxmox sites, linked by a site-to-site VPN. The specification allowed at most 3 VMs per site and required an architecture ready to take on new sites. Epitech project, January to June 2026, team of 4 then 5. Project completed.", link: null, schema: "/diagrams/cia-architecture.svg", status: "INFRASTRUCTURE TAKEN DOWN AT PROJECT END", caseStudy: [{ label: "My role", text: "Project lead, and owner of the pfSense firewalls and the OpenVPN tunnel between the two sites. I ran the project with Kanban: breaking the work into tickets, planning, tracking blockers and milestones." }, { label: "Stack", text: "Proxmox VE, pfSense, OpenVPN, NetBox (IPAM), Elasticsearch, Terraform, Linux VMs." }, { label: "Security", text: "A firewall on each site to limit exposure. The site-to-site VPN is encrypted. External access to the remote site goes through a bastion host, with SSH key authentication only. The team also set up an emergency kill switch: if an unexpected IP address is detected, the link is cut immediately." }, { label: "What I take from it", text: "It was my first project as project lead. I learned to break down, plan and share out the work, and that is what I would do differently today: tighter scoping from the start and more regular follow-up." }] },
       { idx: "02", name: "AI DevSecOps Watch", kanji: "視", type: "AI agent · automation", stack: "PYTHON · PLAYWRIGHT · GROQ · CHROMADB · GITHUB ACTIONS", year: "2026", opponent: "OFFERS LOST IN THE NOISE", verdict: "AUTOMATED WATCH", desc: "Python agent that collects work-study offers every day (France Travail and La Bonne Alternance APIs, Playwright scraping), scores them via a collaborative AI analysis with two models hosted on Groq: gpt-oss-120b (first pass), then Llama 3.3 70B (critical review), with a RAG memory (ChromaDB), recommends the right CV and drafts an application. Scheduled on GitHub Actions, blocked if the tests fail.", link: "https://github.com/Deniz09OK/veille-devsecops-ia", caseStudy: [{ label: "My role", text: "Personal project, designed and built by me, with the help of an AI assistant: job offer collection, filters, AI scoring, reports and automation." }, { label: "Stack", text: "Python 3.11, Playwright, France Travail and La Bonne Alternance APIs, Groq (gpt-oss-120b and Llama 3.3 70B), ChromaDB, pandas and openpyxl, pytest, GitHub Actions." }, { label: "Security", text: "Secrets in GitHub Secrets, never in the repository. Model outputs validated (scores bounded from 0 to 10, retry when the rate limit is hit). Mandatory tests: if they fail, the day’s run is blocked. No application is sent automatically: I review and decide myself. Sites that blocked scraping were removed, not bypassed." }, { label: "What I take from it", text: "Having two models cross-check each other and calibrating the scoring against my real outcomes (interview, rejection, no reply) limits the errors of a single model. And an automated pipeline must be blocked by its tests, otherwise it produces false results without anyone noticing." }] },
@@ -920,7 +951,23 @@ export const portfolio: Portfolio = {
       cta2: "CV indir (EN)",
       cta3: "İletişim"
     },
-    matches: { title: "Sezon kartı", sub: "Altı maç vitrinde, beşi yedekte.", more: "5 eski projeyi göster (2024‑2025)" },
+    notFound: { title: "Saha dışı", lead: "Bu sayfa mevcut değil.", cta: "Ana sayfaya dön" },
+    matches: { title: "Sezon kartı", sub: "Altı maç vitrinde, beşi yedekte.", more: "5 eski projeyi göster (2024‑2025)",
+      labels: {
+        locked: "GİZLİ",
+        wip: "GELİŞTİRİLİYOR",
+        round: "RAUND",
+        demo: "DEMOYU GÖR",
+        schema: "ŞEMAYI GÖR",
+        type: "TÜR",
+        stack: "TEKNOLOJİLER",
+        challenger: "MEYDAN OKUYAN",
+        opponent: "RAKİP",
+        verdict: "SONUÇ",
+        viewCode: "KODU GÖR",
+        viewOnHost: "{host}'DA GÖR"
+      }
+    },
     projects: [
       { idx: "01", name: "CIA — Proxmox Hibrit Altyapı", kanji: "要塞", type: "Çok siteli hibrit altyapı", stack: "PROXMOX VE · PFSENSE · OPENVPN · NETBOX · ELASTICSEARCH · TERRAFORM · LINUX", year: "2026", opponent: "İZOLE VE AÇIKTA SİTELER", verdict: "GÜVENLİ HİBRİT ALTYAPI", desc: "CIA (Cloud Infrastructure Architects): siteler arası bir VPN ile birbirine bağlanan iki Proxmox sitesi üzerinde hibrit bir altyapının tasarımı, kurulumu ve güvenliğinin sağlanması. Şartname site başına en fazla 3 sanal makineye izin veriyor ve yeni siteler eklemeye hazır bir mimari istiyordu. Epitech projesi, Ocak–Haziran 2026, önce 4 sonra 5 kişilik ekip. Proje tamamlandı.", link: null, schema: "/diagrams/cia-architecture.svg", status: "ALTYAPI PROJE SONUNDA KALDIRILDI", caseStudy: [{ label: "Rolüm", text: "Proje yöneticisi; ayrıca pfSense güvenlik duvarlarından ve iki site arasındaki OpenVPN bağlantısından sorumluydum. Projeyi Kanban ile yönettim: işi görevlere bölme, planlama, engellerin ve kilometre taşlarının takibi." }, { label: "Teknolojiler", text: "Proxmox VE, pfSense, OpenVPN, NetBox (IPAM), Elasticsearch, Terraform, Linux sanal makineleri." }, { label: "Güvenlik", text: "Maruziyeti sınırlamak için her sitede bir güvenlik duvarı. Siteler arası VPN şifreli. Uzak siteye dış erişim, yalnızca SSH anahtarıyla kimlik doğrulama yapılan bir bastion sunucusu üzerinden sağlanıyor. Ekip ayrıca bir acil kesme mekanizması kurdu: beklenmeyen bir IP adresi tespit edildiğinde bağlantı anında kesiliyor." }, { label: "Bu projeden öğrendiklerim", text: "Proje yöneticisi olarak ilk projemdi. İşi bölmeyi, planlamayı ve paylaştırmayı öğrendim; bugün farklı yapacağım nokta da tam olarak bu: baştan daha net bir kapsam belirleme ve daha düzenli bir takip." }] },
       { idx: "02", name: "Veille DevSecOps IA", kanji: "視", type: "YZ ajanı · otomasyon", stack: "PYTHON · PLAYWRIGHT · GROQ · CHROMADB · GITHUB ACTIONS", year: "2026", opponent: "GÜRÜLTÜDE KAYBOLAN İLANLAR", verdict: "OTOMATİK TAKİP", desc: "Her gün dönüşümlü eğitim ilanlarını toplayan Python ajanı (France Travail ve La Bonne Alternance API'leri, Playwright ile scraping): ilanları Groq üzerinde barındırılan iki modelle iş birliğine dayalı bir yapay zekâ analiziyle puanlar: gpt-oss-120b (ilk eleme), ardından Llama 3.3 70B (eleştirel gözden geçirme); RAG belleği (ChromaDB) kullanır, uygun CV'yi önerir ve başvuru taslağı hazırlar. GitHub Actions üzerinde zamanlanmış çalışır; testler başarısız olursa engellenir.", link: "https://github.com/Deniz09OK/veille-devsecops-ia", caseStudy: [{ label: "Rolüm", text: "Bir yapay zekâ asistanının yardımıyla kendim tasarladığım ve geliştirdiğim kişisel bir proje: ilanların toplanması, filtreler, YZ ile puanlama, raporlar ve otomasyon." }, { label: "Teknolojiler", text: "Python 3.11, Playwright, France Travail ve La Bonne Alternance API’leri, Groq (gpt-oss-120b ve Llama 3.3 70B), ChromaDB, pandas ve openpyxl, pytest, GitHub Actions." }, { label: "Güvenlik", text: "Sırlar GitHub Secrets’ta tutulur, asla depoda değil. Model çıktıları doğrulanır (puanlar 0 ile 10 arasında sınırlı, istek sınırına takılınca yeniden deneme). Testler zorunludur: başarısız olurlarsa günün çalıştırması engellenir. Hiçbir başvuru otomatik olarak gönderilmez: kendim okuyup karar veririm. Scraping’i engelleyen siteler atlatılmadı, listeden çıkarıldı." }, { label: "Bu projeden öğrendiklerim", text: "İki modelin birbirini çapraz kontrol etmesi ve puanlamanın gerçek sonuçlarıma (mülakat, ret, yanıt yok) göre ayarlanması, tek bir modelin hatalarını sınırlar. Otomatik bir pipeline da testleriyle engellenmelidir; aksi hâlde kimse fark etmeden yanlış sonuçlar üretir." }] },

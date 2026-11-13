@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { LangCode } from '~/types/portfolio'
+import { INTL_LOCALES, HTB_PROFILE_URL } from '~/shared/site'
+import { diffClass } from '~/shared/format'
 
 interface HtbBox {
   name: string
@@ -12,11 +13,6 @@ interface HtbData {
   updatedAt: string
   profile: {
     name: string
-    rank: string
-    nextRank: string | null
-    rankProgress: number | null
-    points: number
-    globalRanking: number | null
     systemOwns: number
     userOwns: number
     bloods: number
@@ -55,13 +51,12 @@ const { data: raw } = await useAsyncData<HtbData | null>('htb-stats', async () =
   }
 })
 const data = computed(() => (raw.value?.profile ? raw.value : null))
-const profileUrl = computed(() => data.value?.profile.url ?? 'https://app.hackthebox.com/users/4005432')
+const profileUrl = computed(() => data.value?.profile.url ?? HTB_PROFILE_URL)
 
-const LOCALES: Record<LangCode, string> = { fr: 'fr-FR', en: 'en-GB', tr: 'tr-TR' }
 // Fixed UTC time zone: the prerendered HTML and the browser must print the same text.
 function fmt(iso: string | null, withTime = false) {
   if (!iso) return t.value.noDate
-  return new Intl.DateTimeFormat(LOCALES[lang.value], {
+  return new Intl.DateTimeFormat(INTL_LOCALES[lang.value], {
     day: '2-digit',
     month: 'short',
     year: 'numeric',
@@ -69,14 +64,14 @@ function fmt(iso: string | null, withTime = false) {
     timeZone: 'UTC',
   }).format(new Date(iso))
 }
-const num = (n: number) => new Intl.NumberFormat(LOCALES[lang.value]).format(n)
+const num = (n: number) => new Intl.NumberFormat(INTL_LOCALES[lang.value]).format(n)
 // Short day + month ("7 oct.") for the table rows and the latest-machine cell, in the same fixed UTC time zone as fmt().
 const dayMonth = (iso: string) =>
-  new Intl.DateTimeFormat(LOCALES[lang.value], { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(iso))
+  new Intl.DateTimeFormat(INTL_LOCALES[lang.value], { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(iso))
 
 // Rank, points and global ranking are not displayed, on purpose: the band shows practice, not a beginner score.
-// They are not hidden for all that: public/data/htb.json, written by scripts/fetch-htb.mjs, still publishes them
-// (rank, points, globalRanking, country, joinedAt) and anyone can read that file at /data/htb.json.
+// They are not published either: scripts/htb-profile.mjs keeps them out of public/data/htb.json, which anyone can read
+// at /data/htb.json.
 // Machines rooted, most recent first (boxes without a date last); the ones only owned at user level are "in progress".
 const rooted = computed(() =>
   (data.value?.boxes ?? [])
@@ -90,7 +85,6 @@ const diffRank = (d: string) => {
   const i = DIFFICULTIES.indexOf(d.toLowerCase())
   return i === -1 ? DIFFICULTIES.length : i
 }
-const diffClass = (d: string) => `htb-diff--${d.toLowerCase().replace(/[^a-z]/g, '')}`
 
 /** Counts the values of one box field, ordered by `cmp`; ties are sorted by name so the prerendered HTML and the browser agree. */
 function tally(values: string[], cmp: (a: [string, number], b: [string, number]) => number) {

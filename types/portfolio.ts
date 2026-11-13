@@ -57,6 +57,32 @@ export interface MatchesContent {
   sub: string
   /** Label of the button that reveals the archived (older) projects. */
   more: string
+  /** Fixed labels of the project cards (uppercase). */
+  labels: MatchesLabels
+}
+
+export interface MatchesLabels {
+  locked: string
+  wip: string
+  round: string
+  demo: string
+  schema: string
+  type: string
+  stack: string
+  challenger: string
+  opponent: string
+  verdict: string
+  /** Link to a repository on an unknown host. */
+  viewCode: string
+  /** Link to a repository on a known host; `{host}` is replaced by GITHUB or GITLAB. */
+  viewOnHost: string
+}
+
+/** Text of the 404 page (error.vue). */
+export interface NotFoundContent {
+  title: string
+  lead: string
+  cta: string
 }
 
 export interface Project {
@@ -379,6 +405,7 @@ export interface LocaleContent {
   seoDescription: string
   hero: HeroContent
   matches: MatchesContent
+  notFound: NotFoundContent
   projects: Project[]
   career: CareerContent
   edu: EduItem[]

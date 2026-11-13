@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { LangCode } from '~/types/portfolio'
+import { INTL_LOCALES } from '~/shared/site'
 import type { ScoreboardEntry } from '~/shared/htb-scoreboard'
 import { pseudoError } from '~/shared/htb-scoreboard'
 // Import explicite : utilisée dans le template, où vue-tsc ne résout pas toujours l'auto-import.
@@ -168,9 +168,8 @@ function skipSave() {
 
 const elapsedLabel = computed(() => formatElapsed(phase.value === 'granted' ? finalElapsedMs.value : liveElapsed.value))
 
-const LOCALES: Record<LangCode, string> = { fr: 'fr-FR', en: 'en-GB', tr: 'tr-TR' }
 function entryDate(iso: string) {
-  return new Intl.DateTimeFormat(LOCALES[lang.value], { day: '2-digit', month: 'short', timeZone: 'UTC' }).format(new Date(iso))
+  return new Intl.DateTimeFormat(INTL_LOCALES[lang.value], { day: '2-digit', month: 'short', timeZone: 'UTC' }).format(new Date(iso))
 }
 </script>
 

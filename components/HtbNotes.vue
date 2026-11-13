@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { CaseStudyListSection, CaseStudySection } from '~/types/portfolio'
+import { diffClass, pad } from '~/shared/format'
 
 // Notes on retired HTB machines, under the HTB stats: one card (a button) per note, opening a modal that reuses the
 // dialog frame of the off-court modal (ArenaModal) and the case study block of the project cards (CaseStudy).
@@ -39,8 +40,6 @@ function onTerminalClose(granted?: boolean) {
   pendingIndex.value = null
 }
 
-const diffClass = (d: string) => `htb-diff--${d.toLowerCase().replace(/[^a-z]/g, '')}`
-const pad = (n: number) => String(n).padStart(2, '0')
 
 const eyebrow = computed(() =>
   active.value === null ? '' : `${pad(active.value + 1)} / ${pad(notes.value.notes.length)} · ${notes.value.eyebrow}`,

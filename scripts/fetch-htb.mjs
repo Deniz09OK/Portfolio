@@ -9,6 +9,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { hasMeaningfulChange } from './htb-compare.mjs'
 import { tokenShapeError } from './htb-token.mjs'
+import { publicProfile } from './htb-profile.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const OUT = join(ROOT, 'public', 'data', 'htb.json')
@@ -133,26 +134,10 @@ async function probe() {
 }
 
 const ERRORS_FATAL = new Set([0, 401, 403, 429])
-const round = (n, d = 1) => (typeof n === 'number' ? Math.round(n * 10 ** d) / 10 ** d : null)
 
 async function fetchProfile() {
   const { profile: p } = await get(`/profile/${USER_ID}`)
-  return {
-    id: p.id,
-    name: p.name,
-    rank: p.rank,
-    nextRank: p.next_rank ?? null,
-    rankProgress: round(p.current_rank_progress),
-    points: p.points,
-    globalRanking: p.ranking ?? null,
-    systemOwns: p.system_owns,
-    userOwns: p.user_owns,
-    bloods: (p.user_bloods ?? 0) + (p.system_bloods ?? 0) + (p.challenge_bloods ?? 0),
-    respects: p.respects ?? 0,
-    country: p.country_code ?? null,
-    joinedAt: p.joined_date ? new Date(p.joined_date).toISOString().slice(0, 10) : null,
-    url: `https://app.hackthebox.com/users/${USER_ID}`,
-  }
+  return publicProfile(p, USER_ID)
 }
 
 async function fetchMachines() {
@@ -242,7 +227,7 @@ async function sync() {
   }
   mkdirSync(dirname(OUT), { recursive: true })
   writeFileSync(OUT, JSON.stringify({ updatedAt: new Date().toISOString(), ...next }, null, 2) + '\n')
-  console.log(`[htb] écrit public/data/htb.json (${next.boxes.length} boxes, rang ${next.profile.rank}, saison ${next.season?.name ?? 'n/a'})`)
+  console.log(`[htb] écrit public/data/htb.json (${next.boxes.length} boxes, user ${next.profile.userOwns}, root ${next.profile.systemOwns}, saison ${next.season?.name ?? 'n/a'})`)
 }
 
 async function main() {
