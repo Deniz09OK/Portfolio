@@ -35,6 +35,10 @@ jobs:
       - name: Audit dependencies
         run: npm audit --audit-level=high
 
+      # eslint.config.mjs imports .nuxt/eslint.config.mjs, written by `nuxt prepare` (the postinstall of npm ci).
+      - name: Lint
+        run: npm run lint
+
       - name: Type check
         run: npm run typecheck
 

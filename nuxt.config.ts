@@ -18,7 +18,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-05-01',
   devtools: { enabled: false },
 
-  modules: ['@nuxt/image'],
+  modules: ['@nuxt/image', '@nuxt/eslint'],
 
   app: {
     baseURL: '/',
