@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const content = usePortfolio()
-const { lang } = useLang()
 
 const matches = computed(() => content.value.matches)
 const projects = computed(() => content.value.projects)
@@ -24,27 +23,12 @@ const keepSeparators = (stack: string) => stack.replaceAll(' · ', ' · ')
 // Name the host the link points to, so a GitLab repository is not labelled "GitHub".
 const HOSTS: Record<string, string> = { 'github.com': 'GITHUB', 'gitlab.com': 'GITLAB' }
 function linkLabel(url: string) {
-  const l = lang.value
   const host = HOSTS[new URL(url).hostname.replace(/^www\./, '')]
-  if (!host) return l === 'tr' ? 'KODU GÖR' : l === 'en' ? 'VIEW CODE' : 'VOIR LE CODE'
-  return l === 'tr' ? `${host}'DA GÖR` : l === 'en' ? `VIEW ON ${host}` : `VOIR SUR ${host}`
+  const l = matches.value.labels
+  return host ? l.viewOnHost.replace('{host}', host) : l.viewCode
 }
 
-const labels = computed(() => {
-  const l = lang.value
-  return {
-    locked: l === 'tr' ? 'GİZLİ' : l === 'en' ? 'CONFIDENTIAL' : 'CONFIDENTIEL',
-    wip: l === 'tr' ? 'GELİŞTİRİLİYOR' : l === 'en' ? 'IN DEVELOPMENT' : 'EN DÉVELOPPEMENT',
-    round: l === 'tr' ? 'RAUND' : 'ROUND',
-    demo: l === 'tr' ? 'DEMOYU GÖR' : l === 'en' ? 'VIEW DEMO' : 'VOIR LA DÉMO',
-    schema: l === 'tr' ? 'ŞEMAYI GÖR' : l === 'en' ? 'VIEW DIAGRAM' : 'VOIR LE SCHÉMA',
-    type: l === 'tr' ? 'TÜR' : 'TYPE',
-    stack: l === 'tr' ? 'TEKNOLOJİLER' : 'STACK',
-    challenger: l === 'tr' ? 'MEYDAN OKUYAN' : 'CHALLENGER',
-    opponent: l === 'tr' ? 'RAKİP' : l === 'en' ? 'OPPONENT' : 'ADVERSAIRE',
-    verdict: l === 'tr' ? 'SONUÇ' : 'VERDICT',
-  }
-})
+const labels = computed(() => matches.value.labels)
 </script>
 
 <template>

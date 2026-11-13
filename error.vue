@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { LANG_PATHS, SITE_LANGS, langFromFirstSegment, type SiteLang } from '~/shared/site'
+import { portfolio } from '~/data/portfolio'
 
 // Rendered for unknown URLs (prerendered as 404.html for GitHub Pages).
 //
@@ -19,11 +20,7 @@ onMounted(() => {
 })
 const home = computed(() => LANG_PATHS[lang.value])
 
-const t = computed(() => ({
-  fr: { title: 'Hors du terrain', lead: 'Cette page n’existe pas.', cta: 'Retour à l’accueil' },
-  en: { title: 'Out of bounds', lead: 'This page does not exist.', cta: 'Back to home' },
-  tr: { title: 'Saha dışı', lead: 'Bu sayfa mevcut değil.', cta: 'Ana sayfaya dön' },
-}[lang.value]))
+const t = computed(() => portfolio[lang.value].notFound)
 
 useHead(() => ({
   htmlAttrs: { lang: lang.value },
