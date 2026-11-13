@@ -9,6 +9,10 @@
   --line-strong: #353846;
   --accent: #e63946;
   --accent-soft: #2a1118;
+  /* Small text (< 18.66 px bold / 24 px): --accent is for fills, borders and large text. WCAG AA 4.5:1. */
+  --accent-text: #e94d59;
+  --accent-fill: #e32332; /* background of white small text */
+  --green-text: var(--green);
   --gold: #f4c542;
   --green: #1ea662;
   --jersey-stripe: rgba(241, 237, 226, 0.04);
@@ -30,6 +34,9 @@ html.light {
   --line-strong: #b8b1a0;
   --accent: #c8323b;
   --accent-soft: #f2d6d6;
+  --accent-text: #b12c34;
+  --accent-fill: var(--accent);
+  --green-text: #147142;
   --gold: #b88200;
   --green: #167a47;
   --jersey-stripe: rgba(12, 12, 16, 0.04);
