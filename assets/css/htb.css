@@ -102,7 +102,7 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   color: #fff;
-  background: var(--accent);
+  background: var(--accent-fill);
   padding: 2px 8px;
 }
 .htb-season-flags { display: flex; align-items: baseline; flex-wrap: wrap; gap: 2px 8px; }

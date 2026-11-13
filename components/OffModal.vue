@@ -61,6 +61,8 @@ const modalStyle = computed(() => {
   return {
     '--off-color': props.item.color,
     ...(props.item.colorAlt ? { '--off-color-alt': props.item.colorAlt } : {}),
+    ...(props.item.colorLight ? { '--off-color-light': props.item.colorLight } : {}),
+    ...(props.item.colorDark ? { '--off-color-dark': props.item.colorDark } : {}),
   }
 })
 </script>

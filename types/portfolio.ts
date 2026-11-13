@@ -314,6 +314,10 @@ export interface OffItem {
   label: string
   color: string
   colorAlt?: string
+  /** Text colour on the light theme, when `color` is too pale to be read on it (WCAG AA). */
+  colorLight?: string
+  /** Text colour on the dark theme, when `color` is slightly too dark to be read on it. */
+  colorDark?: string
   role: string
   desc: string
   story: string

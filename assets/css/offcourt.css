@@ -7,6 +7,15 @@
   gap: 16px;
   margin-top: 8px;
 }
+.off-card,
+.off-modal {
+  /* Text colour of the card: --off-color is kept for stripes and borders (non-text, 3:1). */
+  --off-ink: var(--off-color-dark, var(--off-color, var(--accent)));
+}
+html.light .off-card,
+html.light .off-modal {
+  --off-ink: var(--off-color-light, var(--off-color, var(--accent)));
+}
 .off-card {
   position: relative;
   padding: 28px 24px 24px;
@@ -50,14 +59,14 @@
 }
 .off-cta-arr { display: inline-block; transition: transform 280ms ease; }
 .off-card:hover .off-cta,
-.off-card:focus-visible .off-cta { color: var(--off-color, var(--accent)); gap: 14px; }
+.off-card:focus-visible .off-cta { color: var(--off-ink, var(--accent)); gap: 14px; }
 .off-card:hover .off-cta-arr,
 .off-card:focus-visible .off-cta-arr { transform: translateX(4px); }
 .off-kanji {
   font-family: var(--jp);
   font-weight: 900;
   font-size: clamp(48px, 10vw, 80px);
-  color: var(--off-color, var(--accent));
+  color: var(--off-ink, var(--accent));
   line-height: 1;
   margin-bottom: 16px;
   display: inline-block;
@@ -79,7 +88,7 @@
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.2em;
-  color: var(--off-color, var(--accent));
+  color: var(--off-ink, var(--accent));
   margin-bottom: 14px;
   font-weight: 700;
 }
@@ -176,7 +185,7 @@ html.modal-lock body { overflow: hidden; }
 .off-modal-close:hover,
 .off-modal-close:focus-visible {
   border-color: var(--off-color, var(--accent));
-  color: var(--off-color, var(--accent));
+  color: var(--off-ink, var(--accent));
   outline: none;
 }
 .off-modal-meta {
@@ -198,7 +207,7 @@ html.modal-lock body { overflow: hidden; }
   font-family: var(--jp);
   font-weight: 900;
   font-size: clamp(48px, 12vw, 84px);
-  color: var(--off-color, var(--accent));
+  color: var(--off-ink, var(--accent));
   line-height: 1;
   display: block;
   margin-bottom: 8px;
@@ -220,7 +229,7 @@ html.modal-lock body { overflow: hidden; }
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.22em;
-  color: var(--off-color, var(--accent));
+  color: var(--off-ink, var(--accent));
   font-weight: 700;
   margin: 6px 0 12px;
 }
@@ -282,7 +291,7 @@ html.modal-lock body { overflow: hidden; }
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 0.18em;
-  color: var(--off-color, var(--accent));
+  color: var(--off-ink, var(--accent));
   font-weight: 700;
 }
 

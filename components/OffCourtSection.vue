@@ -29,6 +29,8 @@ function close() {
           :style="{
             '--off-color': it.color,
             ...(it.colorAlt ? { '--off-color-alt': it.colorAlt } : {}),
+            ...(it.colorLight ? { '--off-color-light': it.colorLight } : {}),
+            ...(it.colorDark ? { '--off-color-dark': it.colorDark } : {}),
           }"
           :aria-label="`${it.label} — ${off.cta}`"
           aria-haspopup="dialog"
