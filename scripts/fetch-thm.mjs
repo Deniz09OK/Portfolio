@@ -83,6 +83,8 @@ function parse(body) {
   const bad = []
   if (!isCount(d.completedRoomsNumber)) bad.push('completedRoomsNumber')
   if (!(typeof d.topPercentage === 'number' && Number.isFinite(d.topPercentage) && d.topPercentage >= 0 && d.topPercentage <= 100)) bad.push('topPercentage')
+  // Rejette volontairement les caractères de contrôle dans le rang affiché.
+  // eslint-disable-next-line no-control-regex
   if (!(typeof d.rank === 'string' && d.rank.length > 0 && d.rank.length <= 40 && !/[\u0000-\u001f<>]/.test(d.rank))) bad.push('rank')
   if (!isCount(d.level)) bad.push('level')
   if (!isCount(d.badgesNumber)) bad.push('badgesNumber')
