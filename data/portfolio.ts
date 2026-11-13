@@ -423,7 +423,7 @@ export const portfolio: Portfolio = {
       }
     },
     thm: {
-      "title": "Les rooms en direct",
+      "title": "Les rooms, dernier relevé",
       "sub": "Statistiques publiques TryHackMe, en mise à jour manuelle : rooms complétées, classement, niveau, badges et points.",
       "labels": {
         "rooms": "Rooms complétées",
@@ -881,7 +881,7 @@ export const portfolio: Portfolio = {
       }
     },
     thm: {
-      "title": "Rooms, live",
+      "title": "Rooms, latest snapshot",
       "sub": "Public TryHackMe stats, updated manually: completed rooms, ranking, level, badges and points.",
       "labels": {
         "rooms": "Rooms completed",
@@ -1334,7 +1334,7 @@ export const portfolio: Portfolio = {
       }
     },
     thm: {
-      "title": "Odalar, canlı",
+      "title": "Odalar, son durum",
       "sub": "Elle güncellenen herkese açık TryHackMe istatistikleri: tamamlanan odalar, sıralama, seviye, rozetler ve puan.",
       "labels": {
         "rooms": "Tamamlanan odalar",
