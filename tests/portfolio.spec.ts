@@ -581,6 +581,14 @@ test('the back-to-top button appears after scrolling and brings the page back to
   await expect(button).toBeHidden()
 
   await page.evaluate(() => window.scrollTo(0, window.innerHeight * 2))
+  // On a narrow screen the button only shows while scrolling up: scroll back up a little.
+  if ((page.viewportSize()?.width ?? 1280) <= 720) {
+    await expect(button).toBeHidden()
+    // Let the scroll event of the jump down fire first: WebKit merges the events of one frame, so two jumps in
+    // a row would look like one single move down.
+    await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))))
+    await page.evaluate(() => window.scrollBy(0, -50))
+  }
   await expect(button).toBeVisible()
   await expect(button).toHaveAttribute('aria-label', portfolio.fr.a11y.backToTop)
   const box = await button.boundingBox()

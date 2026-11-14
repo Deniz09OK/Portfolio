@@ -28,6 +28,8 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
   padding-bottom: 12px;
   border-bottom: 1px dashed var(--line-strong);
   margin-bottom: 16px;

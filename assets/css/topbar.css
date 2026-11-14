@@ -10,6 +10,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* Minimum room between brand, nav and tools: the French nav is the widest and used to touch its neighbours. */
+  gap: 16px;
   padding: 14px 28px;
   background: color-mix(in oklab, var(--bg) 90%, transparent);
   backdrop-filter: saturate(160%) blur(14px);
@@ -83,9 +85,9 @@
   color: var(--muted);
   text-transform: none;
 }
-/* Tablettes tactiles au-dessus de 1399px : zone de tap de 44px sans changer le rendu desktop. */
+/* Tablettes tactiles au-dessus de 1319px : zone de tap de 44px sans changer le rendu desktop. */
 @media (pointer: coarse) { .bar-nav-link { padding: 11px 0; } }
-@media (max-width: 1399px) { .bar-nav { display: none; } }
+@media (max-width: 1319px) { .bar-nav { display: none; } }
 
 .bar-tools { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 .lang-pill {
@@ -147,8 +149,21 @@ html.light .theme-moon { opacity: 0; transform: rotate(-30deg); }
   flex-direction: column;
   background: var(--bg);
   border-bottom: 1px solid var(--line);
-  max-height: 70vh;
+  /* Never taller than what is left under the bar, so the last links stay reachable on a short screen. */
+  max-height: calc(100vh - var(--bar-h, 75px));
+  max-height: calc(100dvh - var(--bar-h, 75px));
   overflow-y: auto;
+}
+/* Veil under the bar, behind the menu (it comes first in the DOM). The bar is fixed, so 100% of its parent
+   would be the bar itself: the height is the viewport, the menu painted above it. */
+.mobile-nav-backdrop {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  height: 100dvh;
+  background: rgba(8, 8, 12, 0.6);
 }
 .mobile-nav-link {
   display: flex;
@@ -171,9 +186,15 @@ html.light .theme-moon { opacity: 0; transform: rotate(-30deg); }
   color: var(--muted);
 }
 
-@media (max-width: 1399px) {
+@media (max-width: 1319px) {
   .nav-toggle { display: flex; }
   .mobile-nav.is-open { display: flex; }
+}
+
+/* The full nav shows from 1320px. French labels are the widest: between 1320px and 1399px they leave no room for
+   the name, which would be cut to "DENI…". It is hidden there, like on small screens; the "23" badge stays. */
+@media (min-width: 1320px) and (max-width: 1399px) {
+  html:lang(fr) .bar-name { display: none; }
 }
 
 /* Between 401px and 460px the full-size bar (28px sides, 12px gaps) is wider than the screen once the name is

@@ -25,6 +25,11 @@
   flex-shrink: 0;
 }
 .ticker-track span { flex-shrink: 0; }
+/* Landscape phones: the fixed bar plus the ticker took about a quarter of the height. The ticker is decorative
+   (aria-hidden), so it goes away on short screens and leaves the room to the content. */
+@media (max-height: 500px) {
+  .ticker { display: none; }
+}
 @keyframes tickerScroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }

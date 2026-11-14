@@ -45,7 +45,7 @@ function syncBarHeight() {
   document.documentElement.style.setProperty('--bar-h', `${bar.value.offsetHeight}px`)
 }
 
-// Mobile nav (burger) — shown when the desktop .bar-nav is hidden (<= 1399px).
+// Mobile nav (burger) — shown when the desktop .bar-nav is hidden (<= 1319px).
 const mobileOpen = ref(false)
 
 function toggleMobileNav() {
@@ -70,7 +70,7 @@ watch(mobileOpen, (open) => {
 
 function onResize() {
   syncBarHeight()
-  if (window.innerWidth > 1399) closeMobileNav()
+  if (window.innerWidth > 1319) closeMobileNav()
 }
 
 onMounted(() => {
@@ -155,6 +155,9 @@ onBeforeUnmount(() => {
         <span></span><span></span><span></span>
       </button>
     </div>
+
+    <!-- Veil under the open menu: a click outside the menu closes it. Not focusable, the burger and Escape stay the keyboard way. -->
+    <div v-if="mobileOpen" class="mobile-nav-backdrop" aria-hidden="true" @click="closeMobileNav"></div>
 
     <nav
       id="mobileNav"
