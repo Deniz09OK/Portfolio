@@ -45,7 +45,7 @@ function syncBarHeight() {
   document.documentElement.style.setProperty('--bar-h', `${bar.value.offsetHeight}px`)
 }
 
-// Mobile nav (burger) — shown when the desktop .bar-nav is hidden (<= 1399px).
+// Mobile nav (burger) — shown when the desktop .bar-nav is hidden (<= 1319px).
 const mobileOpen = ref(false)
 
 function toggleMobileNav() {
@@ -70,7 +70,7 @@ watch(mobileOpen, (open) => {
 
 function onResize() {
   syncBarHeight()
-  if (window.innerWidth > 1399) closeMobileNav()
+  if (window.innerWidth > 1319) closeMobileNav()
 }
 
 onMounted(() => {
