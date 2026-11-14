@@ -156,6 +156,9 @@ onBeforeUnmount(() => {
       </button>
     </div>
 
+    <!-- Veil under the open menu: a click outside the menu closes it. Not focusable, the burger and Escape stay the keyboard way. -->
+    <div v-if="mobileOpen" class="mobile-nav-backdrop" aria-hidden="true" @click="closeMobileNav"></div>
+
     <nav
       id="mobileNav"
       class="mobile-nav"

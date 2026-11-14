@@ -147,8 +147,21 @@ html.light .theme-moon { opacity: 0; transform: rotate(-30deg); }
   flex-direction: column;
   background: var(--bg);
   border-bottom: 1px solid var(--line);
-  max-height: 70vh;
+  /* Never taller than what is left under the bar, so the last links stay reachable on a short screen. */
+  max-height: calc(100vh - var(--bar-h, 75px));
+  max-height: calc(100dvh - var(--bar-h, 75px));
   overflow-y: auto;
+}
+/* Veil under the bar, behind the menu (it comes first in the DOM). The bar is fixed, so 100% of its parent
+   would be the bar itself: the height is the viewport, the menu painted above it. */
+.mobile-nav-backdrop {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  height: 100dvh;
+  background: rgba(8, 8, 12, 0.6);
 }
 .mobile-nav-link {
   display: flex;
