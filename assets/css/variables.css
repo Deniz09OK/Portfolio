@@ -1,4 +1,6 @@
 :root {
+  /* Native UI (scrollbars, form controls) follows the theme: without it the dark theme got white scrollbars in the modals. */
+  color-scheme: dark;
   --bg: #0c0c10;
   --bg-panel: #14141b;
   --bg-elev: #1a1a23;
@@ -24,6 +26,7 @@
 }
 
 html.light {
+  color-scheme: light;
   --bg: #f0ede4;
   --bg-panel: #e6e2d6;
   --bg-elev: #ede9dd;
