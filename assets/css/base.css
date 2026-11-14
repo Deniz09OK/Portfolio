@@ -8,6 +8,8 @@ html, body {
   scroll-behavior: smooth;
   transition: background-color 200ms ease, color 200ms ease;
 }
+/* Fixed bar (75px) + ticker (28px) + a margin: an anchor jump leaves the section title below them. */
+html { scroll-padding-top: 116px; }
 body {
   font-size: 16px;
   line-height: 1.5;
