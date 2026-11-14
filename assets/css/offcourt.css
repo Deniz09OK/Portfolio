@@ -132,13 +132,15 @@ html.modal-lock body { overflow: hidden; }
   background: rgba(8, 8, 12, 0.82);
 }
 .off-modal-card {
+  --card-pad-top: 56px;
+  --card-pad-x: 44px;
   position: relative;
   width: min(620px, 100%);
   max-height: calc(100vh - 48px);
   overflow-y: auto;
   background: var(--bg-panel);
   border: 1px solid var(--line);
-  padding: 56px 44px 40px;
+  padding: var(--card-pad-top) var(--card-pad-x) 40px;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
 }
 .off-modal-card:focus { outline: none; }
@@ -165,10 +167,17 @@ html.modal-lock body { overflow: hidden; }
 .off-modal.has-alt .off-modal-stripe {
   background: linear-gradient(90deg, var(--off-color, var(--accent)) 50%, var(--off-color-alt, var(--accent)) 50%);
 }
+/* Sticky, not absolute: the card is the scroll container, an absolute button scrolled away with the content.
+   It stays in the flow at the top of the card (a block flex box so margin-left: auto pushes it to the right) and
+   the negative bottom margin gives its 44px back to the content. The browser measures a sticky inset from the
+   content box, below the card padding, so both offsets subtract --card-pad-top: the button sits 18px from the
+   top edge at rest, like the absolute one before it, and stays 12px from the top edge while the card scrolls. */
 .off-modal-close {
-  position: absolute;
-  top: 18px;
-  right: 18px;
+  position: sticky;
+  top: calc(12px - var(--card-pad-top));
+  right: auto;
+  z-index: 3;
+  margin: calc(18px - var(--card-pad-top)) calc(18px - var(--card-pad-x)) -44px auto;
   width: 44px;
   height: 44px;
   border: 1px solid var(--line);
@@ -178,7 +187,7 @@ html.modal-lock body { overflow: hidden; }
   line-height: 1;
   cursor: pointer;
   transition: border-color 200ms ease, color 200ms ease;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -296,5 +305,5 @@ html.modal-lock body { overflow: hidden; }
 }
 
 @media (max-width: 600px) {
-  .off-modal-card { padding: 48px 24px 32px; }
+  .off-modal-card { --card-pad-top: 48px; --card-pad-x: 24px; padding: var(--card-pad-top) var(--card-pad-x) 32px; }
 }
