@@ -1,14 +1,21 @@
 {
-  "updatedAt": "2026-11-12T14:48:04.245Z",
+  "updatedAt": "2026-11-21T19:24:24.209Z",
   "profile": {
     "name": "Sorouto",
-    "systemOwns": 12,
-    "userOwns": 13,
+    "systemOwns": 13,
+    "userOwns": 14,
     "bloods": 0,
     "respects": 0,
     "url": "https://app.hackthebox.com/users/4005432"
   },
   "boxes": [
+    {
+      "name": "Management",
+      "difficulty": "Easy",
+      "os": "Linux",
+      "solved": "root",
+      "solvedAt": "2026-11-21T12:31:12.000Z"
+    },
     {
       "name": "Unclaimed",
       "difficulty": "Medium",
@@ -106,8 +113,8 @@
     "name": "Season 12",
     "endsAt": "2026-11-28T19:00:01.000Z",
     "league": "Ruby",
-    "rank": 1793,
-    "totalPlayers": 6486,
+    "rank": 1913,
+    "totalPlayers": 6645,
     "points": 290,
     "nextLeague": "Platinum",
     "flags": {
