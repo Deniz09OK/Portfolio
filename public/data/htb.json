@@ -1,14 +1,28 @@
 {
-  "updatedAt": "2026-11-21T19:24:24.209Z",
+  "updatedAt": "2026-11-22T19:47:40.659Z",
   "profile": {
     "name": "Sorouto",
-    "systemOwns": 13,
-    "userOwns": 14,
+    "systemOwns": 15,
+    "userOwns": 16,
     "bloods": 0,
     "respects": 0,
     "url": "https://app.hackthebox.com/users/4005432"
   },
   "boxes": [
+    {
+      "name": "Enigma",
+      "difficulty": "Easy",
+      "os": "Linux",
+      "solved": "root",
+      "solvedAt": "2026-11-22T10:39:50.000Z"
+    },
+    {
+      "name": "DoubleTake",
+      "difficulty": "Easy",
+      "os": "Linux",
+      "solved": "root",
+      "solvedAt": "2026-11-22T08:59:04.000Z"
+    },
     {
       "name": "Management",
       "difficulty": "Easy",
@@ -113,7 +127,7 @@
     "name": "Season 12",
     "endsAt": "2026-11-28T19:00:01.000Z",
     "league": "Ruby",
-    "rank": 1913,
+    "rank": 1915,
     "totalPlayers": 6645,
     "points": 290,
     "nextLeague": "Platinum",
