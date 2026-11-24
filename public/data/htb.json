@@ -1,14 +1,21 @@
 {
-  "updatedAt": "2026-11-22T19:47:40.659Z",
+  "updatedAt": "2026-11-24T22:32:43.193Z",
   "profile": {
     "name": "Sorouto",
-    "systemOwns": 15,
-    "userOwns": 16,
+    "systemOwns": 16,
+    "userOwns": 17,
     "bloods": 0,
     "respects": 0,
     "url": "https://app.hackthebox.com/users/4005432"
   },
   "boxes": [
+    {
+      "name": "Bedside",
+      "difficulty": "Medium",
+      "os": "Linux",
+      "solved": "root",
+      "solvedAt": "2026-11-24T13:31:52.000Z"
+    },
     {
       "name": "Enigma",
       "difficulty": "Easy",
@@ -127,8 +134,8 @@
     "name": "Season 12",
     "endsAt": "2026-11-28T19:00:01.000Z",
     "league": "Ruby",
-    "rank": 1915,
-    "totalPlayers": 6645,
+    "rank": 1929,
+    "totalPlayers": 6655,
     "points": 290,
     "nextLeague": "Platinum",
     "flags": {
