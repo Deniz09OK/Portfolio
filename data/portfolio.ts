@@ -69,7 +69,9 @@ export const portfolio: Portfolio = {
     career: {
       title: "Saisons jouées",
       eduLabel: "ACADÉMIE",
-      expLabel: "TERRAIN"
+      expLabel: "TERRAIN",
+      certsLabel: "LICENCES ET CERTIFICATIONS",
+      certsVerify: "Vérifier le badge"
     },
     edu: [
       { year: "09/2024 — 09/2027", school: "EPITECH NANCY", title: "MSc Pro — Cybersécurité & Cloud", desc: "Pédagogie active · Debian/OpenBSD/FreeBSD · Sécu offensive & défensive", current: true },
@@ -81,6 +83,11 @@ export const portfolio: Portfolio = {
       { year: "01/2024 — 03/2024", company: "BURGER KING · VANDŒUVRE-LÈS-NANCY", title: "Équipier polyvalent", desc: "Service salle & drive · Relation client" },
       { year: "03/2023 — 12/2023", company: "1ER RSMV · MONTIGNY-LÈS-METZ", title: "Volontaire stagiaire", desc: "Régiment du Service Militaire Volontaire basé à Montigny-lès-Metz · Discipline & cohésion · SST · Médaille du mérite" },
       { year: "01/2019 — 06/2021", company: "LYCÉE HENRI LORITZ · SCIENCES PO NANCY · CFA CHARLES DE FOUCAULD", title: "Stages IT (Bac Pro puis BTS)", desc: "Maintenance et déploiement de postes · Support personnel & étudiants · Adressage IP" }
+    ],
+    certs: [
+      { year: "11/2026", name: "Claude Code 101", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/03d6ba78be62571ba463d9056184ceae" },
+      { year: "11/2026", name: "Building with the Claude API", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/1e1a718051738e60e7ec630e22e2a368" },
+      { year: "11/2026", name: "Introduction to Model Context Protocol", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/308c6bb8c6dd3c8091d2fc27eeb7e83d" }
     ],
     drills: {
       title: "Entraînement quotidien",
@@ -528,7 +535,7 @@ export const portfolio: Portfolio = {
       { idx: "10", name: "Popeye", kanji: "船団", type: "Containerisation", stack: "DOCKER · FLASK · NODE.JS · POSTGRESQL", year: "2025", opponent: "WEB MONOLITH", verdict: "MODULAR ARCHITECTURE", desc: "Docker containerisation project. Full web application in a microservices architecture, with inter-service communication and persistence.", link: "https://github.com/Deniz09OK/Popeye", archived: true },
       { idx: "11", name: "EpiQuest", kanji: "冒険", type: "2D video game", stack: "JAVA · LIBGDX · GAMEDEV", year: "2024", opponent: "EMPTY ENGINE", verdict: "PLAYABLE ADVENTURE", desc: "2D adventure game built with Java and LibGDX. Combat system, dialogues, progression. Team project.", link: "https://github.com/Deniz09OK/Projet-Jeu-Java", archived: true }
     ],
-    career: { title: "Seasons played", eduLabel: "ACADEMY", expLabel: "FIELD" },
+    career: { title: "Seasons played", eduLabel: "ACADEMY", expLabel: "FIELD", certsLabel: "LICENSES & CERTIFICATIONS", certsVerify: "Verify badge" },
     edu: [
       { year: "09/2024 — 09/2027", school: "EPITECH NANCY", title: "MSc Pro — Cybersecurity & Cloud", desc: "Active pedagogy · Debian/OpenBSD/FreeBSD · Offensive & defensive security", current: true },
       { year: "09/2020 — 07/2022", school: "CHARLES DE FOUCAULD", title: "BTS SNIR", desc: "C/C++, Python · VLAN, routing, subnets · Mageia" },
@@ -539,6 +546,11 @@ export const portfolio: Portfolio = {
       { year: "01/2024 — 03/2024", company: "BURGER KING · VANDŒUVRE-LÈS-NANCY", title: "Versatile crew member", desc: "Front of house & drive · Customer service" },
       { year: "03/2023 — 12/2023", company: "1ST RSMV · MONTIGNY-LÈS-METZ", title: "Volunteer trainee", desc: "Voluntary Military Service (SMV) regiment based in Montigny-lès-Metz · Discipline & teamwork · First-aid (SST) · Merit medal" },
       { year: "01/2019 — 06/2021", company: "LYCÉE HENRI LORITZ · SCIENCES PO NANCY · CFA CHARLES DE FOUCAULD", title: "IT internships (vocational bac, then BTS)", desc: "Workstation maintenance & rollout · Staff & student support · IP addressing" }
+    ],
+    certs: [
+      { year: "11/2026", name: "Claude Code 101", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/03d6ba78be62571ba463d9056184ceae" },
+      { year: "11/2026", name: "Building with the Claude API", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/1e1a718051738e60e7ec630e22e2a368" },
+      { year: "11/2026", name: "Introduction to Model Context Protocol", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/308c6bb8c6dd3c8091d2fc27eeb7e83d" }
     ],
     drills: {
       title: "Daily training",
@@ -981,7 +993,7 @@ export const portfolio: Portfolio = {
       { idx: "10", name: "Popeye", kanji: "船団", type: "Konteynerleştirme", stack: "DOCKER · FLASK · NODE.JS · POSTGRESQL", year: "2025", opponent: "WEB MONOLİT", verdict: "MODÜLER MİMARİ", desc: "Docker ile konteynerleştirme projesi. Mikroservis mimarisinde tam bir web uygulaması, servisler arası iletişim ve kalıcılık.", link: "https://github.com/Deniz09OK/Popeye", archived: true },
       { idx: "11", name: "EpiQuest", kanji: "冒険", type: "2D video oyunu", stack: "JAVA · LIBGDX · OYUN", year: "2024", opponent: "BOŞ MOTOR", verdict: "OYNANABİLİR MACERA", desc: "Java ve LibGDX ile geliştirilmiş 2D macera oyunu. Savaş sistemi, diyaloglar, ilerleme. Takım projesi.", link: "https://github.com/Deniz09OK/Projet-Jeu-Java", archived: true }
     ],
-    career: { title: "Oynanan sezonlar", eduLabel: "AKADEMİ", expLabel: "SAHA" },
+    career: { title: "Oynanan sezonlar", eduLabel: "AKADEMİ", expLabel: "SAHA", certsLabel: "LİSANSLAR VE SERTİFİKALAR", certsVerify: "Rozeti doğrula" },
     edu: [
       { year: "09/2024 — 09/2027", school: "EPITECH NANCY", title: "MSc Pro — Siber Güvenlik & Bulut", desc: "Aktif pedagoji · Debian/OpenBSD/FreeBSD · Saldırı & savunma", current: true },
       { year: "09/2020 — 07/2022", school: "CHARLES DE FOUCAULD", title: "BTS SNIR", desc: "C/C++, Python · VLAN, yönlendirme, alt ağlar · Mageia" },
@@ -992,6 +1004,11 @@ export const portfolio: Portfolio = {
       { year: "01/2024 — 03/2024", company: "BURGER KING · VANDŒUVRE-LÈS-NANCY", title: "Çok yönlü ekip üyesi", desc: "Salon & drive · Müşteri ilişkileri" },
       { year: "03/2023 — 12/2023", company: "1. RSMV · MONTIGNY-LÈS-METZ", title: "Gönüllü stajyer", desc: "Montigny-lès-Metz'te bulunan Gönüllü Askerlik Hizmeti (SMV) alayı · Disiplin & takım çalışması · SST · Liyakat madalyası" },
       { year: "01/2019 — 06/2021", company: "LYCÉE HENRI LORITZ · SCIENCES PO NANCY · CFA CHARLES DE FOUCAULD", title: "BT stajları (Mesleki Lise, ardından BTS)", desc: "İş istasyonu bakımı ve kurulumu · Personel & öğrenci desteği · IP adresleme" }
+    ],
+    certs: [
+      { year: "11/2026", name: "Claude Code 101", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/03d6ba78be62571ba463d9056184ceae" },
+      { year: "11/2026", name: "Building with the Claude API", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/1e1a718051738e60e7ec630e22e2a368" },
+      { year: "11/2026", name: "Introduction to Model Context Protocol", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/308c6bb8c6dd3c8091d2fc27eeb7e83d" }
     ],
     drills: {
       title: "Günlük antrenman",

@@ -85,3 +85,33 @@
   line-height: 1.5;
   margin-top: 6px;
 }
+
+/* Licences et certifications : sous les deux colonnes, une carte par badge. */
+.certs { margin-top: clamp(40px, 6vw, 72px); }
+.certs-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 3vw, 32px);
+}
+@media (max-width: 880px) { .certs-list { grid-template-columns: 1fr; } }
+.cert {
+  display: grid;
+  gap: 4px;
+  align-content: start;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+}
+.cert-link {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.cert-link:hover { text-decoration-thickness: 2px; }
