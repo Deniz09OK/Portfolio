@@ -15,6 +15,8 @@ export default defineConfig({
     { name: 'desktop-chromium', use: { ...devices['Desktop Chrome'] } },
     { name: 'mobile-chromium', use: { ...devices['Pixel 7'] } },
     { name: 'mobile-webkit', use: { ...devices['iPhone 15'] } },
+    // Tablette : limitée aux tests de certifications, les autres specs ne tournent pas dessus.
+    { name: 'tablet-chromium', use: { ...devices['Galaxy Tab S4'] }, testMatch: /certifications\.spec\.ts/ },
   ],
   webServer: {
     command: 'node tests/serve.mjs',
