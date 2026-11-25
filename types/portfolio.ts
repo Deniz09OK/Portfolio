@@ -126,6 +126,20 @@ export interface CareerContent {
   title: string
   eduLabel: string
   expLabel: string
+  /** Title of the block of licences and certifications, under the education and experience columns. */
+  certsLabel: string
+  /** Label of the link to the public verification page of a certification. */
+  certsVerify: string
+}
+
+/** A certification or badge, verifiable online. Names stay in English, as issued. */
+export interface CertItem {
+  /** Issue date, `MM/YYYY`. */
+  year: string
+  name: string
+  issuer: string
+  /** Public verification page of the badge. */
+  url: string
 }
 
 export interface EduItem {
@@ -410,6 +424,7 @@ export interface LocaleContent {
   career: CareerContent
   edu: EduItem[]
   exp: ExpItem[]
+  certs: CertItem[]
   drills: DrillsContent
   htb: HtbContent
   thm: ThmContent
