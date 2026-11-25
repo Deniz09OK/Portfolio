@@ -76,7 +76,23 @@ jobs:
           include-hidden-files: true
 
       # Checks the artifact that will really be published, not just .output/public.
+      # Le téléchargement suit l'envoi de moins d'une seconde : l'API des artefacts répond parfois « not found »
+      # alors que l'artefact vient d'être finalisé. Un seul nouvel essai après une courte pause ; si le second
+      # échoue aussi, le job échoue (le deuxième essai n'a pas de continue-on-error).
       - name: Download the Pages artifact
+        id: download_pages
+        continue-on-error: true
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/pages-artifact
+
+      - name: Wait before retrying the download
+        if: steps.download_pages.outcome == 'failure'
+        run: sleep 15
+
+      - name: Download the Pages artifact (retry)
+        if: steps.download_pages.outcome == 'failure'
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: github-pages
