@@ -88,6 +88,15 @@
 
 /* Licences et certifications : sous les deux colonnes, une carte par badge. */
 .certs { margin-top: clamp(40px, 6vw, 72px); }
+.certs-group + .certs-group { margin-top: clamp(24px, 4vw, 40px); }
+.certs-track {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
 .certs-list {
   list-style: none;
   display: grid;

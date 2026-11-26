@@ -15,6 +15,7 @@ const links = computed(() => [
   { href: '#roster', label: nav.value.roster, sub: sectionLabels.value.roster },
   { href: '#matches', label: nav.value.matches, sub: sectionLabels.value.matches },
   { href: '#career', label: nav.value.career, sub: sectionLabels.value.career },
+  { href: '#certs', label: nav.value.certs, sub: nav.value.certsSub },
   { href: '#drills', label: nav.value.drills, sub: sectionLabels.value.drills },
   { href: '#htb', label: nav.value.htb, sub: nav.value.htbSub },
   { href: '#off', label: nav.value.off, sub: sectionLabels.value.off },
