@@ -3,7 +3,14 @@ const content = usePortfolio()
 const career = computed(() => content.value.career)
 const edu = computed(() => content.value.edu)
 const exp = computed(() => content.value.exp)
-const certs = computed(() => content.value.certs)
+const TRACKS = ['ai', 'cyber'] as const
+const certGroups = computed(() =>
+  TRACKS.map((track) => ({
+    track,
+    label: career.value.certsTracks[track],
+    items: content.value.certs.filter((c) => c.track === track),
+  })).filter((g) => g.items.length > 0),
+)
 </script>
 
 <template>
@@ -44,25 +51,28 @@ const certs = computed(() => content.value.certs)
         </div>
       </div>
 
-      <div class="certs">
+      <div class="certs" id="certs">
         <div class="career-col-head">
           <span class="career-col-num">C</span>
           <h3>{{ career.certsLabel }}</h3>
         </div>
-        <ul class="certs-list">
-          <li v-for="c in certs" :key="c.url" v-reveal class="cert">
-            <div class="timeline-year">{{ c.year }}</div>
-            <div class="timeline-school">{{ c.issuer }}</div>
-            <div class="timeline-title">{{ c.name }}</div>
-            <a
-              class="cert-link"
-              :href="c.url"
-              target="_blank"
-              rel="noopener noreferrer"
-              :aria-label="`${career.certsVerify} : ${c.name}`"
-            >{{ career.certsVerify }} <span aria-hidden="true">↗</span></a>
-          </li>
-        </ul>
+        <section v-for="g in certGroups" :key="g.track" class="certs-group" :aria-labelledby="`certs-${g.track}`">
+          <h4 :id="`certs-${g.track}`" class="certs-track">{{ g.label }}</h4>
+          <ul class="certs-list">
+            <li v-for="c in g.items" :key="c.url" v-reveal class="cert">
+              <div class="timeline-year">{{ c.year }}</div>
+              <div class="timeline-school">{{ c.issuer }}</div>
+              <div class="timeline-title">{{ c.name }}</div>
+              <a
+                class="cert-link"
+                :href="c.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                :aria-label="`${career.certsVerify} : ${c.name}`"
+              >{{ career.certsVerify }} <span aria-hidden="true">↗</span></a>
+            </li>
+          </ul>
+        </section>
       </div>
     </div>
   </section>

@@ -2,7 +2,7 @@ import type { Portfolio } from '~/types/portfolio'
 
 export const portfolio: Portfolio = {
   fr: {
-    nav: { roster: "Fiche", matches: "Card de la saison", career: "Saisons jouées", drills: "Entraînement quotidien", htb: "Labs cyber", htbSub: "HTB & TryHackMe", off: "Hors du clavier", languages: "Trois langues", contact: "Sifflet final" },
+    nav: { roster: "Fiche", matches: "Card de la saison", career: "Saisons jouées", certs: "Trophées", certsSub: "Certifications", drills: "Entraînement quotidien", htb: "Labs cyber", htbSub: "HTB & TryHackMe", off: "Hors du clavier", languages: "Trois langues", contact: "Sifflet final" },
     sectionLabels: { roster: "Profil", matches: "Projets", career: "Parcours", drills: "Compétences", htb: "Hack The Box", thm: "TryHackMe", off: "Centres d'intérêt", languages: "Langues", contact: "Contact" },
     a11y: { navPrimary: "Navigation principale", navMobile: "Navigation mobile", language: "Langue", theme: "Thème clair", menu: "Menu", legend: "Légende", backToTop: "Remonter en haut de page", skipToContent: "Aller au contenu" },
     ticker: ["ALTERNANCE CYBER & DEV WEB", "·", "DISPONIBLE IMMÉDIATEMENT", "·", "GRAND EST & LUXEMBOURG", "·", "MSc CYBERSÉCURITÉ & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUE FR/EN/TR", "·", "OUVERT AUX OPPORTUNITÉS", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
@@ -71,6 +71,7 @@ export const portfolio: Portfolio = {
       eduLabel: "ACADÉMIE",
       expLabel: "TERRAIN",
       certsLabel: "LICENCES ET CERTIFICATIONS",
+      certsTracks: { ai: "INTELLIGENCE ARTIFICIELLE", cyber: "CYBERSÉCURITÉ" },
       certsVerify: "Vérifier le badge"
     },
     edu: [
@@ -85,9 +86,10 @@ export const portfolio: Portfolio = {
       { year: "01/2019 — 06/2021", company: "LYCÉE HENRI LORITZ · SCIENCES PO NANCY · CFA CHARLES DE FOUCAULD", title: "Stages IT (Bac Pro puis BTS)", desc: "Maintenance et déploiement de postes · Support personnel & étudiants · Adressage IP" }
     ],
     certs: [
-      { year: "11/2026", name: "Claude Code 101", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/03d6ba78be62571ba463d9056184ceae" },
-      { year: "11/2026", name: "Building with the Claude API", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/1e1a718051738e60e7ec630e22e2a368" },
-      { year: "11/2026", name: "Introduction to Model Context Protocol", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/308c6bb8c6dd3c8091d2fc27eeb7e83d" }
+      { year: "11/2026", name: "Claude Code 101", issuer: "ANTHROPIC ACADEMY", track: "ai", url: "https://academy.claude.com/verify/03d6ba78be62571ba463d9056184ceae" },
+      { year: "11/2026", name: "Building with the Claude API", issuer: "ANTHROPIC ACADEMY", track: "ai", url: "https://academy.claude.com/verify/1e1a718051738e60e7ec630e22e2a368" },
+      { year: "11/2026", name: "Introduction to Model Context Protocol", issuer: "ANTHROPIC ACADEMY", track: "ai", url: "https://academy.claude.com/verify/308c6bb8c6dd3c8091d2fc27eeb7e83d" },
+      { year: "11/2026", name: "Pentest in a Nutshell", issuer: "HACK THE BOX ACADEMY", track: "cyber", url: "https://academy.hackthebox.com/achievement/badge/589aaab5-e9c1-11f1-8591-0affe7dfeb45" }
     ],
     drills: {
       title: "Entraînement quotidien",
@@ -475,7 +477,7 @@ export const portfolio: Portfolio = {
   },
 
   en: {
-    nav: { roster: "Roster", matches: "Season card", career: "Seasons played", drills: "Daily training", htb: "Cyber labs", htbSub: "HTB & TryHackMe", off: "Off the keyboard", languages: "Three languages", contact: "Final whistle" },
+    nav: { roster: "Roster", matches: "Season card", career: "Seasons played", certs: "Trophies", certsSub: "Certifications", drills: "Daily training", htb: "Cyber labs", htbSub: "HTB & TryHackMe", off: "Off the keyboard", languages: "Three languages", contact: "Final whistle" },
     sectionLabels: { roster: "Profile", matches: "Projects", career: "Experience", drills: "Skills", htb: "Hack The Box", thm: "TryHackMe", off: "Interests", languages: "Languages", contact: "Contact" },
     a11y: { navPrimary: "Primary navigation", navMobile: "Mobile navigation", language: "Language", theme: "Light theme", menu: "Menu", legend: "Legend", backToTop: "Back to top", skipToContent: "Skip to content" },
     ticker: ["CYBER & WEB DEV APPRENTICESHIP", "·", "AVAILABLE NOW", "·", "GRAND EST & LUXEMBOURG", "·", "MSc CYBERSECURITY & CLOUD", "·", "EPITECH NANCY", "·", "TRILINGUAL FR/EN/TR", "·", "OPEN TO WORK", "·", "LIVE", "·", "PORTFOLIO 2026", "·"],
@@ -535,7 +537,7 @@ export const portfolio: Portfolio = {
       { idx: "10", name: "Popeye", kanji: "船団", type: "Containerisation", stack: "DOCKER · FLASK · NODE.JS · POSTGRESQL", year: "2025", opponent: "WEB MONOLITH", verdict: "MODULAR ARCHITECTURE", desc: "Docker containerisation project. Full web application in a microservices architecture, with inter-service communication and persistence.", link: "https://github.com/Deniz09OK/Popeye", archived: true },
       { idx: "11", name: "EpiQuest", kanji: "冒険", type: "2D video game", stack: "JAVA · LIBGDX · GAMEDEV", year: "2024", opponent: "EMPTY ENGINE", verdict: "PLAYABLE ADVENTURE", desc: "2D adventure game built with Java and LibGDX. Combat system, dialogues, progression. Team project.", link: "https://github.com/Deniz09OK/Projet-Jeu-Java", archived: true }
     ],
-    career: { title: "Seasons played", eduLabel: "ACADEMY", expLabel: "FIELD", certsLabel: "LICENSES & CERTIFICATIONS", certsVerify: "Verify badge" },
+    career: { title: "Seasons played", eduLabel: "ACADEMY", expLabel: "FIELD", certsLabel: "LICENSES & CERTIFICATIONS", certsTracks: { ai: "ARTIFICIAL INTELLIGENCE", cyber: "CYBERSECURITY" }, certsVerify: "Verify badge" },
     edu: [
       { year: "09/2024 — 09/2027", school: "EPITECH NANCY", title: "MSc Pro — Cybersecurity & Cloud", desc: "Active pedagogy · Debian/OpenBSD/FreeBSD · Offensive & defensive security", current: true },
       { year: "09/2020 — 07/2022", school: "CHARLES DE FOUCAULD", title: "BTS SNIR", desc: "C/C++, Python · VLAN, routing, subnets · Mageia" },
@@ -548,9 +550,10 @@ export const portfolio: Portfolio = {
       { year: "01/2019 — 06/2021", company: "LYCÉE HENRI LORITZ · SCIENCES PO NANCY · CFA CHARLES DE FOUCAULD", title: "IT internships (vocational bac, then BTS)", desc: "Workstation maintenance & rollout · Staff & student support · IP addressing" }
     ],
     certs: [
-      { year: "11/2026", name: "Claude Code 101", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/03d6ba78be62571ba463d9056184ceae" },
-      { year: "11/2026", name: "Building with the Claude API", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/1e1a718051738e60e7ec630e22e2a368" },
-      { year: "11/2026", name: "Introduction to Model Context Protocol", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/308c6bb8c6dd3c8091d2fc27eeb7e83d" }
+      { year: "11/2026", name: "Claude Code 101", issuer: "ANTHROPIC ACADEMY", track: "ai", url: "https://academy.claude.com/verify/03d6ba78be62571ba463d9056184ceae" },
+      { year: "11/2026", name: "Building with the Claude API", issuer: "ANTHROPIC ACADEMY", track: "ai", url: "https://academy.claude.com/verify/1e1a718051738e60e7ec630e22e2a368" },
+      { year: "11/2026", name: "Introduction to Model Context Protocol", issuer: "ANTHROPIC ACADEMY", track: "ai", url: "https://academy.claude.com/verify/308c6bb8c6dd3c8091d2fc27eeb7e83d" },
+      { year: "11/2026", name: "Pentest in a Nutshell", issuer: "HACK THE BOX ACADEMY", track: "cyber", url: "https://academy.hackthebox.com/achievement/badge/589aaab5-e9c1-11f1-8591-0affe7dfeb45" }
     ],
     drills: {
       title: "Daily training",
@@ -933,7 +936,7 @@ export const portfolio: Portfolio = {
   },
 
   tr: {
-    nav: { roster: "Kadro", matches: "Sezon kartı", career: "Oynanan sezonlar", drills: "Günlük antrenman", htb: "Siber lab'lar", htbSub: "HTB & TryHackMe", off: "Klavyenin dışında", languages: "Üç dil", contact: "Son düdük" },
+    nav: { roster: "Kadro", matches: "Sezon kartı", career: "Oynanan sezonlar", certs: "Kupalar", certsSub: "Sertifikalar", drills: "Günlük antrenman", htb: "Siber lab'lar", htbSub: "HTB & TryHackMe", off: "Klavyenin dışında", languages: "Üç dil", contact: "Son düdük" },
     sectionLabels: { roster: "Profil", matches: "Projeler", career: "Deneyim", drills: "Yetenekler", htb: "Hack The Box", thm: "TryHackMe", off: "İlgi Alanları", languages: "Diller", contact: "İletişim" },
     a11y: { navPrimary: "Ana gezinme", navMobile: "Mobil gezinme", language: "Dil", theme: "Açık tema", menu: "Menü", legend: "Açıklama", backToTop: "Sayfanın başına dön", skipToContent: "İçeriğe geç" },
     ticker: ["SİBER & WEB GELİŞTİRME DÖNÜŞÜMLÜ EĞİTİM", "·", "HEMEN MÜSAİT", "·", "GRAND EST & LÜKSEMBURG", "·", "MSc SİBER GÜVENLİK & BULUT", "·", "EPITECH NANCY", "·", "ÜÇ DİLLİ FR/EN/TR", "·", "YENİ FIRSATLARA AÇIĞIM", "·", "CANLI", "·", "PORTFOLYO 2026", "·"],
@@ -993,7 +996,7 @@ export const portfolio: Portfolio = {
       { idx: "10", name: "Popeye", kanji: "船団", type: "Konteynerleştirme", stack: "DOCKER · FLASK · NODE.JS · POSTGRESQL", year: "2025", opponent: "WEB MONOLİT", verdict: "MODÜLER MİMARİ", desc: "Docker ile konteynerleştirme projesi. Mikroservis mimarisinde tam bir web uygulaması, servisler arası iletişim ve kalıcılık.", link: "https://github.com/Deniz09OK/Popeye", archived: true },
       { idx: "11", name: "EpiQuest", kanji: "冒険", type: "2D video oyunu", stack: "JAVA · LIBGDX · OYUN", year: "2024", opponent: "BOŞ MOTOR", verdict: "OYNANABİLİR MACERA", desc: "Java ve LibGDX ile geliştirilmiş 2D macera oyunu. Savaş sistemi, diyaloglar, ilerleme. Takım projesi.", link: "https://github.com/Deniz09OK/Projet-Jeu-Java", archived: true }
     ],
-    career: { title: "Oynanan sezonlar", eduLabel: "AKADEMİ", expLabel: "SAHA", certsLabel: "LİSANSLAR VE SERTİFİKALAR", certsVerify: "Rozeti doğrula" },
+    career: { title: "Oynanan sezonlar", eduLabel: "AKADEMİ", expLabel: "SAHA", certsLabel: "LİSANSLAR VE SERTİFİKALAR", certsTracks: { ai: "YAPAY ZEKÂ", cyber: "SİBER GÜVENLİK" }, certsVerify: "Rozeti doğrula" },
     edu: [
       { year: "09/2024 — 09/2027", school: "EPITECH NANCY", title: "MSc Pro — Siber Güvenlik & Bulut", desc: "Aktif pedagoji · Debian/OpenBSD/FreeBSD · Saldırı & savunma", current: true },
       { year: "09/2020 — 07/2022", school: "CHARLES DE FOUCAULD", title: "BTS SNIR", desc: "C/C++, Python · VLAN, yönlendirme, alt ağlar · Mageia" },
@@ -1006,9 +1009,10 @@ export const portfolio: Portfolio = {
       { year: "01/2019 — 06/2021", company: "LYCÉE HENRI LORITZ · SCIENCES PO NANCY · CFA CHARLES DE FOUCAULD", title: "BT stajları (Mesleki Lise, ardından BTS)", desc: "İş istasyonu bakımı ve kurulumu · Personel & öğrenci desteği · IP adresleme" }
     ],
     certs: [
-      { year: "11/2026", name: "Claude Code 101", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/03d6ba78be62571ba463d9056184ceae" },
-      { year: "11/2026", name: "Building with the Claude API", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/1e1a718051738e60e7ec630e22e2a368" },
-      { year: "11/2026", name: "Introduction to Model Context Protocol", issuer: "ANTHROPIC ACADEMY", url: "https://academy.claude.com/verify/308c6bb8c6dd3c8091d2fc27eeb7e83d" }
+      { year: "11/2026", name: "Claude Code 101", issuer: "ANTHROPIC ACADEMY", track: "ai", url: "https://academy.claude.com/verify/03d6ba78be62571ba463d9056184ceae" },
+      { year: "11/2026", name: "Building with the Claude API", issuer: "ANTHROPIC ACADEMY", track: "ai", url: "https://academy.claude.com/verify/1e1a718051738e60e7ec630e22e2a368" },
+      { year: "11/2026", name: "Introduction to Model Context Protocol", issuer: "ANTHROPIC ACADEMY", track: "ai", url: "https://academy.claude.com/verify/308c6bb8c6dd3c8091d2fc27eeb7e83d" },
+      { year: "11/2026", name: "Pentest in a Nutshell", issuer: "HACK THE BOX ACADEMY", track: "cyber", url: "https://academy.hackthebox.com/achievement/badge/589aaab5-e9c1-11f1-8591-0affe7dfeb45" }
     ],
     drills: {
       title: "Günlük antrenman",

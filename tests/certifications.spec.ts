@@ -6,7 +6,11 @@ const LANGS = ['fr', 'en', 'tr'] as const
 type Lang = (typeof LANGS)[number]
 const THEMES = ['dark', 'light'] as const
 
-const VERIFY_URL = /^https:\/\/academy\.claude\.com\/verify\/[0-9a-f]{32}$/
+/** Pages publiques de vérification : Anthropic Academy (IA) et Hack The Box Academy (cyber). */
+const VERIFY_URLS = [
+  /^https:\/\/academy\.claude\.com\/verify\/[0-9a-f]{32}$/,
+  /^https:\/\/academy\.hackthebox\.com\/achievement\/badge\/[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$/,
+]
 /** Largeur (px) en dessous de laquelle les cartes passent sur une colonne (assets/css/career.css). */
 const BREAKPOINT = 880
 
@@ -41,18 +45,27 @@ async function openCerts(page: Page, lang: Lang = 'fr', theme: (typeof THEMES)[n
 
 /** Attend la fin de l'animation d'entrée : la classe `reveal` est retirée une fois la transition terminée. */
 async function waitRevealed(page: Page) {
-  for (const card of await page.locator('.cert').all()) await expect(card).not.toHaveClass(/reveal/)
+  // L'animation se déclenche au défilement : chaque carte (le groupe cyber est plus bas) est amenée dans la vue.
+  for (const card of await page.locator('.cert').all()) {
+    await card.scrollIntoViewIfNeeded()
+    await expect(card).not.toHaveClass(/reveal/)
+  }
 }
 
 test.describe('certifications : données', () => {
-  test('trois badges, mêmes données dans toutes les langues', () => {
+  test('quatre badges (3 IA, 1 cyber), mêmes données dans toutes les langues', () => {
     const fr = portfolio.fr.certs
-    expect(fr).toHaveLength(3)
+    expect(fr).toHaveLength(4)
+    expect(fr.filter((c) => c.track === 'ai')).toHaveLength(3)
+    expect(fr.filter((c) => c.track === 'cyber')).toHaveLength(1)
+    expect(fr.map((c) => c.track), 'les badges IA précèdent les badges cyber').toEqual(['ai', 'ai', 'ai', 'cyber'])
     for (const lang of LANGS) {
       const { certs, career } = portfolio[lang]
       expect(certs, `${lang} : mêmes badges que le français`).toEqual(fr)
       expect(career.certsLabel.trim(), `${lang} : titre du bloc`).not.toBe('')
       expect(career.certsVerify.trim(), `${lang} : libellé du lien`).not.toBe('')
+      expect(career.certsTracks.ai.trim(), `${lang} : titre du groupe IA`).not.toBe('')
+      expect(career.certsTracks.cyber.trim(), `${lang} : titre du groupe cyber`).not.toBe('')
     }
     expect(new Set(LANGS.map((l) => portfolio[l].career.certsLabel)).size, 'titre traduit').toBe(3)
     expect(new Set(LANGS.map((l) => portfolio[l].career.certsVerify)).size, 'lien traduit').toBe(3)
@@ -64,10 +77,30 @@ test.describe('certifications : données', () => {
       expect(c.name.trim(), 'nom').not.toBe('')
       expect(c.issuer.trim(), `organisme de ${c.name}`).not.toBe('')
       expect(c.year, `date de ${c.name}`).toMatch(/^(0[1-9]|1[0-2])\/20\d{2}$/)
-      expect(c.url, `lien de ${c.name}`).toMatch(VERIFY_URL)
+      expect(VERIFY_URLS.some((re) => re.test(c.url)), `lien de ${c.name}`).toBe(true)
     }
     expect(new Set(certs.map((c) => c.url)).size, 'liens uniques').toBe(certs.length)
     expect(new Set(certs.map((c) => c.name)).size, 'noms uniques').toBe(certs.length)
+  })
+})
+
+test.describe('certifications : entrée de menu', () => {
+  test('les trois langues ont un libellé de menu, et le lien mène au bloc', async ({ page }) => {
+    for (const lang of LANGS) {
+      expect(portfolio[lang].nav.certs.trim(), `${lang} : libellé`).not.toBe('')
+      expect(portfolio[lang].nav.certsSub.trim(), `${lang} : sous-titre`).not.toBe('')
+    }
+    expect(new Set(LANGS.map((l) => portfolio[l].nav.certs)).size, 'libellé traduit').toBe(3)
+
+    await page.goto('/')
+    // Burger ouvert quand la barre desktop est masquée (<= 1319 px), sinon lien direct de la barre.
+    const burger = page.locator('.nav-toggle')
+    if (await burger.isVisible()) await burger.click()
+    const link = page.locator('a[href="#certs"]:visible').first()
+    await expect(link).toContainText(portfolio.fr.nav.certs)
+    await link.click()
+    await expect(page).toHaveURL(/#certs$/)
+    await expect(page.locator('#certs')).toBeInViewport()
   })
 })
 
@@ -77,6 +110,7 @@ for (const lang of LANGS) {
     const { certs, career } = portfolio[lang]
 
     await expect(page.locator('.certs h3')).toHaveText(career.certsLabel)
+    await expect(page.locator('.certs-track')).toHaveText([career.certsTracks.ai, career.certsTracks.cyber])
     const cards = page.locator('.cert')
     await expect(cards).toHaveCount(certs.length)
 
@@ -113,9 +147,17 @@ test.describe('certifications : mise en page sur tous les écrans', () => {
       await openCerts(page)
       await waitRevealed(page)
 
-      const boxes = await Promise.all((await page.locator('.cert').all()).map((c) => c.boundingBox()))
-      expect(boxes.every((b) => b !== null), 'les trois cartes sont rendues').toBe(true)
+      // Groupe IA : trois cartes. Le groupe cyber (une carte) vient dessous.
+      const boxes = await Promise.all(
+        (await page.locator('.certs-group').first().locator('.cert').all()).map((c) => c.boundingBox()),
+      )
+      expect(boxes.every((b) => b !== null), 'les trois cartes IA sont rendues').toBe(true)
+      expect(boxes).toHaveLength(3)
       const [a, b, c] = boxes as NonNullable<(typeof boxes)[number]>[]
+      const cyber = await page.locator('.certs-group').last().locator('.cert').boundingBox()
+      expect(cyber, 'la carte cyber est rendue').not.toBeNull()
+      expect(cyber!.y, 'la carte cyber est sous le groupe IA').toBeGreaterThanOrEqual(Math.max(a.y + a.height, c.y + c.height) - 1)
+      expect(cyber!.x + cyber!.width, 'la carte cyber ne dépasse pas à droite').toBeLessThanOrEqual(v.width)
 
       if (v.width > BREAKPOINT) {
         // Trois colonnes : même ligne, de gauche à droite.

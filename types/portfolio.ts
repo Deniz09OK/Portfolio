@@ -4,6 +4,9 @@ export interface NavContent {
   roster: string
   matches: string
   career: string
+  /** Menu entry pointing at the licences and certifications block, and its grey subtitle. */
+  certs: string
+  certsSub: string
   drills: string
   htb: string
   /** Grey subtitle of the "htb" nav entry, which covers Hack The Box and TryHackMe (the section labels stay untouched). */
@@ -128,9 +131,14 @@ export interface CareerContent {
   expLabel: string
   /** Title of the block of licences and certifications, under the education and experience columns. */
   certsLabel: string
+  /** Sub-headings splitting the certifications by track. */
+  certsTracks: Record<CertTrack, string>
   /** Label of the link to the public verification page of a certification. */
   certsVerify: string
 }
+
+/** Group a certification is displayed under. */
+export type CertTrack = 'ai' | 'cyber'
 
 /** A certification or badge, verifiable online. Names stay in English, as issued. */
 export interface CertItem {
@@ -138,6 +146,7 @@ export interface CertItem {
   year: string
   name: string
   issuer: string
+  track: CertTrack
   /** Public verification page of the badge. */
   url: string
 }
